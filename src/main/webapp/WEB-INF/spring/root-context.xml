@@ -13,7 +13,7 @@
 	<!-- 오라클 접속 -->
     <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@106.10.71.20:1521:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
         <property name="username" value="scott"/>
         <property name="password" value="tiger"/>
     </bean>
@@ -27,4 +27,9 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>		
+    
+    <!-- scan -->
+    <context:component-scan base-package="kr.co.service"></context:component-scan>
+    <context:component-scan base-package="kr.co.dao"></context:component-scan>
+    <context:component-scan base-package="kr.co.vo"></context:component-scan>
 </beans>
