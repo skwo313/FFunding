@@ -1,4 +1,4 @@
-package kr.co.vo;
+package com.ffunding.web.vo;
 
 import java.util.Date;
 

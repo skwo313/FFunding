@@ -1,6 +1,6 @@
-package kr.co.dao;
+package com.ffunding.web.dao;
 
-import kr.co.vo.BoardVO;
+import com.ffunding.web.vo.BoardVO;
 
 public interface BoardDAO {
 

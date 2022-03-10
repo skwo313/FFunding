@@ -1,6 +1,6 @@
-package kr.co.service;
+package com.ffunding.web.service;
 
-import kr.co.vo.BoardVO;
+import com.ffunding.web.vo.BoardVO;
 
 public interface BoardService {
 

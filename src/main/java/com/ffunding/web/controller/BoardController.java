@@ -1,4 +1,4 @@
-package kr.co.controller;
+package com.ffunding.web.controller;
 
 import javax.inject.Inject;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.service.BoardService;
-import kr.co.vo.BoardVO;
+import com.ffunding.web.service.BoardService;
+import com.ffunding.web.vo.BoardVO;
 
 @Controller
 @RequestMapping("/board/*")

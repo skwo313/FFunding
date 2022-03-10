@@ -1,12 +1,12 @@
-package kr.co.dao.impl;
+package com.ffunding.web.dao.impl;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.dao.BoardDAO;
-import kr.co.vo.BoardVO;
+import com.ffunding.web.dao.BoardDAO;
+import com.ffunding.web.vo.BoardVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {

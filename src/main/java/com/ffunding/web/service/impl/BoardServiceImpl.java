@@ -1,12 +1,12 @@
-package kr.co.service.impl;
+package com.ffunding.web.service.impl;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kr.co.dao.BoardDAO;
-import kr.co.service.BoardService;
-import kr.co.vo.BoardVO;
+import com.ffunding.web.dao.BoardDAO;
+import com.ffunding.web.service.BoardService;
+import com.ffunding.web.vo.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
