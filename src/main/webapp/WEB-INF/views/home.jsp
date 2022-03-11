@@ -7,7 +7,7 @@
 <script>
 	$(document).ready(function() {
 		$('.slider').bxSlider({
-			auto : false,
+			auto : true,
 			pager : false
 		});
 	});
@@ -19,6 +19,7 @@
 	box-shadow: none;
 	border: 0;
 }
+
 .imgText {
 	display: block;
 	position: absolute;
@@ -28,40 +29,95 @@
 	width: 100%;
 	max-width: 1440px;
 	box-sizing: border-box !important;
+	margin-bottom: 20px;
 }
-.imgDes{
+
+.imgDes {
 	width: 460px;
-    line-height: 40px;
-    font-size: 32px;
-    font-weight: 700;
-    word-break: break-all;
-    letter-spacing: -.7px;
-    color: #fff;
+	line-height: 40px;
+	font-size: 32px;
+	font-weight: 700;
+	word-break: break-all;
+	letter-spacing: -.7px;
+	color: #fff;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
 }
 </style>
 <title>FFunding</title>
 <div class="slider">
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner1.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner01.jpg">
 		<div class="imgText">
-			<p class="imgDes"></p>
+			<p class="imgDes">머리빠짐을 절반으로</p>
+			<p class="imgDes">심플리오 비오틴 탈모앰플</p>
 		</div>
-		
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner2.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner02.png">
+		<div class="imgText">
+			<p class="imgDes">너도 이제 인싸!!</p>
+			<p class="imgDes">버킷햇!</p>
+		</div>
+
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner3.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner03.png">
+		<div class="imgText">
+			<p class="imgDes">남산에서 한라산까지</p>
+			<p class="imgDes">등산스텝 레벨업!</p>
+		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner4.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner04.jpg">
+		<div class="imgText">
+			<p class="imgDes">HAYAN 친환경 칫솔로</p>
+			<p class="imgDes">미세플라스틱 없는 양치해요</p>
+		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner5.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner05.jpg">
+		<div class="imgText">
+			<p class="imgDes">오늘 알림 신청하면</p>
+			<p class="imgDes">콜라겐 아이크림 전용 쿠폰</p>
+		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner6.png">
+		<img alt="" src="${pageContext.request.contextPath}/img/banner06.png">
+		<div class="imgText">
+			<p class="imgDes">먼저 사용해 보세요</p>
+			<p class="imgDes">무료 체험단 이벤트</p>
+		</div>
 	</div>
 </div>
-<div>hello</div>
+<section>
+	<div class="container-lg">
+		<div>
+			<h3>
+				<strong>펀딩 실시간 리워드</strong>
+			</h3>
+		</div>
+		<div style="display: flex;" >
+			<div style="display: flex;">
+				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			</div>
+			<div style="display: flex;">
+				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			</div>
+			<div style="display: flex;">
+				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			</div>
+			<div style="display: flex;">
+				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			</div>
+			<div style="display: flex;">
+				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			</div>
+		</div>
+	</div>
+	<div class="container-lg">100% wide until large breakpoint</div>
+	<div class="container-lg">100% wide until large breakpoint</div>
+</section>
