@@ -6,9 +6,11 @@ public class ApplyVO {
 	private String fname;
 	private int fprice;
 	private int fgoal;
+	
 	private String fdate;
 	private String fstartdate;
 	private String fenddate;
+	
 	private String fimg;
 	private String fimg1;
 	private String fimg2;
@@ -58,6 +60,11 @@ public class ApplyVO {
 	public void setFstartdate(String fstartdate) {
 		this.fstartdate = fstartdate;
 	}
+
+	
+	
+	
+	
 	public String getFenddate() {
 		return fenddate;
 	}

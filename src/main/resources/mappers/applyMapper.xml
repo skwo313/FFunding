@@ -9,12 +9,30 @@
 	   					      , FCATE 
 	   					      , FNAME
 	   					      , FPRICE
-	   					      , FGOAL)
+	   					      , FGOAL
+	   					      , FDATE
+	   					      , FSTARTDATE 
+	   					      , FENDDATE
+	   					      , FIMG
+	   					      , FIMG1
+	   					      , FIMG2
+	   					      , FIMG3
+	   					      , FDES
+	   					      , WRITER)
 	                 VALUES(    FUNDING_APPLY_SEQ.NEXTVAL 
 	                 		  , #{fcate}  
 	                 		  , #{fname}
 	                 		  , #{fprice}
-	                 		  , #{fgoal} )
+	                 		  , #{fgoal} 
+	                 		  , #{fdate}
+	                 		  , #{fstartdate}
+	                 		  , #{fenddate}
+	                 		  , #{fimg}
+	                 		  , #{fimg1, jdbcType=VARCHAR}
+	                 		  , #{fimg2, jdbcType=VARCHAR}
+	                 		  , #{fimg3, jdbcType=VARCHAR}
+	                 		  , #{fdes}
+	                 		  , #{writer})
    </insert>
 
 </mapper>
