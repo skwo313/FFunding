@@ -94,30 +94,122 @@ section {
 	</div>
 </div>
 <section>
-	<div class="container-lg">
+	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div>
 			<h3>
 				<strong>펀딩 실시간 리워드</strong>
 			</h3>
 		</div>
-		<div style="display: flex;" >
-			<div style="display: flex;">
-				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+		<div class="row">
+			<div class="col">
+				<div class="thumbnail">
+					<img alt="" style="width: 100%" class="radius" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
 			</div>
-			<div style="display: flex;">
-				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			<div class="col">
+				<div class="thumbnail">
+					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
 			</div>
-			<div style="display: flex;">
-				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			<div class="col">
+				<div class="thumbnail">
+					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
 			</div>
-			<div style="display: flex;">
-				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			<div class="col">
+				<div class="thumbnail">
+					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
 			</div>
-			<div style="display: flex;">
-				<img alt="" src="${pageContext.request.contextPath}/img/sample.png">
+			<div class="col">
+				<div class="thumbnail">
+					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-lg">100% wide until large breakpoint</div>
-	<div class="container-lg">100% wide until large breakpoint</div>
+	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
+		<div>
+			<h3>
+				<strong>펀딩 예정</strong>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="card border mb-3">
+					<img alt="" style="width: 100%; padding: 2px;" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border mb-3">
+					<img alt="" style="width: 100%; padding: 2px;" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border mb-3">
+					<img alt="" style="width: 100%; padding: 2px;" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border mb-3">
+					<img alt="" style="width: 100%; padding: 2px;" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border mb-3">
+					<img alt="" style="width: 100%; padding: 2px;" src="${pageContext.request.contextPath}/img/sample.png">
+					<div class="caption">
+						<div class="fundingName">이름</div>
+						<div class="fundingAchieve">퍼센트</div>
+						<div class="fundingCate">카테고리</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
