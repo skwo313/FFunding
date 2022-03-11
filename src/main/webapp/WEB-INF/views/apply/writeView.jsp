@@ -15,7 +15,23 @@
 								<td>
 									<label for="fcate">카테고리</label><input type="text" id="fcate" name="fcate" />
 								</td>
-							</tr>										
+							</tr>					
+							<tr>
+								<td>
+									<label for="fname">펀딩제품 이름</label><input type="text" id="fname" name="fname" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="fprice">펀딩 가격</label><input type="text" id="fprice" name="fprice" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="fgoal">펀딩목표 가격</label><input type="text" id="fgoal" name="fgoal" />
+								</td>
+							</tr>		
+							<tr>						
 								<td>						
 									<button type="submit">작성</button>
 								</td>

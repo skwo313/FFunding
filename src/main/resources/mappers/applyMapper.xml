@@ -6,9 +6,15 @@
 	   <!-- 게시판 글 작성 -->
    <insert id="insert">
 	   INSERT INTO FUNDING_APPLY(    FID 
-	   					      , FCATE )
+	   					      , FCATE 
+	   					      , FNAME
+	   					      , FPRICE
+	   					      , FGOAL)
 	                 VALUES(    FUNDING_APPLY_SEQ.NEXTVAL 
-	                 		  , #{fcate} )
+	                 		  , #{fcate}  
+	                 		  , #{fname}
+	                 		  , #{fprice}
+	                 		  , #{fgoal} )
    </insert>
 
 </mapper>
