@@ -22,8 +22,10 @@ public class ApplyController {
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/apply/writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception {
+	public String writeView() throws Exception {
 		logger.info("writeView");
+		
+		return "apply/writeView.page";
 	}
 	
 	// 게시판 글 작성
