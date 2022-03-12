@@ -45,10 +45,10 @@ div.c{
 						<tr>
 							<td><br>		
 							<div class="a">				
-								메이커님, 환영합니다!<br>
+								메이커님, 환영합니다!<br><br>
 							</div>
 							<div class="b">
-								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺
+								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br><br><br>
 							</div>
 							</td>
 						</tr>
@@ -56,7 +56,14 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fcate">카테고리*</label><br><input type="text" id="fcate" name="fcate" class="form-control" />
+									<label for="fcate">카테고리*</label>
+									<br>
+									<select id="fcate" name="fcate" size="1" class="form-control">
+									<option value="">선택하세요</option>
+									<option value="테스트">테스트</option>
+									<option value="테스트">테스트1</option>
+									</select><br>
+
 								</div>
 							</td>
 						</tr>
@@ -64,7 +71,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fname">펀딩제품 이름*</label><br><input type="text" id="fname" name="fname" class="form-control" />
+									<label for="fname">펀딩제품 이름*</label><br><input type="text" id="fname" name="fname" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -72,7 +79,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fprice">펀딩 가격*</label><br><input type="text" id="fprice" name="fprice" class="form-control" />
+									<label for="fprice">펀딩 가격*</label><br><input type="text" id="fprice" name="fprice" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -80,7 +87,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fgoal">펀딩목표 가격*</label><br><input type="text" id="fgoal" name="fgoal" class="form-control" />
+									<label for="fgoal">펀딩목표 가격*</label><br><input type="text" id="fgoal" name="fgoal" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -88,27 +95,27 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fdate">펀딩 등록 날짜*</label><br><input type="text" id="fdate" name="fdate" class="form-control" />
+									<label for="fdate">펀딩 등록 날짜*</label><br><input type="text" id="fdate" name="fdate" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-							<label for="fstartdate">펀딩 시작 날짜*</label><br><input type="text" id="fstartdate" name="fstartdate" class="form-control" />
+							<label for="fstartdate">펀딩 시작 날짜*</label><br><input type="text" id="fstartdate" name="fstartdate" class="form-control" /><br>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-							<label for="fenddate">펀딩 종료 날짜*</label><br><input type="text" id="fenddate" name="fenddate" class="form-control" />
+							<label for="fenddate">펀딩 종료 날짜*</label><br><input type="text" id="fenddate" name="fenddate" class="form-control" /><br>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fimg">제품 대표 이미지</label><br><input type="text" id="fimg" name="fimg" class="form-control" />
+									<label for="fimg">제품 대표 이미지</label><br><input type="text" id="fimg" name="fimg" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -116,7 +123,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fimg1">제품 대표 이미지</label><br><input type="text" id="fimg1" name="fimg1" class="form-control" />
+									<label for="fimg1">제품 대표 이미지</label><br><input type="text" id="fimg1" name="fimg1" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -124,7 +131,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">								
-									<label for="fimg2">제품 대표 이미지</label><br><input type="text" id="fimg2" name="fimg2" class="form-control" />
+									<label for="fimg2">제품 대표 이미지</label><br><input type="text" id="fimg2" name="fimg2" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -132,7 +139,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fimg3">제품 대표 이미지</label><br><input type="text" id="fimg3" name="fimg3" class="form-control" />
+									<label for="fimg3">제품 대표 이미지</label><br><input type="text" id="fimg3" name="fimg3" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
@@ -140,7 +147,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fdes">제품 상세 설명</label><br><input type="text" id="fdes" name="fdes" class="form-control" />
+									<label for="fdes">제품 상세 설명</label><br><input type="text" id="fdes" name="fdes" class="form-control" /><br>
 								</div>
 							</td>
 						</tr>
