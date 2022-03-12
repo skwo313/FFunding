@@ -17,6 +17,7 @@ public class ApplyVO {
 	private String fimg3;
 	private String fdes;
 	private String writer;
+	private String agreement;
 	
 	public int getFid() {
 		return fid;
@@ -106,6 +107,13 @@ public class ApplyVO {
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public String getAgreement() {
+		return agreement;
+	}
+	public void setAgreement(String agreement) {
+		this.agreement = agreement;
 	}
 	
 }

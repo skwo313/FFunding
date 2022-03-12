@@ -18,7 +18,8 @@
 	   					      , FIMG2
 	   					      , FIMG3
 	   					      , FDES
-	   					      , WRITER)
+	   					      , WRITER
+	   					      , AGREEMENT )
 	                 VALUES(    FUNDING_APPLY_SEQ.NEXTVAL 
 	                 		  , #{fcate}  
 	                 		  , #{fname}
@@ -31,8 +32,9 @@
 	                 		  , #{fimg1, jdbcType=VARCHAR}
 	                 		  , #{fimg2, jdbcType=VARCHAR}
 	                 		  , #{fimg3, jdbcType=VARCHAR}
-	                 		  , #{fdes}
-	                 		  , #{writer})
+	                 		  , #{fdes, jdbcType=VARCHAR}
+	                 		  , #{writer}
+	                 		  , #{agreement} )
    </insert>
 
 </mapper>

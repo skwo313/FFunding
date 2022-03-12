@@ -56,8 +56,8 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="fcate">카테고리*</label>
-									<br>
+									<label for="fcate">카테고리*</label><br>
+									서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요<br>
 									<select id="fcate" name="fcate" size="1" class="form-control">
 									<option value="">선택하세요</option>
 									<option value="테스트">테스트</option>
@@ -160,13 +160,21 @@ div.c{
 							</td>
 						</tr>
 						
-						
+						<tr>
+							<td>
+								<div class="c">
+									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label>		
+								</div>
+							</td>		
+						</tr>
 
 						<tr>
 							<td>
 								<button type="submit" class="write_btn btn btn-success">작성</button>
 							</td>
 						</tr>
+						
+						
 						
 					</tbody>
 				</table>
