@@ -177,7 +177,7 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-		
+
 		<!-- 첨부파일 START -->
 		<!-- MultipartHttpServletRequset -->
 		<dependency>
@@ -198,16 +198,42 @@
 			<version>1.3.2</version>
 		</dependency>
 		<!-- 첨부파일 END -->
-		
+
 		<!-- 트랜젝션 START -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-tx</artifactId>
-		    <version>3.1.1.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>3.1.1.RELEASE</version>
 		</dependency>
 		<!-- 트랜젝션 END -->
-		
+
+
+
+
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
 	</dependencies>
 	<build>
 		<plugins>
