@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 	<head>
-	 	<title>게시판</title>
+	 	<title>Test</title>
 	</head>
 	<body>
 	
