@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <title>Test123</title>
 </head>
 <style>
@@ -47,71 +55,112 @@ div.c{
 						
 						<tr>
 							<td>
-							<div class="c">
-							카테고리＊
-							</div>
-							<label for="fcate">카테고리</label><input type="text" id="fcate" name="fcate" />
+								<div class="c">
+									<label for="fcate">카테고리*</label><br><input type="text" id="fcate" name="fcate" class="form-control" />
+								</div>
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-							<div class="c">
-							펀딩제품 이름＊
-							</div>
-							<label for="fname">펀딩제품 이름</label><input type="text" id="fname" name="fname" />
+								<div class="c">
+									<label for="fname">펀딩제품 이름*</label><br><input type="text" id="fname" name="fname" class="form-control" />
+								</div>
 							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fprice">펀딩 가격</label><input type="text"
-								id="fprice" name="fprice" /></td>
+							<td>
+								<div class="c">
+									<label for="fprice">펀딩 가격*</label><br><input type="text" id="fprice" name="fprice" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fgoal">펀딩목표 가격</label><input type="text"
-								id="fgoal" name="fgoal" /></td>
+							<td>
+								<div class="c">
+									<label for="fgoal">펀딩목표 가격*</label><br><input type="text" id="fgoal" name="fgoal" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fdate">펀딩 등록 날짜</label><input type="text"
-								id="fdate" name="fdate" /></td>
+							<td>
+								<div class="c">
+									<label for="fdate">펀딩 등록 날짜*</label><br><input type="text" id="fdate" name="fdate" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fstartdate">펀딩 시작 날짜</label><input
-								type="text" id="fstartdate" name="fstartdate" /></td>
+							<td>
+							<label for="fstartdate">펀딩 시작 날짜*</label><br><input type="text" id="fstartdate" name="fstartdate" class="form-control" />
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fenddate">펀딩 종료 날짜</label><input type="text"
-								id="fenddate" name="fenddate" /></td>
+							<td>
+							<label for="fenddate">펀딩 종료 날짜*</label><br><input type="text" id="fenddate" name="fenddate" class="form-control" />
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fimg">제품 대표 이미지</label><input type="text"
-								id="fimg" name="fimg" /></td>
+							<td>
+								<div class="c">
+									<label for="fimg">제품 대표 이미지</label><br><input type="text" id="fimg" name="fimg" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fimg1">제품 대표 이미지</label><input type="text"
-								id="fimg1" name="fimg1" /></td>
+							<td>
+								<div class="c">
+									<label for="fimg1">제품 대표 이미지</label><br><input type="text" id="fimg1" name="fimg1" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fimg2">제품 대표 이미지</label><input type="text"
-								id="fimg2" name="fimg2" /></td>
+							<td>
+								<div class="c">								
+									<label for="fimg2">제품 대표 이미지</label><br><input type="text" id="fimg2" name="fimg2" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fimg3">제품 대표 이미지</label><input type="text"
-								id="fimg3" name="fimg3" /></td>
+							<td>
+								<div class="c">
+									<label for="fimg3">제품 대표 이미지</label><br><input type="text" id="fimg3" name="fimg3" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="fdes">제품 상세 설명</label><input type="text"
-								id="fdes" name="fdes" /></td>
+							<td>
+								<div class="c">
+									<label for="fdes">제품 상세 설명</label><br><input type="text" id="fdes" name="fdes" class="form-control" />
+								</div>
+							</td>
 						</tr>
+						
 						<tr>
-							<td><label for="writer">작성자</label><input type="text"
-								id="writer" name="writer" /></td>
+							<td>
+								<div class="c">
+									<label for="writer">작성자*</label><br><input type="text" id="writer" name="writer" class="form-control" /><br>
+								</div>
+							</td>
 						</tr>
+						
+						
 
 						<tr>
 							<td>
-								<button type="submit">작성</button>
+								<button type="submit" class="write_btn btn btn-success">작성</button>
 							</td>
 						</tr>
+						
 					</tbody>
 				</table>
 			</form>
