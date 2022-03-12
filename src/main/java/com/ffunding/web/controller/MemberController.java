@@ -46,7 +46,7 @@ public class MemberController {
 	   /* 이메일 인증 */
     @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
     @ResponseBody
-    public void mailCheckGET(String email) throws Exception{
+    public String mailCheckGET(String email) throws Exception{
         
         /* 뷰(View)로부터 넘어온 데이터 확인 */
         logger.info("이메일 데이터 전송 확인");
@@ -68,6 +68,7 @@ public class MemberController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
         
+       
         try {
             
             MimeMessage message = mailSender.createMimeMessage();
@@ -82,6 +83,10 @@ public class MemberController {
             e.printStackTrace();
         }
         
+        String num = Integer.toString(checkNum);
+        
+        return num;
+
     }
  
 	
