@@ -96,18 +96,118 @@ section {
 <section>
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div class="row">
-			<div class="col">
-				<div>
+			<div class="col" style="border-right: 1px solid #f0f2f5;">
+				<div style="padding-bottom: 15px;">
 					<h3>
 						<strong>펀딩하기 실시간 리워드</strong>
 					</h3>
 				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>1</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 퍼센트, 카테고리</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>2</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 퍼센트, 카테고리</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>3</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 퍼센트, 카테고리</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>4</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 퍼센트, 카테고리</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>5</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 퍼센트, 카테고리</div>
+					<div class="col-3">이미지</div>
+				</div>
 			</div>
 			<div class="col">
-				<div>
+				<div style="padding-bottom: 15px;">
 					<h3>
 						<strong>구매하기 실시간 리워드</strong>
 					</h3>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>1</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 판매수, 가격</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>2</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 판매수, 가격</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>3</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 판매수, 가격</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>4</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 판매수, 가격</div>
+					<div class="col-3">이미지</div>
+				</div>
+				<div class="row">
+					<div class="col-1">
+						<h3>
+							<strong>5</strong>
+						</h3>
+
+					</div>
+					<div class="col-8">제목, 판매수, 가격</div>
+					<div class="col-3">이미지</div>
 				</div>
 			</div>
 		</div>
