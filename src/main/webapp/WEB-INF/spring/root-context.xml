@@ -59,6 +59,7 @@
 	</bean>
     
     <!-- scan -->
+    <context:component-scan base-package="com.ffunding.web.*" />
     <context:component-scan base-package="com.ffunding.web.service"></context:component-scan>
     <context:component-scan base-package="com.ffunding.web.dao"></context:component-scan>
     <context:component-scan base-package="com.ffunding.web.vo"></context:component-scan>

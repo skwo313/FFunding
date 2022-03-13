@@ -4,10 +4,8 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="logo">
 			<h1 class="text-light">
-				<a href="home.jsp">FFunding</a>
+				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
 			</h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 		</div>
 
 		<nav id="navbar" class="navbar">
@@ -18,7 +16,7 @@
 					<li><a href="#">구매하기</a></li>
 					<li><a href="#">공지사항</a></li>
 				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
+<!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
 			<div class="login" style="display: flex;">
 				<ul>
@@ -26,7 +24,7 @@
 					<li><a href="#">회원가입</a></li>
 					<li><a class="getstarted" href="#">프로젝트 시작하기</a></li>
 				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
+<!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
 		</nav>
 		<!-- .navbar -->

@@ -95,9 +95,27 @@ section {
 </div>
 <section>
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
+		<div class="row">
+			<div class="col">
+				<div>
+					<h3>
+						<strong>펀딩하기 실시간 리워드</strong>
+					</h3>
+				</div>
+			</div>
+			<div class="col">
+				<div>
+					<h3>
+						<strong>구매하기 실시간 리워드</strong>
+					</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div>
 			<h3>
-				<strong>펀딩 실시간 리워드</strong>
+				<strong>펀딩 예정</strong>
 			</h3>
 		</div>
 		<div class="row">
