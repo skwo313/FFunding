@@ -37,7 +37,6 @@ public class BoardController {
 	@Inject
 	BoardService service;
 	
-	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
 	public String writeView() throws Exception {
@@ -52,24 +51,7 @@ public class BoardController {
 		logger.info("write" + boardVO.getTitle());
 		logger.info("write" + boardVO.getContent());
 		logger.info("write" + boardVO.getWriter());
-		logger.info("write" + boardVO.getImage());
-		
-		/*
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";
-		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-		String fileName = null;
 
-		if (file != null) {
-			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		}
-
-		boardVO.setImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		boardVO.setImage(
-				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		*/
-		
 		service.write(boardVO, mpRequest);
 
 		return "redirect:/board/list";
@@ -154,6 +136,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
+	
 	// 첨부파일 다운로드
 	@RequestMapping(value = "/fileDown")
 	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception {
