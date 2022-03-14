@@ -25,9 +25,11 @@ public class EmailController {
 	
 	// 이메일 인증 페이지 이동
 	@RequestMapping(value = "email", method = RequestMethod.GET)
-	public void joinGET() {
+	public String joinGET() {
 		
 		logger.info("이메일 인증 페이지 진입");
+		
+		return "email/email.page";
 				
 	}
 	
