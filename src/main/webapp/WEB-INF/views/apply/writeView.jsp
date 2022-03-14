@@ -148,9 +148,6 @@ div.c{
 								<button type="submit" class="write_btn btn btn-success">작성</button>
 							</td>
 						</tr>
-						
-						
-						
 					</tbody>
 				</table>
 			</form>
