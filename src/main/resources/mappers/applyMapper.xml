@@ -28,13 +28,30 @@
 	                 		  , #{fdate}
 	                 		  , #{fstartdate}
 	                 		  , #{fenddate}
-	                 		  , #{fimg}
+	                 		  , #{fimg, jdbcType=VARCHAR}
 	                 		  , #{fimg1, jdbcType=VARCHAR}
 	                 		  , #{fimg2, jdbcType=VARCHAR}
 	                 		  , #{fimg3, jdbcType=VARCHAR}
 	                 		  , #{fdes, jdbcType=VARCHAR}
 	                 		  , #{writer}
 	                 		  , #{agreement} )
+   </insert>
+   
+    <!-- 첨부파일 업로드 -->
+   <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO FUNDING_APPLY_FILE(
+			FILE_NO,
+			FID,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			FUNDING_APPLY_SEQ.NEXTVAL,
+			#{FID},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
    </insert>
 
 </mapper>

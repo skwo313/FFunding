@@ -10,14 +10,14 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.ffunding.web.vo.ApplyVO;
 
-import com.ffunding.web.vo.BoardVO;
+@Component("ApplyFileUtils")
+public class ApplyFileUtils {
 
-@Component("fileUtils")
-public class FileUtils {
-	private static final String filePath = "C:\\funding\\file\\"; // 파일이 저장될 위치
+private static final String filePath = "C:\\fundingApply\\file\\"; // 파일이 저장될 위치
 	
-	public List<Map<String, Object>> parseInsertFileInfo(BoardVO boardVO, 
+	public List<Map<String, Object>> parseInsertFileInfo(ApplyVO applyVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
 		
 		/*
@@ -36,7 +36,7 @@ public class FileUtils {
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		Map<String, Object> listMap = null;
 		
-		int bno = boardVO.getBno();
+		int fid = applyVO.getFid();
 		
 		File file = new File(filePath);
 		if(file.exists() == false) {
@@ -48,11 +48,12 @@ public class FileUtils {
 			if(multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename();
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				storedFileName = getRandomString1() + originalFileExtension;
+				storedFileName = getRandomString() + originalFileExtension;
+				
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
-				listMap.put("BNO", bno);
+				listMap.put("FID", fid);
 				listMap.put("ORG_FILE_NAME", originalFileName);
 				listMap.put("STORED_FILE_NAME", storedFileName);
 				listMap.put("FILE_SIZE", multipartFile.getSize());
@@ -62,45 +63,7 @@ public class FileUtils {
 		return list;
 	}
 	
-	public List<Map<String, Object>> parseUpdateFileInfo(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception{ 
-		Iterator<String> iterator = mpRequest.getFileNames();
-		MultipartFile multipartFile = null; 
-		String originalFileName = null; 
-		String originalFileExtension = null; 
-		String storedFileName = null; 
-		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		Map<String, Object> listMap = null; 
-		int bno = boardVO.getBno();
-		while(iterator.hasNext()){ 
-			multipartFile = mpRequest.getFile(iterator.next()); 
-			if(multipartFile.isEmpty() == false){ 
-				originalFileName = multipartFile.getOriginalFilename(); 
-				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
-				storedFileName = getRandomString1() + originalFileExtension; 
-				multipartFile.transferTo(new File(filePath + storedFileName)); 
-				listMap = new HashMap<String,Object>();
-				listMap.put("IS_NEW", "Y");
-				listMap.put("BNO", bno); 
-				listMap.put("ORG_FILE_NAME", originalFileName);
-				listMap.put("STORED_FILE_NAME", storedFileName); 
-				listMap.put("FILE_SIZE", multipartFile.getSize()); 
-				list.add(listMap); 
-			} 
-		}
-		if(files != null && fileNames != null){ 
-			for(int i = 0; i<fileNames.length; i++) {
-					listMap = new HashMap<String,Object>();
-                    listMap.put("IS_NEW", "N");
-					listMap.put("FILE_NO", files[i]); 
-					list.add(listMap); 
-			}
-		}
-		return list; 
-	}
-
-	
-	public static String getRandomString1() {
+	public static String getRandomString() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
-
 }

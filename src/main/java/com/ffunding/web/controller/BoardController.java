@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.BoardService;
-import com.ffunding.web.util.UploadFileUtils;
 import com.ffunding.web.vo.BoardVO;
 import com.ffunding.web.vo.Criteria;
 import com.ffunding.web.vo.PageMaker;

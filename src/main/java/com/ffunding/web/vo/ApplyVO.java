@@ -6,7 +6,14 @@ public class ApplyVO {
 	private String fname;
 	private int fprice;
 	private int fgoal;
+	private int bno;
 	
+	public int getBno() {
+		return bno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
 	private String fdate;
 	private String fstartdate;
 	private String fenddate;
@@ -18,6 +25,18 @@ public class ApplyVO {
 	private String fdes;
 	private String writer;
 	private String agreement;
+	
+	private String gdsThumbImg;
+	
+	public String getGdsThumbImg() {
+		return gdsThumbImg;
+	}
+	public void setGdsThumbImg(String gdsThumbImg) {
+		this.gdsThumbImg = gdsThumbImg;
+	}
+	
+	
+	
 	
 	public int getFid() {
 		return fid;

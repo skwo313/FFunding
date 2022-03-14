@@ -38,7 +38,7 @@ div.c{
 
 	<div id="root">
 		<section id="container">
-			<form role="form" method="post" action="/apply/write">
+			<form role="form" method="post" action="/apply/write" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						
@@ -162,11 +162,18 @@ div.c{
 						
 						<tr>
 							<td>
+								<input type="file" name="file">
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
 								<div class="c">
 									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label>		
 								</div>
 							</td>		
-						</tr>
+						</tr>	
 
 						<tr>
 							<td>

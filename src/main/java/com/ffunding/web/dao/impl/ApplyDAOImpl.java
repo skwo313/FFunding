@@ -1,5 +1,7 @@
 package com.ffunding.web.dao.impl;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,5 +20,12 @@ public class ApplyDAOImpl implements ApplyDAO {
 	@Override
 	public void write(ApplyVO applyVO) throws Exception {
 		sqlSession.insert("applyMapper.insert", applyVO);
+	}
+	
+	// 첨부파일 업로드
+	@Override
+	public void insertFile(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert("applyMapper.insertFile", map);
 	}
 }
