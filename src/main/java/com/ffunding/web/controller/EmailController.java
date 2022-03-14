@@ -14,36 +14,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.vam.model.MemberVO;
-import com.vam.service.MemberService;
-
 @Controller
-@RequestMapping(value = "/member")
-public class MemberController {
+@RequestMapping(value = "/email/*")
+public class EmailController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
 	
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	//회원가입 페이지 이동
-	@RequestMapping(value = "join", method = RequestMethod.GET)
+	
+	// 이메일 인증 페이지 이동
+	@RequestMapping(value = "email", method = RequestMethod.GET)
 	public void joinGET() {
 		
-		logger.info("회원가입 페이지 진입");
+		logger.info("이메일 인증 페이지 진입");
 				
 	}
-
 	
-	//로그인 페이지 이동
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void loginGET() {
-		
-		logger.info("로그인 페이지 진입");
-		
-	}
-	
-	   /* 이메일 인증 */
+	/* 이메일 인증 */
     @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
     @ResponseBody
     public String mailCheckGET(String email) throws Exception{
@@ -68,7 +57,6 @@ public class MemberController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
         
-       
         try {
             
             MimeMessage message = mailSender.createMimeMessage();

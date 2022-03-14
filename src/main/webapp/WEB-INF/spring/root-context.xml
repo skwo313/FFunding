@@ -18,8 +18,6 @@
         <property name="password" value="tiger"/>
     </bean>
    
-   
-  
     <!-- navermail설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.gmail.com"/> <!-- 메이서버 호스트 -->
@@ -38,12 +36,7 @@
       </props>
      </property>
     </bean>
-   
-   
-   
-   
-   
-   
+
     <!-- Mybatis 연동 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="dataSource" ref="dataSource"></property>
