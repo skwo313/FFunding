@@ -137,9 +137,9 @@
   /**
    * Initiate portfolio lightbox 
    */
-  const glightbox = GLightbox({
+/*  const glightbox = GLightbox({
     selector: '.glightbox'
-  });
+  });*/
 
   /**
    * Skills animation
@@ -228,9 +228,9 @@
   /**
    * Initiate portfolio lightbox 
    */
-  const portfolioLightbox = GLightbox({
+/*  const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
-  });
+  });*/
 
   /**
    * Portfolio details slider
