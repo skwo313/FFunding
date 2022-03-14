@@ -13,10 +13,6 @@
 	   					      , FDATE
 	   					      , FSTARTDATE 
 	   					      , FENDDATE
-	   					      , FIMG
-	   					      , FIMG1
-	   					      , FIMG2
-	   					      , FIMG3
 	   					      , FDES
 	   					      , WRITER
 	   					      , AGREEMENT )
@@ -28,10 +24,6 @@
 	                 		  , #{fdate}
 	                 		  , #{fstartdate}
 	                 		  , #{fenddate}
-	                 		  , #{fimg, jdbcType=VARCHAR}
-	                 		  , #{fimg1, jdbcType=VARCHAR}
-	                 		  , #{fimg2, jdbcType=VARCHAR}
-	                 		  , #{fimg3, jdbcType=VARCHAR}
 	                 		  , #{fdes, jdbcType=VARCHAR}
 	                 		  , #{writer}
 	                 		  , #{agreement} )

@@ -111,39 +111,7 @@ div.c{
 							<label for="fenddate">펀딩 종료 날짜*</label><br><input type="text" id="fenddate" name="fenddate" class="form-control" /><br>
 							</td>
 						</tr>
-						
-						<tr>
-							<td>
-								<div class="c">
-									<label for="fimg">제품 대표 이미지</label><br><input type="text" id="fimg" name="fimg" class="form-control" /><br>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="c">
-									<label for="fimg1">제품 대표 이미지</label><br><input type="text" id="fimg1" name="fimg1" class="form-control" /><br>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="c">								
-									<label for="fimg2">제품 대표 이미지</label><br><input type="text" id="fimg2" name="fimg2" class="form-control" /><br>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="c">
-									<label for="fimg3">제품 대표 이미지</label><br><input type="text" id="fimg3" name="fimg3" class="form-control" /><br>
-								</div>
-							</td>
-						</tr>
-						
+				
 						<tr>
 							<td>
 								<div class="c">
