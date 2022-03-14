@@ -46,6 +46,45 @@ section {
 	display: flex;
 	flex-direction: column;
 }
+
+img {
+	object-fit: cover;
+}
+
+.fundingWrap {
+	margin-bottom: 16px;
+	height: 100px;
+}
+
+.divImg {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	/* background-image:
+		url("${pageContext.request.contextPath}/img/sample2.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; */
+}
+
+.title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.percent {
+	margin-right: 6px;
+	color: #00a2a2;
+	font-weight: 700;
+}
+
+.cate {
+	color: #90949c;
+	font-weight: 400;
+}
 </style>
 <title>FFunding</title>
 <div class="slider">
@@ -102,55 +141,100 @@ section {
 						<strong>펀딩하기 실시간 리워드</strong>
 					</h3>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>1</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 퍼센트, 카테고리</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">1000%</span><span class="cate">카테고리</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample2.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>2</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 퍼센트, 카테고리</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">1000%</span><span class="cate">카테고리</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample2.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>3</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 퍼센트, 카테고리</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">1000%</span><span class="cate">카테고리</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample2.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>4</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 퍼센트, 카테고리</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">1000%</span><span class="cate">카테고리</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample2.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>5</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 퍼센트, 카테고리</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">1000%</span><span class="cate">카테고리</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample2.jpg">
+					</div>
 				</div>
 			</div>
 			<div class="col">
@@ -159,55 +243,100 @@ section {
 						<strong>구매하기 실시간 리워드</strong>
 					</h3>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>1</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 판매수, 가격</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">9,800원</span><span class="cate">600건</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample1.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>2</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 판매수, 가격</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">9,800원</span><span class="cate">600건</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample1.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>3</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 판매수, 가격</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">9,800원</span><span class="cate">600건</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample1.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>4</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 판매수, 가격</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">9,800원</span><span class="cate">600건</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample1.jpg">
+					</div>
 				</div>
-				<div class="row">
+				<div class="row fundingWrap">
 					<div class="col-1">
 						<h3>
 							<strong>5</strong>
 						</h3>
 
 					</div>
-					<div class="col-8">제목, 판매수, 가격</div>
-					<div class="col-3">이미지</div>
+					<div class="col-8">
+						<div class="col">
+							<h4 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h4>
+						</div>
+						<div class="col">
+							<span class="percent">9,800원</span><span class="cate">600건</span>
+						</div>
+					</div>
+					<div class="col-3">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample1.jpg">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -221,7 +350,7 @@ section {
 		<div class="row">
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" style="width: 100%" class="radius" src="${pageContext.request.contextPath}/img/sample.png">
+					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
 					<div class="caption">
 						<div class="fundingName">이름</div>
 						<div class="fundingAchieve">퍼센트</div>
@@ -231,7 +360,7 @@ section {
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
 					<div class="caption">
 						<div class="fundingName">이름</div>
 						<div class="fundingAchieve">퍼센트</div>
@@ -241,7 +370,7 @@ section {
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
 					<div class="caption">
 						<div class="fundingName">이름</div>
 						<div class="fundingAchieve">퍼센트</div>
@@ -251,7 +380,7 @@ section {
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
 					<div class="caption">
 						<div class="fundingName">이름</div>
 						<div class="fundingAchieve">퍼센트</div>
@@ -261,7 +390,7 @@ section {
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" style="width: 100%" src="${pageContext.request.contextPath}/img/sample.png">
+					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
 					<div class="caption">
 						<div class="fundingName">이름</div>
 						<div class="fundingAchieve">퍼센트</div>
