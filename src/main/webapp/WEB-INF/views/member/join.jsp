@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이메일 인증</title>
 <link rel="stylesheet" href="/resources/css/member/join.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -38,14 +38,6 @@
 	<script>
 
 var code = "";                //이메일전송 인증번호 저장위한 코드
-
-$(document).ready(function(){
-	//회원가입 버튼(회원가입 기능 작동)
-	$(".join_button").click(function(){
-		$("#join_form").attr("action", "/member/join");
-		$("#join_form").submit();
-	});
-});
 
 /* 인증번호 이메일 전송 */
 $(".mail_check_button").click(function(){
