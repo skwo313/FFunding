@@ -98,7 +98,8 @@ table {
 							<div class="mb-3">
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
-									value="${member.userId}" />
+									value="${member.userId}"/> <!-- readonly="readonly" --> 
+									
 							</div>
 						</td>
 					</tr>
