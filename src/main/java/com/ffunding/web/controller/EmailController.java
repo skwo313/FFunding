@@ -23,7 +23,6 @@ public class EmailController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	
 	// 이메일 인증 페이지 이동
 	@RequestMapping(value = "email", method = RequestMethod.GET)
 	public void joinGET() {

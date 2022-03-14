@@ -11,13 +11,11 @@
 	   INSERT INTO FUNDING_BOARD_LIST(    BNO 
 	   					     		 	, TITLE 
 	   					      			, CONTENT 
-	   					      			, WRITER
-	   					      			, gdsThumbImg)
+	   					      			, WRITER )
 	                 		   VALUES(    #{bno}
 	                 		  			, #{title}
 	                 		  			, #{content}
-	                 		  			, #{writer} 
-	                 		  			, #{gdsThumbImg, jdbcType=VARCHAR} )
+	                 		  			, #{writer} )
    </insert>
   
    <!-- 게시물 목록 조회 -->
