@@ -10,6 +10,16 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private int hit;
+	private String image;
+	
+	private String gdsThumbImg;
+	
+	public String getGdsThumbImg() {
+		return gdsThumbImg;
+	}
+	public void setGdsThumbImg(String gdsThumbImg) {
+		this.gdsThumbImg = gdsThumbImg;
+	}
 	
 	public int getBno() {
 		return bno;
@@ -46,6 +56,12 @@ public class BoardVO {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }
