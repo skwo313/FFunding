@@ -12,15 +12,6 @@ public class BoardVO {
 	private int hit;
 	private String image;
 	
-	private String gdsThumbImg;
-	
-	public String getGdsThumbImg() {
-		return gdsThumbImg;
-	}
-	public void setGdsThumbImg(String gdsThumbImg) {
-		this.gdsThumbImg = gdsThumbImg;
-	}
-	
 	public int getBno() {
 		return bno;
 	}

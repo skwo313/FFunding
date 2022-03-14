@@ -31,12 +31,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
 		dao.write(boardVO);
-		
-		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(boardVO, mpRequest); 
-		int size = list.size();
-		for(int i=0; i<size; i++){ 
-			dao.insertFile(list.get(i)); 
-		}
 	}
 	
 	// 게시물 목록 조회
@@ -62,21 +56,10 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시물 수정
 	@Override
-	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void update(BoardVO boardVO) throws Exception {
 		
 		dao.update(boardVO);
 		
-		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(boardVO, files, fileNames, mpRequest);
-		Map<String, Object> tempMap = null;
-		int size = list.size();
-		for(int i = 0; i<size; i++) {
-			tempMap = list.get(i);
-			if(tempMap.get("IS_NEW").equals("Y")) {
-				dao.insertFile(tempMap);
-			}else {
-				dao.updateFile(tempMap);
-			}
-		}
 	}
 
 	// 게시물 삭제
@@ -84,19 +67,6 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int bno) throws Exception {
 		
 		dao.delete(bno);
-	}
-	
-	// 첨부파일 조회
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileList(bno);
-	}
-	
-	// 첨부파일 다운로드
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileInfo(map);
 	}
 
 }
