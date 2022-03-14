@@ -103,15 +103,11 @@ table {
 						</td>
 					</tr>
 
-					<tr>
-						<td id="fileIndex"></td>
-					</tr>
 					
 					<tr>
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
-							<button class="fileAdd_btn btn btn-primary" type="button">파일추가</button>
 							<button type="button" class="btn btn-primary"
 								onclick="location.href='list'">목록</button>
 						</td>

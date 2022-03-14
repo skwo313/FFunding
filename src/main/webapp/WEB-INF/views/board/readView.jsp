@@ -88,13 +88,6 @@
 													+ $(this).attr("data-rno");
 										});
 					})
-
-	function fn_fileDown(fileNo) {
-		var formObj = $("form[name='readForm']");
-		$("#FILE_NO").attr("value", fileNo);
-		formObj.attr("action", "/board/fileDown");
-		formObj.submit();
-	}
 </script>
 <body>
 <br>
@@ -106,10 +99,6 @@
 					type="hidden" id="perPageNum" name="perPageNum"
 					value="${scri.perPageNum}"> <input type="hidden"
 					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}"> <input type="hidden" id="FILE_NO"
-					name="FILE_NO" value="">
-
 
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">제목</label> <input
@@ -130,14 +119,6 @@
 					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
 					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />
 				</div>
-				<span>파일 목록</span>
-				<div class="form-group" style="border: 1px solid #dbdbdb;">
-					<c:forEach var="file" items="${file}">
-						<a href="#"
-							onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-					</c:forEach>
-				</div>
-
 			</form>
 			<br>
 

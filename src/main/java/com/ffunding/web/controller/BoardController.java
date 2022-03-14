@@ -99,19 +99,12 @@ public class BoardController {
 
 	// 게시판 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr,
-			@RequestParam(value = "fileNoDel[]") String[] files,
-			@RequestParam(value = "fileNameDel[]") String[] fileNames, MultipartHttpServletRequest mpRequest)
+	public String update(BoardVO boardVO)
 			throws Exception {
 		logger.info("update");
 		
 		service.update(boardVO);
-
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-
+		
 		return "redirect:/board/list";
 	}
 

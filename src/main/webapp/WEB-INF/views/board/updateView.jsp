@@ -78,15 +78,6 @@
 
 		});
 	}
-	var fileNoArry = new Array();
-	var fileNameArry = new Array();
-	function fn_del(value, name) {
-
-		fileNoArry.push(value);
-		fileNameArry.push(name);
-		$("#fileNoDel").attr("value", fileNoArry);
-		$("#fileNameDel").attr("value", fileNameArry);
-	}
 </script>
 <style>
 table {
@@ -108,9 +99,7 @@ table {
 					name="perPageNum" value="${scri.perPageNum}"> <input
 					type="hidden" id="searchType" name="searchType"
 					value="${scri.searchType}"> <input type="hidden"
-					id="keyword" name="keyword" value="${scri.keyword}"> <input
-					type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> <input
-					type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
+					id="keyword" name="keyword" value="${scri.keyword}">
 				<table>
 					<tbody>
 						<tr>
@@ -142,21 +131,6 @@ table {
 							</td>
 						</tr>
 						<tr>
-							<td id="fileIndex"><c:forEach var="file" items="${file}"
-									varStatus="var">
-									<div>
-										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}"
-											value="${file.FILE_NO }"> <input type="hidden"
-											id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
-										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
-										<button id="fileDel"
-											onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');"
-											type="button">삭제</button>
-										<br>
-									</div>
-								</c:forEach></td>
-						</tr>
-						<tr>
 							<td><label for="regdate">작성날짜</label> <fmt:formatDate
 									value="${update.regdate}" pattern="yyyy-MM-dd" /></td>
 							<br>
@@ -165,7 +139,6 @@ table {
 							<td>
 								<button type="button" class="btn btn-success update_btn">저장</button>
 								<button type="button" class="btn btn-primary cancel_btn">취소</button>
-								<button type="button" class="btn btn-primary fileAdd_btn">파일추가</button>
 							</td>
 						</tr>
 					</tbody>
