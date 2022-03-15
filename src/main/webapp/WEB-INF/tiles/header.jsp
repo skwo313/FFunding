@@ -12,7 +12,7 @@
 		<nav id="navbar" class="navbar">
 			<div class="nav" style="display: flex;">
 				<ul>
-					<li><a class="active" href="index.html">메인화면</a></li>
+					<li><a class="active" href="/">메인화면</a></li>
 					<li><a href="#">펀딩하기</a></li>
 					<li><a href="#">구매하기</a></li>
 					<li><a href="#">공지사항</a></li>
@@ -41,10 +41,10 @@
 						<c:when test="${not empty member.mid}">
 							<li>${member.mid}님</li>
 							<li><a href="#">마이페이지</a></li>
-							<li><a href="#" onclick="location.href='member/logout'">로그아웃</a></li>
+							<li><a href="#" onclick="location.href='/member/logout'">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="#" onclick="location.href='member/login'">로그인</a></li>
+							<li><a href="#" onclick="location.href='/member/login'">로그인</a></li>
 							<li><a href="#">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
