@@ -90,8 +90,7 @@ li {
 						});
 					</script>
 				</div>
-				<br> ${member.mid}
-
+				<br>
 				<div>
 					<button type="button" id="writebutton" class="btn btn-success"
 						style="float: right;" onclick="location.href='writeView'">글쓰기</button>

@@ -101,7 +101,6 @@ table {
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
 									value="${member.mid}" readonly="readonly" />
-
 							</div>
 						</td>
 					</tr>

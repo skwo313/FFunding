@@ -87,6 +87,12 @@
 													+ "&rno="
 													+ $(this).attr("data-rno");
 										});
+						if(${member.mid!="admin"}){
+							$("#updatebutton").hide();
+							$("#deletebutton").hide();
+						}
+						
+						
 					})
 
 	function fn_fileDown(fileNo) {
@@ -143,9 +149,9 @@
 			<br>
 
 			<div>
-				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="button" class="delete_btn btn btn-danger">삭제</button>
 				<button type="button" class="list_btn btn btn-primary">목록</button>
+				<button type="button" id="updatebutton" class="update_btn btn btn-warning">수정</button>
+				<button type="button" id="deletebutton" class="delete_btn btn btn-danger">삭제</button>			
 				<br>
 			</div>
 		</section>
