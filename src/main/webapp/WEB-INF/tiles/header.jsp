@@ -15,7 +15,7 @@
 					<li><a class="active" href="index.html">메인화면</a></li>
 					<li><a href="#">펀딩하기</a></li>
 					<li><a href="#">구매하기</a></li>
-					<li><a href="#">공지사항</a></li>
+					<li><a href="#" onclick="location.href='board/list'">공지사항</a></li>
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
@@ -48,7 +48,7 @@
 							<li><a href="#">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
-						<li><a class="getstarted" href="#">프로젝트 시작하기</a></li>
+						<li><a class="getstarted" href="#" onclick="location.href='/email/email'">프로젝트 시작하기</a></li>
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
