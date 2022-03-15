@@ -3,9 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <meta charset="UTF-8">
 <title>이메일 인증 Test</title>
-<link rel="stylesheet" href="/resources/css/email/email.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -17,44 +21,43 @@ table {
 	margin-right: auto;
 }
 
+.correct {
+	color: green;
+}
+
+.incorrect {
+	color: red;
+}
 </style>
 <body>
 	<table>
 		<tbody>
 			<tr>
 				<td>
-					<div class="wrapper">
-						<input class="id_input" name="memberId">
-						<div class="wrap">
-							<div class="mail_wrap">
-								<div class="mail_name">이메일</div>
+					<div class="mail_wrap">
+						<br>
+						<div class="mail_name">이메일</div>
+						<input class="form-control" name="memberMail"><br>
 
-								<input type="text" class="form-control">
-
-								<div class="mail_check_wrap">
-									<div class="mail_check_input_box"
-										id="mail_check_input_box_false"
-										style="width: 550px; height: 40px;">
-										<input class="mail_check_input" disabled="disabled">
-									</div>
-
-									<div class="mail_check_button">
-										<span>인증번호 전송</span>
-									</div>
-									<div class="clearfix"></div>
-									<span id="mail_check_input_box_warn"></span>
-								</div>
-							</div>
+						<div class="mail_check_wrap">
+						인증번호 입력란
+							<div class="mail_check_input_box" id="mail_check_input_box_false">
+							<input class="mail_check_input" disabled="disabled"  style="width:100%; height: 30px;">
+						</div>
+							
+							<div class="clearfix"></div>
+							<span id="mail_check_input_box_warn"></span>
+							<br>
 						</div>
 					</div>
+
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<div class="writebutton" style="text-align: center;">
-					<button id="applywritebutton" class="write_btn btn btn-success"
-					onclick="location.href='../apply/writeView'">테스트</button>
-					</div>
+					<br>
+					<button class="mail_check_button btn btn-success" id="sendbutton">인증번호 전송</button>
+					<button class="write_button btn btn-success" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">테스트</button>
 				</td>
 			</tr>
 		</tbody>
@@ -103,8 +106,5 @@ table {
 
 		});
 	</script>
-
-
-
 </body>
 </html>
