@@ -12,8 +12,8 @@
 		<nav id="navbar" class="navbar">
 			<div class="nav" style="display: flex;">
 				<ul>
-					<li><a class="active" href="/">메인화면</a></li>
-					<li><a href="#">펀딩하기</a></li>
+					<li><a class="active" href="/ffunding">메인화면</a></li>
+					<li><a href="/ffunding/funding">펀딩하기</a></li>
 					<li><a href="#">구매하기</a></li>
 					<li><a href="#">공지사항</a></li>
 				</ul>
@@ -23,21 +23,16 @@
 				$(document).ready(function(){
 					// login 후 session처리
 					var hasSession = "${member.mname}";
-			
-					console.log("${member.mid}");
-					console.log("세션회원명: " + hasSession);
-					<%--
-					$("#~~~").click(function(){
-						if( hasSession == "") {
-							alert("로그인이 필요합니다!");
-						}
-					})
-					--%>
 				})
 			</script>
 			<div class="login" style="display: flex;">
 				<ul>
 					<c:choose>
+						<c:when test="${member.adminck == '1'}">
+							<li>${member.mid}님</li>
+							<li><a href="#">관리자페이지</a></li>
+							<li><a href="#" onclick="location.href='member/logout'">로그아웃</a></li>
+						</c:when>
 						<c:when test="${not empty member.mid}">
 							<li>${member.mid}님</li>
 							<li><a href="#">마이페이지</a></li>

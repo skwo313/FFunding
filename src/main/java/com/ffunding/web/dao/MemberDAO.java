@@ -1,8 +1,10 @@
 package com.ffunding.web.dao;
 
+import java.util.Map;
+
 import com.ffunding.web.vo.MemberVO;
 
 public interface MemberDAO {
 	
-	public MemberVO loginCheck(MemberVO vo) throws Exception;
+	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception;
 }
