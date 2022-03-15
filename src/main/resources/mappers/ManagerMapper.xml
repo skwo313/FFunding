@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="managerMapper">
+	<!-- 회원 리스트 및 페이징 처리 sql 공통부분 -->
+	<sql id="search">
+		<if test="type!=null and type!=''">
+			<if test='type=="id"'>
+				<if test="searchtext!=null and searchtext!=''">
+					AND UPPER(mid) like '%' || UPPER(#{searchtext}) || '%'
+				</if>
+			</if>
+			<if test='type=="name"'>
+				<if test="searchtext!=null and searchtext!=''">
+					AND UPPER(mname) like '%' || UPPER(#{searchtext}) || '%'
+				</if>
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 회원 리스트 -->
+	<select id="memberList" parameterType="com.ffunding.web.vo.MMemberPagingVO" resultType="com.ffunding.web.vo.MMemberVO">
+		SELECT *
+		FROM (
+			SELECT rownum cnt, m.*
+			FROM MEMBER m
+			WHERE adminck=0
+			<include refid="search"></include>
+			ORDER BY mid)
+		WHERE cnt between #{start} and #{end}
+	</select>
+	
+	<!-- 페이징 처리를 위한 회원 검색 결과 총 회원수 -->
+	<select id="memberSearchCnt" parameterType="com.ffunding.web.vo.MMemberPagingVO" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE adminck=0
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 총 회원수 -->
+	<select id="memberCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE adminck=0
+	</select>
+	
+	<!-- 일반회원수 -->
+	<select id="generalCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE sellerck=0
+	</select>
+	
+	<!-- 판매자수 -->
+	<select id="sellerCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE sellerck=1
+	</select>
+	
+	<!-- 회원 상세정보 -->
+	<select id="memberDetail" parameterType="String" resultType="com.ffunding.web.vo.MMemberVO">
+		SELECT *
+		FROM member
+		WHERE mid=#{mid}
+	</select>
+	
+	<!-- 회원 정보수정 -->
+	<update id="memberDetailUpdate" parameterType="com.ffunding.web.vo.MMemberVO">
+		UPDATE member
+		SET 
+			mpw=#{mpw},
+			mname=#{mname},
+			mphone=#{mphone},
+			memail=#{memail},
+			maddress=#{maddress},
+			point=#{point},
+			sellerck=#{sellerck}
+		WHERE mid=#{mid}
+	</update>
+</mapper>
