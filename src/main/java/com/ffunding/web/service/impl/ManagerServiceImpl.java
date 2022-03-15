@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.service.ManagerService;
-import com.ffunding.web.vo.MMemberPagingVO;
-import com.ffunding.web.vo.MMemberVO;
+import com.ffunding.web.vo.MemberPagingVO;
+import com.ffunding.web.vo.MemberVO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -18,7 +18,7 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	//회원 리스트
 	@Override
-	public List<MMemberVO> memberList(MMemberPagingVO paging) throws Exception {
+	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception {
 		//총 게시물 수
 		paging.setCount(dao.memberSearchCnt(paging));
 		//페이지당 게시물 수 초기값 설정
@@ -34,7 +34,7 @@ public class ManagerServiceImpl implements ManagerService {
 		//DB에 넣을 rownum 시작번호
 		paging.setStart((paging.getCurPage()-1)*paging.getPageSize()+1);
 		//DB에 넣을 rownum 마지막번호
-		//총 게시물수보다 클 경우, 총게시물수를 마지막번호로 지정
+		//총 게시물수보다 클 경우, 총 게시물수를 마지막번호로 지정
 		paging.setEnd(paging.getCurPage()*paging.getPageSize()>paging.getCount()?paging.getCount():paging.getCurPage()*paging.getPageSize());
 		//페이지 블럭 수
 		paging.setBlockSize(5);
@@ -45,7 +45,7 @@ public class ManagerServiceImpl implements ManagerService {
 		//블럭 그룹의 마지막 페이지 번호
 		//총 페이지수보다 클 경우, 총 페이지수를 마지막 번호로 지정
 		paging.setEndBlock(curBlockGrpNo*paging.getBlockSize()>paging.getPageCount()?paging.getPageCount():curBlockGrpNo*paging.getBlockSize());
-		
+			
 		//검색유형 초기값 설정
 		if(paging.getType()==null || paging.getType()=="") {
 			paging.setType("id");
@@ -55,27 +55,32 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 	
 	//총 회원수
+	@Override
 	public int memberCnt() throws Exception {
 		return dao.memberCnt();
 	}
 	
 	//일반회원수
+	@Override
 	public int generalCnt() throws Exception {
 		return dao.generalCnt();
 	}
 	
 	//판매자수
+	@Override
 	public int sellerCnt() throws Exception {
 		return dao.sellerCnt();
 	}
 	
 	//회원 상세정보
-	public MMemberVO memberDetail(String mid) throws Exception {
+	@Override
+	public MemberVO memberDetail(String mid) throws Exception {
 		return dao.memberDetail(mid);
 	}
 	
 	//회원 정보수정
-	public void memberDetailUpdate(MMemberVO upt) throws Exception {
+	@Override
+	public void memberDetailUpdate(MemberVO upt) throws Exception {
 		dao.memberDetailUpdate(upt);
 	}
 }

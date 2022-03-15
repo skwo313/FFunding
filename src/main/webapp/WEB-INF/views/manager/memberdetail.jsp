@@ -123,7 +123,12 @@
 	if(msg!=null && msg!="") {
 		open();
 		$("#modalText").text(msg);
-		$("#close").attr("class","btn btn-primary btn-sm");
+		$("#close").text("Go CurrentPage");
+		$("#upt").show();
+		$("#upt").text("Go ListPage");
+		$("#upt").click(function(){
+			location.href="/ffunding/manager/member";
+		});
 	}
 	
 	//핸드폰번호 3칸으로 나누어 출력
