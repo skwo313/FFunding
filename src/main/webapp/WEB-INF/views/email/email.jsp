@@ -23,20 +23,21 @@ table {
 		<tbody>
 			<tr>
 				<td>
-
 					<div class="wrapper">
 						<input class="id_input" name="memberId">
 						<div class="wrap">
 							<div class="mail_wrap">
 								<div class="mail_name">이메일</div>
 
-									<input type="text" class="form-control" >
+								<input type="text" class="form-control">
 
 								<div class="mail_check_wrap">
-									<div class="mail_check_input_box" id="mail_check_input_box_false" style="width:550px; height:40px;">
+									<div class="mail_check_input_box"
+										id="mail_check_input_box_false"
+										style="width: 550px; height: 40px;">
 										<input class="mail_check_input" disabled="disabled">
 									</div>
-									
+
 									<div class="mail_check_button">
 										<span>인증번호 전송</span>
 									</div>
@@ -48,7 +49,14 @@ table {
 					</div>
 				</td>
 			</tr>
-
+			<tr>
+				<td>
+					<div class="writebutton" style="text-align: center;">
+					<button id="applywritebutton" class="write_btn btn btn-success"
+					onclick="location.href='../apply/writeView'">테스트</button>
+					</div>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 
