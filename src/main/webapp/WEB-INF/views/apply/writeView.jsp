@@ -123,7 +123,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="writer">작성자*</label><br><input type="text" id="writer" name="writer" class="form-control", value="${member.userId}"/><br> <!-- readonly="readonly" -->
+									<label for="writer">작성자*</label><br><input type="text" id="writer" name="writer" class="form-control" value="${member.mid}" readonly="readonly"/><br>
 								</div>
 							</td>
 						</tr>

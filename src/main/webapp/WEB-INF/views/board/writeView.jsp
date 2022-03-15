@@ -15,7 +15,9 @@
 <title>게시판</title>
 </head>
 <style>
-.select_img img { margin: 20px 0;}
+.select_img img {
+	margin: 20px 0;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -98,8 +100,8 @@ table {
 							<div class="mb-3">
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
-									value="${member.userId}"/> <!-- readonly="readonly" --> 
-									
+									value="${member.mid}" readonly="readonly" />
+
 							</div>
 						</td>
 					</tr>
@@ -107,7 +109,7 @@ table {
 					<tr>
 						<td id="fileIndex"></td>
 					</tr>
-					
+
 					<tr>
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
