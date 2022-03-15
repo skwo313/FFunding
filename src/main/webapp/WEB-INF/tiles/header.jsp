@@ -5,15 +5,15 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="logo">
 			<h1 class="text-light">
-				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
+				<a href="/ffunding"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
 			</h1>
 		</div>
 
 		<nav id="navbar" class="navbar">
 			<div class="nav" style="display: flex;">
 				<ul>
-					<li><a class="active" href="index.html">메인화면</a></li>
-					<li><a href="#">펀딩하기</a></li>
+					<li><a class="active" href="/ffunding">메인화면</a></li>
+					<li><a href="/ffunding/funding">펀딩하기</a></li>
 					<li><a href="#">구매하기</a></li>
 					<li><a href="#" onclick="location.href='board/list'">공지사항</a></li>
 				</ul>
@@ -41,10 +41,10 @@
 						<c:when test="${not empty member.mid}">
 							<li>${member.mid}님</li>
 							<li><a href="#">마이페이지</a></li>
-							<li><a href="#" onclick="location.href='member/logout'">로그아웃</a></li>
+							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="#" onclick="location.href='member/login'">로그인</a></li>
+							<li><a href="#" onclick="location.href='/ffunding/member/login'">로그인</a></li>
 							<li><a href="#">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>

@@ -1,0 +1,39 @@
+#search {
+	margin-bottom: 15px;
+	width: 400px;
+}
+#search > input[type="text"] {
+	width: 50%;
+}
+#type {
+	width: 10%;
+}
+.paging {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+#pagepick {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+#pagepick > span {
+	margin-right: 15px;
+}
+.table > thead > tr > th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+	text-align: center;
+	vertical-align: middle;
+}
+.memberrow:hover {
+	cursor: pointer;
+	background: #f8f9fc;
+}
+.addr {
+	text-align: left !important;
+}
