@@ -21,6 +21,7 @@
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/img/**" location="/resources/img/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
+	<resources mapping="/scss/**" location="/resources/scss/" />
 	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 

@@ -5,7 +5,7 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="logo">
 			<h1 class="text-light">
-				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
+				<a href="/ffunding"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
 			</h1>
 		</div>
 

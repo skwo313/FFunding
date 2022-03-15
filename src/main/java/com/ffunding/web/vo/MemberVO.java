@@ -6,11 +6,11 @@ public class MemberVO {
 	private String mname;
 	private String mphone;
 	private String memail;
+	private String maddress_detail;
 	private String maddress;
 	private int point;
-	private String adminck;
-	private String sellerck;
-	private String maddress_detail;
+	private char adminck;
+	private char sellerck;
 	
 	public String getMid() {
 		return mid;
@@ -42,6 +42,12 @@ public class MemberVO {
 	public void setMemail(String memail) {
 		this.memail = memail;
 	}
+	public String getMaddress_detail() {
+		return maddress_detail;
+	}
+	public void setMaddress_detail(String maddress_detail) {
+		this.maddress_detail = maddress_detail;
+	}
 	public String getMaddress() {
 		return maddress;
 	}
@@ -54,24 +60,16 @@ public class MemberVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public String getAdminck() {
+	public char getAdminck() {
 		return adminck;
 	}
-	public void setAdminck(String adminck) {
+	public void setAdminck(char adminck) {
 		this.adminck = adminck;
 	}
-	public String getSellerck() {
+	public char getSellerck() {
 		return sellerck;
 	}
-	public void setSellerck(String sellerck) {
+	public void setSellerck(char sellerck) {
 		this.sellerck = sellerck;
 	}
-	public String getMaddress_detail() {
-		return maddress_detail;
-	}
-	public void setMaddress_detail(String maddress_detail) {
-		this.maddress_detail = maddress_detail;
-	}
-	
-	
 }
