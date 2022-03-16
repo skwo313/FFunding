@@ -12,6 +12,14 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
 <title>펀딩신청 Test</title>
 </head>
 <script type="text/javascript">
@@ -25,8 +33,9 @@
 							var fgoal = $("#fgoal").val();
 							var fdate = $("#fdate").val();
 							var fstartdate = $("#fstartdate").val();
-							var fenddate = $("#fenddate").val();					
-
+							var fenddate = $("#fenddate").val();
+					
+							
 							if (fname == "") {
 								alert("펀딩 제품 이름을 입력하세요");
 								$("#fname").focus();
@@ -59,11 +68,10 @@
 							}
 							if (fenddate == "") {
 								alert("펀딩 종료 날짜를 입력하세요");
-								$("#enddate").focus();
+								$("#fenddate").focus();
 
 								return false;
 							}
-							
 
 							if (fn_valiChk()) {
 								return false;
@@ -116,6 +124,66 @@
 
 		});
 	}
+	$(function() {
+		$("#fdate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
+	$(function() {
+		$("#fstartdate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
+	$(function() {
+		$("#fenddate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
 </script>
 <style>
 table {
@@ -153,29 +221,31 @@ div.c {
 								메이커님, 환영합니다!<br> <br>
 							</div>
 							<div class="b">
-								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br> <br> <br>
+								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br>
+								<br>
 							</div></td>
 					</tr>
-					
-					<tr>
-							<td>
-								<div class="c">
-									<label for="fcate">카테고리*</label><br>
-									서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요<br>
-									<select id="fcate" name="fcate" size="1" class="form-control">
-									<option value="">선택하세요</option>
-									<option value="테스트">테스트</option>
-									<option value="테스트1">테스트1</option>
-									</select><br>
 
-								</div>
-							</td>
-						</tr>
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fname">펀딩 제품 이름</label><input type="text" id="fname"
-									name="fname" class="form-control" title="펀딩제품 이름을 입력하세요." /><br>
+								<label for="fcate">카테고리*</label><br> 서포터들이 관심을 가질만한 카테고리를
+								1개만 선택하세요<br> <select id="fcate" name="fcate" size="1"
+									class="form-control">
+									<option value="테크·가전">테크·가전</option>
+									<option value="패션·잡화">패션·잡화</option>
+									<option value="뷰티">뷰티</option>
+								</select><br>
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fname">펀딩 제품 이름*</label><input type="text"
+									id="fname" name="fname" class="form-control"
+									title="펀딩제품 이름을 입력하세요." /><br>
 							</div>
 						</td>
 					</tr>
@@ -249,6 +319,14 @@ div.c {
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
+						</td>
+					</tr>
+
+					<tr>
+						<td>					
+							<p>
+								Date: <input type="text" id="datepicker">
+							</p>
 						</td>
 					</tr>
 				</tbody>
