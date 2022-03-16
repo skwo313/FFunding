@@ -115,7 +115,8 @@
             <div class="card-body">
               <form id="form" method="post" role="form" class="text-start">
                 <div class="input-group input-group-outline my-3">
-                  <input type="text" class="form-control" name="mid" placeholder="아이디">
+                  <input type="text" class="form-control" name="mid" 
+                  	autocomplete="off" placeholder="아이디">
                 </div>
                 <div class="input-group input-group-outline mb-3">
                   <input type="password" class="form-control" name="mpw" placeholder="비밀번호">
