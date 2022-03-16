@@ -1,5 +1,7 @@
 package com.ffunding.web.service.impl;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -15,9 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	
 	@Override
-	public MemberVO loginCheck(MemberVO ck) throws Exception {
-		System.out.println(ck.getMid());
-		System.out.println(ck.getMpw());
-		return dao.loginCheck(ck);
+	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception {
+		return dao.loginCheck(loginMap);
 	}
 }

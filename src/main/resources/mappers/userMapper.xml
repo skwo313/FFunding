@@ -5,7 +5,7 @@
 <mapper namespace="userMapper">
    <select id="loginCheck" 
    		resultType="com.ffunding.web.vo.MemberVO"
-   		parameterType="com.ffunding.web.vo.MemberVO">
+   		parameterType="HashMap">
    	select * 
 	from member
 	where mid = #{mid} and mpw = #{mpw}

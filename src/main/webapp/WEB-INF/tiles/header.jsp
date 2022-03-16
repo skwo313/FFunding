@@ -28,21 +28,17 @@
 				$(document).ready(function(){
 					// login 후 session처리
 					var hasSession = "${member.mname}";
-			
-					console.log("${member.mid}");
-					console.log("세션회원명: " + hasSession);
-					<%--
-					$("#~~~").click(function(){
-						if( hasSession == "") {
-							alert("로그인이 필요합니다!");
-						}
-					})
-					--%>
+					console.log(hasSession);
 				})
 			</script>
 			<div class="login" style="display: flex;">
 				<ul>
 					<c:choose>
+						<c:when test="${member.adminck eq '1'.charAt(0)}">
+							<li>${member.mid}님</li>
+							<li><a href="#" onclick="location.href='/ffunding/manager/dashboard'">관리자페이지</a></li>
+							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
+						</c:when>
 						<c:when test="${not empty member.mid}">
 							<li>${member.mid}님</li>
 							<li><a href="#">마이페이지</a></li>

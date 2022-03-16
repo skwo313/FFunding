@@ -1,6 +1,6 @@
 package com.ffunding.web.vo;
 
-public class MMemberPagingVO {
+public class MemberPagingVO {
 	//기본 페이지 처리
 	private int count; //총건수(DB)
 	private int pageSize; //한번에 보여줄 데이터 건수
@@ -83,4 +83,3 @@ public class MMemberPagingVO {
 		this.searchtext = searchtext;
 	}
 }
-	
