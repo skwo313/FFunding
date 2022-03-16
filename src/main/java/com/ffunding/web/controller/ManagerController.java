@@ -35,19 +35,25 @@ public class ManagerController {
 	
 	//관리자 대시보드 json데이터
 	@PostMapping("dashboard/data")
-	public String dashboarddata(HashMap<String, Integer> data, Model d) throws Exception {
+	public String dashboardData(HashMap<String, Integer> data, Model d) throws Exception {
 		data.put("userTot", service.memberCnt());
 		data.put("generalCnt", service.generalCnt());
 		data.put("sellerCnt", service.sellerCnt());
 		return "jsonView";
 	}
-	
+
 	//회원리스트 페이지
-	@RequestMapping("member")
-	public String member(MemberPagingVO paging, Model d) throws Exception {
-		d.addAttribute("memberList", service.memberList(paging));
+	@GetMapping("member")
+	public String member(Model d) throws Exception {
 		d.addAttribute("active", "member");
 		return "manager/member.m";
+	}
+	
+	//회원 json데이터
+	@PostMapping("member/data")
+	public String memberData(MemberPagingVO paging, Model d) throws Exception {
+		d.addAttribute("memberList", service.memberList(paging));
+		return "jsonView";
 	}
 	
 	//회원 상세정보 페이지
@@ -74,5 +80,11 @@ public class ManagerController {
 		return "manager/fundingapproval.m";
 	}
 	
+	//메일 페이지
+	@RequestMapping("mail")
+	public String mail(Model d) {
+		d.addAttribute("active", "mail");
+		return "manager/mail.m";
+	}
 
 }
