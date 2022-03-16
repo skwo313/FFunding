@@ -26,7 +26,7 @@
 			                                		<option value="id">아이디</option>
 			                                		<option value="name">이름</option>
 			                                	</select>
-			                                    <input type="text" name="searchtext" value="${MMemberPagingVO.searchtext}" class="form-control bg-light border-0 small" placeholder="Search for">
+			                                    <input type="text" name="searchtext" value="${memberPagingVO.searchtext}" class="form-control bg-light border-0 small" placeholder="Search for">
 			                                    <div class="input-group-append">
 			                                        <button class="btn btn-primary" type="submit">
 			                                            <i class="fas fa-search fa-sm"></i>
@@ -35,7 +35,7 @@
 			                                </div>
 		                                </div>
 		                                <div class="col-sm-12 col-md-6" id="pagepick">
-		                                	<span>Showing ${MMemberPagingVO.start} to ${MMemberPagingVO.end} of ${MMemberPagingVO.count} entries</span>
+		                                	<span>Showing ${memberPagingVO.start} to ${memberPagingVO.end} of ${memberPagingVO.count} entries</span>
 			                                <select name="pageSize" class="form-control bg-light small">
 			                                	<option value="20">20개 보기</option>
 			                                	<option value="40">40개 보기</option>
@@ -79,16 +79,16 @@
                                 </table>
                                 <div class="paging">
 	                                <ul class="pagination">
-									  <c:if test="${MMemberPagingVO.startBlock!=1}">
-										  <li class="page-item"><a class="page-link" href="javascript:changePage(${MMemberPagingVO.startBlock-1})">Previous</a></li>
+									  <c:if test="${memberPagingVO.startBlock!=1}">
+										  <li class="page-item"><a class="page-link" href="javascript:changePage(${memberPagingVO.startBlock-1})">Previous</a></li>
 									  </c:if>
-									  <c:forEach var="paging" begin="${MMemberPagingVO.startBlock}" end="${MMemberPagingVO.endBlock}">
-									  	<li class="page-item ${paging==MMemberPagingVO.curPage?'active':''}">
+									  <c:forEach var="paging" begin="${memberPagingVO.startBlock}" end="${memberPagingVO.endBlock}">
+									  	<li class="page-item ${paging==memberPagingVO.curPage?'active':''}">
 									  		<a class="page-link" href="javascript:changePage(${paging})">${paging}</a>
 									  	</li>
 									  </c:forEach>
-									  <c:if test="${MMemberPagingVO.endBlock!=MMemberPagingVO.pageCount}">
-										  <li class="page-item"><a class="page-link" href="javascript:changePage(${MMemberPagingVO.endBlock+1})">Next</a></li>
+									  <c:if test="${memberPagingVO.endBlock!=memberPagingVO.pageCount}">
+										  <li class="page-item"><a class="page-link" href="javascript:changePage(${memberPagingVO.endBlock+1})">Next</a></li>
 									  </c:if>
 									</ul>
                                 </div>
@@ -101,12 +101,15 @@
                 
 <script type="text/javascript">
 	//한페이지에 보여질 게시물수 변경
-	var pageSize="${MMemberPagingVO.pageSize}";
+	let pageSize="${memberPagingVO.pageSize}";
 	$("[name=pageSize]").val(pageSize);
 	$("[name=pageSize]").change(function() {
 		console.log($("[name=pageSize]").val());
 		$("#frm").submit();
 	});
+	
+	let type="${memberPagingVO.type}";
+	$("[name=type]").val(type);
 	
 	//페이지 이동
 	function changePage(no) {

@@ -20,31 +20,67 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="${path}/css/member/material-dashboard.css?v=3.0.1" rel="stylesheet" />
 <link rel="stylesheet" href="${path}/css/common.css">
+<!-- 네이버 로그인 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
 <script>
 	$(document).ready(function() {
-		let loginMsg = "${loginMsg}";
-		if ( loginMsg == "로그인 성공"){
-			alert(loginMsg);
-		};
-		$("#loginBtn").click(function(){
-			let mid = $("[name=mid]").val();
-			let mpw = $("[name=mpw]").val();
-			if(mid == "") {
-				alert("아이디를 입력하세요");
-				$("[name=mid]").focus();
-				return;
-			}else if(mpw == "") {
-				alert("비밀번호를 입력하세요");
-				$("[name=mpw]").focus();
-				return;
-			}else {
-				$("#form").attr('action', 'loginCk');
-				$("#form").submit();
+		$("#form").keypress(function(e){
+			if (e.keyCode == 13) {
+				loginBtn();
 			}
-			
-		})
+		});
+		
+		let rememberId = localStorage.getItem("saveId");
+		if (rememberId != "" && rememberId != "N"){
+			$("[name=mid]").val(rememberId);
+		}
 	})
+	function loginBtn() {
+		let mid = $("[name=mid]").val();
+		let mpw = $("[name=mpw]").val();
+		let saveIdCheck = $("#rememberMe").prop("checked");
+		
+		if ( saveIdCheck ) {
+			localStorage.setItem("saveId", mid);
+		} else {
+			localStorage.setItem("saveId", 'N');
+		}
+		
+		let loginData = {"mid": mid, "mpw": mpw};
+		$.ajax({
+			type : "POST",
+			url : "${path}/member/loginCk",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(loginData),
+			success : function(result){
+				if(result == 0) {
+					if(mid == "") {
+						$("#loginFail").html("아이디를 입력하세요.");
+						$("[name=mid]").focus();
+					} else if(mpw =="") {
+						$("#loginFail").html("비밀번호를 입력하세요.");
+						$("[name=mpw]").focus();
+					}else {
+						$("#loginFail").html("아이디 또는 비밀번호를 다시 확인 후 시도해 주세요.");
+						$("[name=mid]").focus();
+					}
+					return false;
+				} else if(result == 9){
+					alert("통신 오류");
+					return false;
+				} else {
+					window.location.replace("${path}/");
+				}
+			},
+			error : function(request, error){
+				alert("code:"+request.status+"\n"+
+						"message:"+request.responseText+
+						"\n"+"error:"+error);
+			}
+		});
+	}
 </script>
   
 <main class="main-content  mt-0">
@@ -85,16 +121,14 @@
                   <input type="password" class="form-control" name="mpw" placeholder="비밀번호">
                 </div>
                 
-                <c:if test="${loginMsg == 'error'}">
-                	<div style="color:red;">아이디 또는 비밀번호가 일치하지 않습니다.
-                </c:if>
-                <!-- 
+                <div id="loginFail" style="color:red;font-size: 15px;"></div>
+                 
                 <div class="form-check form-switch d-flex align-items-center mb-3">
                   <input class="form-check-input" type="checkbox" id="rememberMe">
                   <label class="form-check-label mb-0 ms-2" for="rememberMe">아이디 저장</label>
-                </div> -->
+                </div>
                 <div class="text-center">
-                  <button type="button" id="loginBtn" class="btn bg-gradient-primary w-100 my-4 mb-2">로그인</button>
+                  <button type="button" onclick="loginBtn()" class="btn bg-gradient-primary w-100 my-4 mb-2">로그인</button>
                 </div>
                 <p class="mt-4 text-sm text-center">
                   아직 계정이 없나요?
@@ -113,15 +147,6 @@
 <script src="${path}/js/member/core/bootstrap.min.js"></script>
 <script src="${path}/js/member/plugins/perfect-scrollbar.min.js"></script>
 <script src="${path}/js/member/plugins/smooth-scrollbar.min.js"></script>
-<script>
-  var win = navigator.platform.indexOf('Win') > -1;
-  if (win && document.querySelector('#sidenav-scrollbar')) {
-    var options = {
-      damping: '0.5'
-    }
-    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-  }
-</script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

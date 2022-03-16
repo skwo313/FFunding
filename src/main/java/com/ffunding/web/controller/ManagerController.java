@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.ManagerService;
-import com.ffunding.web.vo.MMemberPagingVO;
-import com.ffunding.web.vo.MMemberVO;
+import com.ffunding.web.vo.MemberPagingVO;
+import com.ffunding.web.vo.MemberVO;
 
 
 @RequestMapping("manager")
@@ -24,7 +24,7 @@ public class ManagerController {
 	@Autowired
 	private ManagerService service;
 	
-	//http://localhost:8000/web/manager/dashboard
+	//http://localhost:8000/ffunding/manager/dashboard
 	//관리자 대시보드(메인페이지)
 	@GetMapping("dashboard")
 	public String dashboard(Model d) throws Exception {
@@ -44,7 +44,7 @@ public class ManagerController {
 	
 	//회원리스트 페이지
 	@RequestMapping("member")
-	public String member(MMemberPagingVO paging, Model d) throws Exception {
+	public String member(MemberPagingVO paging, Model d) throws Exception {
 		d.addAttribute("memberList", service.memberList(paging));
 		d.addAttribute("active", "member");
 		return "manager/member.m";
@@ -60,7 +60,7 @@ public class ManagerController {
 	
 	//회원 정보수정
 	@PostMapping("member/detail/update")
-	public String memberDetailUpdate(MMemberVO upt, RedirectAttributes redirect) throws Exception {
+	public String memberDetailUpdate(MemberVO upt, RedirectAttributes redirect) throws Exception {
 		service.memberDetailUpdate(upt);
 		redirect.addAttribute("msg", "Membership information has been modified.");
 		return "redirect:/manager/member/detail?mid="+upt.getMid();

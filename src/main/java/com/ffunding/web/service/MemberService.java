@@ -1,9 +1,11 @@
 package com.ffunding.web.service;
 
+import java.util.Map;
+
 import com.ffunding.web.vo.MemberVO;
 
 public interface MemberService {
 	
-	public MemberVO loginCheck(MemberVO ck) throws Exception;
+	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception;
 	
 }
