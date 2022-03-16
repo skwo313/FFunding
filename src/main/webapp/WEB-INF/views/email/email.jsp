@@ -57,7 +57,7 @@ table {
 				<td>
 					<br>
 					<button class="mail_check_button btn btn-success" id="sendbutton">인증번호 전송</button>
-					<button class="write_button btn btn-success" disabled="disabled" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">테스트</button>
+					<button class="write_button btn btn-success" disabled="disabled" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">펀딩신청</button>
 				</td>
 			</tr>
 			<tr>
