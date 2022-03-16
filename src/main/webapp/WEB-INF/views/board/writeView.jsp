@@ -125,3 +125,6 @@ table {
 				</tbody>
 			</table>
 		</form>
+	</section>
+</body>
+</html>
