@@ -12,7 +12,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>펀딩신청</title>
+<title>펀딩신청 Test</title>
 </head>
 <script type="text/javascript">
 	$(document)
