@@ -38,7 +38,7 @@ div.c{
 
 	<div id="root">
 		<section id="container">
-			<form role="form" method="post" action="/apply/write" enctype="multipart/form-data">
+			<form role="form" method="post" action="write" enctype="multipart/form-data">
 				<table>
 					<tbody>
 						
@@ -123,7 +123,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<label for="writer">작성자*</label><br><input type="text" id="writer" name="writer" class="form-control", value="${member.userId}"/><br> <!-- readonly="readonly" -->
+									<label for="writer">작성자*</label><br><input type="text" id="writer" name="writer" class="form-control" value="${member.mid}" readonly="readonly"/><br>
 								</div>
 							</td>
 						</tr>

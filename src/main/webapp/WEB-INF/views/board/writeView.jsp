@@ -15,7 +15,9 @@
 <title>게시판</title>
 </head>
 <style>
-.select_img img { margin: 20px 0;}
+.select_img img {
+	margin: 20px 0;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -24,7 +26,7 @@
 			if (fn_valiChk()) {
 				return false;
 			}
-			formObj.attr("action", "/board/write");
+			formObj.attr("action", "write");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
@@ -72,7 +74,7 @@ table {
 	<br>
 	<br>
 	<section id="container">
-		<form name="writeForm" method="post" action="/board/write"
+		<form name="writeForm" method="post" action="write"
 			enctype="multipart/form-data">
 			<table>
 				<tbody>
@@ -98,8 +100,7 @@ table {
 							<div class="mb-3">
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
-									value="${member.userId}"/> <!-- readonly="readonly" --> 
-									
+									value="${member.mid}" readonly="readonly" />
 							</div>
 						</td>
 					</tr>
@@ -107,14 +108,12 @@ table {
 					<tr>
 						<td id="fileIndex"></td>
 					</tr>
-					
+
 					<tr>
 						<td>
-							<button class="write_btn btn btn-success" type="submit"
-								id="write_btn">작성</button>
+							<button class="write_btn btn btn-success" type="submit" id="write_btn">작성</button>
 							<button class="fileAdd_btn btn btn-primary" type="button">파일추가</button>
-							<button type="button" class="btn btn-primary"
-								onclick="location.href='list'">목록</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button>
 						</td>
 					</tr>
 				</tbody>

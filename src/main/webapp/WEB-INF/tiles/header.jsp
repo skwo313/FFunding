@@ -5,17 +5,22 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="logo">
 			<h1 class="text-light">
-				<a href="/ffunding"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
 			</h1>
 		</div>
 
 		<nav id="navbar" class="navbar">
 			<div class="nav" style="display: flex;">
 				<ul>
-					<li><a class="active" href="/ffunding">메인화면</a></li>
+					<li><a href="/ffunding">메인화면</a></li>
 					<li><a href="/ffunding/funding">펀딩하기</a></li>
+
 					<li><a href="#">구매하기</a></li>
+					<li><a href="#" onclick="location.href='board/list'">공지사항</a></li>
+
+					<li><a href="/ffunding/product">구매하기</a></li>
 					<li><a href="#">공지사항</a></li>
+
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
@@ -44,7 +49,7 @@
 							<li><a href="#">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
-						<li><a class="getstarted" href="#">프로젝트 시작하기</a></li>
+						<li><a class="getstarted" href="#" onclick="location.href='/email/email'">프로젝트 시작하기</a></li>
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>

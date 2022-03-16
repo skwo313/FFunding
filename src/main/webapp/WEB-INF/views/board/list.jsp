@@ -84,16 +84,17 @@ li {
 																'#keywordInput')
 																.val());
 											});
+							if(${member.mid!="admin"}){			
+								$("#writebutton").hide();
+							}
 						});
 					</script>
 				</div>
 				<br>
-
 				<div>
-					<button type="button" class="btn btn-success" style="float: right;"
-						onclick="location.href='writeView'">글쓰기</button>
-					<br>
-					<br>
+					<button type="button" id="writebutton" class="btn btn-success"
+						style="float: right;" onclick="location.href='writeView'">글쓰기</button>
+					<br> <br>
 				</div>
 
 				<div class="mb-3" style="margin: 0 auto; width: 30%;">
