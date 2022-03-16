@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.ffunding.web.dao.VisitDAO;
 import com.ffunding.web.service.MemberService;
+import com.ffunding.web.util.ClientInfo;
 import com.ffunding.web.vo.MemberVO;
+import com.ffunding.web.vo.VisitVO;
 
 @Controller
 @SessionAttributes("member")
@@ -27,6 +31,10 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	@Autowired
+	private ClientInfo ci;
+	@Autowired
+	private VisitDAO dao;
 	@Inject
 	private MemberService service;
 	
@@ -55,7 +63,12 @@ public class MemberController {
 			
 			if (member != null) {
 				model.addAttribute("member", member);
-				
+				String visit_ip = ci.getIpAddr();
+				String visit_time = ci.getTime();
+				VisitVO visitvo= new VisitVO();
+				visitvo.setVisit_ip(visit_ip);
+				visitvo.setVisit_time(visit_time);
+				dao.insertIp(visitvo);
 				return member;
 			} else {
 				return 0;
