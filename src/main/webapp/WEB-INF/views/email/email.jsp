@@ -57,7 +57,12 @@ table {
 				<td>
 					<br>
 					<button class="mail_check_button btn btn-success" id="sendbutton">인증번호 전송</button>
-					<button class="write_button btn btn-success" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">테스트</button>
+					<button class="write_button btn btn-success" disabled="disabled" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">테스트</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<input id='target_btn' type='button' value='버튼' disabled="disabled"/>
 				</td>
 			</tr>
 		</tbody>
@@ -99,12 +104,25 @@ table {
 			if (inputCode == code) { // 일치할 경우
 				checkResult.html("인증번호가 일치합니다.");
 				checkResult.attr("class", "correct");
+				
+				document.getElementById("applywritebutton").disabled = false;
+				
 			} else { // 일치하지 않을 경우
 				checkResult.html("인증번호를 다시 확인해주세요.");
 				checkResult.attr("class", "incorrect");
 			}
 
 		});
+		
+		function btnActive()  {
+			  const target = document.getElementById('target_btn');
+			  target.disabled = false;
+			}
+
+			function btnDisabled()  {
+			  const target = document.getElementById('target_btn');
+			  target.disabled = true;
+			}
 	</script>
 </body>
 </html>
