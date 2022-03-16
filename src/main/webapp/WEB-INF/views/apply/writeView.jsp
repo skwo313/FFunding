@@ -15,39 +15,77 @@
 <title>펀딩신청</title>
 </head>
 <script type="text/javascript">
-$(document).ready(function() {
-	var formObj = $("form[name='writeForm']");
-	$("#write_btn").click(function(){
-		var fname = $("#fname").val();
-		
-		if (fname == ""){
-			alert("펀딩제품 이름을 입력하세요");
-			$("#fname").focus();
-			
-			return false;
-		}
+	$(document)
+			.ready(
+					function() {
+						var formObj = $("form[name='writeForm']");
+						$("#write_btn").click(function() {
+							var fname = $("#fname").val();
+							var fprice = $("#fprice").val();
+							var fgoal = $("#fgoal").val();
+							var fdate = $("#fdate").val();
+							var fstartdate = $("#fstartdate").val();
+							var fenddate = $("#fenddate").val();					
 
-		if (fn_valiChk()) {
-			return false;
-		}		
-		formObj.attr("action", "write");
-		formObj.attr("method", "post");
-		formObj.submit();
-		
-		fn_addFile();
-	});
-	
-	$(".list_btn")
-	.on(
-			"click",
-			function() {
+							if (fname == "") {
+								alert("펀딩 제품 이름을 입력하세요");
+								$("#fname").focus();
 
-				location.href = "list?page=${scri.page}"
-						+ "&perPageNum=${scri.perPageNum}"
-						+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
-			})
+								return false;
+							}
+							if (fprice == "") {
+								alert("펀딩 가격을 입력하세요");
+								$("#fprice").focus();
 
-	})
+								return false;
+							}
+							if (fgoal == "") {
+								alert("펀딩 목표 가격을 입력하세요");
+								$("#fgoal").focus();
+
+								return false;
+							}
+							if (fdate == "") {
+								alert("펀딩 등록 날짜를 입력하세요");
+								$("#fdate").focus();
+
+								return false;
+							}
+							if (fstartdate == "") {
+								alert("펀딩 시작 날짜를 입력하세요");
+								$("#fstartdate").focus();
+
+								return false;
+							}
+							if (fenddate == "") {
+								alert("펀딩 종료 날짜를 입력하세요");
+								$("#enddate").focus();
+
+								return false;
+							}
+							
+
+							if (fn_valiChk()) {
+								return false;
+							}
+							formObj.attr("action", "write");
+							formObj.attr("method", "post");
+							formObj.submit();
+
+							fn_addFile();
+						});
+
+						$(".list_btn")
+								.on(
+										"click",
+										function() {
+
+											location.href = "list?page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+										})
+
+					})
 	function fn_valiChk() {
 		var regForm = $("form[name='writeForm'] .chk").length;
 		for (var i = 0; i < regForm; i++) {
@@ -57,23 +95,48 @@ $(document).ready(function() {
 			}
 		}
 	}
-	function fn_addFile(){
+	function fn_addFile() {
 		var fileIndex = 1;
 		//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
-		$(".fileAdd_btn").on("click", function(){
-			$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
-		});
-		$(document).on("click","#fileDelBtn", function(){
+		$(".fileAdd_btn")
+				.on(
+						"click",
+						function() {
+							$("#fileIndex")
+									.append(
+											"<div><input type='file' style='float:left;' name='file_"
+													+ (fileIndex++)
+													+ "'>"
+													+ "</button>"
+													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
+													+ "삭제" + "</button></div>");
+						});
+		$(document).on("click", "#fileDelBtn", function() {
 			$(this).parent().remove();
-			
+
 		});
-}
+	}
 </script>
 <style>
 table {
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+div.a {
+	font-size: 30px;
+	font-weight: 800;
+}
+
+div.b {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+div.c {
+	font-size: 15px;
+	font-weight: 150;
 }
 </style>
 <body>
@@ -85,19 +148,78 @@ table {
 			<table>
 				<tbody>
 					<tr>
+						<td><br>
+							<div class="a">
+								메이커님, 환영합니다!<br> <br>
+							</div>
+							<div class="b">
+								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br> <br> <br>
+							</div></td>
+					</tr>
+					
+					<tr>
+							<td>
+								<div class="c">
+									<label for="fcate">카테고리*</label><br>
+									서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요<br>
+									<select id="fcate" name="fcate" size="1" class="form-control">
+									<option value="">선택하세요</option>
+									<option value="테스트">테스트</option>
+									<option value="테스트1">테스트1</option>
+									</select><br>
+
+								</div>
+							</td>
+						</tr>
+					<tr>
 						<td>
-							<div class="mb-3">
-								<label for="fname">펀딩제품 이름</label><input type="text" id="fname"
-									name="fname" class="form-control" title="펀딩제품 이름을 입력하세요." />
+							<div class="c">
+								<label for="fname">펀딩 제품 이름</label><input type="text" id="fname"
+									name="fname" class="form-control" title="펀딩제품 이름을 입력하세요." /><br>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<div class="mb-3">
-								<label for="content">내용</label>
-								<textarea id="content" name="content" class="form-control"
-									rows="10" title="내용을 입력하세요."></textarea>
+							<div class="c">
+								<label for="fprice">펀딩 가격*</label><br> <input type="text"
+									id="fprice" name="fprice" class="form-control" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fgoal">펀딩 목표 가격*</label><br> <input type="text"
+									id="fgoal" name="fgoal" class="form-control" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fdate">펀딩 등록 날짜*</label><br> <input type="text"
+									id="fdate" name="fdate" class="form-control" /><br>
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="fstartdate">펀딩 시작 날짜*</label><br> <input
+							type="text" id="fstartdate" name="fstartdate"
+							class="form-control" /><br></td>
+					</tr>
+
+					<tr>
+						<td><label for="fenddate">펀딩 종료 날짜*</label><br> <input
+							type="text" id="fenddate" name="fenddate" class="form-control" /><br></td>
+					</tr>
+
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fdes">제품 상세 설명</label><br> <input type="text"
+									id="fdes" name="fdes" class="form-control" /><br>
 							</div>
 						</td>
 					</tr>
@@ -110,16 +232,23 @@ table {
 							</div>
 						</td>
 					</tr>
-
 					<tr>
-						<td id="fileIndex"></td>
+						<td><input type="file" name="file"><br></td>
 					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
+									개인 정보 수집 동의 </label><br> <br>
+							</div>
+						</td>
+					</tr>
+
 
 					<tr>
 						<td>
-							<button class="write_btn btn btn-success" type="submit" id="write_btn">작성</button>
-							<button class="fileAdd_btn btn btn-primary" type="button">파일추가</button>
-							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button>
+							<button class="write_btn btn btn-success" type="submit"
+								id="write_btn">작성</button>
 						</td>
 					</tr>
 				</tbody>
