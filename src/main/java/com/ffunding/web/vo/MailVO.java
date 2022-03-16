@@ -1,6 +1,6 @@
 package com.ffunding.web.vo;
 
-public class Mail {
+public class MailVO {
 	private String reciever;
 	private String sender;
 	private String title;
