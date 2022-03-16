@@ -60,11 +60,6 @@ table {
 					<button class="write_button btn btn-success" disabled="disabled" id="applywritebutton" onclick="location.href='../apply/writeView'" style="float: right;">펀딩신청</button>
 				</td>
 			</tr>
-			<tr>
-				<td>
-				<input id='target_btn' type='button' value='버튼' disabled="disabled"/>
-				</td>
-			</tr>
 		</tbody>
 	</table>
 
