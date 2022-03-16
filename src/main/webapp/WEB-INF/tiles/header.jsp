@@ -15,11 +15,8 @@
 					<li><a href="/ffunding">메인화면</a></li>
 					<li><a href="/ffunding/funding">펀딩하기</a></li>
 
-					<li><a href="#">구매하기</a></li>
 					<li><a href="#" onclick="location.href='board/list'">공지사항</a></li>
-
 					<li><a href="/ffunding/product">구매하기</a></li>
-					<li><a href="#">공지사항</a></li>
 
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->

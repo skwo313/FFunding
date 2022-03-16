@@ -52,7 +52,7 @@ img {
 }
 
 .divImg {
-	width: 100%;
+	width: 90%;
 	height: 100%;
 	border-radius: 5px;
 }
@@ -80,41 +80,39 @@ img {
 	background-color: #00a2a2;
 }
 
-.headImage {
-	background-image:
-		url("${pageContext.request.contextPath}/img/sample2.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	width: 100%;
-	height: 200px;
-	filter: blur(15px);
-	z-index: 1;
-}
-
-.headImage::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: inherit;
-	z-index: -1;
-	filter: blur(6px);
-	-webkit-filter: blur(6px);
-	-moz-filter: blur(6px);
-	-o-filter: blur(6px);
-	filter: url(#blur);
+.title {
+	font-size: 36px;
+	font-weight: 700;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	font-weight: 700;
+	letter-spacing: -1px;
+	line-height: 50px;
 }
 </style>
 <title>FFunding-펀딩하기</title>
-<div class="container-fluid headImage">
+<div class="container">
 	<div class="row">
-		<div class="col">1</div>
-		<span>dds</span>
-	</div>
-	<div class="row">
-		<div class="col">2</div>
+		
+		<div class="col-sm-8" style="margin: 15px 0px;">
+			<div class="title">상의 의류전용 프리미엄 옷걸리 클로랑스</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="row">
+				<div class="col" style="text-align: center;">
+					<img class="divImg" alt="" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="col-sm-4">
+				<div class="info-box">
+					<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+					<p>15 일 남음</p>
+					<p>1819 % 달성</p>
+					<p>17,984,000 원 펀딩</p>
+					<p>646 명의 서포터</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
