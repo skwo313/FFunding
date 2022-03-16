@@ -130,7 +130,7 @@ div.c{
 						
 						<tr>
 							<td>
-								<input type="file" name="file">
+								<input type="file" name="file"><br>
 							</td>
 						</tr>
 						
@@ -138,7 +138,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label>		
+									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label><br>
 								</div>
 							</td>		
 						</tr>	
