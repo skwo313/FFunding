@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+
 public class FundingController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@GetMapping("/funding")
 	public String funding(HttpServletRequest request, @Param("sort") String sort, @RequestParam(value="keyword", defaultValue="1") String nowPage, Model d) throws Exception {
 		return "funding/fundingList.page";
+	}
+	@GetMapping("/funding/detail")
+	public String fundingdetail(HttpServletRequest request, @Param("sort") String sort, @RequestParam(value="keyword", defaultValue="1") String nowPage, Model d) throws Exception {
+		return "funding/fundingDetail.page";
 	}
 }
