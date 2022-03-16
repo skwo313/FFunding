@@ -1,0 +1,55 @@
+.mailFrm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.mailtb {
+	width: 90%;
+}
+.mailtb > tbody > tr {
+	border-bottom: 1px solid #b7b9cc;
+}
+.mailtb > tbody > tr > th {
+	width: 10%;
+	border-right: 1px solid #b7b9cc;
+	padding: 10px 20px 10px 20px;
+	text-align: right;
+	font-size: 13px;
+}
+.mailtb > tbody > tr > td {
+	padding: 10px 20px 10px 20px;
+}
+.mailtb > tbody > tr > td > input {
+	font-size: 13px;
+}
+.mailtb > tbody > tr > td > textarea {
+	font-size: 13px;
+}
+.btn {
+	width: 90%;
+	display: flex;
+    justify-content: flex-end;
+}
+.btn > button {
+	width: 60px;
+	height: 35px;
+	font-size: 13px;
+	margin-top: 10px;
+}
+.recipient {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+}
+.recipient > div {
+	margin-left: 20px;
+}
+.relabel {
+	margin: 0px 0px 2px 0px !important;
+}
+.reradio {
+	margin: 0px 5px 0px 0px !important;
+}
+[name=recipient] {
+	width: 75%;
+}
