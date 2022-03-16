@@ -17,16 +17,16 @@
 	   					      , WRITER
 	   					      , AGREEMENT )
 	                 VALUES(    FUNDING_APPLY_SEQ.NEXTVAL 
-	                 		  , #{fcate}  
-	                 		  , #{fname}
-	                 		  , #{fprice}
-	                 		  , #{fgoal} 
-	                 		  , #{fdate}
-	                 		  , #{fstartdate}
-	                 		  , #{fenddate}
+	                 		  , #{fcate, jdbcType=VARCHAR}  
+	                 		  , #{fname, jdbcType=VARCHAR}
+	                 		  , #{fprice, jdbcType=VARCHAR}
+	                 		  , #{fgoal, jdbcType=VARCHAR} 
+	                 		  , #{fdate, jdbcType=VARCHAR}
+	                 		  , #{fstartdate, jdbcType=VARCHAR}
+	                 		  , #{fenddate, jdbcType=VARCHAR}
 	                 		  , #{fdes, jdbcType=VARCHAR}
-	                 		  , #{writer}
-	                 		  , #{agreement} )
+	                 		  , #{writer, jdbcType=VARCHAR}
+	                 		  , #{agreement, jdbcType=VARCHAR} )
    </insert>
    
     <!-- 첨부파일 업로드 -->
