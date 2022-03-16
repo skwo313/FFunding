@@ -31,7 +31,7 @@
 						"click",
 						function() {
 							event.preventDefault();
-							location.href = "/board/readView?bno=${update.bno}"
+							location.href = "readView?bno=${update.bno}"
 									+ "&page=${scri.page}"
 									+ "&perPageNum=${scri.perPageNum}"
 									+ "&searchType=${scri.searchType}"
@@ -101,7 +101,7 @@ table {
 	<div id="root">
 		<section id="container">
 			<form name="updateForm" role="form" method="post"
-				action="/board/update" enctype="multipart/form-data">
+				action="update" enctype="multipart/form-data">
 				<input type="hidden" name="bno" value="${update.bno}"
 					readonly="readonly" /> <input type="hidden" id="page" name="page"
 					value="${scri.page}"> <input type="hidden" id="perPageNum"

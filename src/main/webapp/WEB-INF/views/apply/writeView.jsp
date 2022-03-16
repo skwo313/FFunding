@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<title>Test1</title>
+<title>Test12</title>
 </head>
 <style>
 table {
@@ -130,7 +130,7 @@ div.c{
 						
 						<tr>
 							<td>
-								<input type="file" name="file">
+								<input type="file" name="file"><br>
 							</td>
 						</tr>
 						
@@ -138,7 +138,7 @@ div.c{
 						<tr>
 							<td>
 								<div class="c">
-									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label>		
+									<input type="checkbox" name="agreement" value="1"><label>&nbsp;(필수) 개인 정보 수집 동의 </label><br><br>
 								</div>
 							</td>		
 						</tr>	

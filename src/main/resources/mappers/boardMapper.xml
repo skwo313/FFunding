@@ -8,14 +8,14 @@
 	   <selectKey keyProperty="bno" resultType="int" order="BEFORE">
 	   		SELECT FUNDING_BOARD_LIST_SEQ.NEXTVAL FROM DUAL
 	   </selectKey>
-	   INSERT INTO FUNDING_BOARD_LIST(    BNO 
-	   					     		 	, TITLE 
-	   					      			, CONTENT 
-	   					      			, WRITER )
-	                 		   VALUES(    #{bno}
-	                 		  			, #{title}
-	                 		  			, #{content}
-	                 		  			, #{writer} )
+	    INSERT INTO FUNDING_BOARD_LIST(    BNO 
+	   					       , TITLE 
+	   					       , CONTENT 
+	   					       , WRITER )
+	                  VALUES(    #{bno}
+	                 		   , #{title}
+	                 		   , #{content, jdbcType=VARCHAR}
+	                 		   , #{writer} )
    </insert>
   
    <!-- 게시물 목록 조회 -->
@@ -74,7 +74,7 @@
    <update id="update" parameterType="com.ffunding.web.vo.BoardVO">
 	   UPDATE FUNDING_BOARD_LIST
 		  SET TITLE    =   #{title},
-		   	  CONTENT  =   #{content}
+		   	  CONTENT  =   #{content, jdbcType=VARCHAR}
 		WHERE BNO = #{bno} 
    </update>
 

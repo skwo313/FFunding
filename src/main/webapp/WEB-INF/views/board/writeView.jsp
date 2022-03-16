@@ -14,23 +14,39 @@
 
 <title>게시판</title>
 </head>
-<style>
-.select_img img {
-	margin: 20px 0;
-}
-</style>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var formObj = $("form[name='writeForm']");
-		$(".write_btn").on("click", function() {
-			if (fn_valiChk()) {
-				return false;
-			}
-			formObj.attr("action", "write");
-			formObj.attr("method", "post");
-			formObj.submit();
-		});
+$(document).ready(function() {
+	var formObj = $("form[name='writeForm']");
+	$("#write_btn").click(function(){
+		var title = $("#title").val();
+		
+		if (title == ""){
+			alert("제목을 입력하세요");
+			$("#title").focus();
+			
+			return false;
+		}
+
+		if (fn_valiChk()) {
+			return false;
+		}		
+		formObj.attr("action", "write");
+		formObj.attr("method", "post");
+		formObj.submit();
+		
 		fn_addFile();
+	});
+	
+	$(".list_btn")
+	.on(
+			"click",
+			function() {
+
+				location.href = "list?page=${scri.page}"
+						+ "&perPageNum=${scri.perPageNum}"
+						+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+			})
+
 	})
 	function fn_valiChk() {
 		var regForm = $("form[name='writeForm'] .chk").length;
@@ -41,27 +57,17 @@
 			}
 		}
 	}
-	function fn_addFile() {
+	function fn_addFile(){
 		var fileIndex = 1;
 		//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
-		$(".fileAdd_btn")
-				.on(
-						"click",
-						function() {
-							$("#fileIndex")
-									.append(
-											"<div><input type='file' style='float:left;' name='file_"
-													+ (fileIndex++)
-													+ "'>"
-													+ "</button>"
-													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
-													+ "삭제" + "</button></div>");
-						});
-		$(document).on("click", "#fileDelBtn", function() {
-			$(this).parent().remove();
-
+		$(".fileAdd_btn").on("click", function(){
+			$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 		});
-	}
+		$(document).on("click","#fileDelBtn", function(){
+			$(this).parent().remove();
+			
+		});
+}
 </script>
 <style>
 table {
