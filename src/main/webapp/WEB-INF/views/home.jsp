@@ -350,51 +350,71 @@ img {
 		<div class="row">
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
-					<div class="caption">
-						<div class="fundingName">이름</div>
-						<div class="fundingAchieve">퍼센트</div>
-						<div class="fundingCate">카테고리</div>
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
+					</div>
+
+					<div class="col">
+						<h5 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h5>
+					</div>
+					<div class="col">
+						<span class="percent">시작일</span><span class="cate">카테고리</span>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
-					<div class="caption">
-						<div class="fundingName">이름</div>
-						<div class="fundingAchieve">퍼센트</div>
-						<div class="fundingCate">카테고리</div>
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
+					</div>
+
+					<div class="col">
+						<h5 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h5>
+					</div>
+					<div class="col">
+						<span class="percent">시작일</span><span class="cate">카테고리</span>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
-					<div class="caption">
-						<div class="fundingName">이름</div>
-						<div class="fundingAchieve">퍼센트</div>
-						<div class="fundingCate">카테고리</div>
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
+					</div>
+
+					<div class="col">
+						<h5 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h5>
+					</div>
+					<div class="col">
+						<span class="percent">시작일</span><span class="cate">카테고리</span>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
-					<div class="caption">
-						<div class="fundingName">이름</div>
-						<div class="fundingAchieve">퍼센트</div>
-						<div class="fundingCate">카테고리</div>
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
+					</div>
+
+					<div class="col">
+						<h5 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h5>
+					</div>
+					<div class="col">
+						<span class="percent">시작일</span><span class="cate">카테고리</span>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="thumbnail">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
-					<div class="caption">
-						<div class="fundingName">이름</div>
-						<div class="fundingAchieve">퍼센트</div>
-						<div class="fundingCate">카테고리</div>
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/sample.png">
+					</div>
+
+					<div class="col">
+						<h5 class="title">길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목 길다란 제목</h5>
+					</div>
+					<div class="col">
+						<span class="percent">시작일</span><span class="cate">카테고리</span>
 					</div>
 				</div>
 			</div>

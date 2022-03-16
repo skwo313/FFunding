@@ -42,7 +42,7 @@
 					if (fn_valiChk()) {
 						return false;
 					}
-					formObj.attr("action", "/board/update");
+					formObj.attr("action", "update");
 					formObj.attr("method", "post");
 					formObj.submit();
 				})

@@ -26,7 +26,7 @@
 			if (fn_valiChk()) {
 				return false;
 			}
-			formObj.attr("action", "/board/write");
+			formObj.attr("action", "write");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
@@ -74,7 +74,7 @@ table {
 	<br>
 	<br>
 	<section id="container">
-		<form name="writeForm" method="post" action="/board/write"
+		<form name="writeForm" method="post" action="write"
 			enctype="multipart/form-data">
 			<table>
 				<tbody>
