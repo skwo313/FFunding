@@ -15,7 +15,7 @@ import com.ffunding.web.vo.ApplyVO;
 @Component("ApplyFileUtils")
 public class ApplyFileUtils {
 
-private static final String filePath = "C:\\fundingApply\\file\\"; // 파일이 저장될 위치
+private static final String filePath = "C:\\a01_javaexp\\workspace\\ffunding\\src\\main\\webapp\\resources\\img"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(ApplyVO applyVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
