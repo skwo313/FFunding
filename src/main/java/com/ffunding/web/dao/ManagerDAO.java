@@ -20,4 +20,8 @@ public interface ManagerDAO {
 	public MemberVO memberDetail(String mid) throws Exception;
 	//회원 정보수정
 	public void memberDetailUpdate(MemberVO upt) throws Exception;
+	//모든 회원의 이메일
+	public List<String> memberEmail() throws Exception;
+	//판매자 이메일
+	public List<String> sellerEmail() throws Exception;
 }
