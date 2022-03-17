@@ -74,8 +74,14 @@
 		SELECT	FID			  
 			  , FCATE
 			  , FNAME
-			  , WRITER
+			  , FPRICE
+			  , FGOAL
 			  , FDATE
+			  , FSTARTDATE
+			  , FENDDATE
+			  , FDES
+			  , FDATE
+			  , WRITER
 		 FROM FUNDING_APPLY
 		 WHERE FID = #{FID}
 	</select>
@@ -83,8 +89,15 @@
 	<!-- 게시물 수정 -->
 	<update id="update" parameterType="com.ffunding.web.vo.ApplyVO">
 		UPDATE FUNDING_APPLY
-		   SET FCATE    =   #{fcate},
-		   	   FNAME  =   #{fname}
+		   SET FCATE = #{fcate},
+		   	   FNAME = #{fname},
+		   	   FPRICE = #{fprice},
+		   	   FGOAL = #{fgoal},
+		   	   FDATE = #{fdate},
+		   	   FSTARTDATE = #{fstartdate},
+		   	   FENDDATE = #{fenddate},
+		   	   FDES = #{fdes},
+		   	   WRITER = #{writer}
 		 WHERE FID = #{fid} 
 	</update>
 	

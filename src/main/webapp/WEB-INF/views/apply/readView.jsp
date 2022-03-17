@@ -65,34 +65,76 @@ table {
 							</div>
 						</td>
 					</tr>
-
 					<tr>
 						<td>
 							<div class="form-gorup">
-								<label for="fname">펀딩 제품 이름</label>
+								<label for="fname">펀딩 제품 이름</label><br>
 								<textarea id="fname" name="fname" class="form-control"
-									readonly="readonly"><c:out value="${read.fname}" /></textarea>
+									readonly="readonly"><c:out value="${read.fname}" /></textarea><br>
 							</div>
 						</td>
 					</tr>
-
-
 					<tr>
 						<td>
 							<div class="form-gorup">
-
-								<label for="writer">작성자</label><input type="text" id="writer"
+								<label for="fname">펀딩 가격</label><br>
+								<textarea id="fprice" name="fprice" class="form-control"
+									readonly="readonly"><c:out value="${read.fprice}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="fgoal">펀딩 목표 가격</label><br>
+								<textarea id="fgoal" name="fgoal" class="form-control"
+									readonly="readonly"><c:out value="${read.fgoal}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="fdate">펀딩 등록 날짜</label><br>
+								<textarea id="fdate" name="fdate" class="form-control"
+									readonly="readonly"><c:out value="${read.fdate}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="fstartdate">펀딩 시작 날짜</label><br>
+								<textarea id="fstartdate" name="fstartdate" class="form-control"
+									readonly="readonly"><c:out
+										value="${read.fstartdate}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="fenddate">펀딩 종료 날짜</label><br>
+								<textarea id="fenddate" name="fenddate" class="form-control"
+									readonly="readonly"><c:out value="${read.fenddate}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="fdes">제품 상세 설명</label><br>
+								<textarea id="fdes" name="fdes" class="form-control"
+									readonly="readonly"><c:out value="${read.fdes}" /></textarea><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-gorup">
+								<label for="writer">작성자</label><br><input type="text" id="writer"
 									name="writer" class="form-control" value="${read.writer}"
-									readonly="readonly" />
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-gorup">
-
-								<label for="fdate">등록날짜</label><input type="text" id="fdate"
-									name="fdate" class="form-control" value="${read.fdate}" /><br>
+									readonly="readonly" /><br>
 							</div>
 						</td>
 					</tr>

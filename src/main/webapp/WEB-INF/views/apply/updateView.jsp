@@ -50,7 +50,7 @@ table {
 						<tr>
 							<td>
 								<div class="mb-3">
-									<label for="fname">이름</label>
+									<label for="fname">펀딩 제품 이름</label><br>
 									<textarea id="fname" class="form-control" name="fname"><c:out
 											value="${update.fname}" /></textarea>
 								</div>
@@ -59,17 +59,67 @@ table {
 						<tr>
 							<td>
 								<div class="mb-3">
-									<label for="writer">작성자</label> <input type="text" id="writer"
-										name="writer" class="form-control" value="${update.writer}"
-										readonly="readonly" />
+									<label for="fprice">펀딩 가격</label><br>
+									<textarea id="fprice" class="form-control" name="fprice"><c:out
+											value="${update.fprice}" /></textarea>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<div class="mb-3">
-									<label for="fdate">등록날짜</label><input type="text" id="fdate"
-										class="form-control" name="fdate" value="${update.fdate}"
+									<label for="fgoal">펀딩 목표 가격</label><br>
+									<textarea id="fgoal" class="form-control" name="fgoal"><c:out
+											value="${update.fgoal}" /></textarea>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div class="mb-3">
+									<label for="fdate">펀딩 등록 날짜</label><br>
+									<textarea id="fdate" class="form-control" name="fdate"><c:out
+											value="${update.fdate}" /></textarea>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div class="mb-3">
+									<label for="fstartdate">펀딩 시작 날짜</label><br>
+									<textarea id="fstartdate" class="form-control" name="fstartdate"><c:out
+											value="${update.fstartdate}" /></textarea>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div class="mb-3">
+									<label for="fenddate">펀딩 종료 날짜</label><br>
+									<textarea id="fenddate" class="form-control" name="fenddate"><c:out
+											value="${update.fenddate}" /></textarea>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div class="mb-3">
+									<label for="fdes">제품 상세 설명</label><br>
+									<textarea id="fdes" class="form-control" name="fdes"><c:out
+											value="${update.fdes}" /></textarea>
+								</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td>
+								<div class="mb-3">
+									<label for="writer">작성자</label> <input type="text" id="writer"
+										name="writer" class="form-control" value="${update.writer}"
 										readonly="readonly" /><br>
 								</div>
 							</td>
