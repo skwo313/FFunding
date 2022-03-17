@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ffunding.web.vo.ApplyVO;
+import com.ffunding.web.vo.Criteria;
 
 public interface ApplyDAO {
 

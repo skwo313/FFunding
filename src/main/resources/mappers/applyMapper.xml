@@ -36,8 +36,18 @@
 			   , FNAME
 			   , WRITER
 			   , FDATE
+	      FROM FUNDING_APPLY
+	     ORDER BY FID DESC
+		
+	</select>
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(FID)
 		  FROM FUNDING_APPLY
-		  ORDER BY FID DESC
+		 WHERE FID > 0
+	]]>
 	</select>
 	
 	<!-- 게시물 조회 -->

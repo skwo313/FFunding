@@ -21,9 +21,17 @@
 			
 			// 삭제
 			$(".delete_btn").on("click", function(){
+				
+				var deleteYN = confirm("삭제하시겠습니까?");
+				if(deleteYN == true){
+					
+				}
 				formObj.attr("action", "delete");
 				formObj.attr("method", "post");
 				formObj.submit();
+				
+				}
+			
 			})
 			
 			// 취소

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ffunding.web.dao.ApplyDAO;
 import com.ffunding.web.vo.ApplyVO;
+import com.ffunding.web.vo.Criteria;
 
 @Repository
 public class ApplyDAOImpl implements ApplyDAO {

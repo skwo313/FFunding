@@ -13,6 +13,7 @@ import com.ffunding.web.dao.ApplyDAO;
 import com.ffunding.web.service.ApplyService;
 import com.ffunding.web.util.ApplyFileUtils;
 import com.ffunding.web.vo.ApplyVO;
+import com.ffunding.web.vo.Criteria;
 
 
 @Service

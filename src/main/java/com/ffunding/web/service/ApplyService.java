@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ffunding.web.vo.ApplyVO;
+import com.ffunding.web.vo.Criteria;
 
 public interface ApplyService {
 

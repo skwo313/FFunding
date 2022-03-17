@@ -31,12 +31,11 @@ li {
 
 					<c:forEach items="${list}" var="list">
 						<tr>
-								<td><c:out value="${list.fcate}" /></td>
-								<td>
-									<a href="readView?fid=${list.fid}"><c:out value="${list.fname}"/></a>
-								</td>
-								<td><c:out value="${list.writer}" /></td>
-								<td><c:out value="${list.fdate}" /></td>
+							<td><c:out value="${list.fcate}" /></td>
+							<td><a href="readView?fid=${list.fid}"><c:out
+										value="${list.fname}" /></a></td>
+							<td><c:out value="${list.writer}" /></td>
+							<td><c:out value="${list.fdate}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
