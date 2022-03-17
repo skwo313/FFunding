@@ -44,10 +44,10 @@
 		  		 		FDATE,
 		  		 		ROW_NUMBER() OVER(ORDER BY FID DESC) AS RNUM
 		  		   FROM FUNDING_APPLY
-		  		  WHERE 1=1
+		  		  WHERE 1=1 
 		  		  	 <include refid="search"></include>
 		  		   					 ) FA
-		 WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		 WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} AND WRITER = 'admin'
 		 ORDER BY FID DESC
 	</select>
 	
@@ -66,9 +66,7 @@
 			<if test="searchType == 'n'.toString()">AND FNAME LIKE '%' || #{keyword} || '%'</if>
 		</if>
 	</sql>
-	
 
-	
 	<!-- 게시물 조회 -->
 	<select id="read" parameterType="int" resultType="com.ffunding.web.vo.ApplyVO">
 		SELECT	FID			  
@@ -83,7 +81,7 @@
 			  , FDATE
 			  , WRITER
 		 FROM FUNDING_APPLY
-		 WHERE FID = #{FID}
+		WHERE FID = #{FID}
 	</select>
 	
 	<!-- 게시물 수정 -->
