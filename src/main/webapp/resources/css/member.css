@@ -1,9 +1,8 @@
 #search {
 	margin-bottom: 15px;
-	width: 400px;
 }
 #search > input[type="text"] {
-	width: 50%;
+	width: 45%;
 }
 #type {
 	width: 10%;

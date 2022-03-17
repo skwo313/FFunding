@@ -57,4 +57,16 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public void memberDetailUpdate(MemberVO upt) throws Exception {
 		session.update("managerMapper.memberDetailUpdate", upt);
 	}
+	
+	//모든 회원의 이메일
+	@Override
+	public List<String> memberEmail() throws Exception {
+		return session.selectList("managerMapper.memberEmail");
+	}
+	
+	//판매자 이메일
+	@Override
+	public List<String> sellerEmail() throws Exception {
+		return session.selectList("managerMapper.sellerEmail");
+	}
 }

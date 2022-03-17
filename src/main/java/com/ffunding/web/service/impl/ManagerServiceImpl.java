@@ -1,12 +1,20 @@
 package com.ffunding.web.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.service.ManagerService;
+import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
@@ -15,6 +23,41 @@ public class ManagerServiceImpl implements ManagerService {
 
 	@Autowired
 	private ManagerDAO dao;
+	
+	@Autowired
+	private JavaMailSender sender;
+	
+	public String sendMail(MailVO mail) throws Exception {
+		String msg = "successful message transmission!";
+		MimeMessage mmsg = sender.createMimeMessage();
+		
+		List<String> recipientList = new ArrayList<String>();
+		if(mail.getRecipientck()==0) {
+			mail.setRecipients(mail.getRecipient().trim().split(",", -1));
+		} else if(mail.getRecipientck()==1) {
+			recipientList = dao.memberEmail();
+			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
+		} else if(mail.getRecipientck()==2) {
+			recipientList = dao.sellerEmail();
+			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
+		}
+		
+		InternetAddress[] toArr = new InternetAddress[mail.getRecipients().length];
+		
+		try {
+			for(int i=0; i<mail.getRecipients().length; i++) {
+				toArr[i] = new InternetAddress(mail.getRecipients()[i]);
+			}
+			mmsg.setSubject(mail.getTitle());
+			mmsg.setRecipients(Message.RecipientType.TO, toArr);
+			mmsg.setText(mail.getContent());
+		} catch (MessagingException e) {
+			msg = "message transmission failure!<br>Please check again.";
+		}
+		sender.send(mmsg);
+		
+		return msg;
+	}
 	
 	//회원 리스트
 	@Override
