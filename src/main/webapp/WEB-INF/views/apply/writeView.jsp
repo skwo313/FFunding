@@ -300,9 +300,13 @@ div.c {
 							</div>
 						</td>
 					</tr>
+					
+					<!-- 첨부파일 코드
 					<tr>
 						<td><input type="file" name="file"><br></td>
 					</tr>
+					-->
+					
 					<tr>
 						<td>
 							<div class="c">
