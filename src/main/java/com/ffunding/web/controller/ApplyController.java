@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ffunding.web.service.ApplyService;
 import com.ffunding.web.vo.ApplyVO;
+import com.ffunding.web.vo.Criteria;
 import com.ffunding.web.vo.PageMaker;
 import com.ffunding.web.vo.SearchCriteria;
 
@@ -47,11 +48,16 @@ public class ApplyController {
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) throws Exception{
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("list");
 		
-		model.addAttribute("list",service.list());
+		model.addAttribute("list",service.list(scri));
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "apply/list.page";
 		

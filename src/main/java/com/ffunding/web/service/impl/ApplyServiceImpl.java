@@ -14,6 +14,7 @@ import com.ffunding.web.service.ApplyService;
 import com.ffunding.web.util.ApplyFileUtils;
 import com.ffunding.web.vo.ApplyVO;
 import com.ffunding.web.vo.Criteria;
+import com.ffunding.web.vo.SearchCriteria;
 
 
 @Service
@@ -39,9 +40,16 @@ public class ApplyServiceImpl implements ApplyService {
 	
 	// 게시물 목록 조회
 	@Override
-	public List<ApplyVO> list() throws Exception {
+	public List<ApplyVO> list(SearchCriteria scri) throws Exception {
 		
-		return dao.list();
+		return dao.list(scri);
+	}
+	
+	// 게시물 총 갯수
+	@Override
+	public int listCount(SearchCriteria scri) throws Exception {
+		
+		return dao.listCount(scri);
 	}
 	
 	// 게시물 조회
