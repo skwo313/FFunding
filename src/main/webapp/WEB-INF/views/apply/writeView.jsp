@@ -20,7 +20,7 @@
 
 
 
-<title>펀딩신청 Test</title>
+<title>펀딩신청 Test1</title>
 </head>
 <script type="text/javascript">
 	$(document)
