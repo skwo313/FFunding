@@ -117,6 +117,16 @@ strong {
 	padding-right: 5px;
 	font-size: 24px;
 }
+
+.cale {
+	text-align: center;
+}
+
+.date {
+	font-size: 14px;
+	font-weight: 700;
+	color: #002fa3;
+}
 </style>
 <title>FFunding-펀딩하기</title>
 <div class="container">
@@ -153,31 +163,34 @@ strong {
 						<span class="info-des">참여자</span> <span> <strong>646</strong>명의 서포터
 						</span>
 					</div>
-					<div class="row" style="">
-						<div class="col-4">
+					<div class="row justify-content-md-center" style="margin-bottom: 20px;">
+						<div class="col-4 cale">
 							<div>
 								<i class="bi bi-calendar"></i>
 							</div>
 							<div>
-								<p>펀딩 시작일</p>
-								<p>2022.03.21</p>
+								<span>펀딩 시작일</span>
 							</div>
-
+							<div>
+								<span class="date">2022.03.21</span>
+							</div>
 						</div>
-						<div class="col-2">
+						<div class="col-2 cale">
 							<div>
 								<i class="bi bi-dash-lg"></i>
 							</div>
 						</div>
-						<div class="col-4">
-								<div>
-									<i class="bi bi-calendar"></i>
-								</div>
-								<div>
-									<p>펀딩 종료일</p>
-									<p>2022.04.20</p>
-								</div>
+						<div class="col-4 cale">
+							<div>
+								<i class="bi bi-calendar"></i>
 							</div>
+							<div>
+								<span>펀딩 종료일</span>
+							</div>
+							<div>
+								<span class="date">2022.04.21</span>
+							</div>
+						</div>
 					</div>
 					<div class="info-text">
 						<input type="button" class="form-control butn" value="펀딩하기" />
@@ -186,7 +199,15 @@ strong {
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<img alt="" src="">
+	<div class="row justify-content-md-center" style="margin-bottom: 40px;">
+		<div class="col-8">
+			<img alt="" class="img-fluid" src="${pageContext.request.contextPath}/img/detailsample1.jpg">
+		</div>
+		<div class="col-8">
+			<img alt="" class="img-fluid" src="${pageContext.request.contextPath}/img/detailsample2.jpg">
+		</div>
+		<div class="col-8">
+			<img alt="" class="img-fluid" src="${pageContext.request.contextPath}/img/detailsample3.jpg">
+		</div>
 	</div>
 </div>
