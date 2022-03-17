@@ -74,4 +74,11 @@ public class ApplyDAOImpl implements ApplyDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("applyMapper.selectFileList", fid);
 	}
+	
+	// 첨부파일 다운로드
+	@Override
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("applyMapper.selectFileInfo", map);
+	}
 }
