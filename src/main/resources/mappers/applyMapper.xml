@@ -4,7 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="applyMapper">
    <!-- 게시판 글 작성 -->
-   <insert id="insert">
+   <insert id="insert" parameterType="com.ffunding.web.vo.ApplyVO" useGeneratedKeys="true" keyProperty="fid">
+	   	    <selectKey keyProperty="fid" resultType="int" order="BEFORE">
+	    	SELECT funding_apply_seq.NEXTVAL FROM DUAL
+	    </selectKey>
 	   INSERT INTO FUNDING_APPLY(    FID 
 	   					      , FCATE 
 	   					      , FNAME
@@ -16,7 +19,7 @@
 	   					      , FDES
 	   					      , WRITER
 	   					      , AGREEMENT )
-	                 VALUES(    FUNDING_APPLY_SEQ.NEXTVAL 
+	                 VALUES(    #{fid}
 	                 		  , #{fcate, jdbcType=VARCHAR}  
 	                 		  , #{fname, jdbcType=VARCHAR}
 	                 		  , #{fprice, jdbcType=VARCHAR}
@@ -123,5 +126,15 @@
 			#{FILE_SIZE}
 		)
    </insert>
+   
+   <!-- 첨부파일 조회 -->
+	<select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT FILE_NO,
+		   ORG_FILE_NAME,
+		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+	  FROM FUNDING_APPLY_FILE
+	 WHERE FID = #{FID}
+	   AND DEL_GB = 'N'
+</select>
 
 </mapper>

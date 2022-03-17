@@ -1,5 +1,8 @@
 package com.ffunding.web.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -82,6 +85,9 @@ public class ApplyController {
 		logger.info("read");
 		
 		model.addAttribute("read", service.read(applyVO.getFid()));
+		
+		List<Map<String, Object>> fileList = service.selectFileList(applyVO.getFid());
+		model.addAttribute("file", fileList);
 		
 		return "apply/readView.page";
 	}

@@ -74,5 +74,12 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		dao.delete(fid);
 	}
+	
+	// 첨부파일 조회
+	@Override
+	public List<Map<String, Object>> selectFileList(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectFileList(fid);
+	}
 
 }

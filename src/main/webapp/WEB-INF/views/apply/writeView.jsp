@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<title>펀딩신청 Test123</title>
+<title>펀딩신청 Test1</title>
 </head>
 <script type="text/javascript">
 	$(document)
@@ -300,9 +300,13 @@ div.c {
 							</div>
 						</td>
 					</tr>
+					
+					
 					<tr>
 						<td><input type="file" name="file"><br></td>
 					</tr>
+					
+					
 					<tr>
 						<td>
 							<div class="c">
@@ -311,20 +315,10 @@ div.c {
 							</div>
 						</td>
 					</tr>
-
-
 					<tr>
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
-						</td>
-					</tr>
-
-					<tr>
-						<td>					
-							<p>
-								Date: <input type="text" id="datepicker">
-							</p>
 						</td>
 					</tr>
 				</tbody>

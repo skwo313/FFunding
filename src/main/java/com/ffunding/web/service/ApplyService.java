@@ -1,6 +1,7 @@
 package com.ffunding.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -28,4 +29,7 @@ public interface ApplyService {
 	
 	// 게시물 삭제
 	public void delete(int fid) throws Exception;
+	
+	// 첨부파일 조회
+	public List<Map<String, Object>> selectFileList(int fid) throws Exception;
 }
