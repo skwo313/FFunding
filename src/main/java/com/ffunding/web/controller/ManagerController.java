@@ -3,6 +3,7 @@ package com.ffunding.web.controller;
 
 import java.util.HashMap;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.ManagerService;
+import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
@@ -81,10 +83,16 @@ public class ManagerController {
 	}
 	
 	//메일 페이지
-	@RequestMapping("mail")
-	public String mail(Model d) {
+	@GetMapping("mail")
+	public String mail(@RequestParam(required=false, value="msg") String msg, Model d) {
 		d.addAttribute("active", "mail");
 		return "manager/mail.m";
 	}
-
+	
+	//메일 전송
+	@PostMapping("mail/send")
+	public String mailSend(MailVO mail, RedirectAttributes redirect) throws Exception {
+		redirect.addAttribute("msg", service.sendMail(mail));
+		return "redirect:/manager/mail";
+	}
 }

@@ -2,10 +2,15 @@ package com.ffunding.web.service;
 
 import java.util.List;
 
+
+import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
 public interface ManagerService {
+	//메일전송
+	public String sendMail(MailVO mail) throws Exception;
+	
 	//회원 리스트
 	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception;
 	//총 회원수

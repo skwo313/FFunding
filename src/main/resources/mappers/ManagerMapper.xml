@@ -80,4 +80,17 @@
 			sellerck=#{sellerck}
 		WHERE mid=#{mid}
 	</update>
+	
+	<!-- 모든 회원의 이메일 -->
+	<select id="memberEmail" resultType="String">
+		SELECT memail
+		FROM member
+	</select>
+	
+	<!-- 판매자 회원의 이메일 -->
+	<select id="sellerEmail" resultType="String">
+		SELECT memail
+		FROM member
+		WHERE sellerck=1
+	</select>
 </mapper>

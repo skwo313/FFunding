@@ -68,7 +68,7 @@
 <template id="pageTmp">
 	<div class="paging">
 	    <ul class="pagination">
-			<li class="page-item" v-if="page.startBlock!=1"><a class="page-link" @click="changePage(page.startBlock-1)">Previous</a></li>
+			<li class="page-item" v-if="page.startBlock>1"><a class="page-link" @click="changePage(page.startBlock-1)">Previous</a></li>
 	 	 	<li v-for="cnt in list()" :class="cnt==page.curPage?'page-item active':'page-item'">
 	  			<a class="page-link" @click="changePage(cnt)">{{cnt}}</a>
 	  		</li>
