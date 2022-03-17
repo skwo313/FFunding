@@ -46,27 +46,39 @@ li {
 						</tr>
 					</c:forEach>
 				</table>
-				
-				  <div class="search">
-				    <select name="searchType">
-				      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
-				      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-				    </select>
-				
-				    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
-				
-				    <button id="searchBtn" type="button">검색</button>
-				    <script>
+
+				<div class="search row">
+					<div class="col-xs-2 col-sm-2">
+						<select name="searchType" class="form-control">
+							<option value="c"
+								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+							<option value="n"
+								<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
+						</select>
+					</div>
+
+					<div class="col-xs-10 col-sm-10">
+						<div class="input-group">
+							<input type="text" name="keyword" id="keywordInput"
+								value="${scri.keyword}" class="form-control" /> <span
+								class="input-group-btn">
+								<button id="searchBtn" type="button" class="btn btn-primary">검색</button>
+							</span>
+						</div>
+					</div>
+
+
+					<script>
 				      $(function(){
 				        $('#searchBtn').click(function() {
 				          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 				        });
 				      });   
 				    </script>
-				  </div>
-				
-				
-				<div>
+				</div>
+
+
+				<div class="mb-3" style="margin: 0 auto; width: 30%;">
 					<ul>
 						<c:if test="${pageMaker.prev}">
 							<li><a
