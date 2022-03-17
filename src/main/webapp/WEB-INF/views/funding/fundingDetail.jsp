@@ -57,14 +57,6 @@ img {
 	border-radius: 5px;
 }
 
-.title {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-}
-
 .percent {
 	margin-right: 6px;
 	color: #00a2a2;
@@ -87,12 +79,48 @@ img {
 	font-weight: 700;
 	letter-spacing: -1px;
 	line-height: 50px;
+	margin-top: 40px;
+}
+
+.d-day {
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.fundimg-des {
+	font-size: 18px;
+	font-weight: 600;
+	padding: 20px 20px;
+}
+
+.info-text {
+	margin-bottom: 40px;
+}
+
+.info-des {
+	font-size: 14px;
+	letter-spacing: -.3px;
+	min-width: 70px;
+	line-height: 30px;
+	display: inline-block;
+	color: #969696;
+}
+
+.butn {
+	background-color: #00a2a2;
+	color: white;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+strong {
+	padding-right: 5px;
+	font-size: 24px;
 }
 </style>
 <title>FFunding-펀딩하기</title>
 <div class="container">
-	<div class="row">
-		
+	<div class="row" style="border-bottom: solid 1.5px #dcdcdc;">
 		<div class="col-sm-8" style="margin: 15px 0px;">
 			<div class="title">상의 의류전용 프리미엄 옷걸리 클로랑스</div>
 		</div>
@@ -102,17 +130,63 @@ img {
 					<img class="divImg" alt="" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
 				</div>
 			</div>
+			<div class="row fundimg-des">제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명 제품 설명</div>
 		</div>
-		<div class="col">
-			<div class="col-sm-4">
+		<div class="col" style="border-left: solid 1px #dcdcdc;">
+			<div class="col">
 				<div class="info-box">
-					<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					<p>15 일 남음</p>
-					<p>1819 % 달성</p>
-					<p>17,984,000 원 펀딩</p>
-					<p>646 명의 서포터</p>
+					<div class="info-text">
+						<span class="info-des">남은기간</span> <span class="d-day"> 15일 남음 </span>
+					</div>
+					<div class="progress info-text" style="height: 5px;">
+						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<div class="info-text">
+						<span class="info-des">달성률</span> <span> <strong>1819</strong>% 달성
+						</span>
+					</div>
+					<div class="info-text">
+						<span class="info-des">펀딩금액</span> <span> <strong>17,984,000</strong>원 펀딩
+						</span>
+					</div>
+					<div class="info-text">
+						<span class="info-des">참여자</span> <span> <strong>646</strong>명의 서포터
+						</span>
+					</div>
+					<div class="row" style="">
+						<div class="col-4">
+							<div>
+								<i class="bi bi-calendar"></i>
+							</div>
+							<div>
+								<p>펀딩 시작일</p>
+								<p>2022.03.21</p>
+							</div>
+
+						</div>
+						<div class="col-2">
+							<div>
+								<i class="bi bi-dash-lg"></i>
+							</div>
+						</div>
+						<div class="col-4">
+								<div>
+									<i class="bi bi-calendar"></i>
+								</div>
+								<div>
+									<p>펀딩 종료일</p>
+									<p>2022.04.20</p>
+								</div>
+							</div>
+					</div>
+					<div class="info-text">
+						<input type="button" class="form-control butn" value="펀딩하기" />
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<img alt="" src="">
 	</div>
 </div>
