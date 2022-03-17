@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ffunding.web.vo.ApplyVO;
 import com.ffunding.web.vo.Criteria;
+import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.SearchCriteria;
 
 public interface ApplyService {

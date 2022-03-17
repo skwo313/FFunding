@@ -4,6 +4,15 @@ public class SearchCriteria extends Criteria {
 
 	private String searchType = "";
 	private String keyword = "";
+	private String mid = "";
+
+	public String getMid() {
+		return mid;
+	}
+
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 
 	public String getSearchType() {
 		return searchType;

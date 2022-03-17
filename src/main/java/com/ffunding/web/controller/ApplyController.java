@@ -1,6 +1,8 @@
 package com.ffunding.web.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ffunding.web.service.ApplyService;
 import com.ffunding.web.vo.ApplyVO;
 import com.ffunding.web.vo.Criteria;
+import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.PageMaker;
 import com.ffunding.web.vo.SearchCriteria;
 
@@ -48,8 +51,16 @@ public class ApplyController {
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest request, MemberVO memberVO) throws Exception{
 		logger.info("list");
+		
+		HttpSession session = request.getSession();
+		
+		MemberVO mb = (MemberVO)session.getAttribute("member");
+		
+		String mid = mb.getMid();
+
+		scri.setMid(mb.getMid());
 		
 		model.addAttribute("list",service.list(scri));
 		
@@ -58,6 +69,8 @@ public class ApplyController {
 		pageMaker.setTotalCount(service.listCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
+		
+		session.setAttribute("sessionId", mid);
 		
 		return "apply/list.page";
 		

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.ffunding.web.dao.ApplyDAO;
 import com.ffunding.web.vo.ApplyVO;
 import com.ffunding.web.vo.Criteria;
+import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.SearchCriteria;
 
 @Repository
@@ -30,7 +31,6 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public List<ApplyVO> list(SearchCriteria scri) throws Exception {
 	
 		return sqlSession.selectList("applyMapper.list", scri);
-
 	}
 	
 	// 게시물 총 갯수

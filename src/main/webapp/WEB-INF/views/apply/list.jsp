@@ -35,7 +35,7 @@ li {
 							<th>등록날짜</th>
 						</tr>
 					</thead>
-
+	
 					<c:forEach items="${list}" var="list">
 						<tr>
 							<td><c:out value="${list.fcate}" /></td>

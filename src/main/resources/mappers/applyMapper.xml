@@ -47,7 +47,7 @@
 		  		  WHERE 1=1 
 		  		  	 <include refid="search"></include>
 		  		   					 ) FA
-		 WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} AND WRITER = 'admin'
+		 WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} AND WRITER = #{mid}
 		 ORDER BY FID DESC
 	</select>
 	
