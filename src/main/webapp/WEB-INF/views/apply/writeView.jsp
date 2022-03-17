@@ -311,20 +311,10 @@ div.c {
 							</div>
 						</td>
 					</tr>
-
-
 					<tr>
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
-						</td>
-					</tr>
-
-					<tr>
-						<td>					
-							<p>
-								Date: <input type="text" id="datepicker">
-							</p>
 						</td>
 					</tr>
 				</tbody>
