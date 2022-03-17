@@ -46,7 +46,7 @@
 							<li><a href="#">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
-						<li><a class="getstarted" href="#" onclick="location.href='/email/email'">프로젝트 시작하기</a></li>
+						<li><a class="getstarted" href="#" onclick="location.href='/ffunding/email/email'">프로젝트 시작하기</a></li>
 				</ul>
 <!-- 				<i class="bi bi-list mobile-nav-toggle"></i> -->
 			</div>
