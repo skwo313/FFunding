@@ -1,10 +1,13 @@
 package com.ffunding.web.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -120,5 +124,24 @@ public class ApplyController {
 		service.delete(applyVO.getFid());
 		
 		return "redirect:/apply/list";
+	}
+	
+	// 첨부파일 다운로드
+	@RequestMapping(value="/fileDown")
+	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{
+		Map<String, Object> resultMap = service.selectFileInfo(map);
+		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
+		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
+		
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\a01_javaexp\\workspace\\ffunding\\src\\main\\webapp\\resources\\applyimage\\"+storedFileName));
+		
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition",  "attachment; fileName=\""+URLEncoder.encode(originalFileName, "UTF-8")+"\";");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+		
 	}
 }

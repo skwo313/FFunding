@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<title>펀딩신청 Test123</title>
+<title>펀딩신청 Test1</title>
 </head>
 <script type="text/javascript">
 	$(document)
@@ -96,7 +96,7 @@
 		var regForm = $("form[name='writeForm'] .chk").length;
 		for (var i = 0; i < regForm; i++) {
 			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
-				alert($(".chk").eq(i).attr("fcate"));
+				alert($(".chk").eq(i).attr("title"));
 				return true;
 			}
 		}
@@ -319,7 +319,6 @@ div.c {
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
-								<button class="fileAdd_btn" type="button">파일추가</button>
 						</td>
 					</tr>
 				</tbody>
