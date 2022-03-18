@@ -110,7 +110,7 @@ img {
 	font-weight: bold;
 }
 </style>
-<title>FFunding-펀딩하기</title>
+<title>FFunding - 펀딩하기</title>
 <div class="slider">
 	<div>
 		<img alt="" src="${pageContext.request.contextPath}/img/banner01.jpg">

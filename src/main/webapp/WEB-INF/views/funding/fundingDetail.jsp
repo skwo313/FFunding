@@ -3,69 +3,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$('.slider').bxSlider({
-			auto : true,
-			pager : false
-		});
-	});
+	
 </script>
 <style>
-.bx-wrapper {
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	border: 0;
-}
-
-.imgText {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%);
-	width: 100%;
-	max-width: 1440px;
-	box-sizing: border-box !important;
-	margin-bottom: 20px;
-}
-
-.imgDes {
-	width: 460px;
-	line-height: 40px;
-	font-size: 32px;
-	font-weight: 700;
-	word-break: break-all;
-	letter-spacing: -.7px;
-	color: #fff;
-}
-
 img {
 	object-fit: cover;
-}
-
-.fundingWrap {
-	margin-bottom: 16px;
-	height: 100px;
 }
 
 .divImg {
 	width: 90%;
 	height: 100%;
 	border-radius: 5px;
-}
-
-.percent {
-	margin-right: 6px;
-	color: #00a2a2;
-	font-weight: 700;
-}
-
-.cate {
-	color: #90949c;
-	font-weight: 400;
 }
 
 .progress-bar {
@@ -128,7 +77,7 @@ strong {
 	color: #002fa3;
 }
 </style>
-<title>FFunding-펀딩하기</title>
+<title>FFunding - 펀딩하기</title>
 <div class="container">
 	<div class="row" style="border-bottom: solid 1.5px #dcdcdc;">
 		<div class="col-sm-8" style="margin: 15px 0px;">
