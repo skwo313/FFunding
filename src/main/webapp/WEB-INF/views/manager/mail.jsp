@@ -14,48 +14,57 @@
 	        <div class="card-header py-3">
 	            <h6 class="m-0 font-weight-bold text-primary">Mail Service</h6>
 	        </div>
-	        	<form method="post" class="mailFrm">
-					<table class="mailtb">
-						<tr>
-							<th>Title</th>
-							<td>
-								<input type="text" name="title" class="form-control"/>
-								<p class="warning" id="ttext">Please enter the title.</p>							
-							</td>
-						</tr>
-						<tr>
-							<th>Recipient</th>
-							<td>
-								<div class="recipient">
-									<input type="text" id="recipient" name="recipient" class="form-control"/>
-									<div>
-										<label for="self" class="relabel">Self</label>
-										<input type="radio" name="recipientck" id="self" class="reradio" value="0" checked/>
-										<label for="all" class="relabel">All</label>
-										<input type="radio" name="recipientck" id="all" class="reradio" value="1"/>
-										<label for="seller" class="relabel">Seller</label>
-										<input type="radio" name="recipientck" id="seller" class="reradio" value="2"/>
-									</div>
+	        <form method="post" class="mailFrm" enctype="multipart/form-data">
+				<table class="mailtb">
+					<tr>
+						<th>Title</th>
+						<td>
+							<input type="text" name="title" class="form-control"/>
+							<p class="warning" id="ttext">Please enter the title.</p>							
+						</td>
+					</tr>
+					<tr>
+						<th>Recipient</th>
+						<td>
+							<div class="recipient">
+								<input type="text" id="recipient" name="recipient" class="form-control"/>
+								<div>
+									<label for="self" class="relabel">Self</label>
+									<input type="radio" name="recipientck" id="self" class="reradio" value="0" checked/>
+									<label for="all" class="relabel">All</label>
+									<input type="radio" name="recipientck" id="all" class="reradio" value="1"/>
+									<label for="seller" class="relabel">Seller</label>
+									<input type="radio" name="recipientck" id="seller" class="reradio" value="2"/>
 								</div>
-								<p class="warning" id="rtext"></p>	
-								<p class="selftext">이메일을 여러개 입력할 경우 쉼표(,)로 구분하세요.</p>
-							</td>
-															
-						</tr>
-						<tr>
-							<th>Content</th>
-							<td>
-								<textarea  name="content" rows="20" class="form-control" ></textarea>
-								<p class="warning" id="ctext">Please enter the content.</p>	
-							</td>									
-						</tr>
-					</table>
-					<div class="sendBtn">
-						<button id="send" class="btn btn-primary" type="button">Send</button>
-					</div>
-				</form>
-	            </div>
-	        </div>
+							</div>
+							<p class="warning" id="rtext"></p>	
+							<p class="selftext">이메일을 여러개 입력할 경우 쉼표(,)로 구분하세요.</p>
+						</td>
+														
+					</tr>
+					<tr>
+						<th>Content</th>
+						<td>
+							<textarea  name="content" rows="20" class="form-control" ></textarea>
+							<p class="warning" id="ctext">Please enter the content.</p>	
+						</td>									
+					</tr>
+					<tr>
+						<th>File</th>
+						<td>
+						<div>
+							<div class="input-group">
+								<label class="custom-file-label" for="upload">Please select a file to upload!</label>
+								<input type="file" name="attach" class="custom-file-input" id="upload" multiple/>
+							</div>
+						</div>
+						</td>
+					</tr>
+				</table>
+				<div class="sendBtn">
+					<button id="send" type="button" class="btn btn-primary">Send</button>
+				</div>
+			</form>
 	    </div>
 	</div>
 	
@@ -75,6 +84,20 @@
 	
 <script type="text/javascript">
 	$(document).ready(function(){
+		//첨부파일 선택시 파일명 표시
+		$(".custom-file-input").on("change", function() {
+			let fileList = $(this)[0].files;
+			let filename = "";
+			for(let i=0; i<fileList.length; i++) {
+				if(fileList.length-1==i) {
+		        	filename += fileList[i].name;
+				} else {
+		        	filename += fileList[i].name + ", ";
+				}
+			}
+			$(".custom-file-label").text(filename);
+		});
+		
 		//이메일 전송 완료시, 출력할 메시지
 		if("${param.msg}"!=null && "${param.msg}"!="") {
 			$("#Modal").modal("show");

@@ -8,8 +8,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <template id="schTmp">
 	<div class="row">
-		<form id="frm" method="post" onsubmit="return false;" class="form-inline mr-auto w-100 navbar-search">
-			<div class="col-sm-12 col-md-6">
+		<div class="frm">
+			<div class="searchFrm">
 				<div id="search" class="input-group">
 				    <input type="hidden" v-model="paging.type"/>
 					<select id="type" v-model="type" class="form-control bg-light border-0 small">
@@ -23,10 +23,10 @@
 				    		<i class="fas fa-search fa-sm"></i>
 				    	</button>
 				    </div>
-				 </div>
-			 </div>
-			 <div class="col-sm-12 col-md-6" id="pagepick">
-			 	<span>Showing {{see.start}} to {{see.end}} of {{see.count}} entries</span>
+				</div>
+			</div>
+			<div class="pageFrm">
+				<span>Showing {{see.start}} to {{see.end}} of {{see.count}} entries</span>
 				<select v-model="paging.pageSize" @change="searchSize" class="form-control bg-light small">
 				   	<option value="20">20개 보기</option>
 				    <option value="40">40개 보기</option>
@@ -35,7 +35,7 @@
 				    <option value="100">100개 보기</option>
 				</select>
 			 </div>
-		</form>
+		</div>
 	</div>
 </template>
 <template id="listTmp">

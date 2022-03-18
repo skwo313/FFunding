@@ -39,18 +39,6 @@ p {
 .mailtb > tbody > tr > td > textarea {
 	font-size: 13px;
 }
-.sendBtn {
-	width: 90%;
-	display: flex;
-    justify-content: flex-end;
-    margin-bottom: 15px;
-}
-.sendBtn > button {
-	width: 60px;
-	height: 35px;
-	font-size: 13px;
-	margin-top: 10px;
-}
 .recipient {
 	display: flex;
 	align-items: center;
@@ -71,6 +59,27 @@ p {
 }
 [name=recipient] {
 	width: 100%;
+}
+.input-group {
+	font-size: 13px;
+}
+.custom-file-label {
+	margin: 0px;
+}
+.custom-file-label::after {
+	content: "Upload File"
+}
+.sendBtn {
+	width: 90%;
+	display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+.sendBtn > button {
+	width: 60px;
+	height: 35px;
+	font-size: 13px;
+	margin-top: 10px;
 }
 #exampleModalLongTitle {
 	margin: 15px;
