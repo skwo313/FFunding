@@ -96,7 +96,7 @@
 		var regForm = $("form[name='writeForm'] .chk").length;
 		for (var i = 0; i < regForm; i++) {
 			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
-				alert($(".chk").eq(i).attr("title"));
+				alert($(".chk").eq(i).attr("fcate"));
 				return true;
 			}
 		}
@@ -319,6 +319,7 @@ div.c {
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
+								<button class="fileAdd_btn" type="button">파일추가</button>
 						</td>
 					</tr>
 				</tbody>

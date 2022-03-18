@@ -15,13 +15,76 @@
 <title>게시판</title>
 </head>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
+				var formObj = $("form[name='updateForm']");
 
-		$(".cancel_btn").on("click", function() {
-			event.preventDefault();
-			location.href = "list";
-		})
-	})
+				$(document).on("click", "#fileDel", function() {
+					$(this).parent().remove();
+				})
+
+				fn_addFile();
+
+				$(".cancel_btn").on(
+						"click",
+						function() {
+							event.preventDefault();
+							location.href = "readView?fid=${update.fid}"
+									+ "&page=${scri.page}"
+									+ "&perPageNum=${scri.perPageNum}"
+									+ "&searchType=${scri.searchType}"
+									+ "&keyword=${scri.keyword}";
+						})
+
+				$(".update_btn").on("click", function() {
+					if (fn_valiChk()) {
+						return false;
+					}
+					formObj.attr("action", "update");
+					formObj.attr("method", "post");
+					formObj.submit();
+				})
+			})
+
+	function fn_valiChk() {
+		var updateForm = $("form[name='updateForm'] .chk").length;
+		for (var i = 0; i < updateForm; i++) {
+			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
+				alert($(".chk").eq(i).attr("fcate"));
+				return true;
+			}
+		}
+	}
+	function fn_addFile() {
+		var fileIndex = 1;
+		//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
+		$(".fileAdd_btn")
+				.on(
+						"click",
+						function() {
+							$("#fileIndex")
+									.append(
+											"<div><input type='file' style='float:left;' name='file_"
+													+ (fileIndex++)
+													+ "'>"
+													+ "</button>"
+													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
+													+ "삭제" + "</button></div>");
+						});
+		$(document).on("click", "#fileDelBtn", function() {
+			$(this).parent().remove();
+
+		});
+	}
+	var fileNoArry = new Array();
+	var fileNameArry = new Array();
+	function fn_del(value, name) {
+
+		fileNoArry.push(value);
+		fileNameArry.push(name);
+		$("#fileNoDel").attr("value", fileNoArry);
+		$("#fileNameDel").attr("value", fileNameArry);
+	}
 </script>
 <style>
 table {
@@ -74,7 +137,7 @@ table {
 								</div>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td>
 								<div class="mb-3">
@@ -84,17 +147,18 @@ table {
 								</div>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td>
 								<div class="mb-3">
 									<label for="fstartdate">펀딩 시작 날짜</label><br>
-									<textarea id="fstartdate" class="form-control" name="fstartdate"><c:out
+									<textarea id="fstartdate" class="form-control"
+										name="fstartdate"><c:out
 											value="${update.fstartdate}" /></textarea>
 								</div>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td>
 								<div class="mb-3">
@@ -104,7 +168,7 @@ table {
 								</div>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td>
 								<div class="mb-3">
@@ -114,7 +178,7 @@ table {
 								</div>
 							</td>
 						</tr>
-					
+
 						<tr>
 							<td>
 								<div class="mb-3">
@@ -125,10 +189,26 @@ table {
 							</td>
 						</tr>
 						<tr>
+							<td id="fileIndex"><c:forEach var="file" items="${file}"
+									varStatus="var">
+									<div>
+										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}"
+											value="${file.FILE_NO }"> <input type="hidden"
+											id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
+										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
+										<button id="fileDel"
+											onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');"
+											type="button">삭제</button>
+										<br>
+									</div>
+								</c:forEach></td>
+						</tr>
+						<tr>
 							<td>
 								<div>
 									<button type="submit" class="btn btn-success update_btn">저장</button>
 									<button type="submit" class="btn btn-primary cancel_btn">취소</button>
+									<button type="button" class="fileAdd_btn">파일추가</button>
 								</div>
 							</td>
 						</tr>

@@ -72,13 +72,6 @@ public class ApplyDAOImpl implements ApplyDAO {
 	@Override
 	public List<Map<String, Object>> selectFileList(int fid) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("applyMapper.selectFileList", fid);
-	}
-	
-	// 첨부파일 다운로드
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("applyMapper.selectFileInfo", map);
+		return sqlSession.selectList("boardMapper.selectFileList", fid);
 	}
 }
