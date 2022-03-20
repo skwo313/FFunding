@@ -1,16 +1,20 @@
 package com.ffunding.web.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.service.ManagerService;
@@ -27,10 +31,17 @@ public class ManagerServiceImpl implements ManagerService {
 	@Autowired
 	private JavaMailSender sender;
 	
+	@Value("${mailPath}")
+	private String mailPath;
+	
 	public String sendMail(MailVO mail) throws Exception {
 		String msg = "successful message transmission!";
+		//이메일을 전송하기 위해 MimeMessage 선언
 		MimeMessage mmsg = sender.createMimeMessage();
+		//파일을 첨부하여 전송할 수 있도록 MimeMessageHelper 선언
+		MimeMessageHelper message = new MimeMessageHelper(mmsg, true, "UTF-8");
 		
+		//getRecipientck 값에 따라 직접 입력한 이메일, 모든회원, 판매자만으로 수신인 설정
 		List<String> recipientList = new ArrayList<String>();
 		if(mail.getRecipientck()==0) {
 			mail.setRecipients(mail.getRecipient().trim().split(",", -1));
@@ -44,18 +55,55 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		InternetAddress[] toArr = new InternetAddress[mail.getRecipients().length];
 		
+		for(int i=0; i<mail.getRecipients().length; i++) {
+			toArr[i] = new InternetAddress(mail.getRecipients()[i]);
+		}
+		
 		try {
-			for(int i=0; i<mail.getRecipients().length; i++) {
-				toArr[i] = new InternetAddress(mail.getRecipients()[i]);
+			//이메일 제목
+			message.setSubject(mail.getTitle());
+			//수신인
+			message.setTo(toArr);
+			//이메일 내용
+			message.setText(mail.getContent());
+			
+			//만약 파일을 첨부하고
+			if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
+				for(MultipartFile file : mail.getAttach()) {
+					String fname = file.getOriginalFilename();
+					//파일이 존재하면
+					if(fname!=null && !fname.equals("")) {
+						//파일 생성
+						File newFile = new File(mailPath + fname);
+						//파일 업로드
+						file.transferTo(newFile);
+						//업로드된 파일 넣기
+						message.addAttachment(fname, newFile);
+					}
+				}
 			}
-			mmsg.setSubject(mail.getTitle());
-			mmsg.setRecipients(Message.RecipientType.TO, toArr);
-			mmsg.setText(mail.getContent());
+			//이메일 전송
+			sender.send(mmsg);
 		} catch (MessagingException e) {
 			msg = "message transmission failure!<br>Please check again.";
+		} catch (IllegalStateException e) {
+			msg = "There is an error in the attached file. Please check again";
+		} catch (IOException e) {
+			msg = "There is an error in the attached file. Please check again";
 		}
-		sender.send(mmsg);
-		
+		//이메일 전송 완료 후, 만약 파일을 첨부했었고
+		if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
+			for(MultipartFile file : mail.getAttach()) {
+				String fname = file.getOriginalFilename();
+				//파일이 존재하면
+				if(fname!=null && !fname.equals("")) {
+					//해당 파일을 생성한 후
+					File delFile = new File(mailPath + fname);
+					//삭제 처리
+					delFile.delete();
+				}
+			}
+		}
 		return msg;
 	}
 	

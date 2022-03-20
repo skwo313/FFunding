@@ -1,5 +1,9 @@
 package com.ffunding.web.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class MailVO {
 	private String title;
 	private String recipient;
@@ -7,6 +11,7 @@ public class MailVO {
 	private String[] recipients;
 	private String content;
 	private String sender;
+	private List<MultipartFile> attach;
 	public String getTitle() {
 		return title;
 	}
@@ -43,6 +48,10 @@ public class MailVO {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-
-	
+	public List<MultipartFile> getAttach() {
+		return attach;
+	}
+	public void setAttach(List<MultipartFile> attach) {
+		this.attach = attach;
+	}
 }

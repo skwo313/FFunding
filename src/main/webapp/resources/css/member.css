@@ -1,24 +1,36 @@
+.row {
+	margin: 0px;
+}
+.frm {
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
 #search {
-	margin-bottom: 15px;
+	width: 350px;
 }
 #search > input[type="text"] {
-	width: 45%;
+	width: 50%;
 }
 #type {
-	width: 10%;
+	border-radius: 0.35rem;
+	width: 50px;
 }
-.paging {
-	display: flex;
-	justify-content: center;
-	margin-top: 10px;
+.searchFrm {
+    margin-bottom: 15px;
 }
-#pagepick {
+.pageFrm {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+    margin-bottom: 15px;
 }
-#pagepick > span {
+.pageFrm > span {
 	margin-right: 15px;
+}
+.pageFrm > select {
+	width: 130px;
 }
 .table > thead > tr > th {
 	text-align: center;
@@ -35,4 +47,9 @@
 }
 .addr {
 	text-align: left !important;
+}
+.paging {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
 }

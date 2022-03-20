@@ -25,6 +25,11 @@
 	color: red;
 	margin-left: 5px;
 }
+.warningp {
+	font-size: 10px;
+	color: red;
+	margin: 5px 0px 0px 0px;
+}
 .modifytb > tbody > tr {
 	border-bottom: 1px solid #b7b9cc;
 	font-size: 13px;

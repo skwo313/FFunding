@@ -85,6 +85,7 @@
 	<select id="memberEmail" resultType="String">
 		SELECT memail
 		FROM member
+		WHERE memail IS NOT NULL
 	</select>
 	
 	<!-- 판매자 회원의 이메일 -->
@@ -92,5 +93,6 @@
 		SELECT memail
 		FROM member
 		WHERE sellerck=1
+		AND memail IS NOT NULL
 	</select>
 </mapper>
