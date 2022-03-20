@@ -49,6 +49,25 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
+	
+	<!-- Naver oauth2 login -->
+	<beans:bean id="naverClientID" class="java.lang.String">
+		<beans:constructor-arg value="tEi_UJR4cKKf3EHyTNeN" />
+	</beans:bean>
+	<beans:bean id="naverClientSecret" class="java.lang.String">
+		<beans:constructor-arg value="UrwWRHVt1h" />
+	</beans:bean>
+	<beans:bean id="naverRedirectUrl" class="java.lang.String">
+		<beans:constructor-arg value="http://localhost:7080/ffunding/member/naver/callback"/>
+	</beans:bean>
+	
+	<beans:bean id="naverSns" class="com.ffunding.web.auth.SnsValue">
+		<beans:constructor-arg value="naver"/>
+		<beans:constructor-arg ref="naverClientID"/>
+		<beans:constructor-arg ref="naverClientSecret"/>
+		<beans:constructor-arg ref="naverRedirectUrl"/>
+	</beans:bean>
+	<!-- END -->
 
 	<context:property-placeholder location="classpath:/config/config.properties"/>
 </beans:beans>

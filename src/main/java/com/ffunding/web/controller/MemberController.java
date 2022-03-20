@@ -5,19 +5,24 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.ffunding.web.auth.SNSLogin;
+import com.ffunding.web.auth.SnsValue;
 import com.ffunding.web.dao.VisitDAO;
 import com.ffunding.web.service.MemberService;
 import com.ffunding.web.util.ClientInfo;
@@ -37,6 +42,8 @@ public class MemberController {
 	private VisitDAO dao;
 	@Inject
 	private MemberService service;
+	@Inject
+	private SnsValue naverSns;
 	
 	@ModelAttribute("member")
 	public MemberVO getMember() {
@@ -45,8 +52,11 @@ public class MemberController {
 	
 	/* 로그인 폼 */
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login() {
+	public String login(Model model) throws Exception {
 		logger.info("loginForm");
+		
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
 		
 		return "member/login.page";
 	}
@@ -80,6 +90,42 @@ public class MemberController {
 		
 	}
 	
+	/* 로그인 api callback url 호출 */
+	@RequestMapping(value = "{snsService}/callback", 
+			method = { RequestMethod.GET, RequestMethod.POST})
+	public String callback(@PathVariable String snsService, 
+						   @RequestParam String code, Model model,
+						   @ModelAttribute("member") MemberVO session) throws Exception {
+		
+		logger.info("SnsLoginCallback: service={}", snsService);
+		SnsValue sns = null;
+		if (StringUtils.equals("naver", snsService)) {
+			sns = naverSns;
+		} 
+		// else sns = googleSns;
+			
+		
+		// access_token(code)을 이용하여 사용자 profile 정보 가져오기
+		SNSLogin snsLogin = new SNSLogin(sns);
+		MemberVO snsUser = snsLogin.getUserProfile(code);
+		System.out.println("Profile>>" + snsUser.toString());
+		
+		// DB 해당 유저가 존재하는지 체크
+		MemberVO memberVO = service.getBySns(snsUser);
+		if (memberVO == null) {
+			model.addAttribute("result", "존재하지 않는 사용자입니다. 가입해 주세요.");
+			// insert하기
+		} else {
+			model.addAttribute("result", memberVO.getMname()+"님 반갑습니다.");
+			
+			model.addAttribute("member", memberVO);
+			// return "redirect:/";
+		}
+		
+		
+		return "member/callback";
+	}
+	  
 	/* 로그아웃 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(SessionStatus status) {

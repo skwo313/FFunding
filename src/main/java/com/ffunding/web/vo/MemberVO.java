@@ -12,6 +12,10 @@ public class MemberVO {
 	private char adminck;
 	private char sellerck;
 	
+	private String naverid;
+	private String googleid;
+	private String kakaoid;
+	
 	public String getMid() {
 		return mid;
 	}
@@ -71,5 +75,29 @@ public class MemberVO {
 	}
 	public void setSellerck(char sellerck) {
 		this.sellerck = sellerck;
+	}
+	public String getNaverid() {
+		return naverid;
+	}
+	public void setNaverid(String naverid) {
+		this.naverid = naverid;
+	}
+	public String getGoogleid() {
+		return googleid;
+	}
+	public void setGoogleid(String googleid) {
+		this.googleid = googleid;
+	}
+	public String getKakaoid() {
+		return kakaoid;
+	}
+	public void setKakaoid(String kakaoid) {
+		this.kakaoid = kakaoid;
+	}
+	
+	@Override
+	public String toString() {
+		return "{mid : "+ mid +", mname : "+ mname +", naverid : "+ naverid
+				+", memail : "+ memail +", googleid :"+ googleid +"}";
 	}
 }

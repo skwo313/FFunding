@@ -20,4 +20,10 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception {
 		return dao.loginCheck(loginMap);
 	}
+
+	@Override
+	public MemberVO getBySns(MemberVO snsUser) {
+		// TODO Auto-generated method stub
+		return dao.getBySns(snsUser);
+	}
 }

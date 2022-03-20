@@ -23,6 +23,7 @@
 <!-- 네이버 로그인 -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
+
 <script>
 	$(document).ready(function() {
 		$("#form").keypress(function(e){
@@ -94,11 +95,21 @@
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                 <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">로그인</h4>
                 <div class="row mt-3">
-                  <div class="col-2 text-center ms-auto">
-                    <a class="btn btn-link px-3" href="javascript:;">
-                      <i class="fa fa-facebook text-white text-lg"></i>
+                  <div id="naver_id_login" class="col-2 text-center ms-auto">
+                    <a class="btn btn-link px-3" href="${naver_url}" 
+                    	onclick="window.open(this.href,'naverLogin','width=800,height=800');return false;">
+                      <img width="30px" src="${path}/img/naver.ico" class="fa"></img>
                     </a>
                   </div>
+                  <!-- //네이버 로그인 버튼 노출 영역 
+				  <script type="text/javascript">
+				  	var naver_id_login = new naver_id_login();
+				  	naver_id_login.setButton("white", 1,30);
+				  	naver_id_login.setPopup();
+				  	naver_id_login.init_naver_id_login();
+				  </script>
+                  -->
+                  
                   <div class="col-2 text-center px-1">
                     <a class="btn btn-link px-3" href="javascript:;">
                       <i class="fa fa-github text-white text-lg"></i>
