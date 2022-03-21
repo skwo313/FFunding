@@ -28,7 +28,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		
-				<!-- 업로드 관련 설정 -->
+		<!-- 업로드 관련 설정 -->
 		<multipart-config>
 			<location>C:\\upload\\temp</location>		
 			<max-file-size>20971520</max-file-size>					<!-- 1MB * 20 -->
@@ -71,4 +71,13 @@
 	</filter-mapping>
 	<!-- 한글 인코딩 End -->
 
+	<!-- 에러페이지 지정 -->
+	<error-page>
+		<exception-type>org.springframework.web.client.HttpClientErrorException</exception-type>
+		<location>/WEB-INF/views/manager/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-code>405</exception-code>
+		<location>/WEB-INF/views/manager/error.jsp</location>
+	</error-page>
 </web-app>
