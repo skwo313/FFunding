@@ -233,7 +233,6 @@ div.des {
 								<label for="fcate">카테고리*<br></label>
 								<div class="des">서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요</div>
 
-
 								<select id="fcate" name="fcate" size="1" class="form-control">
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>

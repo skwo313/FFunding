@@ -59,6 +59,9 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+div.des {
+	color: #BDBDBD;
+}
 </style>
 <body>
 

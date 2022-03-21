@@ -19,13 +19,13 @@
 			.ready(
 					function() {
 						var formObj = $("form[name='writeForm']");
-						
+
 						$(document).on("click", "#fileDel", function() {
 							$(this).parent().remove();
 						})
-						
+
 						fn_addFile();
-						
+
 						$("#write_btn").click(function() {
 							var title = $("#title").val();
 
@@ -42,11 +42,9 @@
 							formObj.attr("action", "write");
 							formObj.attr("method", "post");
 							formObj.submit();
-							
+
 						});
 
-						
-						
 						$(".list_btn")
 								.on(
 										"click",
@@ -95,6 +93,9 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+div.des {
+	color: #BDBDBD;
+}
 </style>
 <body>
 	<br>
@@ -107,8 +108,10 @@ table {
 					<tr>
 						<td>
 							<div class="mb-3">
-								<label for="title">제목</label><input type="text" id="title"
-									name="title" class="form-control" title="제목을 입력하세요." />
+								<label for="title">제목</label>
+								<div class="des">*반드시 제목을 입력해주세요.</div>
+								<input type="text" id="title" name="title" class="form-control"
+									title="제목을 입력하세요." />
 							</div>
 						</td>
 					</tr>
@@ -139,7 +142,7 @@ table {
 						<td>
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
-							<button class="fileAdd_btn btn btn-success" type="button">파일추가</button>
+							<button class="fileAdd_btn btn btn-secondary" type="button">파일추가</button>
 							<button type="button" class="btn btn-primary"
 								onclick="location.href='list'">목록</button>
 						</td>

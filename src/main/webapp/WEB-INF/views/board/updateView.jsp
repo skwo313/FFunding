@@ -70,7 +70,7 @@
 													+ (fileIndex++)
 													+ "'>"
 													+ "</button>"
-													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
+													+ "<button type='button' class='delete_btn btn btn-danger' style='float:right;' id='fileDelBtn'>"
 													+ "삭제" + "</button></div>");
 						});
 		$(document).on("click", "#fileDelBtn", function() {
@@ -94,14 +94,18 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+div.des {
+	color: #BDBDBD;
+}
 </style>
 
 <body>
 
 	<div id="root">
 		<section id="container">
-			<form name="updateForm" role="form" method="post"
-				action="update" enctype="multipart/form-data">
+			<form name="updateForm" role="form" method="post" action="update"
+				enctype="multipart/form-data">
 				<input type="hidden" name="bno" value="${update.bno}"
 					readonly="readonly" /> <input type="hidden" id="page" name="page"
 					value="${scri.page}"> <input type="hidden" id="perPageNum"
@@ -116,8 +120,10 @@ table {
 						<tr>
 							<td>
 								<div class="mb-3">
-									<label for="title">제목</label><input type="text" id="title"
-										name="title" value="${update.title}" class="form-control"
+									<label for="title">제목</label>
+									<div class="des">*반드시 제목을 입력해주세요.</div>
+									<input type="text" id="title" name="title"
+										value="${update.title}" class="form-control"
 										title="제목을 입력하세요." />
 								</div>
 							</td>
@@ -151,7 +157,7 @@ table {
 										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
 										<button id="fileDel"
 											onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');"
-											type="button">삭제</button>
+											type="button" class="delete_btn btn btn-danger">삭제</button>
 										<br>
 									</div>
 								</c:forEach></td>
@@ -165,7 +171,7 @@ table {
 							<td>
 								<button type="button" class="btn btn-success update_btn">저장</button>
 								<button type="button" class="btn btn-primary cancel_btn">취소</button>
-								<button type="button" class="btn btn-primary fileAdd_btn">파일추가</button>
+								<button type="button" class="btn btn-secondary fileAdd_btn">파일추가</button>
 							</td>
 						</tr>
 					</tbody>
