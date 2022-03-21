@@ -55,6 +55,7 @@ public class SNSLogin {
 			memberVO.setNaverid(resNode.get("id").asText());
 			memberVO.setMemail(resNode.get("email").asText());
 			memberVO.setMname(resNode.get("name").asText());
+			memberVO.setMphone(resNode.get("mobile").asText());
 		}
 		
 		/*
@@ -63,8 +64,23 @@ public class SNSLogin {
 		 * rootNode.get("displayName"); }
 		 */
 		
-		
-		
 		return memberVO;
+	}
+	
+	// 회원 탈퇴
+	public boolean deleteInfo(String access) throws Exception
+	{
+	    OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, sns.getApi20Instance().getAccessTokenEndpoint());
+	    oAuthRequest.addQuerystringParameter("client_id", "tEi_UJR4cKKf3EHyTNeN");
+	    oAuthRequest.addQuerystringParameter("client_secret", "UrwWRHVt1h");
+	    oAuthRequest.addQuerystringParameter("access_token", access);
+	    oAuthRequest.addQuerystringParameter("grant_type", "delete");
+	    oAuthRequest.addQuerystringParameter("service_provider", "NAVER");
+	    
+	    oauthService.signRequest(access, oAuthRequest);
+	    
+	    Response response = oauthService.execute(oAuthRequest);
+	    
+	    return response.isSuccessful();
 	}
 }

@@ -1,9 +1,11 @@
 package com.ffunding.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -95,7 +97,8 @@ public class MemberController {
 			method = { RequestMethod.GET, RequestMethod.POST})
 	public String callback(@PathVariable String snsService, 
 						   @RequestParam String code, Model model,
-						   @ModelAttribute("member") MemberVO session) throws Exception {
+						   @ModelAttribute("member") MemberVO session,
+						   HttpServletResponse response) throws Exception {
 		
 		logger.info("SnsLoginCallback: service={}", snsService);
 		SnsValue sns = null;
@@ -108,20 +111,23 @@ public class MemberController {
 		// access_token(code)을 이용하여 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
 		MemberVO snsUser = snsLogin.getUserProfile(code);
-		System.out.println("Profile>>" + snsUser.toString());
+		System.out.println("Profile>>" + snsUser);
 		
 		// DB 해당 유저가 존재하는지 체크
 		MemberVO memberVO = service.getBySns(snsUser);
 		if (memberVO == null) {
-			model.addAttribute("result", "존재하지 않는 사용자입니다. 가입해 주세요.");
-			// insert하기
-		} else {
-			model.addAttribute("result", memberVO.getMname()+"님 반갑습니다.");
 			
+			service.joinBySns(snsUser);
 			model.addAttribute("member", memberVO);
-			// return "redirect:/";
+		} else {
+			model.addAttribute("member", memberVO);
 		}
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>window.opener.location.href='/ffunding';" +
+					"self.close() </script>");
+		out.flush();
 		
 		return "member/callback";
 	}

@@ -9,4 +9,6 @@ public interface MemberDAO {
 	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception;
 
 	public MemberVO getBySns(MemberVO snsUser);
+
+	public void joinBySns(MemberVO snsUser);
 }

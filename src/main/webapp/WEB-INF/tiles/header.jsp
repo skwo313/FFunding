@@ -34,7 +34,7 @@
 							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
 						</c:when>
 						<c:when test="${not empty member.mid}">
-							<li>${member.mid}님</li>
+							<li>${member.mname}님</li>
 							<li><a href="#">마이페이지</a></li>
 							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
 						</c:when>
