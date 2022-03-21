@@ -26,4 +26,10 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.getBySns(snsUser);
 	}
+
+	@Override
+	public void joinBySns(MemberVO snsUser) {
+		// TODO Auto-generated method stub
+		dao.joinBySns(snsUser);
+	}
 }

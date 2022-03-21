@@ -16,4 +16,22 @@
    	select * from member where naverid = #{naverid}
    </select>
    
+   <insert id="joinBySnsNaver" >
+   	insert into member 
+	values(
+		'N' || funding_member_seq.nextval,
+		'N' || funding_member_seq.nextval, 
+		#{mname}, 
+		#{mphone}, 
+		#{memail}, 
+		#{maddress, jdbcType=VARCHAR},
+		#{maddress_detail, jdbcType=VARCHAR}, 
+		0, 
+		'0', 
+		'0', 
+		#{naverid}, 
+		#{googleid, jdbcType=VARCHAR}, 
+		#{kakaoid, jdbcType=VARCHAR} )
+   </insert>
+   
 </mapper>

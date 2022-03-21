@@ -98,6 +98,6 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "{mid : "+ mid +", mname : "+ mname +", naverid : "+ naverid
-				+", memail : "+ memail +", googleid :"+ googleid +"}";
+				+", memail : "+ memail +", mphone : "+ mphone +", googleid :"+ googleid +"}";
 	}
 }

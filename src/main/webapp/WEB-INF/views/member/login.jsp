@@ -20,8 +20,6 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="${path}/css/member/material-dashboard.css?v=3.0.1" rel="stylesheet" />
 <link rel="stylesheet" href="${path}/css/common.css">
-<!-- 네이버 로그인 -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
 
 <script>
@@ -101,14 +99,6 @@
                       <img width="30px" src="${path}/img/naver.ico" class="fa"></img>
                     </a>
                   </div>
-                  <!-- //네이버 로그인 버튼 노출 영역 
-				  <script type="text/javascript">
-				  	var naver_id_login = new naver_id_login();
-				  	naver_id_login.setButton("white", 1,30);
-				  	naver_id_login.setPopup();
-				  	naver_id_login.init_naver_id_login();
-				  </script>
-                  -->
                   
                   <div class="col-2 text-center px-1">
                     <a class="btn btn-link px-3" href="javascript:;">
