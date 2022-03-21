@@ -180,7 +180,7 @@ div.des {
 					<tr>
 						<td>
 							<div>
-								<button type="button" class="list_btn btn btn-primary">목록</button>
+								<button type="button" class="list_btn btn btn-primary" style="float: right;">목록</button>
 								<button type="button" id="updatebutton"
 									class="update_btn btn btn-warning">수정</button>
 								<button type="button" id="deletebutton"

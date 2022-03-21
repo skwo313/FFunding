@@ -6,7 +6,7 @@
 <head>
 <br>
 <br>
-<title>게시판</title>
+<title>관리자 게시판 목록</title>
 <style type="text/css">
 li {
 	list-style: none;

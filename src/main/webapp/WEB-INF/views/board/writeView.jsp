@@ -12,7 +12,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>게시판</title>
+<title>관리자 게시판 글쓰기</title>
 </head>
 <script type="text/javascript">
 	$(document)

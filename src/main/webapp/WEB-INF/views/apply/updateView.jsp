@@ -309,7 +309,7 @@ div.c {
 					<tr>
 						<td>
 							<button type="submit" class="btn btn-success update_btn">저장</button>
-							<button type="submit" class="btn btn-primary cancel_btn">취소</button>
+							<button type="submit" class="btn btn-primary cancel_btn" style="float: right;">취소</button>
 						</td>
 					</tr>
 				</tbody>

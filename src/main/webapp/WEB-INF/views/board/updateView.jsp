@@ -14,7 +14,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>게시판</title>
+<title>관리자 게시판 수정</title>
 </head>
 <script type="text/javascript">
 	$(document).ready(
@@ -170,7 +170,7 @@ div.des {
 						<tr>
 							<td>
 								<button type="button" class="btn btn-success update_btn">저장</button>
-								<button type="button" class="btn btn-primary cancel_btn">취소</button>
+								<button type="button" class="btn btn-primary cancel_btn" style="float: right;">취소</button>
 								<button type="button" class="btn btn-secondary fileAdd_btn">파일추가</button>
 							</td>
 						</tr>
