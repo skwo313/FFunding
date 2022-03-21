@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<title>펀딩 수정</title>
+<title>펀딩 신청</title>
 </head>
 <script type="text/javascript">
 	$(document)
@@ -197,7 +197,7 @@ div.greet {
 
 div.write {
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: 650;
 }
 
 div.cate {
@@ -213,7 +213,7 @@ div.des {
 	<br>
 	<br>
 	<section id="container">
-		<form name="writeForm" method="post" action="update"
+		<form name="updateForm" method="post" action="update"
 			enctype="multipart/form-data">
 			<input type="hidden" name="fid" value="${update.fid}"
 				readonly="readonly" />
@@ -228,6 +228,7 @@ div.des {
 								수정을 완료하신 후에 저장버튼을 눌러주세요.☺<br> <br>
 							</div></td>
 					</tr>
+
 					<tr>
 						<td>
 							<div class="cate">
@@ -245,7 +246,7 @@ div.des {
 					</tr>
 					<tr>
 						<td>
-							<div class="c">
+							<div class="cate">
 								<label for="fname">펀딩 제품 이름*</label><input type="text"
 									id="fname" name="fname" class="form-control"
 									title="펀딩제품 이름을 입력하세요." value="${update.fname}" /><br>
@@ -281,6 +282,7 @@ div.des {
 						</td>
 					</tr>
 
+
 					<tr>
 						<td><label for="fstartdate">펀딩 시작 날짜*</label><br> <input
 							type="text" id="fstartdate" name="fstartdate"
@@ -297,8 +299,7 @@ div.des {
 						<td>
 							<div class="c">
 								<label for="fdes">제품 상세 설명</label><br> <input type="text"
-									id="fdes" name="fdes" class="form-control"
-									value="${update.fdes}" /><br>
+									id="fdes" name="fdes" class="form-control" rows="10" /><br>
 							</div>
 						</td>
 					</tr>
@@ -307,14 +308,23 @@ div.des {
 							<div class="mb-3">
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
-									value="${update.writer}" readonly="readonly" />
+									value="${member.mid}" readonly="readonly" /><br>
 							</div>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							<button type="submit" class="btn btn-success update_btn">저장</button>
+							<div class="c">
+								<input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
+									개인 정보 수집 동의 </label><br> <br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="update_btn btn btn-success" type="submit"
+								id="update_btn">작성</button>
 							<button type="submit" class="btn btn-primary cancel_btn"
 								style="float: right;">취소</button>
 						</td>
