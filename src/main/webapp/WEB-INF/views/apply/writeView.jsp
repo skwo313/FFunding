@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<title>펀딩신청 Test1</title>
+<title>펀딩 신청</title>
 </head>
 <script type="text/javascript">
 	$(document)
@@ -79,6 +79,7 @@
 							formObj.submit();
 
 							fn_addFile();
+							
 						});
 
 						$(".list_btn")
@@ -296,7 +297,7 @@ div.c {
 							<div class="mb-3">
 								<label for="writer">작성자</label><input type="text" id="writer"
 									name="writer" class="form-control" title="작성자를 입력하세요."
-									value="${member.mid}" readonly="readonly" />
+									value="${member.mid}" readonly="readonly" /><br>
 							</div>
 						</td>
 					</tr>

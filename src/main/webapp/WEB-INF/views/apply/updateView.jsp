@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -10,18 +8,180 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>펀딩목록 수정</title>
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<title>펀딩 수정</title>
 </head>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document)
+			.ready(
+					function() {
+						var formObj = $("form[name='updateForm']");
+						$("#write_btn").click(function() {
+							var fname = $("#fname").val();
+							var fprice = $("#fprice").val();
+							var fgoal = $("#fgoal").val();
+							var fdate = $("#fdate").val();
+							var fstartdate = $("#fstartdate").val();
+							var fenddate = $("#fenddate").val();
 
-		$(".cancel_btn").on("click", function() {
-			event.preventDefault();
-			location.href = "list";
-		})
-	})
+							if (fname == "") {
+								alert("펀딩 제품 이름을 입력하세요");
+								$("#fname").focus();
+
+								return false;
+							}
+							if (fprice == "") {
+								alert("펀딩 가격을 입력하세요");
+								$("#fprice").focus();
+
+								return false;
+							}
+							if (fgoal == "") {
+								alert("펀딩 목표 가격을 입력하세요");
+								$("#fgoal").focus();
+
+								return false;
+							}
+							if (fdate == "") {
+								alert("펀딩 등록 날짜를 입력하세요");
+								$("#fdate").focus();
+
+								return false;
+							}
+							if (fstartdate == "") {
+								alert("펀딩 시작 날짜를 입력하세요");
+								$("#fstartdate").focus();
+
+								return false;
+							}
+							if (fenddate == "") {
+								alert("펀딩 종료 날짜를 입력하세요");
+								$("#fenddate").focus();
+
+								return false;
+							}
+
+							if (fn_valiChk()) {
+								return false;
+							}
+							formObj.attr("action", "update");
+							formObj.attr("method", "post");
+							formObj.submit();
+
+							fn_addFile();
+
+						});
+
+						$(".list_btn")
+								.on(
+										"click",
+										function() {
+
+											location.href = "list?page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+										})
+
+					})
+	function fn_valiChk() {
+		var regForm = $("form[name='updateForm'] .chk").length;
+		for (var i = 0; i < regForm; i++) {
+			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
+				alert($(".chk").eq(i).attr("fcate"));
+				return true;
+			}
+		}
+	}
+	function fn_addFile() {
+		var fileIndex = 1;
+		//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
+		$(".fileAdd_btn")
+				.on(
+						"click",
+						function() {
+							$("#fileIndex")
+									.append(
+											"<div><input type='file' style='float:left;' name='file_"
+													+ (fileIndex++)
+													+ "'>"
+													+ "</button>"
+													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
+													+ "삭제" + "</button></div>");
+						});
+		$(document).on("click", "#fileDelBtn", function() {
+			$(this).parent().remove();
+
+		});
+	}
+	$(function() {
+		$("#fdate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
+	$(function() {
+		$("#fstartdate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
+	$(function() {
+		$("#fenddate").datepicker(
+				{
+					changeMonth : true,
+					changeYear : true,
+					minDate : '-50y',
+					nextText : '다음 달',
+					prevText : '이전 달',
+					yearRange : 'c-50:c+20',
+					showButtonPanel : true,
+					currentText : '오늘 날짜',
+					closeText : '닫기',
+					dateFormat : "yy-mm-dd",
+					showAnim : "slide",
+					showMonthAfterYear : true,
+					dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ]
+				});
+	});
 </script>
 <style>
 table {
@@ -29,115 +189,132 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+div.a {
+	font-size: 30px;
+	font-weight: 800;
+}
+
+div.b {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+div.c {
+	font-size: 15px;
+	font-weight: 150;
+}
 </style>
 <body>
+	<br>
+	<br>
+	<section id="container">
+		<form name="writeForm" method="post" action="update"
+			enctype="multipart/form-data">
+			<input type="hidden" name="fid" value="${update.fid}"
+				readonly="readonly" />
+			<table>
+				<tbody>
+					<tr>
+						<td><br>
+							<div class="a">
+								회원님께서 기존에 작성하신 펀딩자료입니다.<br> <br>
+							</div>
+							<div class="b">
+								수정을 완료하신 후에 저장버튼을 눌러주세요.☺<br> <br>
+							</div></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fcate">카테고리*</label><br> 서포터들이 관심을 가질만한 카테고리를
+								1개만 선택하세요<br> <select id="fcate" name="fcate" size="1"
+									class="form-control" value="${update.fcate}">
+									<option value="테크·가전">테크·가전</option>
+									<option value="패션·잡화">패션·잡화</option>
+									<option value="뷰티">뷰티</option>
+								</select><br>
 
-	<div id="root">
-		<section id="container">
-			<form name="updateForm" role="form" method="post" action="update">
-				<input type="hidden" name="fid" value="${update.fid}"
-					readonly="readonly" />
-				<table>
-					<tbody>
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fcate">카테고리</label><input type="text" id="fcate"
-										name="fcate" class="form-control" value="${update.fcate}" />
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fname">펀딩 제품 이름</label><br>
-									<textarea id="fname" class="form-control" name="fname"><c:out
-											value="${update.fname}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fprice">펀딩 가격</label><br>
-									<textarea id="fprice" class="form-control" name="fprice"><c:out
-											value="${update.fprice}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fgoal">펀딩 목표 가격</label><br>
-									<textarea id="fgoal" class="form-control" name="fgoal"><c:out
-											value="${update.fgoal}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fdate">펀딩 등록 날짜</label><br>
-									<textarea id="fdate" class="form-control" name="fdate"><c:out
-											value="${update.fdate}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fstartdate">펀딩 시작 날짜</label><br>
-									<textarea id="fstartdate" class="form-control" name="fstartdate"><c:out
-											value="${update.fstartdate}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fenddate">펀딩 종료 날짜</label><br>
-									<textarea id="fenddate" class="form-control" name="fenddate"><c:out
-											value="${update.fenddate}" /></textarea>
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="fdes">제품 상세 설명</label><br>
-									<textarea id="fdes" class="form-control" name="fdes"><c:out
-											value="${update.fdes}" /></textarea>
-								</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="writer">작성자</label> <input type="text" id="writer"
-										name="writer" class="form-control" value="${update.writer}"
-										readonly="readonly" /><br>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div>
-									<button type="submit" class="btn btn-success update_btn">저장</button>
-									<button type="submit" class="btn btn-primary cancel_btn">취소</button>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fname">펀딩 제품 이름*</label><input type="text"
+									id="fname" name="fname" class="form-control"
+									title="펀딩제품 이름을 입력하세요." value="${update.fname}" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fprice">펀딩 가격*</label><br> <input type="text"
+									id="fprice" name="fprice" class="form-control"
+									value="${update.fprice}" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fgoal">펀딩 목표 가격*</label><br> <input type="text"
+									id="fgoal" name="fgoal" class="form-control"
+									value="${update.fgoal}" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fdate">펀딩 등록 날짜*</label><br> <input type="text"
+									id="fdate" name="fdate" class="form-control"
+									value="${update.fdate}" /><br>
+							</div>
+						</td>
+					</tr>
 
-			</form>
-		</section>
-		<hr />
-	</div>
+					<tr>
+						<td><label for="fstartdate">펀딩 시작 날짜*</label><br> <input
+							type="text" id="fstartdate" name="fstartdate"
+							class="form-control" value="${update.fstartdate}" /><br></td>
+					</tr>
+
+					<tr>
+						<td><label for="fenddate">펀딩 종료 날짜*</label><br> <input
+							type="text" id="fenddate" name="fenddate" class="form-control"
+							value="${update.fenddate}" /><br></td>
+					</tr>
+
+					<tr>
+						<td>
+							<div class="c">
+								<label for="fdes">제품 상세 설명</label><br> <input type="text"
+									id="fdes" name="fdes" class="form-control"
+									value="${update.fdes}" /><br>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="mb-3">
+								<label for="writer">작성자</label><input type="text" id="writer"
+									name="writer" class="form-control" title="작성자를 입력하세요."
+									value="${update.writer}" readonly="readonly" />
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<button type="submit" class="btn btn-success update_btn">저장</button>
+							<button type="submit" class="btn btn-primary cancel_btn">취소</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</section>
 </body>
 </html>
