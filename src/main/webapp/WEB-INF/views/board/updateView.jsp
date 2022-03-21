@@ -39,6 +39,14 @@
 						})
 
 				$(".update_btn").on("click", function() {
+					var title = $("#title").val();
+
+					if (title == "") {
+						alert("제목을 입력하세요");
+						$("#title").focus();
+
+						return false;
+					}
 					if (fn_valiChk()) {
 						return false;
 					}
@@ -71,7 +79,8 @@
 													+ "'>"
 													+ "</button>"
 													+ "<button type='button' class='delete_btn btn btn-danger' style='float:right;' id='fileDelBtn'>"
-													+ "삭제" + "</button></div>");
+													+ "삭제"
+													+ "</button><br><br></div>");
 						});
 		$(document).on("click", "#fileDelBtn", function() {
 			$(this).parent().remove();
@@ -170,7 +179,8 @@ div.des {
 						<tr>
 							<td>
 								<button type="button" class="btn btn-success update_btn">저장</button>
-								<button type="button" class="btn btn-primary cancel_btn" style="float: right;">취소</button>
+								<button type="button" class="btn btn-primary cancel_btn"
+									style="float: right;">취소</button>
 								<button type="button" class="btn btn-secondary fileAdd_btn">파일추가</button>
 							</td>
 						</tr>

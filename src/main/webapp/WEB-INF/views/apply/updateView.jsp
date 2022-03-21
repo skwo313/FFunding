@@ -25,7 +25,7 @@
 			.ready(
 					function() {
 						var formObj = $("form[name='updateForm']");
-						$("#write_btn").click(function() {
+						$("#update_btn").click(function() {
 							var fname = $("#fname").val();
 							var fprice = $("#fprice").val();
 							var fgoal = $("#fgoal").val();
@@ -190,19 +190,23 @@ table {
 	margin-right: auto;
 }
 
-div.a {
+div.greet {
 	font-size: 30px;
 	font-weight: 800;
 }
 
-div.b {
+div.write {
 	font-size: 20px;
 	font-weight: 500;
 }
 
-div.c {
+div.cate {
 	font-size: 15px;
 	font-weight: 150;
+}
+
+div.des {
+	color: #BDBDBD;
 }
 </style>
 <body>
@@ -217,19 +221,20 @@ div.c {
 				<tbody>
 					<tr>
 						<td><br>
-							<div class="a">
+							<div class="greet">
 								회원님께서 기존에 작성하신 펀딩자료입니다.<br> <br>
 							</div>
-							<div class="b">
+							<div class="write">
 								수정을 완료하신 후에 저장버튼을 눌러주세요.☺<br> <br>
 							</div></td>
 					</tr>
 					<tr>
 						<td>
-							<div class="c">
-								<label for="fcate">카테고리*</label><br> 서포터들이 관심을 가질만한 카테고리를
-								1개만 선택하세요<br> <select id="fcate" name="fcate" size="1"
-									class="form-control" value="${update.fcate}">
+							<div class="cate">
+								<label for="fcate">카테고리*<br></label>
+								<div class="des">서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요</div>
+								<select id="fcate" name="fcate" size="1" class="form-control"
+									value="${update.fcate}">
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>
 									<option value="뷰티">뷰티</option>
@@ -250,9 +255,10 @@ div.c {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fprice">펀딩 가격*</label><br> <input type="text"
-									id="fprice" name="fprice" class="form-control"
-									value="${update.fprice}" /><br>
+								<label for="fprice">펀딩 가격*</label><br>
+								<div class="des">원하시는 펀딩 가격을 입력해주세요</div>
+								<input type="text" id="fprice" name="fprice"
+									class="form-control" value="${update.fprice}" /><br>
 							</div>
 						</td>
 					</tr>
@@ -309,7 +315,8 @@ div.c {
 					<tr>
 						<td>
 							<button type="submit" class="btn btn-success update_btn">저장</button>
-							<button type="submit" class="btn btn-primary cancel_btn" style="float: right;">취소</button>
+							<button type="submit" class="btn btn-primary cancel_btn"
+								style="float: right;">취소</button>
 						</td>
 					</tr>
 				</tbody>

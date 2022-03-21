@@ -79,7 +79,7 @@
 													+ "'>"
 													+ "</button>"
 													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
-													+ "삭제" + "</button></div>");
+													+ "삭제" + "</button><br><br></div>");
 						});
 		$(document).on("click", "#fileDelBtn", function() {
 			$(this).parent().remove();
@@ -143,7 +143,7 @@ div.des {
 							<button class="write_btn btn btn-success" type="submit"
 								id="write_btn">작성</button>
 							<button class="fileAdd_btn btn btn-secondary" type="button">파일추가</button>
-							<button type="button" class="btn btn-primary"
+							<button type="button" class="btn btn-primary" style="float: right;"
 								onclick="location.href='list'">목록</button>
 						</td>
 					</tr>
