@@ -32,8 +32,7 @@
 							var fdate = $("#fdate").val();
 							var fstartdate = $("#fstartdate").val();
 							var fenddate = $("#fenddate").val();
-					
-							
+
 							if (fname == "") {
 								alert("펀딩 제품 이름을 입력하세요");
 								$("#fname").focus();
@@ -79,7 +78,7 @@
 							formObj.submit();
 
 							fn_addFile();
-							
+
 						});
 
 						$(".list_btn")
@@ -191,19 +190,23 @@ table {
 	margin-right: auto;
 }
 
-div.a {
+div.greet {
 	font-size: 30px;
 	font-weight: 800;
 }
 
-div.b {
+div.write {
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: 650;
 }
 
-div.c {
+div.cate {
 	font-size: 15px;
 	font-weight: 150;
+}
+
+div.des {
+	color: #BDBDBD;
 }
 </style>
 <body>
@@ -216,26 +219,26 @@ div.c {
 				<tbody>
 					<tr>
 						<td><br>
-							<div class="a">
+							<div class="greet">
 								메이커님, 환영합니다!<br> <br>
 							</div>
-							<div class="b">
-								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br>
-								<br>
+							<div class="write">
+								가벼운 마음으로 메이커님의 정보를 입력해 보세요.☺<br> <br>
 							</div></td>
 					</tr>
 
 					<tr>
 						<td>
-							<div class="c">
-								<label for="fcate">카테고리*</label><br> 서포터들이 관심을 가질만한 카테고리를
-								1개만 선택하세요<br> <select id="fcate" name="fcate" size="1"
-									class="form-control">
+							<div class="cate">
+								<label for="fcate">카테고리*<br></label>
+								<div class="des">서포터들이 관심을 가질만한 카테고리를 1개만 선택하세요</div>
+
+
+								<select id="fcate" name="fcate" size="1" class="form-control">
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>
 									<option value="뷰티">뷰티</option>
 								</select><br>
-
 							</div>
 						</td>
 					</tr>
@@ -251,8 +254,11 @@ div.c {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fprice">펀딩 가격*</label><br> <input type="text"
-									id="fprice" name="fprice" class="form-control" /><br>
+								<label for="fprice">펀딩 가격*</label><br>
+								<div class="des">원하시는 펀딩 가격을 입력해주세요</div>
+								<input type="text" id="fprice" name="fprice"
+									class="form-control" /><br>
+
 							</div>
 						</td>
 					</tr>
@@ -288,7 +294,7 @@ div.c {
 						<td>
 							<div class="c">
 								<label for="fdes">제품 상세 설명</label><br> <input type="text"
-									id="fdes" name="fdes" class="form-control" /><br>
+									id="fdes" name="fdes" class="form-control" rows="10" /><br>
 							</div>
 						</td>
 					</tr>
@@ -301,13 +307,13 @@ div.c {
 							</div>
 						</td>
 					</tr>
-					
-					
+
+
 					<tr>
-						<td><input type="file" name="file"><br></td>
+						<td><input type="file" name="file" class="form-control"><br></td>
 					</tr>
-					
-					
+
+
 					<tr>
 						<td>
 							<div class="c">
@@ -318,8 +324,8 @@ div.c {
 					</tr>
 					<tr>
 						<td>
-							<button class="write_btn btn btn-success" type="submit"
-								id="write_btn">작성</button>
+							<button class="write_btn" type="submit" id="write_btn"
+								style="background-color: #58FAF4; color: white; border: 0; width: 250px; height: 35px; font-size:40;">작성</button>
 						</td>
 					</tr>
 				</tbody>
