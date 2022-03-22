@@ -2,7 +2,7 @@ package com.ffunding.web.service;
 
 import java.util.List;
 
-import com.ffunding.web.vo.FundingVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.RankVO;
 
 public interface HomeService {
@@ -13,5 +13,5 @@ public interface HomeService {
 	public List<RankVO> goalRank() throws Exception;
 
 	// 메인화면 펀딩 예정 리스트
-	public List<FundingVO> expected() throws Exception;
+	public List<FundingExpVO> expected() throws Exception;
 }
