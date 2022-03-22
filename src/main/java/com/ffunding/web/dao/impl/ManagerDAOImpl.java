@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ffunding.web.dao.ManagerDAO;
+import com.ffunding.web.vo.ApplyPagingVO;
+import com.ffunding.web.vo.ApplyViewVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
@@ -28,7 +30,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 		return session.selectList("managerMapper.memberList", paging);
 	}
 	
-	//회원 검색 및 페이징
+	//회원 검색 결과 총 회원수
 	@Override
 	public int memberSearchCnt(MemberPagingVO paging) throws Exception {
 		return session.selectOne("managerMapper.memberSearchCnt", paging);
@@ -74,5 +76,17 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public List<String> sellerEmail() throws Exception {
 		return session.selectList("managerMapper.sellerEmail");
+	}
+	
+	//펀딩신청 리스트
+	@Override
+	public List<ApplyViewVO> applyList(ApplyPagingVO paging) throws Exception {
+		return session.selectList("managerMapper.applyList", paging);
+	}
+	
+	//펀딩신청 총 게시물수
+	@Override
+	public int applyCnt() throws Exception {
+		return session.selectOne("managerMapper.applyCnt");
 	}
 }

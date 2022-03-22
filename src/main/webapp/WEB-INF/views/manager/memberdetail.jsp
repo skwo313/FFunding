@@ -31,14 +31,14 @@
 								<th>New Password</th>
 								<td>
 									<input type="hidden" name="mpw" value="${detail.mpw}"/>
-									<input type="password" name="newpw" value=""/>
+									<input type="password" name="newpw" value="" autoComplete="off"/>
 									<span class="warning" id="pwtext">No spaces allowed.</span>
 								</td>	 
 							</tr>                           	
 							<tr>
 								<th>New Password Verification</th>
 								<td>
-									<input type="password" name="newpwck" value=""/>
+									<input type="password" name="newpwck" value="" autoComplete="off"/>
 									<span class="warning" id="pctext"></span>
 								</td>
 							</tr>                           	
@@ -89,6 +89,9 @@
 									<input type="radio" name="sellerck" id="general" value="0" ${detail.sellerck eq '0'.charAt(0)?'checked':''}/>
 									<label for="seller">판매자</label>
 									<input type="radio" name="sellerck" id="seller" value="1" ${detail.sellerck eq '1'.charAt(0)?'checked':''}/>
+									<c:if test="${detail.naverid!='' || detail.googleid!='' || detail.kakaoid!=''}">
+										<input type="hidden" name="sellerck" value="${detail.sellerck}"/>
+									</c:if>
 								</td>	 
 							</tr>                           	
 	                      	</table>
@@ -121,6 +124,16 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function() {
+		//소셜 회원일 경우
+		if("${detail.naverid}"!="" || "${detail.googleid}"!="" || "${detail.kakaoid}"!="") {
+			//비밀번호 수정 금지
+			$("[name=newpw]").attr("disabled", true);
+			$("[name=newpwck]").attr("disabled", true);
+			//권한변경 금지
+			$("input[type=radio]").attr("disabled", true);
+		}
+		
+		
 		//회원정보수정 완료시, 출력할 메시지
 		let msg = "${param.msg}";
 		if(msg!=null && msg!="") {
@@ -133,7 +146,6 @@
 		
 		//핸드폰번호 3칸으로 나누어 출력
 		let phone = "${detail.mphone}";
-		console.log("${detail.mphone}")
 		phone = phone.split("-");
 		$("[name=phone1]").val(phone[0]);
 		$("[name=phone2]").val(phone[1]);
@@ -175,22 +187,24 @@
 				$("[name=mname]").focus();
 				return false;
 			}
-			if($("[name=phone1]").val()==null || !($("[name=phone1]").val()) || !($.isNumeric($("[name=phone1]").val())) || spaceck.exec($("[name=phone1]").val())) {
-				open();
-				$("#phtext").show();
-				$("[name=phone1]").focus();
-				return false;
-			} else if($("[name=phone2]").val()==null || !($("[name=phone2]").val()) || !($.isNumeric($("[name=phone2]").val())) || spaceck.exec($("[name=phone2]").val())) {
-				open();
-				$("#phtext").show();
-				$("[name=phone2]").focus();
-				return false;
-			} else if($("[name=phone3]").val()==null || !($("[name=phone3]").val()) || !($.isNumeric($("[name=phone3]").val())) || spaceck.exec($("[name=phone3]").val())) {
-				open();
-				$("#phtext").show();
-				$("[name=phone3]").focus();
-				return false;
-			}
+			if($("[name=phone1]").val()!=null && $("[name=phone1]").val()!="" || $("[name=phone2]").val()!=null && $("[name=phone2]").val()!="" || $("[name=phone3]").val()!=null && $("[name=phone3]").val()!="") {
+				if(!($.isNumeric($("[name=phone1]").val())) || spaceck.exec($("[name=phone1]").val()) || $("[name=phone1]").val().length!=3) {
+					open();
+					$("#phtext").show();
+					$("[name=phone1]").focus();
+					return false;
+				} else if(!($.isNumeric($("[name=phone2]").val())) || spaceck.exec($("[name=phone2]").val()) || $("[name=phone2]").val().length<3 || $("[name=phone2]").val().length>4) {
+					open();
+					$("#phtext").show();
+					$("[name=phone2]").focus();
+					return false;
+				} else if(!($.isNumeric($("[name=phone3]").val())) || spaceck.exec($("[name=phone3]").val()) || $("[name=phone3]").val().length!=4) {
+					open();
+					$("#phtext").show();
+					$("[name=phone3]").focus();
+					return false;
+				}
+			} 
 			if($("[name=email1]").val()!=null && $("[name=email1]").val()!="" || $("[name=email2]").val()!=null && $("[name=email2]").val()!="") {
 				if(spaceck.exec($("[name=email1]").val())) {
 					open();
@@ -243,8 +257,13 @@
 		$("#uptBtn").click(function() {
 			let ck = memberCk();
 			if(ck) {
-				//나누어 입력했던 핸드폰번호, 이메일 다시 합쳐 넘기기
-				$("[name=mphone]").val($("[name=phone1]").val()+"-"+$("[name=phone2]").val()+"-"+$("[name=phone3]").val());
+				//나누어 입력했던 핸드폰번호 합치기
+				if($("[name=phone1]").val()==null || $("[name=phone1]").val()=="" && $("[name=phone2]").val()==null || $("[name=phone2]").val()=="" && $("[name=phone3]").val()==null || $("[name=phone3]").val()=="") {
+					$("[name=mphone]").val("");
+				} else {
+					$("[name=mphone]").val($("[name=phone1]").val()+"-"+$("[name=phone2]").val()+"-"+$("[name=phone3]").val());
+				}
+				//나누어 입력했던 이메일 합치기
 				if($("[name=email1]").val()==null || $("[name=email1]").val()=="" && $("[name=email2]").val()==null || $("[name=email2]").val()=="") {
 					$("[name=memail]").val("");
 				} else {

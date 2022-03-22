@@ -144,7 +144,7 @@
 					viewFiles.push("<span class='fileName'>" + f.name + "<i class='bi bi-x' onclick='delFile(" + fileNum + ")'></i></span>");
 					//배열형식의 파일목록을 DataTransfer로 저장
 					dataTransfer.items.add(f);
-					//재업로드시 이전 첨부파일 목록을 유지하면서 추가할 수 있도록 선언된 전역변수에 push
+					//재업로드시 이전 첨부파일 목록을 유지하면서 추가할 수 있도록 선언된 변수에 push
 					filesArr.push(f);
 					fileNum++;
 				}

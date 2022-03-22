@@ -5,12 +5,26 @@
 	width: 100px;
 }
 .row {
-	margin-bottom: 15px;
+    margin: 0px;
 }
-.paging {
+#frm {
 	display: flex;
-	justify-content: center;
-	margin-top: 10px;
+    justify-content: space-between;
+}
+.sortFrm {
+    margin-bottom: 15px;
+}
+.pageFrm {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+    margin-bottom: 15px;
+}
+.pageFrm > span {
+	margin-right: 15px;
+}
+.pageFrm > select {
+	width: 130px;
 }
 #dataTable > thead > tr > th {
 	text-align: center;
@@ -20,6 +34,15 @@
 	text-align: center;
 	vertical-align: middle;
 }
+.applyrow:hover {
+	cursor: pointer;
+	background: #f8f9fc;
+}
 .fname {
 	text-align: left !important;
+}
+.paging {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
 }

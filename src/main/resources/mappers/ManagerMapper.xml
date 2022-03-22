@@ -38,7 +38,7 @@
 		WHERE cnt between #{start} and #{end}
 	</select>
 	
-	<!-- 페이징 처리를 위한 회원 검색 결과 총 회원수 -->
+	<!-- 회원 검색 결과 총 회원수 -->
 	<select id="memberSearchCnt" parameterType="com.ffunding.web.vo.MemberPagingVO" resultType="int">
 		SELECT count(*)
 		FROM member
@@ -102,4 +102,33 @@
 		WHERE sellerck=1
 		AND memail IS NOT NULL
 	</select>
+	
+	<!-- 펀딩신청 리스트 -->
+	<select id="applyList" parameterType="com.ffunding.web.vo.ApplyPagingVO" resultType="com.ffunding.web.vo.ApplyViewVO">
+		SELECT *
+		FROM (
+			SELECT ROWNUM cnt, f.*
+			FROM (
+				SELECT fa.*
+				FROM FUNDING_APPLY fa
+				<if test='sort=="new"'>
+					ORDER BY fdate desc
+				</if>
+				<if test='sort=="old"'>
+					ORDER BY fdate asc
+				</if>
+				<if test='sort=="close"'>
+					ORDER BY fstartdate asc
+				</if>
+			) f
+		)
+		WHERE cnt BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 펀딩신청 총 게시물수 -->
+	<select id="applyCnt" resultType="int">
+		SELECT count(*)
+		FROM FUNDING_APPLY
+	</select>
+	
 </mapper>

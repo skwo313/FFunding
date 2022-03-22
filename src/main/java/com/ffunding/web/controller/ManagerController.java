@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.ManagerService;
+import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
@@ -31,6 +32,7 @@ public class ManagerController {
 	@GetMapping("dashboard")
 	public String dashboard(Model d) throws Exception {
 		d.addAttribute("userTot", service.memberCnt());
+		d.addAttribute("applyTot", service.applyCnt());
 		d.addAttribute("active", "dashboard");
 		return "manager/dashboard.m";
 	}
@@ -76,10 +78,17 @@ public class ManagerController {
 	
 	//펀딩승인 페이지
 	@GetMapping("fundingapproval")
-	public String fundingApproval(Model d) {
-		//카테고리 active 처리
+	public String fundingApproval(ApplyPagingVO paging, Model d) throws Exception {
+		d.addAttribute("applyList", service.applyList(paging));
 		d.addAttribute("active", "fundingapproval");
 		return "manager/fundingapproval.m";
+	}
+	
+	//펀딩승인 상세정보 페이지
+	@GetMapping("fundingapproval/detail")
+	public String fundingApprovalDetail(int fid, Model d) throws Exception {
+		d.addAttribute("active", "fundingapproval");
+		return "manager/fundingapprovaldetail.m";
 	}
 	
 	//메일 페이지
