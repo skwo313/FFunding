@@ -3,6 +3,7 @@ package com.ffunding.web.auth;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import com.github.scribejava.apis.GoogleApi20;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
 @Repository
@@ -15,7 +16,7 @@ public class SnsValue implements SnsUrls {
 	private String profileUrl;
 	
 	private boolean isNaver;
-//	private boolean isGoogle;
+	private boolean isGoogle;
 	
 	public SnsValue() {
 		super();
@@ -29,14 +30,16 @@ public class SnsValue implements SnsUrls {
 		this.redirectUrl = redirectUrl;
 		
 		this.isNaver = StringUtils.equalsIgnoreCase("naver", this.service);
-		// this.isGoolge = StringUtils.equalsIgnoreCase("naver", this.service);
+		this.isGoogle = StringUtils.equalsIgnoreCase("google", this.service);
 		
 		if (isNaver) {
 			// service가 naver일 때
 			this.api20Instance = NaverAPI20.instance();
 			this.profileUrl = NAVER_PROFILE_URL;
+		} else {
+			this.api20Instance = GoogleApi20.instance();
+			//this.profileUrl = GOOGLE_PROFILE_URL;
 		}
-		// else this.api2this.api20Instance = GoogleAPI20.instance();this.profileUrl = GOOGLE_PROFILE_URL;
 		
 	}
 
@@ -94,6 +97,14 @@ public class SnsValue implements SnsUrls {
 
 	public void setNaver(boolean isNaver) {
 		this.isNaver = isNaver;
+	}
+
+	public boolean isGoogle() {
+		return isGoogle;
+	}
+
+	public void setGoogle(boolean isGoogle) {
+		this.isGoogle = isGoogle;
 	}
 	
 }

@@ -3,11 +3,14 @@
 	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+		
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -32,6 +35,8 @@
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2" />	
 	</beans:bean>
+
+	<aop:aspectj-autoproxy />
 
 	<context:component-scan
 		base-package="com.ffunding.web" />
@@ -68,6 +73,44 @@
 		<beans:constructor-arg ref="naverRedirectUrl"/>
 	</beans:bean>
 	<!-- END -->
+	<!-- Google oauth2 login -->
+	<beans:bean id="googleClientID" class="java.lang.String">
+		<beans:constructor-arg value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com" />
+	</beans:bean>
+	<beans:bean id="googleClientSecret" class="java.lang.String">
+		<beans:constructor-arg value="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" />
+	</beans:bean>
+	<beans:bean id="googleRedirectUrl" class="java.lang.String">
+		<beans:constructor-arg value="http://localhost:7080/ffunding/member/google/callback"/>
+	</beans:bean>
+	
+	<beans:bean id="googleSns" class="com.ffunding.web.auth.SnsValue">
+		<beans:constructor-arg value="google"/>
+		<beans:constructor-arg ref="googleClientID"/>
+		<beans:constructor-arg ref="googleClientSecret"/>
+		<beans:constructor-arg ref="googleRedirectUrl"/>
+	</beans:bean>
+	
+	<beans:bean id="googleConnectionFactory" 
+				class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com"/>
+		<beans:constructor-arg value="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"/>
+	</beans:bean>
+	
+	<beans:bean id="googleOAuth2Parameters"
+				class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
+		<beans:property name="redirectUri" ref="googleRedirectUrl"/>
+	</beans:bean>
+	<!-- END -->
+	
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler"
+			path="/echo" />
+		<websocket:sockjs />
+	</websocket:handlers>
+	<beans:bean id="echoHandler"
+		class="com.ffunding.web.util.EchoHandler" />
 
 	<context:property-placeholder location="classpath:/config/config.properties"/>
 </beans:beans>
