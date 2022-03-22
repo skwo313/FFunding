@@ -239,6 +239,12 @@ div.des {
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>
 									<option value="뷰티">뷰티</option>
+									<option value="푸드">푸드</option>
+									<option value="홈·리빙">홈·리빙</option>
+									<option value="여행·레저">여행·레저</option>
+									<option value="스포츠·모빌리티">스포츠·모빌리티</option>
+									<option value="캐릭터·굿즈">캐릭터·굿즈</option>
+									<option value="게임·취미">게임·취미</option>
 								</select><br>
 
 							</div>
