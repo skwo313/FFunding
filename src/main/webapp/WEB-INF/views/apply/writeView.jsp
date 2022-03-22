@@ -309,15 +309,16 @@ div.des {
 
 
 					<tr>
-						<td><input type="file" name="file" class="form-control"><br></td>
+						<td><input type="file" name="file">
+						<div class="des">첨부할 사진을 1개만 올려주세요.(*PNG 권장)</div></td>
 					</tr>
 
 
 					<tr>
 						<td>
 							<div class="c">
-								<input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
-									개인 정보 수집 동의 </label><br> <br>
+								<br><input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
+									개인 정보 수집 동의 </label><br><br>
 							</div>
 						</td>
 					</tr>

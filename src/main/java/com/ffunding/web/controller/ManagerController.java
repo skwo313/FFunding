@@ -3,7 +3,6 @@ package com.ffunding.web.controller;
 
 import java.util.HashMap;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +27,7 @@ public class ManagerController {
 	
 	//http://localhost:8000/ffunding/manager/dashboard
 	//관리자 대시보드(메인페이지)
+	//@LoginType
 	@GetMapping("dashboard")
 	public String dashboard(Model d) throws Exception {
 		d.addAttribute("userTot", service.memberCnt());

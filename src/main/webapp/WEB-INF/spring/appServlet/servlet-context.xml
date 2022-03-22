@@ -5,12 +5,13 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
-		
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -25,15 +26,15 @@
 	<resources mapping="/img/**" location="/resources/img/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/scss/**" location="/resources/scss/" />
-	
-	
+
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="2" />	
+		<beans:property name="order" value="2" />
 	</beans:bean>
 
 	<aop:aspectj-autoproxy />
@@ -54,23 +55,26 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean>
-	
+
 	<!-- Naver oauth2 login -->
 	<beans:bean id="naverClientID" class="java.lang.String">
-		<beans:constructor-arg value="tEi_UJR4cKKf3EHyTNeN" />
+		<beans:constructor-arg
+			value="tEi_UJR4cKKf3EHyTNeN" />
 	</beans:bean>
 	<beans:bean id="naverClientSecret" class="java.lang.String">
 		<beans:constructor-arg value="UrwWRHVt1h" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:7080/ffunding/member/naver/callback"/>
+		<beans:constructor-arg
+			value="http://localhost:7080/ffunding/member/naver/callback" />
 	</beans:bean>
-	
-	<beans:bean id="naverSns" class="com.ffunding.web.auth.SnsValue">
-		<beans:constructor-arg value="naver"/>
-		<beans:constructor-arg ref="naverClientID"/>
-		<beans:constructor-arg ref="naverClientSecret"/>
-		<beans:constructor-arg ref="naverRedirectUrl"/>
+
+	<beans:bean id="naverSns"
+		class="com.ffunding.web.auth.SnsValue">
+		<beans:constructor-arg value="naver" />
+		<beans:constructor-arg ref="naverClientID" />
+		<beans:constructor-arg ref="naverClientSecret" />
+		<beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
 	<!-- END -->
 	<!-- Google oauth2 login -->
@@ -112,5 +116,7 @@
 	<beans:bean id="echoHandler"
 		class="com.ffunding.web.util.EchoHandler" />
 
-	<context:property-placeholder location="classpath:/config/config.properties"/>
+<context:property-placeholder
+	location="classpath:/config/config.properties" />
+
 </beans:beans>

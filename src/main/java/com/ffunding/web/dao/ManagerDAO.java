@@ -6,6 +6,8 @@ import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
 public interface ManagerDAO {
+	//관리자
+	public List<String> managerList() throws Exception;
 	//회원 리스트
 	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception;
 	//회원 검색 및 페이징

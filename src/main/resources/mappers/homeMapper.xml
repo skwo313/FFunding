@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="homeMapper">
+
+	<select id="homeSellRank"
+		resultType="com.ffunding.web.vo.RankVO">
+		SELECT A.FID,
+		COUNT(*) AS sell ,
+		A.FNAME ,
+		A.FCATE ,
+		A.FIMG ,
+		ROUND( ((SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal
+		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
+		WHERE A.FID = B.FID
+		GROUP BY
+		A.FID, A.FNAME ,A.FCATE ,A.FGOAL,A.FIMG
+		ORDER BY sell desc
+	</select>
+	<select id="homeGoalRank"
+		resultType="com.ffunding.web.vo.RankVO">
+		SELECT A.FID,
+		COUNT(*) AS sell ,
+		A.FNAME ,
+		A.FCATE ,
+		A.FIMG ,
+		ROUND( ((SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal
+		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
+		WHERE A.FID = B.FID
+		GROUP BY
+		A.FID, A.FNAME ,A.FCATE ,A.FGOAL,A.FIMG
+		ORDER BY goal desc
+	</select>
+	<select id="expected" resultType="com.ffunding.web.vo.FundingExpVO">
+		SELECT *
+		FROM FUNDING_PRODUCT fp
+		WHERE FSTARTDATE >= SYSDATE
+	</select>
+</mapper>

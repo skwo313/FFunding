@@ -16,6 +16,12 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Autowired
 	private SqlSession session;
 	
+	//관리자
+	@Override
+	public List<String> managerList() throws Exception {
+		return session.selectList("managerMapper.managerList");
+	}
+	
 	//회원 리스트
 	@Override
 	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception {
