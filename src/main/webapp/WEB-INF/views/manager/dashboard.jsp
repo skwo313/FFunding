@@ -169,29 +169,34 @@
 	</div>
 </div>
 <script type="text/javascript">
-$(".chat-box").hide();
-$(".chatbox-open").click(function() {
-	$(".chat-box").show();
-	$(".chatbox-open").hide();
-	sock = new SockJS("http://localhost:7080/ffunding/echo/");
-	sock.onopen = onOpen;
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-});
-$(".chatbox-close").click(function() {
+$(document).ready(function() {
 	$(".chat-box").hide();
-	$(".chatbox-open").show();
-	sock.onclose
+	$(".chatbox-open").click(function() {
+		$(".chat-box").show();
+		$(".chatbox-open").hide();
+		sock = new SockJS("http://localhost:7080/ffunding/echo/");
+		sock.onopen = onOpen;
+		sock.onmessage = onMessage;
+		sock.onclose = onClose;
+	});
+	$(".chatbox-close").click(function() {
+		$(".chat-box").hide();
+		$(".chatbox-open").show();
+		sock.send("${member.mid}님 연결끊김");
+		sock.close();
+		
 
+	});
+	$("#chat-submit").click(function() {
+		sendMessage();
+		$('#chat-input').val('');
+	});
+	$("#chat-input").keyup(function(e) {
+		if (e.keyCode == 13) {sendMessage();}
+		
+	});
 });
-$("#chat-submit").click(function() {
 
-	sendMessage();
-	$('#chat-input').val('');
-});
-$("#chat-input").keyup(function() {
-	if (event.keyCode == 13) sendMessage();
-});
 function onOpen(e) {
 	sock.send("${member.mid}님 입장하셨습니다");
 }
@@ -234,13 +239,14 @@ function onMessage(e) {
 		str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 		$(".chat-logs").append(str);
 	}
-
+	var mx = parseInt($(".chat-logs").height())
+	
+	$(".chat-logs").scrollTop(mx);
 }
 // 서버와 연결을 끊었을 때
 function onClose(e) {
-	$(".chat-logs").append("${member.mid}님연결 끊김");
+	sock.send("${member.mid}님 연결끊김");
 }
-
 </script>
     <!-- Page level plugins -->
     <script src="${path}/vendor/chart.js/Chart.min.js"></script>

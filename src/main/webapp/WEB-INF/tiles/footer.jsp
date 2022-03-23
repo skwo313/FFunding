@@ -1,4 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:if test="${not empty member.mid}">
+	<button class="chatbox-open">
+		<i class="fa fa-comment fa-2x"></i>
+	</button>
+	<div class="chat-box" style="dispaly: none;">
+		<div class="chat-box-header">
+			<span>고객 센터</span>
+			<button class="chatbox-close">
+				<i class="fa fa-window-close" aria-hidden="true" id="chat-close"></i>
+			</button>
+		</div>
+
+		<div class="chat-box-body" style="overflow:auto;">
+			<div class="chat-box-overlay"></div>
+			<div class="chat-logs"></div>
+		</div>
+		<div class="chat-input">
+			<input type="text" id="chat-input" placeholder="Send a message..." />
+			<button type="submit" class="chat-submit" id="chat-submit">
+				<i class="material-icons">send</i>
+			</button>
+		</div>
+	</div>
+</c:if>
 <footer id="footer">
 	<div class="footer-top">
 		<div class="container">
