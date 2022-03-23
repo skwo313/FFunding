@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${path}/css/chat.css" rel="stylesheet">
@@ -12,7 +11,6 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-
 <button class="chatbox-open">
 	<i class="fa fa-comment fa-2x"></i>
 </button>
@@ -24,7 +22,7 @@
 		</button>
 	</div>
 
-	<div class="chat-box-body">
+	<div class="chat-box-body" style="overflow:auto;">
 		<div class="chat-box-overlay"></div>
 		<div class="chat-logs"></div>
 	</div>
@@ -35,11 +33,6 @@
 		</button>
 	</div>
 </div>
-
-
-
-
-
 <script type="text/javascript">
 $(".chat-box").hide();
 $(".chatbox-open").click(function() {
@@ -57,12 +50,12 @@ $(".chatbox-close").click(function() {
 
 });
 $("#chat-submit").click(function() {
-
 	sendMessage();
 	$('#chat-input').val('');
 });
-$("#chat-input").keyup(function() {
-	if (event.keyCode == 13) sendMessage();
+$("#chat-input").keyup(function(e) {
+	if (e.keyCode == 13) {sendMessage();}
+	
 });
 function onOpen(e) {
 	sock.send("${member.mid}님 입장하셨습니다");
@@ -78,6 +71,7 @@ function sendMessage() {
 	str += "</span>";
 	str += "</div>";
 	sock.send(str);
+	$('#chat-input').val(""); $('#chat-input').focus();
 }
 // 서버로부터 메시지를 받았을 때
 function onMessage(e) {
@@ -105,7 +99,9 @@ function onMessage(e) {
 		str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 		$(".chat-logs").append(str);
 	}
-
+	var mx = parseInt($(".chat-logs").height())
+	
+	$(".chat-logs").scrollTop(mx);
 }
 // 서버와 연결을 끊었을 때
 function onClose(e) {

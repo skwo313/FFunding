@@ -194,7 +194,7 @@
 		</button>
 	</div>
 
-	<div class="chat-box-body">
+	<div class="chat-box-body" style="overflow:auto;">
 		<div class="chat-box-overlay"></div>
 		<div class="chat-logs"></div>
 	</div>
@@ -222,12 +222,12 @@ $(".chatbox-close").click(function() {
 
 });
 $("#chat-submit").click(function() {
-
 	sendMessage();
 	$('#chat-input').val('');
 });
-$("#chat-input").keyup(function() {
-	if (event.keyCode == 13) sendMessage();
+$("#chat-input").keyup(function(e) {
+	if (e.keyCode == 13) {sendMessage();}
+	
 });
 function onOpen(e) {
 	sock.send("${member.mid}님 입장하셨습니다");
@@ -271,7 +271,9 @@ function onMessage(e) {
 		str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 		$(".chat-logs").append(str);
 	}
-
+	var mx = parseInt($(".chat-logs").height())
+	
+	$(".chat-logs").scrollTop(mx);
 }
 // 서버와 연결을 끊었을 때
 function onClose(e) {
