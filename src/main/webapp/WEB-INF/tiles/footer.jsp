@@ -9,7 +9,7 @@
 		<div class="chat-box-header">
 			<span>고객 센터</span>
 			<button class="chatbox-close">
-				<i class="fa fa-window-close-o" aria-hidden="true" id="chat-close"></i>
+				<i class="fa fa-window-close" aria-hidden="true" id="chat-close"></i>
 			</button>
 		</div>
 
