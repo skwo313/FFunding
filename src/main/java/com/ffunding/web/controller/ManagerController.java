@@ -61,7 +61,7 @@ public class ManagerController {
 	}
 	
 	//회원 상세정보 페이지
-	@GetMapping("member/detail")
+	@RequestMapping("member/detail")
 	public String memberDetail(@RequestParam(required=false, value="msg") String msg, String mid, Model d) throws Exception {
 		d.addAttribute("detail", service.memberDetail(mid));
 		d.addAttribute("active", "member");
@@ -78,7 +78,7 @@ public class ManagerController {
 	
 	//펀딩승인 페이지
 	@GetMapping("fundingapproval")
-	public String fundingApproval(ApplyPagingVO paging, Model d) throws Exception {
+	public String fundingApproval(@RequestParam(required=false, value="delmsg") String delmsg, ApplyPagingVO paging, Model d) throws Exception {
 		d.addAttribute("applyList", service.applyList(paging));
 		d.addAttribute("active", "fundingapproval");
 		return "manager/fundingapproval.m";
@@ -87,10 +87,19 @@ public class ManagerController {
 	//펀딩승인 상세정보 페이지
 	@GetMapping("fundingapproval/detail")
 	public String fundingApprovalDetail(int fid, Model d) throws Exception {
+		d.addAttribute("detail", service.applyDetail(fid));
 		d.addAttribute("active", "fundingapproval");
 		return "manager/fundingapprovaldetail.m";
 	}
 	
+	//펀딩신청 삭제
+	@PostMapping("fundingapproval/detail/delete")
+	public String fundingDelete(int fid, RedirectAttributes redirect) throws Exception {
+		service.applyDel(fid);
+		redirect.addAttribute("delmsg", "This funding has been deleted.");
+		return "redirect:/manager/fundingapproval";
+	}
+		
 	//메일 페이지
 	@GetMapping("mail")
 	public String mail(@RequestParam(required=false, value="msg") String msg, Model d) {

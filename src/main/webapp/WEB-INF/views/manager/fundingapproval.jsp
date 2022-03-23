@@ -41,7 +41,7 @@
 	                        </div>
 	                    </form>
 	                </div>
-	             	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	             	<table class="table table-bordered" id="dataTable">
 	                     <thead>
 	                         <tr>
 	                             <th>No</th>
@@ -87,7 +87,28 @@
 	     </div>
 	 </div>
 	 <!-- /.container-fluid -->
+	 
+	 <!-- Modal-->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+		    	<div class="modal-body">
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+				</div>
+				<div class="modal-footer" id="modal-footer">
+		    		<button type="button" class="btn btn-primary btn-sm" id="close" data-dismiss="modal">OK</button>
+		    	</div>
+			</div>
+		</div>
+	</div>
 <script type="text/javascript">
+	//펀딩삭제 완료시 메시지
+	let delmsg = "${param.delmsg}";
+	if(delmsg!=null && delmsg!="") {
+		$("#Modal").modal("show");
+		$("#modalText").text(delmsg);
+	}
+
 	//한페이지에 보여질 게시물수 변경
 	$("[name=pageSize]").val("${applyPagingVO.pageSize}");
 	$("[name=pageSize]").change(function() {

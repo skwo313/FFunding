@@ -13,59 +13,63 @@
 	        <div class="card-header py-3">
 	            <h6 class="m-0 font-weight-bold text-primary">Mail Service</h6>
 	        </div>
-	        <form method="post" class="mailFrm" enctype="multipart/form-data">
-				<table class="mailtb">
-					<tr>
-						<th>Title</th>
-						<td>
-							<input type="text" name="title" class="form-control"/>
-							<p class="warning" id="ttext">Please enter the title.</p>							
-						</td>
-					</tr>
-					<tr>
-						<th>Recipient</th>
-						<td>
-							<div class="recipient">
-								<input type="text" id="recipient" name="recipient" class="form-control"/>
-								<div>
-									<label for="self" class="relabel">Self</label>
-									<input type="radio" name="recipientck" id="self" class="reradio" value="0" checked/>
-									<label for="all" class="relabel">All</label>
-									<input type="radio" name="recipientck" id="all" class="reradio" value="1"/>
-									<label for="seller" class="relabel">Seller</label>
-									<input type="radio" name="recipientck" id="seller" class="reradio" value="2"/>
-								</div>
-							</div>
-							<p class="warning" id="rtext"></p>	
-							<p class="selftext">이메일을 여러개 입력할 경우 쉼표(,)로 구분하세요.</p>
-						</td>
-														
-					</tr>
-					<tr>
-						<th>Content</th>
-						<td>
-							<textarea  name="content" rows="20" class="form-control" ></textarea>
-							<p class="warning" id="ctext">Please enter the content.</p>	
-						</td>									
-					</tr>
-					<tr>
-						<th>File</th>
-						<td>
-							<div class="uploadFrm">
-								<div class="uploadBox">
-									Please select a file to upload!
-								</div>
-								<label for="upload" class="uploadBtn">Upload File</label>
-								<input type="file" name="attach" id="upload" multiple/>
-							</div>
-							<p class="selftext">exe, sh, zip, alz, msi, gz, ppk 파일은 업로드할 수 없습니다.</p>
-						</td>
-					</tr>
-				</table>
-				<div class="sendBtn">
-					<button id="send" type="button" class="btn btn-primary">Send</button>
+	        <div class="card-body">
+	             <div class="table-responsive">
+			        <form method="post" class="mailFrm" enctype="multipart/form-data">
+						<table class="mailtb">
+							<tr>
+								<th>Title</th>
+								<td>
+									<input type="text" name="title" class="form-control"/>
+									<p class="warning" id="ttext">Please enter the title.</p>							
+								</td>
+							</tr>
+							<tr>
+								<th>Recipient</th>
+								<td>
+									<div class="recipient">
+										<input type="text" id="recipient" name="recipient" class="form-control"/>
+										<div>
+											<label for="self" class="relabel">Self</label>
+											<input type="radio" name="recipientck" id="self" class="reradio" value="0" checked/>
+											<label for="all" class="relabel">All</label>
+											<input type="radio" name="recipientck" id="all" class="reradio" value="1"/>
+											<label for="seller" class="relabel">Seller</label>
+											<input type="radio" name="recipientck" id="seller" class="reradio" value="2"/>
+										</div>
+									</div>
+									<p class="warning" id="rtext"></p>	
+									<p class="selftext">이메일을 여러개 입력할 경우 쉼표(,)로 구분하세요.</p>
+								</td>
+																
+							</tr>
+							<tr>
+								<th>Content</th>
+								<td>
+									<textarea  name="content" rows="20" class="form-control" ></textarea>
+									<p class="warning" id="ctext">Please enter the content.</p>	
+								</td>									
+							</tr>
+							<tr>
+								<th>File</th>
+								<td>
+									<div class="uploadFrm">
+										<div class="uploadBox">
+											<span class="uploadtext">Please select a file to upload!</span>
+										</div>
+										<label for="upload" class="uploadBtn">Upload File</label>
+										<input type="file" name="attach" id="upload" multiple/>
+									</div>
+									<p class="selftext">exe, sh, zip, alz, msi, gz, ppk 파일은 업로드할 수 없습니다.</p>
+								</td>
+							</tr>
+						</table>
+						<div class="sendBtn">
+							<button id="send" type="button" class="btn btn-primary">Send</button>
+						</div>
+					</form>
 				</div>
-			</form>
+			</div>
 	    </div>
 	</div>
 	
@@ -113,7 +117,7 @@
 			$(".uploadBox").html(viewFiles);
 		//선택한 파일을 삭제한 후 files에 남아있는 파일이 없을경우
 		} else {
-			$(".uploadBox").text("Please select a file to upload!");
+			$(".uploadBox").html("<span class='uploadtext'>Please select a file to upload!<span>");
 		}
 		//DataTransfer에 저장된 파일들을 files에 저장
 		$("#upload")[0].files = dataTransfer.files;
@@ -154,7 +158,7 @@
 				$(".uploadBox").html(viewFiles);
 			//확장자에 맞지 않아 업로드되지 않았던 파일이 있지만, 그 외에 업로드된 파일이 있거나 모두 정상적으로 업로드 된 경우
 			} else {
-				$(".uploadBox").text("Please select a file to upload!");
+				$(".uploadBox").html("<span class='uploadtext'>Please select a file to upload!<span>");
 			}
 			//모두 업로드되어 DataTransfer에 저장된 파일들을 files에 저장
 			$("#upload")[0].files = dataTransfer.files;

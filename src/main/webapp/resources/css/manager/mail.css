@@ -72,6 +72,9 @@ p {
 .uploadFrm {
 	display: flex;
 }
+.uploadtext {
+	padding: 6px 7px;
+}
 .uploadBox {
 	display: flex;
 	align-items: center;

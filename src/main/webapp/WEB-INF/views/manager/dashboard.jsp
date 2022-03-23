@@ -255,4 +255,3 @@ function onClose(e) {
     <script src="${path}/js/demo/chart-area-demo.js"></script>
     <script src="${path}/js/demo/chart-area-demo2.js"></script>
     <script src="${path}/js/demo/chart-bar-demo.js"></script>
-    <script src="${path}/js/demo/chart-pie-demo.js"></script>

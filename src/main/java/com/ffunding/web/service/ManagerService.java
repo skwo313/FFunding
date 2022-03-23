@@ -28,4 +28,10 @@ public interface ManagerService {
 	public List<ApplyViewVO> applyList(ApplyPagingVO paging) throws Exception;
 	//펀딩신청 총 게시물수
 	public int applyCnt() throws Exception;
+	//펀딩신청 상세정보
+	public ApplyViewVO applyDetail(int fid) throws Exception;
+	//펀딩신청 이미지
+	public List<String> applyImage(int fid) throws Exception;
+	//펀딩신청 삭제
+	public void applyDel(int fid) throws Exception;
 }

@@ -1,5 +1,7 @@
 package com.ffunding.web.vo;
 
+import java.util.List;
+
 public class ApplyViewVO {
 	private int fid;
 	private String fcate;
@@ -12,7 +14,7 @@ public class ApplyViewVO {
 	private String fdes;
 	private String writer;
 	private String agreement;	
-	private String[] fimg;
+	private List<String> fimg;
 	
 	public int getFid() {
 		return fid;
@@ -80,10 +82,10 @@ public class ApplyViewVO {
 	public void setAgreement(String agreement) {
 		this.agreement = agreement;
 	}
-	public String[] getFimg() {
+	public List<String> getFimg() {
 		return fimg;
 	}
-	public void setFimg(String[] fimg) {
+	public void setFimg(List<String> fimg) {
 		this.fimg = fimg;
 	}
 }

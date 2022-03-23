@@ -1,13 +1,13 @@
 package com.ffunding.web.service.impl;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +32,9 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Value("${mailPath}")
 	private String mailPath;
@@ -89,10 +92,8 @@ public class ManagerServiceImpl implements ManagerService {
 			sender.send(mmsg);
 		} catch (MessagingException e) {
 			msg = "message transmission failure!<br>Please check again.";
-		} catch (IllegalStateException e) {
-			msg = "There is an error in the attached file. Please check again";
-		} catch (IOException e) {
-			msg = "There is an error in the attached file. Please check again";
+		} catch (Exception e) {
+			msg = "There is an error in the attached file.<br>Please check again";
 		}
 		//이메일 전송 완료 후, 만약 파일을 첨부했었고
 		if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
@@ -218,5 +219,35 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public int applyCnt() throws Exception {
 		return dao.applyCnt();
+	}
+	
+	//펀딩신청 상세정보
+	@Override
+	public ApplyViewVO applyDetail(int fid) throws Exception {
+		ApplyViewVO vo = dao.applyDetail(fid);
+		vo.setFimg(dao.applyImage(fid));
+		String[] fnames = dao.applyImage(fid).toArray(new String[dao.applyImage(fid).size()]);
+		System.out.println(servletContext.getRealPath("/resources/applyimage/")+fnames[0]);
+		return vo;
+	}
+	
+	//펀딩신청 이미지
+	@Override
+	public List<String> applyImage(int fid) throws Exception {
+		return dao.applyImage(fid);
+	}
+	
+	//펀딩신청 삭제
+	@Override
+	public void applyDel(int fid) throws Exception {
+		String[] fnames = dao.applyImage(fid).toArray(new String[dao.applyImage(fid).size()]);
+		if(fnames!=null) {
+			for(int i=0; i<fnames.length; i++) {
+				File file = new File(servletContext.getRealPath("/resources/applyimage/")+fnames[i]);
+				file.delete();
+			}
+		}
+		dao.applyDel(fid);
+		dao.applyImageDel(fid);
 	}
 }

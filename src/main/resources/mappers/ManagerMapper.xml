@@ -131,4 +131,30 @@
 		FROM FUNDING_APPLY
 	</select>
 	
+	<!-- 펀딩신청 상세정보 -->
+	<select id="applyDetail" parameterType="int" resultType="com.ffunding.web.vo.ApplyViewVO">
+		SELECT *
+		FROM FUNDING_APPLY
+		WHERE fid=#{fid}
+	</select>
+	
+	<!-- 펀딩신청 이미지 -->
+	<select id="applyImage" parameterType="int" resultType="String">
+		SELECT STORED_FILE_NAME
+		FROM FUNDING_APPLY_FILE
+		WHERE fid=#{fid}
+		ORDER BY file_no ASC
+	</select>
+	
+	<!-- 펀딩신청 삭제 -->
+	<delete id="applyDel" parameterType="int">
+		DELETE FROM FUNDING_APPLY 
+		WHERE fid=#{fid}
+	</delete>
+	
+	<!-- 펀딩신청 이미지 삭제 -->
+	<delete id="applyImageDel" parameterType="int">
+		DELETE FROM FUNDING_APPLY_FILE 
+		WHERE fid=#{fid} 
+	</delete>
 </mapper>

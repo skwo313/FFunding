@@ -89,4 +89,28 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public int applyCnt() throws Exception {
 		return session.selectOne("managerMapper.applyCnt");
 	}
+	
+	//펀딩신청 상세정보
+	@Override
+	public ApplyViewVO applyDetail(int fid) throws Exception {
+		return session.selectOne("managerMapper.applyDetail", fid);
+	}
+	
+	//펀딩신청 이미지
+	@Override
+	public List<String> applyImage(int fid) throws Exception {
+		return session.selectList("managerMapper.applyImage", fid);
+	}
+	
+	//펀딩신청 삭제
+	@Override
+	public void applyDel(int fid) throws Exception {
+		session.delete("managerMapper.applyDel", fid);
+	}
+	
+	//펀딩신청 이미지 삭제
+	@Override
+	public void applyImageDel(int fid) throws Exception {
+		session.delete("managerMapper.applyImageDel", fid);
+	}
 }

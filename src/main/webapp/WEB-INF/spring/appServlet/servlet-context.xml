@@ -24,6 +24,7 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/img/**" location="/resources/img/" />
+	<resources mapping="/applyimage/**" location="/resources/applyimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/scss/**" location="/resources/scss/" />
 

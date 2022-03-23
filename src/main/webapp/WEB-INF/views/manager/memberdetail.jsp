@@ -9,120 +9,131 @@
 	<div class="container-fluid">
 	
 	   <!-- DataTales Example -->
-	   <div class="card shadow mb-4">
-	       <div class="card-header py-3">
-	           <h6 class="m-0 font-weight-bold text-primary">Member Information</h6>
-	       </div>
-	       <div class="card-body">
-	           <!-- Page Heading -->
-			<div class="textmark">
-	               <h1 class="h3 mb-0 text-gray-800">Modify Profile</h1>
-	           </div>
-	           <div class="modify">
-	           	<form id="frm" method="post">
-	               	<input type="hidden" name="adminck" value="0"/>
-	               	<div class="info">
-	                    	<table class="modifytb">
-							<tr>
-								<th>ID</th>
-								<td><input type="text" name="mid" value="${detail.mid}" readonly/></td>	 
-							</tr>                           	
-							<tr>
-								<th>New Password</th>
-								<td>
-									<input type="hidden" name="mpw" value="${detail.mpw}"/>
-									<input type="password" name="newpw" value="" autoComplete="off"/>
-									<span class="warning" id="pwtext">No spaces allowed.</span>
-								</td>	 
-							</tr>                           	
-							<tr>
-								<th>New Password Verification</th>
-								<td>
-									<input type="password" name="newpwck" value="" autoComplete="off"/>
-									<span class="warning" id="pctext"></span>
-								</td>
-							</tr>                           	
-							<tr>
-								<th>Name</th>
-								<td>
-									<input type="text" name="mname" value="${detail.mname}"/>
-									<span class="warning" id="ntext">Please enter your name and check the space.</span>
-								</td>	 
-							</tr>                           	
-							<tr>
-								<th>Phone</th>
-								<td>
-									<input type="text" name="phone1" value="" class="phone1"/> - 
-									<input type="text" name="phone2" value="" class="phone2"/> - 
-									<input type="text" name="phone3" value="" class="phone3"/>
-									<input type="hidden" name="mphone" value="${detail.mphone}"/>
-									<span class="warning" id="phtext">Please enter your mobile number and check the space.</span>
-								</td>		 
-							</tr>                           	
-							<tr>
-								<th>Email</th>
-								<td>
-									<input type="text" name="email1" value="" class="email1"/> @ 
-									<input type="text" name="email2" value="" class="email2"/>
-									<input type="hidden" name="memail" value="${detail.memail}"/>
-									<p class="warningp" id="etext">Please fill in the form of an email and check the space.</p>
-								</td>		 
-							</tr>                           	
-							<tr>
-								<th>Address</th>
-								<td>
-									<input type="text" name="maddress" id="address" value="${detail.maddress}" class="address1" placeholder="기본주소" readonly/><br/>
-									<input type="text" name="maddress_detail" value="${detail.maddress_detail}" class="address" placeholder="상세주소"/>
-								</td>		 
-							</tr>                           	
-							<tr>
-								<th>Point</th>
-								<td>
-									<input type="number" name="point" value="${detail.point}" class="point"/>
-									<span class="warning" id="potext">Please enter the point.</span>
-								</td>	 
-							</tr>                           	
-							<tr>
-								<th>Division</th>
-								<td class="division">
-									<label for="general">일반회원</label>
-									<input type="radio" name="sellerck" id="general" value="0" ${detail.sellerck eq '0'.charAt(0)?'checked':''}/>
-									<label for="seller">판매자</label>
-									<input type="radio" name="sellerck" id="seller" value="1" ${detail.sellerck eq '1'.charAt(0)?'checked':''}/>
-									<c:if test="${detail.naverid!='' || detail.googleid!='' || detail.kakaoid!=''}">
-										<input type="hidden" name="sellerck" value="${detail.sellerck}"/>
-									</c:if>
-								</td>	 
-							</tr>                           	
-	                      	</table>
-	                  	</div>
-	              	</form>
-	              	<div class="buttons">
-	               	<button id="uptBtn" class="btn btn-secondary btn-sm">수정</button>
-	               	<button id="backBtn" class="btn btn-primary btn-sm">목록</button>
-	              	</div>
-	           </div>
-	       </div>
-	   </div>
-	
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Member Information</h6>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+		           <!-- Page Heading -->
+					<div class="textmark">
+						<h1 class="h3 mb-0 text-gray-800">Modify Profile</h1>
+					</div>
+					<div class="modify">
+						<form id="frm" method="post">
+							<input type="hidden" name="adminck" value="0"/>
+							<table class="modifytb">
+								<tr>
+									<th>ID</th>
+									<td><input type="text" name="mid" value="${detail.mid}" readonly/></td>	 
+								</tr>                           	
+								<tr>
+									<th>New Password</th>
+									<td>
+										<input type="hidden" name="mpw" value="${detail.mpw}"/>
+										<input type="password" name="newpw" value="" autoComplete="off"/>
+										<span class="warning" id="pwtext">No spaces allowed.</span>
+									</td>	 
+								</tr>                           	
+								<tr>
+									<th>New Password Verification</th>
+									<td>
+										<input type="password" name="newpwck" value="" autoComplete="off"/>
+										<span class="warning" id="pctext"></span>
+									</td>
+								</tr>                           	
+								<tr>
+									<th>Name</th>
+									<td>
+										<input type="text" name="mname" value="${detail.mname}"/>
+										<span class="warning" id="ntext">Please enter your name and check the space.</span>
+									</td>	 
+								</tr>                           	
+								<tr>
+									<th>Phone</th>
+									<td>
+										<input type="text" name="phone1" value="" class="phone1"/> - 
+										<input type="text" name="phone2" value="" class="phone2"/> - 
+										<input type="text" name="phone3" value="" class="phone3"/>
+										<input type="hidden" name="mphone" value="${detail.mphone}"/>
+										<span class="warning" id="phtext">Please enter your mobile number and check the space.</span>
+									</td>		 
+								</tr>                           	
+								<tr>
+									<th>Email</th>
+									<td>
+										<input type="text" name="email1" value="" class="email1"/> @ 
+										<input type="text" name="email2" value="" class="email2"/>
+										<input type="hidden" name="memail" value="${detail.memail}"/>
+										<p class="warningp" id="etext">Please fill in the form of an email and check the space.</p>
+									</td>		 
+								</tr>                           	
+								<tr>
+									<th>Address</th>
+									<td>
+										<input type="text" name="maddress" id="address" value="${detail.maddress}" class="address1" placeholder="기본주소" readonly/><br/>
+										<input type="text" name="maddress_detail" value="${detail.maddress_detail}" class="address" placeholder="상세주소"/>
+									</td>		 
+								</tr>                           	
+								<tr>
+									<th>Point</th>
+									<td>
+										<input type="number" name="point" value="${detail.point}" class="point" onkeyup="comm(this)"/>
+										<p class="num"><fmt:formatNumber value="${detail.point}" pattern="#,###"/></p>
+										<span class="warning" id="potext">Please enter the point.</span>
+									</td>	 
+								</tr>                           	
+								<tr>
+									<th>Division</th>
+									<td class="division">
+										<label for="general">일반회원</label>
+										<input type="radio" name="sellerck" id="general" value="0" ${detail.sellerck eq '0'.charAt(0)?'checked':''}/>
+										<label for="seller">판매자</label>
+										<input type="radio" name="sellerck" id="seller" value="1" ${detail.sellerck eq '1'.charAt(0)?'checked':''}/>
+										<c:if test="${detail.naverid!='' || detail.googleid!='' || detail.kakaoid!=''}">
+											<input type="hidden" name="sellerck" value="${detail.sellerck}"/>
+										</c:if>
+									</td>	 
+								</tr>                           	
+		                    </table>
+						</form>
+		              	<div class="buttons">
+		               		<button id="uptBtn" class="btn btn-secondary btn-sm">수정</button>
+		               		<button id="backBtn" class="btn btn-primary btn-sm">목록</button>
+		              	</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- /.container-fluid -->
 	
 	<!-- Modal-->
 	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-	    	<div class="modal-body">
-	 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+		    	<div class="modal-body">
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+				</div>
+				<div class="modal-footer" id="modal-footer">
+		   	    	<button type="button" class="btn btn-primary btn-sm" id="move">Go ListPage</button>
+		    		<button type="button" class="btn btn-secondary btn-sm" id="close" data-dismiss="modal">Go CurrentPage</button>
+		    	</div>
 			</div>
-			<div class="modal-footer" id="modal-footer">
-	   	    	<button type="button" class="btn btn-primary btn-sm" id="move">Go ListPage</button>
-	    		<button type="button" class="btn btn-secondary btn-sm" id="close" data-dismiss="modal">Go CurrentPage</button>
-	    	</div>
 		</div>
 	</div>
-	</div>
 <script type="text/javascript">
+	//천단위 콤마
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	//input아래에 천단위 point 실시간 출력
+	function comm(obj) {
+		$(".num").text(comma(obj.value));
+	}
+
 	$(document).ready(function() {
 		//소셜 회원일 경우
 		if("${detail.naverid}"!="" || "${detail.googleid}"!="" || "${detail.kakaoid}"!="") {
