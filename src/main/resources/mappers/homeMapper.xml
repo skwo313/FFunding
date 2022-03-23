@@ -34,7 +34,7 @@
 		A.FID, A.FNAME ,A.FCATE ,A.FGOAL,A.FIMG
 		ORDER BY goal desc
 	</select>
-	<select id="expected" resultType="com.ffunding.web.vo.FundingVO">
+	<select id="expected" resultType="com.ffunding.web.vo.FundingExpVO">
 		SELECT *
 		FROM FUNDING_PRODUCT fp
 		WHERE FSTARTDATE >= SYSDATE

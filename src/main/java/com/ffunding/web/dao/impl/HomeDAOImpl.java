@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ffunding.web.dao.HomeDAO;
-import com.ffunding.web.vo.FundingVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.RankVO;
 
 @Repository
@@ -30,7 +30,7 @@ public class HomeDAOImpl implements HomeDAO {
 
 	// 메인화면 펀딩 예정 리스트
 	@Override
-	public List<FundingVO> expected() throws Exception {
+	public List<FundingExpVO> expected() throws Exception {
 		return sqlSession.selectList("homeMapper.expected");
 	}
 }

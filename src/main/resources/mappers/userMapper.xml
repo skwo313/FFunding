@@ -20,9 +20,9 @@
    	insert into member 
 	values(
 		'N' || funding_member_seq.nextval,
-		'N' || funding_member_seq.nextval, 
+		'N' || #{naverid}, 
 		#{mname}, 
-		#{mphone}, 
+		#{mphone, jdbcType=VARCHAR}, 
 		#{memail}, 
 		#{maddress, jdbcType=VARCHAR},
 		#{maddress_detail, jdbcType=VARCHAR}, 

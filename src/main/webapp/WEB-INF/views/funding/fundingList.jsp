@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bxslider.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fundingList.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
@@ -13,102 +14,7 @@
 	});
 </script>
 <style>
-.bx-wrapper {
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	border: 0;
-}
 
-.imgText {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%);
-	width: 100%;
-	max-width: 1440px;
-	box-sizing: border-box !important;
-	margin-bottom: 20px;
-}
-
-.imgDes {
-	width: 460px;
-	line-height: 40px;
-	font-size: 32px;
-	font-weight: 700;
-	word-break: break-all;
-	letter-spacing: -.7px;
-	color: #fff;
-}
-
-img {
-	object-fit: cover;
-}
-
-.fundingWrap {
-	margin-bottom: 16px;
-	height: 100px;
-}
-
-.divImg {
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
-}
-
-.title {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-}
-
-.percent {
-	margin-right: 6px;
-	color: #00a2a2;
-	font-weight: 700;
-}
-
-.cate {
-	color: #90949c;
-	font-weight: 400;
-}
-
-.progress-bar {
-	background-color: #00a2a2;
-}
-
-.categorybox {
-	display: flex;
-	justify-content: center;
-	margin-top: 30px;
-	border-top: 1px solid #dcdcdc;
-	border-bottom: 1px solid #dcdcdc;
-}
-
-.category {
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.category>li {
-	padding: 20px 25px
-}
-
-.category>li>a {
-	float: left;
-	text-decoration: none;
-	color: black;
-	font-size: 13px;
-}
-
-.category li>a:hover {
-	font-weight: bold;
-}
 </style>
 <title>FFunding - 펀딩하기</title>
 <div class="slider">
@@ -182,168 +88,35 @@ img {
 	</div>
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div class="row row-cols-3">
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
+			<c:forEach items="${list}" var="list" varStatus="vs">
+				<div class="col" style="margin: 8px 0px;">
+					<div class="col" style="margin-bottom: 10px">
+						<img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
+					</div>
 
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+					<div class="col">
+						<h5 class="title" style="margin-bottom: 2px;"><c:out value="${list.fname}"></c:out></h5>
 					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
+					<div class="col" style="margin-bottom: 5px;">
+						<span class="cate"><c:out value="${list.fcate}"></c:out></span>
+					</div>
+					<div class="col">
+						<div class="progress" style="height: 5px;">
+							<div class="progress-bar w-75" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
+					<div class="col">
+						<div class="row justify-content-between">
+							<div class="col">
+								<span class="percent"><c:out value="${list.goal}"></c:out>%</span><span class="cate"><c:out value="${list.fgoal}"></c:out>원</span>
+							</div>
+							<div class="col" style="text-align: right;">
+								<span class="cate">6일 남음</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 			<div class="col" style="margin: 8px 0px;">
 				<div class="col" style="margin-bottom: 10px">
 					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">

@@ -11,6 +11,10 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,12 +44,20 @@ public class MemberController {
 	
 	@Autowired
 	private ClientInfo ci;
+	
 	@Autowired
 	private VisitDAO dao;
 	@Inject
 	private MemberService service;
 	@Inject
 	private SnsValue naverSns;
+	@Inject 
+	private SnsValue googleSns;
+	@Autowired(required=false)
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired(required=false)
+	private OAuth2Parameters googleOAuth2Parameters;
+	
 	
 	@ModelAttribute("member")
 	public MemberVO getMember() {
@@ -59,6 +71,10 @@ public class MemberController {
 		
 		SNSLogin snsLogin = new SNSLogin(naverSns);
 		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		model.addAttribute("google_url", url);
 		
 		return "member/login.page";
 	}

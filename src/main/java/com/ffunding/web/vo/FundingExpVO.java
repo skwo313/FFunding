@@ -1,9 +1,7 @@
 package com.ffunding.web.vo;
 
-public class FundingVO {
+public class FundingExpVO {
 	private int fid;
-	private int sell;
-	private int goal;
 	private String fcate;
 	private String fname;
 	private int fprice; 
@@ -19,17 +17,11 @@ public class FundingVO {
 	private String fimg5;
 	private String fdes;
 	private String fmid;
-	public FundingVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public FundingVO(int fid, int sell, int goal, String fcate, String fname, int fprice, int fgoal, String fdate,
-			String fstartdate, String fenddate, String fimg, String fimg1, String fimg2, String fimg3, String fimg4,
-			String fimg5, String fdes, String fmid) {
+	public FundingExpVO(int fid, String fcate, String fname, int fprice, int fgoal, String fdate, String fstartdate,
+			String fenddate, String fimg, String fimg1, String fimg2, String fimg3, String fimg4, String fimg5,
+			String fdes, String fmid) {
 		super();
 		this.fid = fid;
-		this.sell = sell;
-		this.goal = goal;
 		this.fcate = fcate;
 		this.fname = fname;
 		this.fprice = fprice;
@@ -46,23 +38,15 @@ public class FundingVO {
 		this.fdes = fdes;
 		this.fmid = fmid;
 	}
+	public FundingExpVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getFid() {
 		return fid;
 	}
 	public void setFid(int fid) {
 		this.fid = fid;
-	}
-	public int getSell() {
-		return sell;
-	}
-	public void setSell(int sell) {
-		this.sell = sell;
-	}
-	public int getGoal() {
-		return goal;
-	}
-	public void setGoal(int goal) {
-		this.goal = goal;
 	}
 	public String getFcate() {
 		return fcate;
@@ -154,6 +138,5 @@ public class FundingVO {
 	public void setFmid(String fmid) {
 		this.fmid = fmid;
 	}
-	
 	
 }

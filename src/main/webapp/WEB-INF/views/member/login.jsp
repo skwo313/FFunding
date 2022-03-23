@@ -101,8 +101,9 @@
                   </div>
                   
                   <div class="col-2 text-center px-1">
-                    <a class="btn btn-link px-3" href="javascript:;">
-                      <i class="fa fa-github text-white text-lg"></i>
+                    <a class="btn btn-link px-3" href="${google_url}" 
+                    	onclick="window.open(this.href,'googleLogin','width=800,height=800');return false;">
+                      <img width="30px" src="${path}/img/google.png" class="fa"></img>
                     </a>
                   </div>
                   <div class="col-2 text-center me-auto">

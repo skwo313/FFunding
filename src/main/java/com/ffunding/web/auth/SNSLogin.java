@@ -55,7 +55,6 @@ public class SNSLogin {
 			memberVO.setNaverid(resNode.get("id").asText());
 			memberVO.setMemail(resNode.get("email").asText());
 			memberVO.setMname(resNode.get("name").asText());
-			memberVO.setMphone(resNode.get("mobile").asText());
 		}
 		
 		/*
