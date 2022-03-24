@@ -112,7 +112,7 @@
 				SELECT fa.*
 				FROM FUNDING_APPLY fa
 				<if test='sort=="new"'>
-					ORDER BY fdate desc
+					ORDER BY fid desc
 				</if>
 				<if test='sort=="old"'>
 					ORDER BY fdate asc
@@ -157,4 +157,27 @@
 		DELETE FROM FUNDING_APPLY_FILE 
 		WHERE fid=#{fid} 
 	</delete>
+	
+	<!-- 펀딩신청 승인 -->
+	<insert id="fundingIns" parameterType="com.ffunding.web.vo.FundingExpVO">
+		INSERT INTO FUNDING_PRODUCT 
+		VALUES (
+			#{fid}, 
+			#{fcate}, 
+			#{fname}, 
+			#{fprice}, 
+			#{fgoal}, 
+			#{fdate}, 
+			#{fstartdate}, 
+			#{fenddate}, 
+			#{fimg, jdbcType=VARCHAR}, 
+			#{fimg1, jdbcType=VARCHAR}, 
+			#{fimg2, jdbcType=VARCHAR}, 
+			#{fimg3, jdbcType=VARCHAR}, 
+			#{fimg4, jdbcType=VARCHAR}, 
+			#{fimg5, jdbcType=VARCHAR}, 
+			#{fdes}, 
+			#{fmid}
+		)
+	</insert>
 </mapper>

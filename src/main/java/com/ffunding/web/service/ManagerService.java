@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
@@ -34,4 +35,6 @@ public interface ManagerService {
 	public List<String> applyImage(int fid) throws Exception;
 	//펀딩신청 삭제
 	public void applyDel(int fid) throws Exception;
+	//펀딩신청 승인
+	public void fundingIns(FundingExpVO funding) throws Exception;
 }

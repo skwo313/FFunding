@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
@@ -40,4 +41,6 @@ public interface ManagerDAO {
 	public void applyDel(int fid) throws Exception;
 	//펀딩신청 이미지 삭제
 	public void applyImageDel(int fid) throws Exception;
+	//펀딩신청 승인
+	public void fundingIns(FundingExpVO funding) throws Exception;
 }

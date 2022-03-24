@@ -1,13 +1,16 @@
 package com.ffunding.web.service.impl;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +23,7 @@ import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
@@ -33,11 +37,14 @@ public class ManagerServiceImpl implements ManagerService {
 	@Autowired
 	private JavaMailSender sender;
 	
-	@Autowired
-	private ServletContext servletContext;
-	
 	@Value("${mailPath}")
 	private String mailPath;
+	
+	@Value("${delPath}")
+	private String delPath;
+	
+	@Value("${insPath}")
+	private String insPath;
 	
 	@Override
 	public String sendMail(MailVO mail) throws Exception {
@@ -226,8 +233,6 @@ public class ManagerServiceImpl implements ManagerService {
 	public ApplyViewVO applyDetail(int fid) throws Exception {
 		ApplyViewVO vo = dao.applyDetail(fid);
 		vo.setFimg(dao.applyImage(fid));
-		String[] fnames = dao.applyImage(fid).toArray(new String[dao.applyImage(fid).size()]);
-		System.out.println(servletContext.getRealPath("/resources/applyimage/")+fnames[0]);
 		return vo;
 	}
 	
@@ -240,14 +245,59 @@ public class ManagerServiceImpl implements ManagerService {
 	//펀딩신청 삭제
 	@Override
 	public void applyDel(int fid) throws Exception {
+		//해당 펀딩의 이미지파일 이름 가져오기
 		String[] fnames = dao.applyImage(fid).toArray(new String[dao.applyImage(fid).size()]);
+		//만약 이미지파일이 존재하면
 		if(fnames!=null) {
 			for(int i=0; i<fnames.length; i++) {
-				File file = new File(servletContext.getRealPath("/resources/applyimage/")+fnames[i]);
+				File file = new File(delPath+fnames[i]);
+				//삭제처리
 				file.delete();
 			}
+			//이미지테이블에서 해당 펀딩의 이미지 삭제
+			dao.applyImageDel(fid);
 		}
+		//펀딩신청테이블에서 해당 펀딩 삭제
 		dao.applyDel(fid);
-		dao.applyImageDel(fid);
 	}
+	
+	//펀딩신청 승인
+	@Override
+	public void fundingIns(FundingExpVO funding) throws Exception {
+		//해당 펀딩의 이미지파일 이름 가져오기
+		String[] fnames = dao.applyImage(funding.getFid()).toArray(new String[dao.applyImage(funding.getFid()).size()]);
+		//만약 이미지파일이 존재하면
+		if(fnames!=null) {
+			for(int i=0; i<fnames.length; i++) {
+				//복사할 파일 생성
+				File insFile = new File(insPath+fnames[i]);
+				//원본 파일 생성
+				File delFile = new File(delPath+fnames[i]);
+				//바이트단위 입출력을 위한 스트림 생성
+				InputStream inStream = new FileInputStream(delFile);
+				OutputStream outStream = new FileOutputStream(insFile);
+				//한번에 읽고 쓸 사이즈 지정
+				byte[] buffer  = new byte[1024];
+				int read = 0;
+				//buffer사이즈만큼 원본파일에서 데이터를 읽어서 복사할파일에 쓰기
+				while((read=inStream.read(buffer))>0) {
+					//buffer에 담긴 데이터를 0번째 offset부터 read길이만큼 쓰기
+					outStream.write(buffer, 0, read);
+				}
+				//스트림 닫기
+				inStream.close();
+				outStream.close();
+				//원본파일 삭제
+				delFile.delete();
+			}
+			//이미지테이블에서 해당 펀딩의 이미지 삭제
+			dao.applyImageDel(funding.getFid());
+		}
+		//펀딩 테이블에 해당 데이터 넣기
+		//이미지 에러시 펀딩테이블로 데이터가 넘어가지 않도록 이미지 복사 이후 데이터 넣기
+		dao.fundingIns(funding);
+		//펀딩신청테이블에서 해당 펀딩 삭제
+		dao.applyDel(funding.getFid());
+	}
+	
 }

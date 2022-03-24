@@ -109,6 +109,13 @@
 		$("#modalText").text(delmsg);
 	}
 
+	//펀딩승인 완료시 메시지
+	let insmsg = "${param.insmsg}";
+	if(insmsg!=null && insmsg!="") {
+		$("#Modal").modal("show");
+		$("#modalText").text(insmsg);
+	}
+	
 	//한페이지에 보여질 게시물수 변경
 	$("[name=pageSize]").val("${applyPagingVO.pageSize}");
 	$("[name=pageSize]").change(function() {

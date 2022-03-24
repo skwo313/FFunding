@@ -77,10 +77,14 @@
 	<!-- 에러페이지 지정 -->
 	<error-page>
 		<exception-type>org.springframework.web.client.HttpClientErrorException</exception-type>
-		<location>/WEB-INF/views/manager/error.jsp</location>
+		<location>/WEB-INF/views/manager/error401.jsp</location>
 	</error-page>
 	<error-page>
+		<exception-type>java.io.FileNotFoundException</exception-type>
+		<location>/WEB-INF/views/manager/error500.jsp</location>
+	</error-page>
+	<!-- <error-page>
 		<exception-code>405</exception-code>
 		<location>/WEB-INF/views/manager/error.jsp</location>
-	</error-page>
+	</error-page>-->
 </web-app>

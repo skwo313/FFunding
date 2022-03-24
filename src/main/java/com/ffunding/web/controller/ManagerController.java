@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
@@ -97,6 +98,14 @@ public class ManagerController {
 	public String fundingDelete(int fid, RedirectAttributes redirect) throws Exception {
 		service.applyDel(fid);
 		redirect.addAttribute("delmsg", "This funding has been deleted.");
+		return "redirect:/manager/fundingapproval";
+	}
+	
+	//펀딩신청 승인
+	@PostMapping("fundingapproval/detail/insert")
+	public String fundingInsert(FundingExpVO funding, RedirectAttributes redirect) throws Exception {
+		service.fundingIns(funding);
+		redirect.addAttribute("insmsg", "The funding has been approved.");
 		return "redirect:/manager/fundingapproval";
 	}
 		

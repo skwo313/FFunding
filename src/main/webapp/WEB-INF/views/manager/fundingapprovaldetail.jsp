@@ -30,7 +30,7 @@
 								<th>Registration Date</th>
 								<td><input type="text" name="fdate" value="${detail.fdate}" class="formtd" readonly/></td>
 								<th>Writer</th>
-								<td><input type="text" name="mid" value="${detail.writer}" class="formtd col" readonly/></td>
+								<td><input type="text" name="fmid" value="${detail.writer}" class="formtd col" readonly/></td>
 							</tr>
 							<tr>
 								<th>Name</th>
@@ -38,9 +38,15 @@
 							</tr>
 							<tr>
 								<th>Price</th>
-								<td><span class="won">&#8361;<input type="text" name="fprice" value="${detail.fprice}" class="formtd" readonly/></span></td>
+								<td>
+									<span class="won">&#8361;<input type="text" name="fprice" value="${detail.fprice}" class="formtd" readonly/></span>
+									<p class="ptext"><fmt:formatNumber value="${detail.fprice}" pattern="#,###"/></p>
+								</td>
 								<th>Taget Price</th>
-								<td><span class="won">&#8361;<input type="text" name="fgoal" value="${detail.fgoal}" class="formtd" readonly/></span></td>
+								<td>
+									<span class="won">&#8361;<input type="text" name="fgoal" value="${detail.fgoal}" class="formtd" readonly/></span>
+									<p class="ptext"><fmt:formatNumber value="${detail.fgoal}" pattern="#,###"/></p>
+								</td>
 								<th>Start Date</th>
 								<td><input type="text" name="fstartdate" value="${detail.fstartdate}" class="formtd" readonly/></td>
 								<th>End Date</th>
@@ -54,7 +60,7 @@
 								<th><p>Representative</p><p>Image</p></th>
 								<td colspan="7">
 									<c:if test="${detail.fimg[0] != null}">
-										<p class="img"><img src="${path}/applyimage/${detail.fimg[0]}"/></p>
+										<p class="img"><img src="${path}/applyimage/${detail.fimg[0]}" onerror="javascript:this.src='${path}/img/error.png'"/></p>
 										<input type="hidden" name="fimg" value="${detail.fimg[0]}"/>
 									</c:if>
 								</td>
@@ -65,7 +71,7 @@
 									<c:if test="${detail.fimg != null}">
 										<c:forEach var="i" begin="1" end="${fn:length(detail.fimg)}">
 											<c:if test="${detail.fimg[i] != null}">
-												<p class="img"><img src="${path}/applyimage/${detail.fimg[i]}"/></p>
+												<p class="img"><img src="${path}/applyimage/${detail.fimg[i]}" onerror="javascript:this.src='${path}/img/error.png'"/></p>
 												<input type="hidden" name="fimg${i}" value="${detail.fimg[i]}"/>
 											</c:if>
 										</c:forEach>
@@ -100,15 +106,20 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function() {
-		//천단위콤마
-		$("[name=fprice]").val($("[name=fprice]").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		$("[name=fgoal]").val($("[name=fgoal]").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		
 		$("#delBtn").click(function() {
 			$("#Modal").modal("show");
 			$("#modalText").text("Are you sure you want to delete it?");
 			$("#yes").click(function() {
 				$("#frm").attr("action", "/ffunding/manager/fundingapproval/detail/delete");
+				$("#frm").submit();
+			})
+		});
+		
+		$("#insBtn").click(function() {
+			$("#Modal").modal("show");
+			$("#modalText").text("Do you really want to approve it?");
+			$("#yes").click(function() {
+				$("#frm").attr("action", "/ffunding/manager/fundingapproval/detail/insert");
 				$("#frm").submit();
 			})
 		});

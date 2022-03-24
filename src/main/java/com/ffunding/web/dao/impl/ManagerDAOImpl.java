@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
 
@@ -112,5 +113,11 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public void applyImageDel(int fid) throws Exception {
 		session.delete("managerMapper.applyImageDel", fid);
+	}
+	
+	//펀딩신청 승인
+	@Override
+	public void fundingIns(FundingExpVO funding) throws Exception {
+		session.insert("managerMapper.fundingIns", funding);
 	}
 }
