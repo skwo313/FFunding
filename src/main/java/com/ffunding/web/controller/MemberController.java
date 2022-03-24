@@ -2,21 +2,21 @@ package com.ffunding.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.LocaleResolver;
 
 import com.ffunding.web.auth.SNSLogin;
 import com.ffunding.web.auth.SnsValue;
@@ -53,11 +54,13 @@ public class MemberController {
 	private SnsValue naverSns;
 	@Inject 
 	private SnsValue googleSns;
+	/*
+	 * @Autowired private GoogleConnectionFactory googleConnectionFactory;
+	 * 
+	 * @Autowired private OAuth2Parameters googleOAuth2Parameters;
+	 */
 	@Autowired(required=false)
-	private GoogleConnectionFactory googleConnectionFactory;
-	@Autowired(required=false)
-	private OAuth2Parameters googleOAuth2Parameters;
-	
+	private LocaleResolver localeResolver;
 	
 	@ModelAttribute("member")
 	public MemberVO getMember() {
@@ -69,13 +72,18 @@ public class MemberController {
 	public String login(Model model) throws Exception {
 		logger.info("loginForm");
 		
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		SNSLogin naverLogin = new SNSLogin(naverSns);
+		model.addAttribute("naver_url", naverLogin.getAuthURL());
 		
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		model.addAttribute("google_url", url);
+		SNSLogin googleLogin = new SNSLogin(googleSns);
+		model.addAttribute("google_url", googleLogin.getAuthURL());
 		
+		/* 
+		 * OAuth2Operations oauthOperations =
+		 * googleConnectionFactory.getOAuthOperations(); String url =
+		 * oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE,
+		 * googleOAuth2Parameters);
+		 */
 		return "member/login.page";
 	}
 	
@@ -120,8 +128,9 @@ public class MemberController {
 		SnsValue sns = null;
 		if (StringUtils.equals("naver", snsService)) {
 			sns = naverSns;
-		} 
-		// else sns = googleSns;
+		} else {
+			sns = googleSns;
+		}
 			
 		
 		// access_token(code)을 이용하여 사용자 profile 정보 가져오기
@@ -171,5 +180,16 @@ public class MemberController {
 		*/
 		
 		return "redirect:/";
+	}
+	@GetMapping("choiceLan")
+	public String setLogin(
+    		@RequestParam("lang")String lang,
+   		    HttpServletRequest request,
+   		    HttpServletResponse response) {
+		System.out.println("선택한 언어:"+lang);
+		Locale locale = new Locale(lang);
+		localeResolver.setLocale(request, response, locale);
+		
+		return "member/login.page";
 	}
 }

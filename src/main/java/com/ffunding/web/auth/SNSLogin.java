@@ -1,6 +1,6 @@
 package com.ffunding.web.auth;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.Iterator;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +12,7 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+
 public class SNSLogin {
 	private OAuth20Service oauthService;
 	private SnsValue sns;
@@ -20,13 +21,13 @@ public class SNSLogin {
 		this.oauthService = new ServiceBuilder(sns.getClientId())
 				.apiSecret(sns.getClienSecret())
 				.callback(sns.getRedirectUrl())
-				.defaultScope("profile") // OAuth2Service가 사용자 정보를 가져옴
+				.defaultScope("openid profile email") // OAuth2Service가 사용자 정보를 가져옴
 				.build(sns.getApi20Instance());
 		
 		this.sns = sns;
 	}
 	
-	public String getNaverAuthURL() {
+	public String getAuthURL() {
 		return this.oauthService.getAuthorizationUrl();
 	}
 
@@ -45,7 +46,7 @@ public class SNSLogin {
 		System.out.println("========================\n"+ body + "\n=======================");
 		MemberVO memberVO = new MemberVO();
 		boolean isNaver = this.sns.isNaver(); 
-//		boolean isGoogle = this.sns.isGoogle(); 
+		boolean isGoogle = this.sns.isGoogle(); 
 		
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(body);
@@ -55,13 +56,21 @@ public class SNSLogin {
 			memberVO.setNaverid(resNode.get("id").asText());
 			memberVO.setMemail(resNode.get("email").asText());
 			memberVO.setMname(resNode.get("name").asText());
+		} else if(isGoogle) { 
+			JsonNode nameNode = rootNode.path("names");
+			memberVO.setGoogleid(nameNode.path(0).path("metadata").path("source").get("id").asText());
+			memberVO.setMname(nameNode.path(0).get("displayName").asText()); 
+			
+			Iterator<JsonNode> iterEmails = rootNode.path("emailAddresses").elements();
+			while(iterEmails.hasNext()) {
+				JsonNode emailNode = iterEmails.next();
+				boolean isPrimary = emailNode.path("metadata").get("primary").isValueNode();
+				if(isPrimary) {
+					memberVO.setMemail(emailNode.get("value").asText());
+					break;
+				};
+			}
 		}
-		
-		/*
-		 * else if(isGoogle) { String id = rootNode.get("id").asText(); if
-		 * (sns.isGoogle()) memverVO.setGoogleid(id); JsonNode displayName =
-		 * rootNode.get("displayName"); }
-		 */
 		
 		return memberVO;
 	}

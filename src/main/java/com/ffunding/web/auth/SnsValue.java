@@ -38,7 +38,7 @@ public class SnsValue implements SnsUrls {
 			this.profileUrl = NAVER_PROFILE_URL;
 		} else {
 			this.api20Instance = GoogleApi20.instance();
-			//this.profileUrl = GOOGLE_PROFILE_URL;
+			this.profileUrl = GOOGLE_PROFILE_URL;
 		}
 		
 	}
