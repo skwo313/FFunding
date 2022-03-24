@@ -24,6 +24,7 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/img/**" location="/resources/img/" />
+	<resources mapping="/applyimage/**" location="/resources/applyimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/scss/**" location="/resources/scss/" />
 
@@ -79,35 +80,43 @@
 	<!-- END -->
 	<!-- Google oauth2 login -->
 	<beans:bean id="googleClientID" class="java.lang.String">
-		<beans:constructor-arg value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com" />
+		<beans:constructor-arg
+			value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com" />
 	</beans:bean>
 	<beans:bean id="googleClientSecret" class="java.lang.String">
-		<beans:constructor-arg value="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" />
+		<beans:constructor-arg
+			value="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" />
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:7080/ffunding/member/google/callback"/>
+		<beans:constructor-arg
+			value="http://localhost:7080/ffunding/member/google/callback" />
 	</beans:bean>
-	
-	<beans:bean id="googleSns" class="com.ffunding.web.auth.SnsValue">
-		<beans:constructor-arg value="google"/>
-		<beans:constructor-arg ref="googleClientID"/>
-		<beans:constructor-arg ref="googleClientSecret"/>
-		<beans:constructor-arg ref="googleRedirectUrl"/>
+
+	<beans:bean id="googleSns"
+		class="com.ffunding.web.auth.SnsValue">
+		<beans:constructor-arg value="google" />
+		<beans:constructor-arg ref="googleClientID" />
+		<beans:constructor-arg ref="googleClientSecret" />
+		<beans:constructor-arg ref="googleRedirectUrl" />
 	</beans:bean>
-	
-	<beans:bean id="googleConnectionFactory" 
-				class="org.springframework.social.google.connect.GoogleConnectionFactory">
-		<beans:constructor-arg value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com"/>
-		<beans:constructor-arg value="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"/>
+
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg
+			value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com" />
+		<beans:constructor-arg
+			value="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" />
 	</beans:bean>
-	
+
 	<beans:bean id="googleOAuth2Parameters"
-				class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
-		<beans:property name="redirectUri" ref="googleRedirectUrl"/>
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope"
+			value="https://www.googleapis.com/auth/userinfo.email" />
+		<beans:property name="redirectUri"
+			ref="googleRedirectUrl" />
 	</beans:bean>
 	<!-- END -->
-	
+
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler"
 			path="/echo" />
@@ -116,7 +125,14 @@
 	<beans:bean id="echoHandler"
 		class="com.ffunding.web.util.EchoHandler" />
 
-<context:property-placeholder
-	location="classpath:/config/config.properties" />
+	<context:property-placeholder
+		location="classpath:/config/config.properties" />
+	<interceptors>
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	</interceptors>
+
 
 </beans:beans>

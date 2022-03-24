@@ -13,13 +13,14 @@
 	     <!-- DataTales Example -->
 	     <div class="card shadow mb-4">
 	         <div class="card-header py-3">
-	             <h6 class="m-0 font-weight-bold text-primary">Member DataTables</h6>
+	             <h6 class="m-0 font-weight-bold text-primary">Funding Approval DataTables</h6>
 	         </div>
 	         <div class="card-body">
 	             <div class="table-responsive">
 	                <div class="row">
-	                    <form class="form-inline mr-auto w-100 navbar-search">
-	                    	<div class="col-sm-12 col-md-6">
+	                    <form id="frm" class="form-inline mr-auto w-100 navbar-search">
+	                    	<input type="hidden" name="curPage" value="1"/>
+	                    	<div class="sortFrm">
 	                            <div id="sort">
 	                            	<select name="sort" class="form-control bg-light small">
 	                            		<option value="new">최신순</option>
@@ -28,7 +29,8 @@
 	                            	</select>
 	                            </div>
 	                        </div>
-	                        <div class="col-sm-12 col-md-6">
+	                        <div class="pageFrm">
+	                        	<span>Showing ${applyPagingVO.start} to ${applyPagingVO.end} of ${applyPagingVO.count} entries</span>
 	                            <select name="pageSize" id="pageSize" class="form-control bg-light small">
 	                            	<option value="20">20개 보기</option>
 	                            	<option value="40">40개 보기</option>
@@ -39,44 +41,95 @@
 	                        </div>
 	                    </form>
 	                </div>
-	             	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	             	<table class="table table-bordered" id="dataTable">
 	                     <thead>
 	                         <tr>
 	                             <th>No</th>
 	                             <th>Category</th>
 	                             <th>Name</th>
 	                             <th>Price</th>
+	                             <th>Target Price</th>
 	                             <th>Registration Date</th>
 	                             <th>Start Date</th>
-	                             <th>Approval</th>
-	                             <th>Refusal</th>
 	                         </tr>
 	                     </thead>
 	                     <tbody>
-	                         <tr>
-	                             <td>1</td>
-	                             <td>패션</td>
-	                             <td class="fname">[남산반팔] 무난해 보여요? 땀나도 티 안 나는 초-기능성 티셔츠입니다</td>
-	                             <td>149,000</td>
-	                             <td>2022-03-12</td>
-	                             <td>2022-03-28</td>
-	                             <td><button name="addBtn" class="btn btn-primary">승인</button></td>
-	                             <td><button name="delBtn" class="btn btn-secondary">거부</button></td>
-	                         </tr>
+	                     	<c:forEach var="apply" items="${applyList}">
+		                         <tr class="applyrow">
+		                             <td>${apply.fid}</td>
+		                             <td>${apply.fcate}</td>
+		                             <td class="fname">${apply.fname}</td>
+		                             <td>&#8361;<fmt:formatNumber value="${apply.fprice}" pattern="#,###"/></td>
+		                             <td>&#8361;<fmt:formatNumber value="${apply.fgoal}" pattern="#,###"/></td>
+		                             <td>${apply.fdate}</td>
+		                             <td>${apply.fstartdate}</td>
+		                         </tr>
+	                         </c:forEach>
 	                     </tbody>
-	                 </table>
-	                 <div class="paging">
-	                    <ul class="pagination">
-						  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	                </table>
+					<div class="paging">
+	                	<ul class="pagination">
+							<c:if test="${applyPagingVO.startBlock!=1}">
+								<li class="page-item"><a class="page-link" href="javascript:changePage(${applyPagingVO.startBlock-1})">Previous</a></li>
+							</c:if>
+							<c:forEach var="paging" begin="${applyPagingVO.startBlock}" end="${applyPagingVO.endBlock}">
+								<li class="page-item ${paging==applyPagingVO.curPage?'active':''}">
+							  		<a class="page-link" href="javascript:changePage(${paging})">${paging}</a>
+							  	</li>
+							</c:forEach>
+							<c:if test="${applyPagingVO.endBlock!=applyPagingVO.pageCount}">
+								<li class="page-item"><a class="page-link" href="javascript:changePage(${applyPagingVO.endBlock+1})">Next</a></li>
+							</c:if>
 						</ul>
-	                 </div>
+                    </div>
 	             </div>
 	         </div>
 	     </div>
-	
 	 </div>
 	 <!-- /.container-fluid -->
+	 
+	 <!-- Modal-->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+		    	<div class="modal-body">
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+				</div>
+				<div class="modal-footer" id="modal-footer">
+		    		<button type="button" class="btn btn-primary btn-sm" id="close" data-dismiss="modal">OK</button>
+		    	</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	//펀딩삭제 완료시 메시지
+	let delmsg = "${param.delmsg}";
+	if(delmsg!=null && delmsg!="") {
+		$("#Modal").modal("show");
+		$("#modalText").text(delmsg);
+	}
+
+	//한페이지에 보여질 게시물수 변경
+	$("[name=pageSize]").val("${applyPagingVO.pageSize}");
+	$("[name=pageSize]").change(function() {
+		$("#frm").submit();
+	});
+	
+	//정렬기준 변경
+	$("[name=sort]").val("${applyPagingVO.sort}");
+	$("[name=sort]").change(function() {
+		$("#frm").submit();
+	});
+	
+	//페이지 이동
+	function changePage(no) {
+		$("[name=curPage]").val(no);
+		$("#frm").submit();
+	}
+	
+	//펀딩신청 게시물 상세정보로 이동
+	$(".applyrow").click(function(){
+		let fid = $(this).children().eq(0).text();
+		location.href="/ffunding/manager/fundingapproval/detail?fid="+fid;
+	});
+</script>

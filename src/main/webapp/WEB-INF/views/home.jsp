@@ -29,7 +29,9 @@
 		$(".chatbox-close").click(function() {
 			$(".chat-box").hide();
 			$(".chatbox-open").show();
-			sock.onclose
+			sock.send("${member.mid}님 연결끊김");
+			sock.close();
+			
 
 		});
 		$("#chat-submit").click(function() {
@@ -41,6 +43,7 @@
 			
 		});
 	});
+	
 	function onOpen(e) {
 		sock.send("${member.mid}님 입장하셨습니다");
 	}
@@ -89,7 +92,7 @@
 	}
 	// 서버와 연결을 끊었을 때
 	function onClose(e) {
-		$(".chat-logs").append("${member.mid}님연결 끊김");
+		sock.send("${member.mid}님 연결끊김");
 	}
 
 </script>
