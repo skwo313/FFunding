@@ -14,10 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,11 +54,11 @@ public class MemberController {
 	private SnsValue naverSns;
 	@Inject 
 	private SnsValue googleSns;
-	@Autowired(required=false)
-	private GoogleConnectionFactory googleConnectionFactory;
-	@Autowired(required=false)
-	private OAuth2Parameters googleOAuth2Parameters;
-	@Autowired(required=false)
+	/*
+	 * @Autowired private GoogleConnectionFactory googleConnectionFactory;
+	 * 
+	 * @Autowired private OAuth2Parameters googleOAuth2Parameters;
+	 */
 	private LocaleResolver localeResolver;
 	
 	@ModelAttribute("member")
@@ -75,13 +71,18 @@ public class MemberController {
 	public String login(Model model) throws Exception {
 		logger.info("loginForm");
 		
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		SNSLogin naverLogin = new SNSLogin(naverSns);
+		model.addAttribute("naver_url", naverLogin.getAuthURL());
 		
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		model.addAttribute("google_url", url);
+		SNSLogin googleLogin = new SNSLogin(googleSns);
+		model.addAttribute("google_url", googleLogin.getAuthURL());
 		
+		/* 
+		 * OAuth2Operations oauthOperations =
+		 * googleConnectionFactory.getOAuthOperations(); String url =
+		 * oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE,
+		 * googleOAuth2Parameters);
+		 */
 		return "member/login.page";
 	}
 	
@@ -126,8 +127,9 @@ public class MemberController {
 		SnsValue sns = null;
 		if (StringUtils.equals("naver", snsService)) {
 			sns = naverSns;
-		} 
-		// else sns = googleSns;
+		} else {
+			sns = googleSns;
+		}
 			
 		
 		// access_token(code)을 이용하여 사용자 profile 정보 가져오기

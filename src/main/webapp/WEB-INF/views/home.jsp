@@ -225,7 +225,7 @@
 							<h5 class="title"><c:out value="${expected.fname}"></c:out></h5>
 						</div>
 						<div class="col">
-							<span class="percent"><c:out value="${expected.fstartdate}"></c:out></span>
+							<span class="percent"><fmt:formatDate value="${expected.fstartdate}" pattern="yyyy-MM-dd"/></span>
 							<span class="cate"><c:out value="${expected.fcate}"></c:out></span>
 						</div>
 					</div>

@@ -21,6 +21,9 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String LOGIN = NS + ".loginCheck";
 	private static final String GET_BY_SNS_NAVER = NS + ".getBySnsNaver";
 	private static final String JOIN_BY_SNS_NAVER = NS + ".joinBySnsNaver";
+	private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";
+	private static final String JOIN_BY_SNS_GOOGLE = NS + ".joinBySnsGoogle";
+	
 	
 	@Override
 	public MemberVO loginCheck(Map<String, String> loginMap) {
@@ -33,11 +36,10 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
 			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
-		} 
-		/*
-		 * else { return sqlSession.selectOne("GET_BY_SNS_GOOGLE",
-		 * snsUser.getGoogleid());; }
-		 */
+		} else if (StringUtils.isNotEmpty(snsUser.getGoogleid())) {
+			return sqlSession.selectOne(GET_BY_SNS_GOOGLE,snsUser.getGoogleid());
+		}
+		
 		return null;
 	}
 
@@ -46,6 +48,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		if (StringUtils.isNotEmpty(snsUser.getNaverid())) { 
 			sqlSession.insert(JOIN_BY_SNS_NAVER, snsUser);
+		}else if(StringUtils.isNotEmpty(snsUser.getGoogleid())) {
+			sqlSession.insert(JOIN_BY_SNS_GOOGLE, snsUser);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -216,7 +217,14 @@ div.des {
 		<form name="updateForm" method="post" action="update"
 			enctype="multipart/form-data">
 			<input type="hidden" name="fid" value="${update.fid}"
-				readonly="readonly" />
+				readonly="readonly" /><input type="hidden" id="page" name="page"
+				value="${scri.page}"> <input type="hidden" id="perPageNum"
+				name="perPageNum" value="${scri.perPageNum}"> <input
+				type="hidden" id="searchType" name="searchType"
+				value="${scri.searchType}"> <input type="hidden"
+				id="keyword" name="keyword" value="${scri.keyword}"> <input
+				type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> <input
+				type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
 			<table>
 				<tbody>
 					<tr>
@@ -304,8 +312,10 @@ div.des {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fdes">제품 상세 설명</label><br> <input type="text"
-									id="fdes" name="fdes" class="form-control" rows="10" /><br>
+								<label for="fdes">제품 상세 설명</label><br>
+								<textarea id="fdes" name="fdes" class="form-control" rows="10"
+									title="내용을 입력하세요."> <c:out value="${update.fdes}" /></textarea>
+								<br>
 							</div>
 						</td>
 					</tr>

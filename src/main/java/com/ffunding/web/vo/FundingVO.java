@@ -1,5 +1,7 @@
 package com.ffunding.web.vo;
 
+import java.util.Date;
+
 public class FundingVO {
 	private int fid;
 	private int sell;
@@ -10,9 +12,9 @@ public class FundingVO {
 	private String fname;
 	private int fprice;
 	private int fgoal;
-	private String fdate;
-	private String fstartdate;
-	private String fenddate;
+	private Date fdate;
+	private Date fstartdate;
+	private Date fenddate;
 	private String fimg;
 	private String fimg1;
 	private String fimg2;
@@ -28,7 +30,7 @@ public class FundingVO {
 	}
 
 	public FundingVO(int fid, int sell, int price, int goal, int remain, String fcate, String fname, int fprice,
-			int fgoal, String fdate, String fstartdate, String fenddate, String fimg, String fimg1, String fimg2,
+			int fgoal, Date fdate, Date fstartdate, Date fenddate, String fimg, String fimg1, String fimg2,
 			String fimg3, String fimg4, String fimg5, String fdes, String fmid) {
 		super();
 		this.fid = fid;
@@ -125,27 +127,27 @@ public class FundingVO {
 		this.fgoal = fgoal;
 	}
 
-	public String getFdate() {
+	public Date getFdate() {
 		return fdate;
 	}
 
-	public void setFdate(String fdate) {
+	public void setFdate(Date fdate) {
 		this.fdate = fdate;
 	}
 
-	public String getFstartdate() {
+	public Date getFstartdate() {
 		return fstartdate;
 	}
 
-	public void setFstartdate(String fstartdate) {
+	public void setFstartdate(Date fstartdate) {
 		this.fstartdate = fstartdate;
 	}
 
-	public String getFenddate() {
+	public Date getFenddate() {
 		return fenddate;
 	}
 
-	public void setFenddate(String fenddate) {
+	public void setFenddate(Date fenddate) {
 		this.fenddate = fenddate;
 	}
 

@@ -99,22 +99,6 @@
 		<beans:constructor-arg ref="googleClientSecret" />
 		<beans:constructor-arg ref="googleRedirectUrl" />
 	</beans:bean>
-
-	<beans:bean id="googleConnectionFactory"
-		class="org.springframework.social.google.connect.GoogleConnectionFactory">
-		<beans:constructor-arg
-			value="366740561020-eu0mpgavkmim0e2afm237bjqqjtoertr.apps.googleusercontent.com" />
-		<beans:constructor-arg
-			value="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" />
-	</beans:bean>
-
-	<beans:bean id="googleOAuth2Parameters"
-		class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope"
-			value="https://www.googleapis.com/auth/userinfo.email" />
-		<beans:property name="redirectUri"
-			ref="googleRedirectUrl" />
-	</beans:bean>
 	<!-- END -->
 
 	<websocket:handlers>

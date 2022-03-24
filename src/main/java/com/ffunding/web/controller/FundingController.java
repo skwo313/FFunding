@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ffunding.web.service.FundingService;
+import com.ffunding.web.vo.FundingVO;
 
 @Controller
 @RequestMapping("/funding")
 public class FundingController {
 	@Inject
 	FundingService service;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@GetMapping
 	public String funding(Model model) throws Exception {
 		logger.info("list");
@@ -26,9 +27,12 @@ public class FundingController {
 		
 		return "funding/fundingList.page";
 	}
-
+	
 	@GetMapping("/detail")
-	public String fundingdetail(Model model) throws Exception {
+	public String detailview(FundingVO fundingVO, Model model) throws Exception {
+		logger.info("detailview");
+		model.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
+
 		return "funding/fundingDetail.page";
 	}
 

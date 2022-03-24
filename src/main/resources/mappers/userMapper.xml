@@ -34,4 +34,26 @@
 		#{kakaoid, jdbcType=VARCHAR} )
    </insert>
    
+   <select id="getBySnsGoogle" resultType="com.ffunding.web.vo.MemberVO">
+   	select * from member where googleid = #{googleid}
+   </select>
+   
+   <insert id="joinBySnsGoogle" >
+   	insert into member 
+	values(
+		'G' || funding_member_seq.nextval,
+		'G' || #{googleid}, 
+		#{mname}, 
+		#{mphone, jdbcType=VARCHAR}, 
+		#{memail}, 
+		#{maddress, jdbcType=VARCHAR},
+		#{maddress_detail, jdbcType=VARCHAR}, 
+		0, 
+		'0', 
+		'0', 
+		#{naverid, jdbcType=VARCHAR}, 
+		#{googleid}, 
+		#{kakaoid, jdbcType=VARCHAR} )
+   </insert>
+   
 </mapper>

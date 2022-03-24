@@ -20,5 +20,10 @@ public class FundingDAOImpl implements FundingDAO {
 	public List<FundingVO> list() throws Exception {
 		return sqlSession.selectList("fundingMapper.getlist");
 	}
+	
+	// 제품 상세 페이지
+	public FundingVO viewDetail(int fid) throws Exception{
+		return sqlSession.selectOne("fundingMapper.detailview", fid);
+	}
 
 }
