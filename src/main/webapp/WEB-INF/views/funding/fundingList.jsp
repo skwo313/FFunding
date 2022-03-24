@@ -14,7 +14,6 @@
 	});
 </script>
 <style>
-
 </style>
 <title>FFunding - 펀딩하기</title>
 <div class="slider">
@@ -95,55 +94,30 @@
 					</div>
 
 					<div class="col">
-						<h5 class="title" style="margin-bottom: 2px;"><c:out value="${list.fname}"></c:out></h5>
+						<h5 class="title" style="margin-bottom: 2px; min-height: 48px;">
+							<c:out value="${list.fname}"></c:out>
+						</h5>
 					</div>
 					<div class="col" style="margin-bottom: 5px;">
 						<span class="cate"><c:out value="${list.fcate}"></c:out></span>
 					</div>
 					<div class="col">
 						<div class="progress" style="height: 5px;">
-							<div class="progress-bar w-75" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar" style="width: <c:out value="${list.goal}"></c:out>%" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="col">
 						<div class="row justify-content-between">
 							<div class="col">
-								<span class="percent"><c:out value="${list.goal}"></c:out>%</span><span class="cate"><c:out value="${list.fgoal}"></c:out>원</span>
+								<span class="percent"><c:out value="${list.goal}"></c:out>%</span> <span class="cate"><c:out value="${list.price}"></c:out>원</span>
 							</div>
 							<div class="col" style="text-align: right;">
-								<span class="cate">6일 남음</span>
+								<span class="cate"><c:out value="${list.remain}"></c:out>일 남음</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
-
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
