@@ -153,7 +153,7 @@ div.des {
 						<td>
 							<div class="form-gorup">
 								<label for="fdes">제품 상세 설명</label><br>
-								<textarea id="fdes" name="fdes" class="form-control"
+								<textarea id="fdes" name="fdes" class="form-control" rows="10"
 									readonly="readonly"><c:out value="${read.fdes}" /></textarea>
 								<br>
 							</div>
