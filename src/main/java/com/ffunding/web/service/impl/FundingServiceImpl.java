@@ -21,4 +21,8 @@ public class FundingServiceImpl implements FundingService {
 
 		return dao.list();
 	}
+	// 제품 상세 페이지
+	public FundingVO viewDetail(int fid) throws Exception{
+		return dao.viewDetail(fid);
+	}
 }

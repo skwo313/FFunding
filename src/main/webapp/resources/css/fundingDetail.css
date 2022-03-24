@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+img {
+	object-fit: cover;
+}
+
+.divImg {
+	width: 90%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+.progress-bar {
+	background-color: #00a2a2;
+}
+
+.title {
+	font-size: 36px;
+	font-weight: 700;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	font-weight: 700;
+	letter-spacing: -1px;
+	line-height: 50px;
+	margin-top: 40px;
+}
+
+.d-day {
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.fundimg-des {
+	font-size: 18px;
+	font-weight: 600;
+	padding: 20px 20px;
+}
+
+.info-text {
+	margin-bottom: 40px;
+}
+
+.info-des {
+	font-size: 14px;
+	letter-spacing: -.3px;
+	min-width: 70px;
+	line-height: 30px;
+	display: inline-block;
+	color: #969696;
+}
+
+.butn {
+	background-color: #00a2a2;
+	color: white;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+strong {
+	padding-right: 5px;
+	font-size: 24px;
+}
+
+.cale {
+	text-align: center;
+}
+
+.date {
+	font-size: 14px;
+	font-weight: 700;
+	color: #002fa3;
+}
