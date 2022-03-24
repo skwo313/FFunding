@@ -59,7 +59,6 @@ public class MemberController {
 	 * 
 	 * @Autowired private OAuth2Parameters googleOAuth2Parameters;
 	 */
-	@Autowired(required=false)
 	private LocaleResolver localeResolver;
 	
 	@ModelAttribute("member")

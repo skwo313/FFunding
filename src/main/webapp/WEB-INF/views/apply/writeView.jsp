@@ -237,6 +237,12 @@ div.des {
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>
 									<option value="뷰티">뷰티</option>
+									<option value="푸드">푸드</option>
+									<option value="홈·리빙">홈·리빙</option>
+									<option value="여행·레저">여행·레저</option>
+									<option value="스포츠·모빌리티">스포츠·모빌리티</option>
+									<option value="캐릭터·굿즈">캐릭터·굿즈</option>
+									<option value="게임·취미">게임·취미</option>
 								</select><br>
 							</div>
 						</td>
@@ -292,8 +298,11 @@ div.des {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fdes">제품 상세 설명</label><br> <input type="text"
-									id="fdes" name="fdes" class="form-control" rows="10" /><br>
+								<label for="fdes">제품 상세 설명</label><br>
+								<textarea id="fdes" name="fdes" class="form-control" rows="10"
+									title="내용을 입력하세요."></textarea>
+
+								<br>
 							</div>
 						</td>
 					</tr>
@@ -310,22 +319,24 @@ div.des {
 
 					<tr>
 						<td><input type="file" name="file">
-						<div class="des">첨부할 사진을 1개만 올려주세요.(*PNG 권장)</div></td>
+							<div class="des">첨부할 사진을 1개만 올려주세요.(*PNG 권장)</div></td>
 					</tr>
 
 
 					<tr>
 						<td>
 							<div class="c">
-								<br><input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
-									개인 정보 수집 동의 </label><br><br>
+								<br>
+								<input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
+									개인 정보 수집 동의 </label><br>
+								<br>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<button class="write_btn" type="submit" id="write_btn"
-								style="background-color: #58FAF4; color: white; border: 0; width: 250px; height: 35px; font-size:40;">작성</button>
+								style="background-color: #58FAF4; color: white; border: 0; width: 250px; height: 35px; font-size: 40;">작성</button>
 						</td>
 					</tr>
 				</tbody>

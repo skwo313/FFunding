@@ -38,7 +38,7 @@
 	                        <div class="col mr-2">
 	                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
 	                                Stand By</div>
-	                            <div class="h5 mb-0 font-weight-bold text-gray-800">12개</div>
+	                            <div class="h5 mb-0 font-weight-bold text-gray-800">${applyTot}개</div>
 	                        </div>
 	                        <div class="col-auto">
 	                            <i class="bi bi-patch-question-fill fa-2x text-gray-300"></i>
@@ -87,44 +87,23 @@
 	
 	    <!-- Content Row -->
 	
-	    <div class="row">
-	
-	        <!-- Area Chart -->
-	        <div class="col-xl-6 col-lg-4">
-	            <div class="card shadow mb-4">
-	                <!-- Card Header - Dropdown -->
-	                <div
-	                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-	                    <h6 class="m-0 font-weight-bold text-primary">Funding Approval Count</h6>
-	                </div>
-	                <!-- Card Body -->
-	                <div class="card-body">
-	                    <div class="chart-area">
-	                        <canvas id="myAreaChart"></canvas>
-	                    </div>
-	                </div>
+	    <!-- Area Chart -->
+	    <div class="nopadding col-xl-12 col-lg-4">
+	        <div class="card shadow mb-4">
+	            <!-- Card Header - Dropdown -->
+	            <div
+	                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+	                <h6 class="m-0 font-weight-bold text-primary">Visitor</h6>
 	            </div>
-	        </div>
-	        
-	        <!-- Area Chart -->
-	        <div class="col-xl-6 col-lg-4">
-	            <div class="card shadow mb-4">
-	                <!-- Card Header - Dropdown -->
-	                <div
-	                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-	                    <h6 class="m-0 font-weight-bold text-primary">Visitor</h6>
-	                </div>
-	                <!-- Card Body -->
-	                <div class="card-body">
-	                    <div class="chart-area">
-	                        <canvas id="myAreaChart2"></canvas>
-	                    </div>
+	            <!-- Card Body -->
+	            <div class="card-body">
+	                <div class="chart-area">
+	                    <canvas id="myAreaChart2"></canvas>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
-	      
-	       
+	    
 	    <div class="row">
 	    	<!-- Bar Chart -->
 	    	<div class="col-xl-6 col-lg-4">
@@ -139,39 +118,23 @@
 	                </div>
 	            </div>
 	        </div>
-	    
-	        <!-- Pie Chart -->
-	        <div class="col-xl-4 col-lg-5">
-	            <div class="card shadow mb-4">
-	                <!-- Card Header - Dropdown -->
-	                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-	                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-	                    <div class="dropdown no-arrow">
-	                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-	                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-	                        </a>
-	                    </div>
-	                </div>
-	                <!-- Card Body -->
-	                <div class="card-body">
-	                    <div class="chart-pie pt-4 pb-2">
-	                        <canvas id="myPieChart"></canvas>
-	                    </div>
-	                    <div class="mt-4 text-center small">
-	                        <span class="mr-2">
-	                            <i class="fas fa-circle text-primary"></i> Direct
-	                        </span>
-	                        <span class="mr-2">
-	                            <i class="fas fa-circle text-success"></i> Social
-	                        </span>
-	                        <span class="mr-2">
-	                            <i class="fas fa-circle text-info"></i> Referral
-	                        </span>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+	        
+	    	<!-- Area Chart -->
+		    <div class="col-xl-6 col-lg-4">
+		        <div class="card shadow mb-4">
+		            <!-- Card Header - Dropdown -->
+		            <div
+		                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+		                <h6 class="m-0 font-weight-bold text-primary">Funding Approval Count</h6>
+		            </div>
+		            <!-- Card Body -->
+		            <div class="card-body">
+		                <div class="chart-area">
+		                    <canvas id="myAreaChart"></canvas>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 		</div>
 	<!-- /.container-fluid -->
  	</div>
@@ -206,29 +169,34 @@
 	</div>
 </div>
 <script type="text/javascript">
-$(".chat-box").hide();
-$(".chatbox-open").click(function() {
-	$(".chat-box").show();
-	$(".chatbox-open").hide();
-	sock = new SockJS("http://localhost:7080/ffunding/echo/");
-	sock.onopen = onOpen;
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-});
-$(".chatbox-close").click(function() {
+$(document).ready(function() {
 	$(".chat-box").hide();
-	$(".chatbox-open").show();
-	sock.onclose
+	$(".chatbox-open").click(function() {
+		$(".chat-box").show();
+		$(".chatbox-open").hide();
+		sock = new SockJS("http://localhost:7080/ffunding/echo/");
+		sock.onopen = onOpen;
+		sock.onmessage = onMessage;
+		sock.onclose = onClose;
+	});
+	$(".chatbox-close").click(function() {
+		$(".chat-box").hide();
+		$(".chatbox-open").show();
+		sock.send("${member.mid}님 연결끊김");
+		sock.close();
+		
 
+	});
+	$("#chat-submit").click(function() {
+		sendMessage();
+		$('#chat-input').val('');
+	});
+	$("#chat-input").keyup(function(e) {
+		if (e.keyCode == 13) {sendMessage();}
+		
+	});
 });
-$("#chat-submit").click(function() {
 
-	sendMessage();
-	$('#chat-input').val('');
-});
-$("#chat-input").keyup(function() {
-	if (event.keyCode == 13) sendMessage();
-});
 function onOpen(e) {
 	sock.send("${member.mid}님 입장하셨습니다");
 }
@@ -271,13 +239,14 @@ function onMessage(e) {
 		str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 		$(".chat-logs").append(str);
 	}
-
+	var mx = parseInt($(".chat-logs").height())
+	
+	$(".chat-logs").scrollTop(mx);
 }
 // 서버와 연결을 끊었을 때
 function onClose(e) {
-	$(".chat-logs").append("${member.mid}님연결 끊김");
+	sock.send("${member.mid}님 연결끊김");
 }
-
 </script>
     <!-- Page level plugins -->
     <script src="${path}/vendor/chart.js/Chart.min.js"></script>
@@ -286,4 +255,3 @@ function onClose(e) {
     <script src="${path}/js/demo/chart-area-demo.js"></script>
     <script src="${path}/js/demo/chart-area-demo2.js"></script>
     <script src="${path}/js/demo/chart-bar-demo.js"></script>
-    <script src="${path}/js/demo/chart-pie-demo.js"></script>

@@ -1,8 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bxslider.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fundingList.css">
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link rel="stylesheet" href="${path}/css/bxslider.css">
+<link rel="stylesheet" href="${path}/css/fundingList.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
@@ -14,19 +15,18 @@
 	});
 </script>
 <style>
-
 </style>
 <title>FFunding - 펀딩하기</title>
 <div class="slider">
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner01.jpg">
+		<img alt="" src="${path}/img/banner01.jpg">
 		<div class="imgText">
 			<p class="imgDes">머리빠짐을 절반으로</p>
 			<p class="imgDes">심플리오 비오틴 탈모앰플</p>
 		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner02.png">
+		<img alt="" src="${path}/img/banner02.png">
 		<div class="imgText">
 			<p class="imgDes">너도 이제 인싸!!</p>
 			<p class="imgDes">버킷햇!</p>
@@ -34,28 +34,28 @@
 
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner03.png">
+		<img alt="" src="${path}/img/banner03.png">
 		<div class="imgText">
 			<p class="imgDes">남산에서 한라산까지</p>
 			<p class="imgDes">등산스텝 레벨업!</p>
 		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner04.jpg">
+		<img alt="" src="${path}/img/banner04.jpg">
 		<div class="imgText">
 			<p class="imgDes">HAYAN 친환경 칫솔로</p>
 			<p class="imgDes">미세플라스틱 없는 양치해요</p>
 		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner05.jpg">
+		<img alt="" src="${path}/img/banner05.jpg">
 		<div class="imgText">
 			<p class="imgDes">오늘 알림 신청하면</p>
 			<p class="imgDes">콜라겐 아이크림 전용 쿠폰</p>
 		</div>
 	</div>
 	<div>
-		<img alt="" src="${pageContext.request.contextPath}/img/banner06.png">
+		<img alt="" src="${path}/img/banner06.png">
 		<div class="imgText">
 			<p class="imgDes">먼저 사용해 보세요</p>
 			<p class="imgDes">무료 체험단 이벤트</p>
@@ -89,61 +89,39 @@
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div class="row row-cols-3">
 			<c:forEach items="${list}" var="list" varStatus="vs">
+
 				<div class="col" style="margin: 8px 0px;">
 					<div class="col" style="margin-bottom: 10px">
-						<img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
+						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
+						</a>
 					</div>
 
 					<div class="col">
-						<h5 class="title" style="margin-bottom: 2px;"><c:out value="${list.fname}"></c:out></h5>
+						<h5 class="title" style="margin-bottom: 2px; min-height: 48px;">
+							<c:out value="${list.fname}"></c:out>
+						</h5>
 					</div>
 					<div class="col" style="margin-bottom: 5px;">
 						<span class="cate"><c:out value="${list.fcate}"></c:out></span>
 					</div>
 					<div class="col">
 						<div class="progress" style="height: 5px;">
-							<div class="progress-bar w-75" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar" style="width: <c:out value="${list.goal}"></c:out>%" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="col">
 						<div class="row justify-content-between">
 							<div class="col">
-								<span class="percent"><c:out value="${list.goal}"></c:out>%</span><span class="cate"><c:out value="${list.fgoal}"></c:out>원</span>
+								<span class="percent"><c:out value="${list.goal}"></c:out>%</span> <span class="cate"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.price}" />원</span>
 							</div>
 							<div class="col" style="text-align: right;">
-								<span class="cate">6일 남음</span>
+								<span class="cate"><c:out value="${list.remain}"></c:out>일 남음</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</c:forEach>
-			<div class="col" style="margin: 8px 0px;">
-				<div class="col" style="margin-bottom: 10px">
-					<img alt="" class="divImg" src="${pageContext.request.contextPath}/img/fundingsample.jpg">
-				</div>
 
-				<div class="col">
-					<h5 class="title" style="margin-bottom: 2px;">2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트 2줄 이상 제목 테스트</h5>
-				</div>
-				<div class="col" style="margin-bottom: 5px;">
-					<span class="cate">카테고리</span>
-				</div>
-				<div class="col">
-					<div class="progress" style="height: 5px;">
-						<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="row justify-content-between">
-						<div class="col">
-							<span class="percent">230%</span><span class="cate">49,000,000원</span>
-						</div>
-						<div class="col" style="text-align: right;">
-							<span class="cate">6일 남음</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </section>

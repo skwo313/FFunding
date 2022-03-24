@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -216,7 +217,14 @@ div.des {
 		<form name="updateForm" method="post" action="update"
 			enctype="multipart/form-data">
 			<input type="hidden" name="fid" value="${update.fid}"
-				readonly="readonly" />
+				readonly="readonly" /><input type="hidden" id="page" name="page"
+				value="${scri.page}"> <input type="hidden" id="perPageNum"
+				name="perPageNum" value="${scri.perPageNum}"> <input
+				type="hidden" id="searchType" name="searchType"
+				value="${scri.searchType}"> <input type="hidden"
+				id="keyword" name="keyword" value="${scri.keyword}"> <input
+				type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> <input
+				type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
 			<table>
 				<tbody>
 					<tr>
@@ -239,6 +247,12 @@ div.des {
 									<option value="테크·가전">테크·가전</option>
 									<option value="패션·잡화">패션·잡화</option>
 									<option value="뷰티">뷰티</option>
+									<option value="푸드">푸드</option>
+									<option value="홈·리빙">홈·리빙</option>
+									<option value="여행·레저">여행·레저</option>
+									<option value="스포츠·모빌리티">스포츠·모빌리티</option>
+									<option value="캐릭터·굿즈">캐릭터·굿즈</option>
+									<option value="게임·취미">게임·취미</option>
 								</select><br>
 
 							</div>
@@ -298,8 +312,10 @@ div.des {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fdes">제품 상세 설명</label><br> <input type="text"
-									id="fdes" name="fdes" class="form-control" rows="10" /><br>
+								<label for="fdes">제품 상세 설명</label><br>
+								<textarea id="fdes" name="fdes" class="form-control" rows="10"
+									title="내용을 입력하세요."> <c:out value="${update.fdes}" /></textarea>
+								<br>
 							</div>
 						</td>
 					</tr>

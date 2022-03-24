@@ -4,7 +4,6 @@
 	<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 	
 	    <!-- Sidebar - Brand -->
-	    <div>
 	    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/ffunding/manager/dashboard">
 	        <div class="sidebar-brand-icon">
 	           <img src="${pageContext.request.contextPath}/img/logo1.png" alt="로고오류"/>
@@ -13,7 +12,6 @@
 	           <img src="${pageContext.request.contextPath}/img/logo2.png" alt="로고오류"/>
 	        </div>
 	    </a>
-	    </div>
 	
 	    <!-- Divider -->
 	    <hr class="sidebar-divider my-0">
@@ -22,7 +20,8 @@
 	    <li class="nav-item ${active eq 'dashboard'?'active':''}">
 	        <a class="nav-link" href="/ffunding/manager/dashboard">
 	            <i class="fas fa-fw fa-tachometer-alt"></i>
-	            <span>Dashboard</span></a>
+	            <span>Dashboard</span>
+	        </a>
 	    </li>
 	
 	    <!-- Divider -->
@@ -36,7 +35,7 @@
 	    <!-- Nav Item - Pages Collapse Menu -->
 	    <li class="nav-item ${active eq 'member'?'active':''}">
 	        <a class="nav-link" href="/ffunding/manager/member" >
-	            <i class="fas fa-user fa-cog"></i>
+	            <i class="fas fa-user"></i>
 	            <span>Member</span>
 	        </a>
 	    </li>

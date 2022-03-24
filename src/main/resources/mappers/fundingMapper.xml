@@ -4,12 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fundingMapper">
 
-	<select id="getlist"
-		resultType="com.ffunding.web.vo.FundingVO">
+	<select id="getlist" resultType="com.ffunding.web.vo.FundingVO">
 		SELECT A.FID,
 		COUNT(*) AS sell ,
+		SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION) AS price,
 		ROUND( ((SUM(B.FO_PRICE)+
 		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
+		ROUND(A.FENDDATE - SYSDATE) AS remain ,
+		A.FCATE ,
+		A.FNAME ,
+		A.FPRICE ,
+		A.FGOAL ,
+		A.FDATE ,
+		A.FSTARTDATE ,
+		A.FENDDATE ,
+		A.FIMG ,
+		A.FIMG1 ,
+		A.FIMG2 ,
+		A.FIMG3 ,
+		A.FIMG4 ,
+		A.FIMG5 ,
+		A.FDES ,
+		A.MID
+		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
+		WHERE A.FID = B.FID
+		GROUP BY A.FID,
 		A.FNAME ,
 		A.FPRICE ,
 		A.FGOAL ,
@@ -25,24 +45,92 @@
 		A.FIMG5 ,
 		A.FDES ,
 		A.MID
+		ORDER BY sell DESC
+	</select>
+<!-- 	<select id="getcatelist" parameterType="String" resultType="com.ffunding.web.vo.FundingVO">
+		SELECT A.FID,
+		COUNT(*) AS sell ,
+		SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION) AS price,
+		ROUND( ((SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
+		ROUND(A.FENDDATE - SYSDATE) AS remain ,
+		A.FCATE ,
+		A.FNAME ,
+		A.FPRICE ,
+		A.FGOAL ,
+		A.FDATE ,
+		A.FSTARTDATE ,
+		A.FENDDATE ,
+		A.FIMG ,
+		A.FIMG1 ,
+		A.FIMG2 ,
+		A.FIMG3 ,
+		A.FIMG4 ,
+		A.FIMG5 ,
+		A.FDES ,
+		A.MID
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
-		WHERE A.FID = B.FID
+		WHERE A.FID = B.FID AND A.FCATE = #{fcate}
 		GROUP BY A.FID,
-					A.FNAME ,
-					A.FPRICE ,
-					A.FGOAL ,
-					A.FDATE ,
-					A.FSTARTDATE ,
-					A.FENDDATE ,
-					A.FCATE ,
-					A.FIMG ,
-					A.FIMG1 ,
-					A.FIMG2 ,
-					A.FIMG3 ,
-					A.FIMG4 ,
-					A.FIMG5 ,
-					A.FDES ,
-					A.MID
+		A.FNAME ,
+		A.FPRICE ,
+		A.FGOAL ,
+		A.FDATE ,
+		A.FSTARTDATE ,
+		A.FENDDATE ,
+		A.FCATE ,
+		A.FIMG ,
+		A.FIMG1 ,
+		A.FIMG2 ,
+		A.FIMG3 ,
+		A.FIMG4 ,
+		A.FIMG5 ,
+		A.FDES ,
+		A.MID
+		ORDER BY sell DESC
+	</select> -->
+	<select id="detailview" parameterType="int" resultType="com.ffunding.web.vo.FundingVO">
+		SELECT A.FID,
+		COUNT(*) AS sell ,
+		SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION) AS price,
+		ROUND( ((SUM(B.FO_PRICE)+
+		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
+		ROUND(A.FENDDATE - SYSDATE) AS remain ,
+		A.FCATE ,
+		A.FNAME ,
+		A.FPRICE ,
+		A.FGOAL ,
+		A.FDATE ,
+		A.FSTARTDATE ,
+		A.FENDDATE ,
+		A.FIMG ,
+		A.FIMG1 ,
+		A.FIMG2 ,
+		A.FIMG3 ,
+		A.FIMG4 ,
+		A.FIMG5 ,
+		A.FDES ,
+		A.MID
+		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
+		WHERE A.FID = B.FID AND A.FID = #{fid}
+		GROUP BY A.FID,
+		A.FNAME ,
+		A.FPRICE ,
+		A.FGOAL ,
+		A.FDATE ,
+		A.FSTARTDATE ,
+		A.FENDDATE ,
+		A.FCATE ,
+		A.FIMG ,
+		A.FIMG1 ,
+		A.FIMG2 ,
+		A.FIMG3 ,
+		A.FIMG4 ,
+		A.FIMG5 ,
+		A.FDES ,
+		A.MID
 		ORDER BY sell DESC
 	</select>
 </mapper>
