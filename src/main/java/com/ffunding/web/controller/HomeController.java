@@ -25,7 +25,6 @@ public class HomeController {
 	public String home(Locale locale, Model model) throws Exception {
 
 		logger.info("Welcome home! The client locale is {}.", locale);
-
 		model.addAttribute("sellRank", service.sellRank());
 		model.addAttribute("goalRank", service.goalRank());
 		model.addAttribute("expected", service.expected());

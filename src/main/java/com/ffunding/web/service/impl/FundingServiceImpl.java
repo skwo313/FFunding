@@ -1,5 +1,6 @@
 package com.ffunding.web.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,9 +18,9 @@ public class FundingServiceImpl implements FundingService {
 
 	// 펀딩 목록 조회
 	@Override
-	public List<FundingVO> list() throws Exception {
-
-		return dao.list();
+	public List<FundingVO> list(HashMap<String, Object> hashMap) throws Exception {
+		System.out.println(hashMap);
+		return dao.list(hashMap);
 	}
 	// 제품 상세 페이지
 	public FundingVO viewDetail(int fid) throws Exception{
