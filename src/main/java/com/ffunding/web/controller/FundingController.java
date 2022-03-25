@@ -3,6 +3,7 @@ package com.ffunding.web.controller;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +26,14 @@ public class FundingController {
 
 	// 펀딩하기 목록 조회
 	@GetMapping
-	public String funding(@RequestParam(value = "cate", required = false) String cate,
+	public String funding(HttpServletRequest request,
+			@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "sort", required = false) String sort, Model model) throws Exception {
 		logger.info("list");
-		
+		request.setCharacterEncoding("UTF-8");
+
 		HashMap<String, Object> hashMap = new HashMap<>();
-		hashMap.put("cate", cate);
+		hashMap.put("category", category);
 		hashMap.put("sort", sort);
 		model.addAttribute("list", service.list(hashMap));
 		

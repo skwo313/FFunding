@@ -29,8 +29,8 @@
 		A.MID
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
 		WHERE A.FID = B.FID
-		<if test="cate!=null and cate!=''">
-    	AND A.FCATE = #{CATE}
+		<if test="category!=null">
+    	AND A.FCATE = #{category}
     	</if>
 		GROUP BY A.FID,
 		A.FNAME ,
@@ -48,8 +48,8 @@
 		A.FIMG5 ,
 		A.FDES ,
 		A.MID
-		<if test="sort != null and sort!=''">
-    	ORDER BY #{sort} DESC
+		<if test="sort != null">
+    	ORDER BY ${sort} DESC
     	</if>
 		
 	</select>

@@ -19,7 +19,8 @@ public class FundingDAOImpl implements FundingDAO {
 	// 펀딩목록
 	@Override
 	public List<FundingVO> list(HashMap<String, Object> hashMap) throws Exception {
-		return sqlSession.selectList("fundingMapper.getlist",hashMap);
+		System.out.println(hashMap);
+		return sqlSession.selectList("fundingMapper.getlist", hashMap);
 	}
 	
 	// 제품 상세 페이지
