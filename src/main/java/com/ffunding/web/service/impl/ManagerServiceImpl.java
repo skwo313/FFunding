@@ -46,76 +46,52 @@ public class ManagerServiceImpl implements ManagerService {
 	@Value("${insPath}")
 	private String insPath;
 	
+	//관리자
 	@Override
-	public String sendMail(MailVO mail) throws Exception {
-		String msg = "successful message transmission!";
-		//이메일을 전송하기 위해 MimeMessage 선언
-		MimeMessage mmsg = sender.createMimeMessage();
-		//파일을 첨부하여 전송할 수 있도록 MimeMessageHelper 선언
-		MimeMessageHelper message = new MimeMessageHelper(mmsg, true, "UTF-8");
-		
-		//getRecipientck 값에 따라 직접 입력한 이메일, 모든회원, 판매자만으로 수신인 설정
-		List<String> recipientList = new ArrayList<String>();
-		if(mail.getRecipientck()==0) {
-			mail.setRecipients(mail.getRecipient().trim().split(",", -1));
-		} else if(mail.getRecipientck()==1) {
-			recipientList = dao.memberEmail();
-			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
-		} else if(mail.getRecipientck()==2) {
-			recipientList = dao.sellerEmail();
-			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
-		}
-		
-		InternetAddress[] toArr = new InternetAddress[mail.getRecipients().length];
-		
-		for(int i=0; i<mail.getRecipients().length; i++) {
-			toArr[i] = new InternetAddress(mail.getRecipients()[i]);
-		}
-		
-		try {
-			//이메일 제목
-			message.setSubject(mail.getTitle());
-			//수신인
-			message.setTo(toArr);
-			//이메일 내용
-			message.setText(mail.getContent());
-			
-			//만약 파일을 첨부하고
-			if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
-				for(MultipartFile file : mail.getAttach()) {
-					String fname = file.getOriginalFilename();
-					//파일이 존재하면
-					if(fname!=null && !fname.equals("")) {
-						//파일 생성
-						File newFile = new File(mailPath + fname);
-						//파일 업로드
-						file.transferTo(newFile);
-						//업로드된 파일 넣기
-						message.addAttachment(fname, newFile);
-					}
-				}
-			}
-			//이메일 전송
-			sender.send(mmsg);
-		} catch (MessagingException e) {
-			msg = "message transmission failure!<br>Please check again.";
-		} catch (Exception e) {
-			msg = "There is an error in the attached file.<br>Please check again";
-		}
-		//이메일 전송 완료 후, 만약 파일을 첨부했었고
-		if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
-			for(MultipartFile file : mail.getAttach()) {
-				String fname = file.getOriginalFilename();
-				//파일이 존재하면
-				if(fname!=null && !fname.equals("")) {
-					//해당 파일을 생성한 후
-					File delFile = new File(mailPath + fname);
-					//삭제 처리
-					delFile.delete();
-				}
-			}
-		}
-		return msg;
+	public List<String> managerList() throws Exception {
+		return dao.managerList();
+	}
+	
+	//총 회원수
+	@Override
+	public int memberCnt() throws Exception {
+		return dao.memberCnt();
+	}
+	
+	//일반회원수
+	@Override
+	public int generalCnt() throws Exception {
+		return dao.generalCnt();
+	}
+	
+	//판매자수
+	@Override
+	public int sellerCnt() throws Exception {
+		return dao.sellerCnt();
+	}
+	
+	//펀딩신청 총 게시물수
+	@Override
+	public int applyCnt() throws Exception {
+		return dao.applyCnt();
+	}
+	
+	//펀딩예정 총 게시물수
+	@Override
+	public int expectCnt() throws Exception {
+		return dao.expectCnt();
+	}
+	
+	//펀딩진행중 총 게시물수
+	@Override
+	public int progressCnt() throws Exception {
+		return dao.progressCnt();
+	}
+	
+	//펀딩신청 월별 건수
+	@Override
+	public int applyMonthCnt(int month) throws Exception {
+		return dao.applyMonthCnt(month);
 	}
 	
 	//회원 리스트
@@ -153,24 +129,6 @@ public class ManagerServiceImpl implements ManagerService {
 			paging.setType("id");
 		}
 		return dao.memberList(paging);
-	}
-	
-	//총 회원수
-	@Override
-	public int memberCnt() throws Exception {
-		return dao.memberCnt();
-	}
-	
-	//일반회원수
-	@Override
-	public int generalCnt() throws Exception {
-		return dao.generalCnt();
-	}
-	
-	//판매자수
-	@Override
-	public int sellerCnt() throws Exception {
-		return dao.sellerCnt();
 	}
 	
 	//회원 상세정보
@@ -220,12 +178,6 @@ public class ManagerServiceImpl implements ManagerService {
 			paging.setSort("new");
 		}
 		return dao.applyList(paging);
-	}
-	
-	//펀딩신청 총 게시물수
-	@Override
-	public int applyCnt() throws Exception {
-		return dao.applyCnt();
 	}
 	
 	//펀딩신청 상세정보
@@ -300,4 +252,76 @@ public class ManagerServiceImpl implements ManagerService {
 		dao.applyDel(funding.getFid());
 	}
 	
+	//메일전송
+	@Override
+	public String sendMail(MailVO mail) throws Exception {
+		String msg = "successful message transmission!";
+		//이메일을 전송하기 위해 MimeMessage 선언
+		MimeMessage mmsg = sender.createMimeMessage();
+		//파일을 첨부하여 전송할 수 있도록 MimeMessageHelper 선언
+		MimeMessageHelper message = new MimeMessageHelper(mmsg, true, "UTF-8");
+		
+		//getRecipientck 값에 따라 직접 입력한 이메일, 모든회원, 판매자만으로 수신인 설정
+		List<String> recipientList = new ArrayList<String>();
+		if(mail.getRecipientck()==0) {
+			mail.setRecipients(mail.getRecipient().trim().split(",", -1));
+		} else if(mail.getRecipientck()==1) {
+			recipientList = dao.memberEmail();
+			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
+		} else if(mail.getRecipientck()==2) {
+			recipientList = dao.sellerEmail();
+			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
+		}
+		
+		InternetAddress[] toArr = new InternetAddress[mail.getRecipients().length];
+		
+		for(int i=0; i<mail.getRecipients().length; i++) {
+			toArr[i] = new InternetAddress(mail.getRecipients()[i]);
+		}
+		
+		try {
+			//이메일 제목
+			message.setSubject(mail.getTitle());
+			//수신인
+			message.setTo(toArr);
+			//이메일 내용
+			message.setText(mail.getContent());
+			
+			//만약 파일을 첨부하고
+			if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
+				for(MultipartFile file : mail.getAttach()) {
+					String fname = file.getOriginalFilename();
+					//파일이 존재하면
+					if(fname!=null && !fname.equals("")) {
+						//파일 생성
+						File newFile = new File(mailPath + fname);
+						//파일 업로드
+						file.transferTo(newFile);
+						//업로드된 파일 넣기
+						message.addAttachment(fname, newFile);
+					}
+				}
+			}
+			//이메일 전송
+			sender.send(mmsg);
+		} catch (MessagingException e) {
+			msg = "message transmission failure!<br>Please check again.";
+		} catch (Exception e) {
+			msg = "There is an error in the attached file.<br>Please check again";
+		}
+		//이메일 전송 완료 후, 만약 파일을 첨부했었고
+		if(mail.getAttach().size()>0 && !mail.getAttach().get(0).getOriginalFilename().equals("")) {
+			for(MultipartFile file : mail.getAttach()) {
+				String fname = file.getOriginalFilename();
+				//파일이 존재하면
+				if(fname!=null && !fname.equals("")) {
+					//해당 파일을 생성한 후
+					File delFile = new File(mailPath + fname);
+					//삭제 처리
+					delFile.delete();
+				}
+			}
+		}
+		return msg;
+	}
 }

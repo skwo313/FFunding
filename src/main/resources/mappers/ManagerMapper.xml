@@ -9,7 +9,61 @@
 		FROM member
 		WHERE adminck=1
 	</select>
-
+	
+	<!-- 총 회원수 -->
+	<select id="memberCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE adminck=0
+	</select>
+	
+	<!-- 일반회원수 -->
+	<select id="generalCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE sellerck=0
+		AND adminck=0
+	</select>
+	
+	<!-- 판매자수 -->
+	<select id="sellerCnt" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE sellerck=1
+		AND adminck=0
+	</select>
+	
+	<!-- 펀딩신청 총 게시물수 -->
+	<select id="applyCnt" resultType="int">
+		SELECT count(*)
+		FROM FUNDING_APPLY
+	</select>
+	
+	<!-- 펀딩예정 총 게시물수 -->
+	<select id="expectCnt" resultType="int">
+	<![CDATA[
+		SELECT count(*)
+		FROM FUNDING_PRODUCT
+		WHERE to_char(sysdate, 'yymmdd')<to_char(fstartdate, 'yymmdd')
+	]]>
+	</select>
+	
+	<!-- 펀딩진행중 총 게시물수 -->
+	<select id="progressCnt" resultType="int">
+	<![CDATA[
+		SELECT count(*)
+		FROM FUNDING_PRODUCT
+		WHERE to_char(fstartdate, 'yymmdd')<to_char(sysdate, 'yymmdd') AND to_char(sysdate, 'yymmdd')<to_char(fenddate, 'yymmdd')
+	]]>
+	</select>
+	
+	<!-- 펀딩신청 월별 건수 -->
+	<select id="applyMonthCnt" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM FUNDING_PRODUCT
+		WHERE to_char(sysdate, 'yy')=to_char(FSTARTDATE, 'yy') AND to_char(FSTARTDATE, 'mm')=#{month}
+	</select>
+	
 	<!-- 회원 리스트 및 페이징 처리 sql 공통부분 -->
 	<sql id="search">
 		<if test="type!=null and type!=''">
@@ -46,27 +100,6 @@
 		<include refid="search"></include>
 	</select>
 	
-	<!-- 총 회원수 -->
-	<select id="memberCnt" resultType="int">
-		SELECT count(*)
-		FROM member
-		WHERE adminck=0
-	</select>
-	
-	<!-- 일반회원수 -->
-	<select id="generalCnt" resultType="int">
-		SELECT count(*)
-		FROM member
-		WHERE sellerck=0
-	</select>
-	
-	<!-- 판매자수 -->
-	<select id="sellerCnt" resultType="int">
-		SELECT count(*)
-		FROM member
-		WHERE sellerck=1
-	</select>
-	
 	<!-- 회원 상세정보 -->
 	<select id="memberDetail" parameterType="String" resultType="com.ffunding.web.vo.MemberVO">
 		SELECT *
@@ -88,21 +121,6 @@
 		WHERE mid=#{mid}
 	</update>
 	
-	<!-- 모든 회원의 이메일 -->
-	<select id="memberEmail" resultType="String">
-		SELECT memail
-		FROM member
-		WHERE memail IS NOT NULL
-	</select>
-	
-	<!-- 판매자 회원의 이메일 -->
-	<select id="sellerEmail" resultType="String">
-		SELECT memail
-		FROM member
-		WHERE sellerck=1
-		AND memail IS NOT NULL
-	</select>
-	
 	<!-- 펀딩신청 리스트 -->
 	<select id="applyList" parameterType="com.ffunding.web.vo.ApplyPagingVO" resultType="com.ffunding.web.vo.ApplyViewVO">
 		SELECT *
@@ -123,12 +141,6 @@
 			) f
 		)
 		WHERE cnt BETWEEN #{start} AND #{end}
-	</select>
-	
-	<!-- 펀딩신청 총 게시물수 -->
-	<select id="applyCnt" resultType="int">
-		SELECT count(*)
-		FROM FUNDING_APPLY
 	</select>
 	
 	<!-- 펀딩신청 상세정보 -->
@@ -180,4 +192,19 @@
 			#{fmid}
 		)
 	</insert>
+	
+	<!-- 모든 회원의 이메일 -->
+	<select id="memberEmail" resultType="String">
+		SELECT memail
+		FROM member
+		WHERE memail IS NOT NULL
+	</select>
+	
+	<!-- 판매자 회원의 이메일 -->
+	<select id="sellerEmail" resultType="String">
+		SELECT memail
+		FROM member
+		WHERE sellerck=1
+		AND memail IS NOT NULL
+	</select>
 </mapper>

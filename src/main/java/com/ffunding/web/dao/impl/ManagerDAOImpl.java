@@ -25,18 +25,6 @@ public class ManagerDAOImpl implements ManagerDAO {
 		return session.selectList("managerMapper.managerList");
 	}
 	
-	//회원 리스트
-	@Override
-	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception {
-		return session.selectList("managerMapper.memberList", paging);
-	}
-	
-	//회원 검색 결과 총 회원수
-	@Override
-	public int memberSearchCnt(MemberPagingVO paging) throws Exception {
-		return session.selectOne("managerMapper.memberSearchCnt", paging);
-	}
-	
 	//총 회원수
 	@Override
 	public int memberCnt() throws Exception {
@@ -55,6 +43,42 @@ public class ManagerDAOImpl implements ManagerDAO {
 		return session.selectOne("managerMapper.sellerCnt");
 	}
 	
+	//펀딩신청 총 게시물수
+	@Override
+	public int applyCnt() throws Exception {
+		return session.selectOne("managerMapper.applyCnt");
+	}
+	
+	//펀딩예정 총 게시물수
+	@Override
+	public int expectCnt() throws Exception {
+		return session.selectOne("managerMapper.expectCnt");
+	}
+	
+	//펀딩진행중 총 게시물수
+	@Override
+	public int progressCnt() throws Exception {
+		return session.selectOne("managerMapper.progressCnt");
+	}
+	
+	//펀딩신청 월별 건수
+	@Override
+	public int applyMonthCnt(int month) throws Exception {
+		return session.selectOne("managerMapper.applyMonthCnt", month);
+	}
+	
+	//회원 리스트
+	@Override
+	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception {
+		return session.selectList("managerMapper.memberList", paging);
+	}
+	
+	//회원 검색 결과 총 회원수
+	@Override
+	public int memberSearchCnt(MemberPagingVO paging) throws Exception {
+		return session.selectOne("managerMapper.memberSearchCnt", paging);
+	}
+	
 	//회원 상세정보
 	@Override
 	public MemberVO memberDetail(String mid) throws Exception {
@@ -67,28 +91,10 @@ public class ManagerDAOImpl implements ManagerDAO {
 		session.update("managerMapper.memberDetailUpdate", upt);
 	}
 	
-	//모든 회원의 이메일
-	@Override
-	public List<String> memberEmail() throws Exception {
-		return session.selectList("managerMapper.memberEmail");
-	}
-	
-	//판매자 이메일
-	@Override
-	public List<String> sellerEmail() throws Exception {
-		return session.selectList("managerMapper.sellerEmail");
-	}
-	
 	//펀딩신청 리스트
 	@Override
 	public List<ApplyViewVO> applyList(ApplyPagingVO paging) throws Exception {
 		return session.selectList("managerMapper.applyList", paging);
-	}
-	
-	//펀딩신청 총 게시물수
-	@Override
-	public int applyCnt() throws Exception {
-		return session.selectOne("managerMapper.applyCnt");
 	}
 	
 	//펀딩신청 상세정보
@@ -119,5 +125,17 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public void fundingIns(FundingExpVO funding) throws Exception {
 		session.insert("managerMapper.fundingIns", funding);
+	}
+	
+	//모든 회원의 이메일
+	@Override
+	public List<String> memberEmail() throws Exception {
+		return session.selectList("managerMapper.memberEmail");
+	}
+	
+	//판매자 이메일
+	@Override
+	public List<String> sellerEmail() throws Exception {
+		return session.selectList("managerMapper.sellerEmail");
 	}
 }

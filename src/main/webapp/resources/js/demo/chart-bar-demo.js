@@ -31,9 +31,9 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 $.ajax({
         url: "/ffunding/manager/dashboard/data", 
-        type: 'post',
-        dataType: 'json',
-        success: function (data) {
+        type: "post",
+        dataType: "json",
+        success: function(data) {
 			new Chart(document.getElementById("myBarChart"), {
 			  type: 'bar',
 			  data: {
@@ -114,5 +114,5 @@ $.ajax({
 			    },
 			  }
 			});
-		}
+	}
 });

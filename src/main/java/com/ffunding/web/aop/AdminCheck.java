@@ -12,7 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.ffunding.web.dao.ManagerDAO;
+import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.MemberVO;
 
 @Aspect
@@ -20,7 +20,7 @@ import com.ffunding.web.vo.MemberVO;
 public class AdminCheck {
 	
 	@Autowired
-	private ManagerDAO dao;
+	private ManagerService service;
 	
 	//실행될 위치 설정
 	@Pointcut("within(com.ffunding.web.controller.ManagerController)")
@@ -33,7 +33,7 @@ public class AdminCheck {
 		 HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
 		 MemberVO member = (MemberVO)session.getAttribute("member");
 		 //관리자 아이디 리스트를 받아와서 배열로 변환
-		 String[] admin = dao.managerList().toArray(new String[dao.managerList().size()]);
+		 String[] admin = service.managerList().toArray(new String[service.managerList().size()]);
 		 for(String a:admin) {
 			 //로그인이 되어있지 않거나 로그인한 아이디가 관리자 아이디가 아닐경우
 			 if(member==null || !(member.getMid().equals(a))) {

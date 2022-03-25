@@ -32,8 +32,10 @@ public class ManagerController {
 	//@LoginType
 	@GetMapping("dashboard")
 	public String dashboard(Model d) throws Exception {
-		d.addAttribute("userTot", service.memberCnt());
-		d.addAttribute("applyTot", service.applyCnt());
+		d.addAttribute("userCnt", service.memberCnt());
+		d.addAttribute("applyCnt", service.applyCnt());
+		d.addAttribute("expectCnt", service.expectCnt());
+		d.addAttribute("progressCnt", service.progressCnt());
 		d.addAttribute("active", "dashboard");
 		return "manager/dashboard.m";
 	}
@@ -44,6 +46,9 @@ public class ManagerController {
 		data.put("userTot", service.memberCnt());
 		data.put("generalCnt", service.generalCnt());
 		data.put("sellerCnt", service.sellerCnt());
+		for(int i=1; i<=12; i++) {
+			data.put("applyMonthCnt"+i, service.applyMonthCnt(i));
+		}
 		return "jsonView";
 	}
 

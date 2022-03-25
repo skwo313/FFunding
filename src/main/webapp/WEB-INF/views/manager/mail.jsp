@@ -153,10 +153,10 @@
 					fileNum++;
 				}
 			});
-			//만약 업로드했던 파일이 확장자에 맞지않아 업로드되지 않았고, 그 외에 업로드된 파일이 없을 경우
+			//확장자에 맞지 않아 업로드되지 않았던 파일이 있지만, 그 외에 업로드된 파일이 있거나 모두 정상적으로 업로드 된 경우
 			if(filesArr.length!=0) {
 				$(".uploadBox").html(viewFiles);
-			//확장자에 맞지 않아 업로드되지 않았던 파일이 있지만, 그 외에 업로드된 파일이 있거나 모두 정상적으로 업로드 된 경우
+			//업로드했던 파일이 확장자에 맞지않아 업로드되지 않았고, 그 외에 업로드된 파일이 없을 경우
 			} else {
 				$(".uploadBox").html("<span class='uploadtext'>Please select a file to upload!<span>");
 			}
