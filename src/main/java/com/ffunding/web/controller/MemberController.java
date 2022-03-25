@@ -45,7 +45,6 @@ public class MemberController {
 	
 	@Autowired
 	private ClientInfo ci;
-	
 	@Autowired
 	private VisitDAO dao;
 	@Inject
@@ -54,11 +53,9 @@ public class MemberController {
 	private SnsValue naverSns;
 	@Inject 
 	private SnsValue googleSns;
-	/*
-	 * @Autowired private GoogleConnectionFactory googleConnectionFactory;
-	 * 
-	 * @Autowired private OAuth2Parameters googleOAuth2Parameters;
-	 */
+	@Inject 
+	private SnsValue kakaoSns;
+	@Autowired(required=false)
 	private LocaleResolver localeResolver;
 	
 	@ModelAttribute("member")
@@ -77,12 +74,9 @@ public class MemberController {
 		SNSLogin googleLogin = new SNSLogin(googleSns);
 		model.addAttribute("google_url", googleLogin.getAuthURL());
 		
-		/* 
-		 * OAuth2Operations oauthOperations =
-		 * googleConnectionFactory.getOAuthOperations(); String url =
-		 * oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE,
-		 * googleOAuth2Parameters);
-		 */
+		SNSLogin kakaoLogin = new SNSLogin(kakaoSns);
+		model.addAttribute("kakao_url", kakaoLogin.getAuthURL());
+		
 		return "member/login.page";
 	}
 	
@@ -127,14 +121,20 @@ public class MemberController {
 		SnsValue sns = null;
 		if (StringUtils.equals("naver", snsService)) {
 			sns = naverSns;
-		} else {
+		} else if (StringUtils.equals("google", snsService)) {
 			sns = googleSns;
+		} else {
+			sns = kakaoSns;
 		}
-			
 		
 		// access_token(code)을 이용하여 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
-		MemberVO snsUser = snsLogin.getUserProfile(code);
+		MemberVO snsUser = null;
+		if (sns == kakaoSns) {
+			snsUser = snsLogin.getKakaoUserProfile(code);
+		} else {
+			snsUser = snsLogin.getUserProfile(code);
+		}
 		System.out.println("Profile>>" + snsUser);
 		
 		// DB 해당 유저가 존재하는지 체크
