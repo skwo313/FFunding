@@ -23,6 +23,8 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String JOIN_BY_SNS_NAVER = NS + ".joinBySnsNaver";
 	private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";
 	private static final String JOIN_BY_SNS_GOOGLE = NS + ".joinBySnsGoogle";
+	private static final String GET_BY_SNS_KAKAO = NS + ".getBySnsKakao";
+	private static final String JOIN_BY_SNS_KAKAO = NS + ".joinBySnsKakao";
 	
 	
 	@Override
@@ -37,10 +39,11 @@ public class MemberDAOImpl implements MemberDAO {
 		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
 			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
 		} else if (StringUtils.isNotEmpty(snsUser.getGoogleid())) {
-			return sqlSession.selectOne(GET_BY_SNS_GOOGLE,snsUser.getGoogleid());
+			return sqlSession.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
+		} else {
+			return sqlSession.selectOne(GET_BY_SNS_KAKAO, snsUser.getKakaoid());
 		}
 		
-		return null;
 	}
 
 	@Override
@@ -50,6 +53,8 @@ public class MemberDAOImpl implements MemberDAO {
 			sqlSession.insert(JOIN_BY_SNS_NAVER, snsUser);
 		}else if(StringUtils.isNotEmpty(snsUser.getGoogleid())) {
 			sqlSession.insert(JOIN_BY_SNS_GOOGLE, snsUser);
+		} else {
+			sqlSession.insert(JOIN_BY_SNS_KAKAO, snsUser);
 		}
 	}
 }

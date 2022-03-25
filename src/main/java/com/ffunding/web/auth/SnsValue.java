@@ -10,13 +10,14 @@ import com.github.scribejava.core.builder.api.DefaultApi20;
 public class SnsValue implements SnsUrls {
 	private String service;
 	private String clientId;
-	private String clienSecret;
+	private String clientSecret;
 	private String redirectUrl;
 	private DefaultApi20 api20Instance;
 	private String profileUrl;
 	
 	private boolean isNaver;
 	private boolean isGoogle;
+	private boolean isKakao;
 	
 	public SnsValue() {
 		super();
@@ -26,19 +27,23 @@ public class SnsValue implements SnsUrls {
 	public SnsValue(String service, String clientId, String clienSecret, String redirectUrl) {
 		this.service = service;
 		this.clientId = clientId;
-		this.clienSecret = clienSecret;
+		this.clientSecret = clienSecret;
 		this.redirectUrl = redirectUrl;
 		
 		this.isNaver = StringUtils.equalsIgnoreCase("naver", this.service);
 		this.isGoogle = StringUtils.equalsIgnoreCase("google", this.service);
+		this.isKakao = StringUtils.equalsIgnoreCase("kakao", this.service);
 		
 		if (isNaver) {
 			// service가 naver일 때
 			this.api20Instance = NaverAPI20.instance();
 			this.profileUrl = NAVER_PROFILE_URL;
-		} else {
+		} else if(isGoogle) {
 			this.api20Instance = GoogleApi20.instance();
 			this.profileUrl = GOOGLE_PROFILE_URL;
+		} else {
+			this.api20Instance = KakaoAPI20.instance();
+			this.profileUrl = KAKAO_PROFILE_URL;
 		}
 		
 	}
@@ -59,12 +64,12 @@ public class SnsValue implements SnsUrls {
 		this.clientId = clientId;
 	}
 
-	public String getClienSecret() {
-		return clienSecret;
+	public String getClientSecret() {
+		return clientSecret;
 	}
 
-	public void setClienSecret(String clienSecret) {
-		this.clienSecret = clienSecret;
+	public void setClientSecret(String clientSecret) {
+		this.clientSecret = clientSecret;
 	}
 
 	public String getRedirectUrl() {
@@ -105,6 +110,14 @@ public class SnsValue implements SnsUrls {
 
 	public void setGoogle(boolean isGoogle) {
 		this.isGoogle = isGoogle;
+	}
+
+	public boolean isKakao() {
+		return isKakao;
+	}
+
+	public void setKakao(boolean isKakao) {
+		this.isKakao = isKakao;
 	}
 	
 }

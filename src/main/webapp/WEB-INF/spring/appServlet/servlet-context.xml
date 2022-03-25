@@ -100,6 +100,26 @@
 		<beans:constructor-arg ref="googleRedirectUrl" />
 	</beans:bean>
 	<!-- END -->
+	<!-- kakao oauth2 login -->
+	<beans:bean id="kakaoClientID" class="java.lang.String">
+		<beans:constructor-arg value="8488479b382fcf5f2c596e8fe45672d3" />
+	</beans:bean>
+	<beans:bean id="kakaoClientSecret" class="java.lang.String">
+		<beans:constructor-arg value="rEI5JQxh8q7g3pLlH4hQHAoBZT9L3Jyu" />
+	</beans:bean>
+	<beans:bean id="kakaoRedirectUrl" class="java.lang.String">
+		<beans:constructor-arg
+			value="http://localhost:7080/ffunding/member/kakao/callback" />
+	</beans:bean>
+
+	<beans:bean id="kakaoSns"
+		class="com.ffunding.web.auth.SnsValue">
+		<beans:constructor-arg value="kakao" />
+		<beans:constructor-arg ref="kakaoClientID" />
+		<beans:constructor-arg ref="kakaoClientSecret" />
+		<beans:constructor-arg ref="kakaoRedirectUrl" />
+	</beans:bean>
+	<!-- END -->
 
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler"

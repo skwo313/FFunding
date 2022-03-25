@@ -126,21 +126,22 @@
 								</h4>
 								<div class="row mt-3">
 									<div id="naver_id_login" class="col-2 text-center ms-auto">
-										<a class="btn btn-link px-3" href="${naver_url}"
+										<a class="btn btn-link px-1" href="${naver_url}"
 											onclick="window.open(this.href,'naverLogin','width=800,height=800');return false;">
-											<img width="30px" src="${path}/img/naver.ico" class="fa"></img>
+											<img style="border-radius:30%; width:33px;" src="${path}/img/naver.ico" class="fa"></img>
 										</a>
 									</div>
 
-									<div class="col-2 text-center px-1">
-										<a class="btn btn-link px-3" href="${google_url}"
+									<div class="col-2 text-center px-auto">
+										<a class="btn btn-link px-1" href="${google_url}"
 											onclick="window.open(this.href,'googleLogin','width=800,height=800');return false;">
-											<img width="30px" src="${path}/img/google.png" class="fa"></img>
+											<img style="border-radius:30%; width:31px;"  src="${path}/img/google2.jpeg" class="fa"></img>
 										</a>
 									</div>
 									<div class="col-2 text-center me-auto">
-										<a class="btn btn-link px-3" href="javascript:;"> <i
-											class="fa fa-google text-white text-lg"></i>
+										<a class="btn btn-link px-1" href="${kakao_url}"
+											onclick="window.open(this.href,'kakaoLogin','width=800,height=800');return false;"> 
+											<img style="border-radius:30%; width:31px; object-fit: cover;" src="${path}/img/kakao.png" class="fa"></img>
 										</a>
 									</div>
 								</div>

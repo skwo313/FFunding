@@ -56,4 +56,26 @@
 		#{kakaoid, jdbcType=VARCHAR} )
    </insert>
    
+   <select id="getBySnsKakao" resultType="com.ffunding.web.vo.MemberVO">
+   	select * from member where kakaoid = #{kakaoid}
+   </select>
+   
+   <insert id="joinBySnsKakao" >
+   	insert into member 
+	values(
+		'K' || funding_member_seq.nextval,
+		'K' || #{kakaoid}, 
+		#{mname}, 
+		#{mphone, jdbcType=VARCHAR}, 
+		#{memail}, 
+		#{maddress, jdbcType=VARCHAR},
+		#{maddress_detail, jdbcType=VARCHAR}, 
+		0, 
+		'0', 
+		'0', 
+		#{naverid, jdbcType=VARCHAR}, 
+		#{googleid, jdbcType=VARCHAR}, 
+		#{kakaoid} )
+   </insert>
+   
 </mapper>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="application/x-www-form-urlencoded;charset=utf-8"
     pageEncoding="UTF-8"
     import="java.util.*"
     %>
