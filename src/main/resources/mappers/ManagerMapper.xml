@@ -57,11 +57,11 @@
 	]]>
 	</select>
 	
-	<!-- 펀딩신청 월별 건수 -->
-	<select id="applyMonthCnt" parameterType="int" resultType="int">
+	<!-- 펀딩 카테고리별 개수 -->
+	<select id="categoryCnt" parameterType="String" resultType="int">
 		SELECT count(*)
 		FROM FUNDING_PRODUCT
-		WHERE to_char(sysdate, 'yy')=to_char(FSTARTDATE, 'yy') AND to_char(FSTARTDATE, 'mm')=#{month}
+		WHERE REPLACE(fcate, ' ', '') = #{cate}
 	</select>
 	
 	<!-- 회원 리스트 및 페이징 처리 sql 공통부분 -->
@@ -85,11 +85,15 @@
 		SELECT *
 		FROM (
 			SELECT rownum cnt, m.*
-			FROM MEMBER m
-			WHERE adminck=0
-			<include refid="search"></include>
-			ORDER BY mid)
-		WHERE cnt between #{start} and #{end}
+			FROM (
+				SELECT *
+				FROM MEMBER
+				WHERE adminck=0
+				<include refid="search"></include>
+				ORDER BY mid
+			) m
+		)
+		WHERE cnt BETWEEN #{start} and #{end}
 	</select>
 	
 	<!-- 회원 검색 결과 총 회원수 -->
@@ -133,10 +137,10 @@
 					ORDER BY fid desc
 				</if>
 				<if test='sort=="old"'>
-					ORDER BY fdate asc
+					ORDER BY fid asc
 				</if>
 				<if test='sort=="close"'>
-					ORDER BY fstartdate asc
+					ORDER BY fstartdate asc, fid asc
 				</if>
 			) f
 		)
@@ -192,6 +196,13 @@
 			#{fmid}
 		)
 	</insert>
+	
+	<!-- 판매자로 권한변경 -->
+	<update id="sellerUpt" parameterType="String">
+		UPDATE MEMBER
+		SET SELLERCK=1
+		WHERE mid=#{mid}
+	</update>
 	
 	<!-- 모든 회원의 이메일 -->
 	<select id="memberEmail" resultType="String">

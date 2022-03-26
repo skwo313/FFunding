@@ -23,8 +23,8 @@ public interface ManagerDAO {
 	public int expectCnt() throws Exception;
 	//펀딩진행중 총 게시물수
 	public int progressCnt() throws Exception;
-	//펀딩신청 월별 건수
-	public int applyMonthCnt(int month) throws Exception;
+	//펀딩 카테고리별 개수
+	public int categoryCnt(String cate) throws Exception;
 	//회원 리스트
 	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception;
 	//회원 검색 결과 총 회원수
@@ -45,6 +45,8 @@ public interface ManagerDAO {
 	public void applyImageDel(int fid) throws Exception;
 	//펀딩신청 승인
 	public void fundingIns(FundingExpVO funding) throws Exception;
+	//판매자로 권한변경
+	public void sellerUpt(String mid) throws Exception;
 	//모든 회원의 이메일
 	public List<String> memberEmail() throws Exception;
 	//판매자 이메일

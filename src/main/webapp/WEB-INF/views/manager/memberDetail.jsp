@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/> 
-<link href="${path}/css/manager/memberdetail.css" rel="stylesheet">  
+<link href="${path}/css/manager/memberDetail.css" rel="stylesheet">  
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">

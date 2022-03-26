@@ -24,8 +24,8 @@ public interface ManagerService {
 	public int expectCnt() throws Exception;
 	//펀딩진행중 총 게시물수
 	public int progressCnt() throws Exception;
-	//펀딩신청 월별 건수
-	public int applyMonthCnt(int month) throws Exception;
+	//펀딩 카테고리별 개수
+	public int categoryCnt(String cate) throws Exception;
 	//회원 리스트
 	public List<MemberVO> memberList(MemberPagingVO paging) throws Exception;
 	//회원 상세정보

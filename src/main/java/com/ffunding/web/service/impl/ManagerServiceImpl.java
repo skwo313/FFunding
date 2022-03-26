@@ -88,10 +88,10 @@ public class ManagerServiceImpl implements ManagerService {
 		return dao.progressCnt();
 	}
 	
-	//펀딩신청 월별 건수
+	//펀딩 카테고리별 개수
 	@Override
-	public int applyMonthCnt(int month) throws Exception {
-		return dao.applyMonthCnt(month);
+	public int categoryCnt(String cate) throws Exception {
+		return dao.categoryCnt(cate);
 	}
 	
 	//회원 리스트
@@ -250,6 +250,8 @@ public class ManagerServiceImpl implements ManagerService {
 		dao.fundingIns(funding);
 		//펀딩신청테이블에서 해당 펀딩 삭제
 		dao.applyDel(funding.getFid());
+		//판매자로 권한변경
+		dao.sellerUpt(funding.getFmid());
 	}
 	
 	//메일전송

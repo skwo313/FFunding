@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/> 
-<link href="${path}/css/manager/fundingapprovaldetail.css" rel="stylesheet">  
+<link href="${path}/css/manager/fundingApprovalDetail.css" rel="stylesheet">  
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -110,18 +110,18 @@
 			$("#Modal").modal("show");
 			$("#modalText").text("Are you sure you want to delete it?");
 			$("#yes").click(function() {
-				$("#frm").attr("action", "/ffunding/manager/fundingapproval/detail/delete");
+				$("#frm").attr("action", "/ffunding/manager/fundingApproval/detail/delete");
 				$("#frm").submit();
-			})
+			});
 		});
 		
 		$("#insBtn").click(function() {
 			$("#Modal").modal("show");
 			$("#modalText").text("Do you really want to approve it?");
 			$("#yes").click(function() {
-				$("#frm").attr("action", "/ffunding/manager/fundingapproval/detail/insert");
+				$("#frm").attr("action", "/ffunding/manager/fundingApproval/detail/insert");
 				$("#frm").submit();
-			})
+			});
 		});
 	});
 </script>

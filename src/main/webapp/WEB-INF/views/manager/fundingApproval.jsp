@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/> 
-<link href="${path}/css/manager/fundingapproval.css" rel="stylesheet">   
+<link href="${path}/css/manager/fundingApproval.css" rel="stylesheet">   
 	
 	 <!-- Begin Page Content -->
 	 <div class="container-fluid">
@@ -137,6 +137,6 @@
 	//펀딩신청 게시물 상세정보로 이동
 	$(".applyrow").click(function(){
 		let fid = $(this).children().eq(0).text();
-		location.href="/ffunding/manager/fundingapproval/detail?fid="+fid;
+		location.href="/ffunding/manager/fundingApproval/detail?fid="+fid;
 	});
 </script>

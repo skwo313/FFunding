@@ -29,7 +29,6 @@ public class ManagerController {
 	
 	//http://localhost:8000/ffunding/manager/dashboard
 	//관리자 대시보드(메인페이지)
-	//@LoginType
 	@GetMapping("dashboard")
 	public String dashboard(Model d) throws Exception {
 		d.addAttribute("userCnt", service.memberCnt());
@@ -43,12 +42,20 @@ public class ManagerController {
 	//관리자 대시보드 json데이터
 	@PostMapping("dashboard/data")
 	public String dashboardData(HashMap<String, Integer> data, Model d) throws Exception {
-		data.put("userTot", service.memberCnt());
+		//Member
 		data.put("generalCnt", service.generalCnt());
 		data.put("sellerCnt", service.sellerCnt());
-		for(int i=1; i<=12; i++) {
-			data.put("applyMonthCnt"+i, service.applyMonthCnt(i));
-		}
+		//Category
+		data.put("tech", service.categoryCnt("테크·가전"));
+		data.put("fashion", service.categoryCnt("패션·잡화"));
+		data.put("beauty", service.categoryCnt("뷰티"));
+		data.put("food", service.categoryCnt("푸드"));
+		data.put("home", service.categoryCnt("홈·리빙"));
+		data.put("travel", service.categoryCnt("여행·레저"));
+		data.put("sport", service.categoryCnt("스포츠·모빌리티"));
+		data.put("character", service.categoryCnt("캐릭터·굿즈"));
+		data.put("game", service.categoryCnt("게임·취미"));
+		
 		return "jsonView";
 	}
 
@@ -71,7 +78,7 @@ public class ManagerController {
 	public String memberDetail(@RequestParam(required=false, value="msg") String msg, String mid, Model d) throws Exception {
 		d.addAttribute("detail", service.memberDetail(mid));
 		d.addAttribute("active", "member");
-		return "manager/memberdetail.m";
+		return "manager/memberDetail.m";
 	}
 	
 	//회원 정보수정
@@ -83,35 +90,35 @@ public class ManagerController {
 	}
 	
 	//펀딩승인 페이지
-	@GetMapping("fundingapproval")
-	public String fundingApproval(@RequestParam(required=false, value="delmsg") String delmsg, ApplyPagingVO paging, Model d) throws Exception {
+	@GetMapping("fundingApproval")
+	public String fundingApproval(@RequestParam(required=false, value="delmsg") String delmsg, @RequestParam(required=false, value="insmsg") String insmsg, ApplyPagingVO paging, Model d) throws Exception {
 		d.addAttribute("applyList", service.applyList(paging));
-		d.addAttribute("active", "fundingapproval");
-		return "manager/fundingapproval.m";
+		d.addAttribute("active", "fundingApproval");
+		return "manager/fundingApproval.m";
 	}
 	
 	//펀딩승인 상세정보 페이지
-	@GetMapping("fundingapproval/detail")
+	@GetMapping("fundingApproval/detail")
 	public String fundingApprovalDetail(int fid, Model d) throws Exception {
 		d.addAttribute("detail", service.applyDetail(fid));
-		d.addAttribute("active", "fundingapproval");
-		return "manager/fundingapprovaldetail.m";
+		d.addAttribute("active", "fundingApproval");
+		return "manager/fundingApprovalDetail.m";
 	}
 	
 	//펀딩신청 삭제
-	@PostMapping("fundingapproval/detail/delete")
+	@PostMapping("fundingApproval/detail/delete")
 	public String fundingDelete(int fid, RedirectAttributes redirect) throws Exception {
 		service.applyDel(fid);
 		redirect.addAttribute("delmsg", "This funding has been deleted.");
-		return "redirect:/manager/fundingapproval";
+		return "redirect:/manager/fundingApproval";
 	}
 	
 	//펀딩신청 승인
-	@PostMapping("fundingapproval/detail/insert")
+	@PostMapping("fundingApproval/detail/insert")
 	public String fundingInsert(FundingExpVO funding, RedirectAttributes redirect) throws Exception {
 		service.fundingIns(funding);
 		redirect.addAttribute("insmsg", "The funding has been approved.");
-		return "redirect:/manager/fundingapproval";
+		return "redirect:/manager/fundingApproval";
 	}
 		
 	//메일 페이지

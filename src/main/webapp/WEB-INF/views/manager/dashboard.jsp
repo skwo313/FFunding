@@ -105,11 +105,11 @@
 	    </div>
 	    
 	    <div class="row">
-	    	<!-- Bar Chart -->
-	    	<div class="col-xl-6 col-lg-4">
+	   		<!-- Bar Chart -->
+	    	<div class="col-xl-8 col-lg-4">
 	            <div class="card shadow mb-4">
 	                <div class="card-header py-3">
-	                    <h6 class="m-0 font-weight-bold text-primary">Member</h6>
+	                    <h6 class="m-0 font-weight-bold text-primary">Funding Category</h6>
 	                </div>
 	                <div class="card-body">
 	                    <div class="chart-bar">
@@ -118,21 +118,28 @@
 	                </div>
 	            </div>
 	        </div>
-	        
+	    
 	    	<!-- Area Chart -->
-		    <div class="col-xl-6 col-lg-4">
+		    <div class="col-xl-4 col-lg-4">
 		        <div class="card shadow mb-4">
 		            <!-- Card Header - Dropdown -->
-		            <div
-		                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-		                <h6 class="m-0 font-weight-bold text-primary">Funding Progress Count</h6>
-		            </div>
-		            <!-- Card Body -->
-		            <div class="card-body">
-		                <div class="chart-area">
-		                    <canvas id="myAreaChart"></canvas>
-		                </div>
-		            </div>
+		            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Member</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small">
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-primary"></i> General
+                            </span>
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-success"></i> Seller
+                            </span>
+                        </div>
+                    </div>
 		        </div>
 		    </div>
 		</div>
@@ -254,4 +261,5 @@ function onClose(e) {
     <!-- Page level custom scripts -->
     <script src="${path}/js/demo/chart-area-demo.js"></script>
     <script src="${path}/js/demo/chart-area-demo2.js"></script>
+    <script src="${path}/js/demo/chart-pie-demo.js"></script>
     <script src="${path}/js/demo/chart-bar-demo.js"></script>

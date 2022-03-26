@@ -61,10 +61,10 @@ public class ManagerDAOImpl implements ManagerDAO {
 		return session.selectOne("managerMapper.progressCnt");
 	}
 	
-	//펀딩신청 월별 건수
+	//펀딩 카테고리별 개수
 	@Override
-	public int applyMonthCnt(int month) throws Exception {
-		return session.selectOne("managerMapper.applyMonthCnt", month);
+	public int categoryCnt(String cate) throws Exception {
+		return session.selectOne("managerMapper.categoryCnt", cate);
 	}
 	
 	//회원 리스트
@@ -125,6 +125,12 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public void fundingIns(FundingExpVO funding) throws Exception {
 		session.insert("managerMapper.fundingIns", funding);
+	}
+	
+	//판매자로 권한변경
+	@Override
+	public void sellerUpt(String mid) throws Exception {
+		session.update("managerMapper.sellerUpt", mid);
 	}
 	
 	//모든 회원의 이메일

@@ -41,8 +41,8 @@
 	    </li>
 	
 	    <!-- Nav Item - Utilities Collapse Menu -->
-	    <li class="nav-item ${active eq 'fundingapproval'?'active':''}">
-	        <a class="nav-link" href="/ffunding/manager/fundingapproval">
+	    <li class="nav-item ${active eq 'fundingApproval'?'active':''}">
+	        <a class="nav-link" href="/ffunding/manager/fundingApproval">
 	            <i class="bi bi-clipboard2-check-fill"></i>
 	            <span>Funding Approval</span>
 	        </a>
