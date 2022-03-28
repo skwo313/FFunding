@@ -155,10 +155,11 @@ function onClose(e) {
 <section>
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px; display: flex; justify-content: end;">
 		<form>
-			<select class="form-select" aria-label="Default select example" style="width: 115px;">
-				<option value="1">최신순</option>
-				<option value="2">펀딩액순</option>
-				<option value="3">인기순</option>
+			<select class="form-select" aria-label="Default select example" style="width: 115px;" onchange="if(this.value) location.href=(this.value);">
+				<option value="none">정렬</option>
+				<option value="/ffunding/funding?category=${category}&sort=fstartdate">최신순</option>
+				<option value="/ffunding/funding?category=${category}&sort=price">펀딩액순</option>
+				<option value="/ffunding/funding?category=${category}&sort=sell">인기순</option>
 			</select>
 		</form>
 	</div>
