@@ -8,7 +8,11 @@ public interface MemberDAO {
 	
 	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception;
 
-	public MemberVO getBySns(MemberVO snsUser);
+	public MemberVO getBySns(MemberVO snsUser) throws Exception;
 
-	public void joinBySns(MemberVO snsUser);
+	public void joinBySns(MemberVO snsUser) throws Exception;
+
+	public int idChk(Map<String, String> idMap) throws Exception;
+
+	public void register(MemberVO reg) throws Exception;
 }

@@ -42,10 +42,11 @@ public class SNSLogin {
 	}
 
 	public MemberVO getUserProfile(String code) throws Exception {
+		// 접근 토큰
 		OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
-		
+		// 사용자 정보 응답 반환
 		OAuthRequest request = new OAuthRequest(Verb.GET, this.sns.getProfileUrl());
-		oauthService.signRequest(accessToken, request); // token과 url을 담는다.
+		oauthService.signRequest(accessToken, request);
 		
 		Response response = oauthService.execute(request);
 		

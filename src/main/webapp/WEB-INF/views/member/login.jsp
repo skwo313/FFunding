@@ -25,6 +25,7 @@
 	href="${path}/css/member/material-dashboard.css?v=3.0.1"
 	rel="stylesheet" />
 <link rel="stylesheet" href="${path}/css/common.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 #selectLan{
 	width: 180px;
@@ -43,6 +44,12 @@
 
 <script>
 	$(document).ready(function() {
+		
+		let msg = "${msg}";
+		if (msg != "") {
+			success(msg);
+		};
+		
 		$("#form").keypress(function(e) {
 			if (e.keyCode == 13) {
 				loginBtn();
@@ -107,6 +114,16 @@
 			}
 		});
 	}
+	function success(msg) {
+		Swal.fire({
+		  position: 'top-end',
+		  icon: 'success',
+		  title: msg,
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	}
+	
 </script>
 
 <main class="main-content  mt-0">
@@ -186,7 +203,7 @@
 								</div>
 								<p class="mt-4 text-sm text-center">
 									<spring:message code="regment" />
-									<a href="../pages/sign-up.html"
+									<a href="registerView"
 										class="text-primary text-gradient font-weight-bold"><spring:message
 											code="reg" /></a>
 								</p>

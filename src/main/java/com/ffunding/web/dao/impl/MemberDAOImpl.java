@@ -25,16 +25,18 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String JOIN_BY_SNS_GOOGLE = NS + ".joinBySnsGoogle";
 	private static final String GET_BY_SNS_KAKAO = NS + ".getBySnsKakao";
 	private static final String JOIN_BY_SNS_KAKAO = NS + ".joinBySnsKakao";
+	private static final String ID_CHECK = NS + ".idChk";
+	private static final String REGIST = NS + ".register";
 	
 	
 	@Override
-	public MemberVO loginCheck(Map<String, String> loginMap) {
+	public MemberVO loginCheck(Map<String, String> loginMap) throws Exception {
 		
 		return sqlSession.selectOne(LOGIN, loginMap);
 	}
 
 	@Override
-	public MemberVO getBySns(MemberVO snsUser) {
+	public MemberVO getBySns(MemberVO snsUser) throws Exception {
 		
 		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
 			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
@@ -47,7 +49,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void joinBySns(MemberVO snsUser) {
+	public void joinBySns(MemberVO snsUser) throws Exception {
 		
 		if (StringUtils.isNotEmpty(snsUser.getNaverid())) { 
 			sqlSession.insert(JOIN_BY_SNS_NAVER, snsUser);
@@ -56,5 +58,17 @@ public class MemberDAOImpl implements MemberDAO {
 		} else {
 			sqlSession.insert(JOIN_BY_SNS_KAKAO, snsUser);
 		}
+	}
+
+	@Override
+	public int idChk(Map<String, String> idMap) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ID_CHECK, idMap);
+	}
+
+	@Override
+	public void register(MemberVO reg) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(REGIST, reg);
 	}
 }

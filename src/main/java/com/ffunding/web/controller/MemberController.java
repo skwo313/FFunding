@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.ffunding.web.auth.SNSLogin;
 import com.ffunding.web.auth.SnsValue;
@@ -65,7 +67,7 @@ public class MemberController {
 	
 	/* 로그인 폼 */
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(Model model) throws Exception {
+	public String login(Model model, HttpServletRequest request) throws Exception {
 		logger.info("loginForm");
 		
 		SNSLogin naverLogin = new SNSLogin(naverSns);
@@ -76,6 +78,11 @@ public class MemberController {
 		
 		SNSLogin kakaoLogin = new SNSLogin(kakaoSns);
 		model.addAttribute("kakao_url", kakaoLogin.getAuthURL());
+		
+		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+		if (inputFlashMap != null) {
+			model.addAttribute("msg",(String) inputFlashMap.get("msg"));
+		}
 		
 		return "member/login.page";
 	}
@@ -89,8 +96,9 @@ public class MemberController {
 		
 		try {
 			MemberVO member = service.loginCheck(loginMap);
+			boolean checkPw = BCrypt.checkpw(loginMap.get("mpw"), member.getMpw());
 			
-			if (member != null) {
+			if (member != null && checkPw) {
 				model.addAttribute("member", member);
 				String visit_ip = ci.getIpAddr();
 				String visit_time = ci.getTime();
@@ -158,7 +166,7 @@ public class MemberController {
 	  
 	/* 로그아웃 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status) throws Exception {
 		logger.info("logout");
 		
 		// boolean is_insert_success = false;
@@ -180,6 +188,35 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "registerView", method = RequestMethod.GET)
+	public String registerView() throws Exception {
+		logger.info("RegisterView");
+		return "member/regform.page";
+	}
+	
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String register(MemberVO reg, RedirectAttributes rttr) throws Exception  {
+		logger.info("Regist");
+		/* 암호화 */
+		String hashedPw = BCrypt.hashpw(reg.getMpw(), BCrypt.gensalt());
+		reg.setMpw(hashedPw);
+		service.register(reg);
+		
+		rttr.addFlashAttribute("msg", "가입이 완료되었습니다");
+		
+		return "redirect:/member/login";
+	}
+	
+	@RequestMapping(value = "idChk", method = RequestMethod.POST)
+	@ResponseBody
+	public int idChk(@RequestBody Map<String,String> idMap) throws Exception {
+		int result = service.idChk(idMap);
+		
+		logger.info("idChk >>"+result);
+		return result;
+	}
+	
 	@GetMapping("choiceLan")
 	public String setLogin(
     		@RequestParam("lang")String lang,

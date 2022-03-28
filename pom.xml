@@ -241,29 +241,11 @@
 		</dependency>
 
 		<!-- oauth2 login START -->
-		<!-- https://mvnrepository.com/artifact/com.github.scribejava/scribejava-apis -->
 		<dependency>
 		    <groupId>com.github.scribejava</groupId>
 		    <artifactId>scribejava-apis</artifactId>
 		    <version>8.3.1</version>
 		</dependency>
-
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework.social/spring-social-google 
-		<dependency>
-		    <groupId>org.springframework.social</groupId>
-		    <artifactId>spring-social-google</artifactId>
-		    <version>1.0.0.RELEASE</version>
-		</dependency>
-		 https://mvnrepository.com/artifact/org.springframework.social/spring-social-core 
-		<dependency>
-		    <groupId>org.springframework.social</groupId>
-		    <artifactId>spring-social-core</artifactId>
-		    <version>1.1.6.RELEASE</version>
-		</dependency>-->
-		
-		
-		<!-- END -->
 
 		<!-- lombok -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -284,6 +266,13 @@
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- 암호화 -->
+		<dependency>
+		    <groupId>org.mindrot</groupId>
+		    <artifactId>jbcrypt</artifactId>
+		    <version>0.4</version>
+		</dependency>
+		
 
 	</dependencies>
 	<build>
