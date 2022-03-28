@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <fmt:requestEncoding value="utf-8"/> 
-<link href="${path}/css/manager/fundingApproval.css" rel="stylesheet">   
+<link href="${path}/css/manager/purchaseApproval.css" rel="stylesheet">   
 	
 	 <!-- Begin Page Content -->
 	 <div class="container-fluid">
@@ -13,7 +13,7 @@
 	     <!-- DataTales Example -->
 	     <div class="card shadow mb-4">
 	         <div class="card-header py-3">
-	             <h6 class="m-0 font-weight-bold text-primary">Funding Approval List</h6>
+	             <h6 class="m-0 font-weight-bold text-primary">Purchase Approval List</h6>
 	         </div>
 	         <div class="card-body">
 	             <div class="table-responsive">
@@ -25,7 +25,6 @@
 	                            	<select name="sort" class="form-control bg-light small">
 	                            		<option value="new">최신순</option>
 	                            		<option value="old">오래된순</option>
-	                            		<option value="close">마감일순</option>
 	                            	</select>
 	                            </div>
 	                        </div>
@@ -41,32 +40,45 @@
 	                        </div>
 	                    </form>
 	                </div>
-	             	<table class="table table-bordered" id="dataTable">
-	                     <thead>
-	                         <tr>
-	                             <th>No</th>
-	                             <th>Category</th>
-	                             <th>Name</th>
-	                             <th>Price</th>
-	                             <th>Target Price</th>
-	                             <th>Registration Date</th>
-	                             <th>Start Date</th>
-	                         </tr>
-	                     </thead>
-	                     <tbody>
-	                     	<c:forEach var="apply" items="${applyList}">
-		                         <tr class="applyrow">
-		                             <td>${apply.fid}</td>
-		                             <td>${apply.fcate}</td>
-		                             <td class="fname">${apply.fname}</td>
-		                             <td>&#8361;<fmt:formatNumber value="${apply.fprice}" pattern="#,###"/></td>
-		                             <td>&#8361;<fmt:formatNumber value="${apply.fgoal}" pattern="#,###"/></td>
-		                             <td>${apply.fdate}</td>
-		                             <td>${apply.fstartdate}</td>
-		                         </tr>
-	                         </c:forEach>
-	                     </tbody>
-	                </table>
+	                <form id="frm2" method="post">
+				        <input type="hidden" name="fid" value=""/>
+				    </form>
+		            <table class="table table-bordered" id="dataTable">
+		                 <thead>
+		                     <tr>
+		                         <th>No</th>
+		                         <th>Name</th>
+		                         <th>Achievement Rate</th>
+		                         <th>Taget Price</th>
+		                         <th>End Date</th>
+		                         <th>Whether</th>
+		                     </tr>
+		                 </thead>
+		                 <tbody>
+			             	<c:forEach var="purchase" items="${purchaseList}">
+				             	<tr class="fundingrow">
+				             		<c:set var="rate" value="${(purchase.price+purchase.donation)/purchase.fgoal*100}"/>
+				                	<td>${purchase.fid}</td>
+				                    <td class="fname">${purchase.fname}</td>
+				                    <td class="wd1">
+					                	<div class="progress">
+											<div class="progress-bar" role="progressbar" style="width: ${rate}%" aria-valuenow="${rate}" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+				                    	<div class="rateFrm">
+											<span class="rate"><fmt:formatNumber type="number" maxFractionDigits="0" value="${rate}"/>%</span>
+											<span>&#8361;<fmt:formatNumber type="number" maxFractionDigits="0" value="${purchase.price+purchase.donation}"/></span>
+										</div>
+				                    </td>
+				                    <td>&#8361;<fmt:formatNumber value="${purchase.fgoal}" pattern="#,###"/></td>
+				                    <td>${purchase.fenddate}</td>
+				                    <td class="wd2">
+				                    	<button type="button" class="insBtn btn btn-primary">Approval</button>
+				                    	<button type="button" class="delBtn btn btn-primary">Cancellation</button>
+				                    </td>
+				                </tr>
+			                </c:forEach>
+		                 </tbody>
+		            </table>
 					<div class="paging">
 	                	<ul class="pagination">
 							<c:if test="${applyPagingVO.startBlock!=1}">
@@ -96,26 +108,31 @@
 		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
 				</div>
 				<div class="modal-footer" id="modal-footer">
-		    		<button type="button" class="btn btn-primary btn-sm" id="close" data-dismiss="modal">OK</button>
+		   	    	<button type="button" class="btn btn-primary btn-sm" id="yes">Yes</button>
+		    		<button type="button" class="btn btn-secondary btn-sm" id="close" data-dismiss="modal">No</button>
 		    	</div>
 			</div>
 		</div>
 	</div>
 <script type="text/javascript">
-	//펀딩삭제 완료시 메시지
-	let delmsg = "${param.delmsg}";
-	if(delmsg!=null && delmsg!="") {
-		$("#Modal").modal("show");
-		$("#modalText").text(delmsg);
-	}
-
-	//펀딩승인 완료시 메시지
+	//구매신청 승인 완료시 메시지
 	let insmsg = "${param.insmsg}";
 	if(insmsg!=null && insmsg!="") {
 		$("#Modal").modal("show");
+		$("#yes").hide();
+		$("#close").text("OK");
 		$("#modalText").text(insmsg);
 	}
 	
+	//구매신청 삭제 완료시 메시지
+	let delmsg = "${param.delmsg}";
+	if(delmsg!=null && delmsg!="") {
+		$("#Modal").modal("show");
+		$("#yes").hide();
+		$("#close").text("OK");
+		$("#modalText").text(delmsg);
+	}
+
 	//한페이지에 보여질 게시물수 변경
 	$("[name=pageSize]").val("${applyPagingVO.pageSize}");
 	$("[name=pageSize]").change(function() {
@@ -134,9 +151,35 @@
 		$("#frm").submit();
 	}
 	
-	//펀딩신청 게시물 상세정보로 이동
-	$(".applyrow").click(function(){
-		let fid = $(this).children().eq(0).text();
-		location.href="/ffunding/manager/fundingApproval/detail?fid="+fid;
+	$(document).ready(function() {
+		$(".insBtn").click(function() {
+			//클릭한 버튼의 행에 있는 fid
+			let fid = $(this).parent().parent().children().eq(0).text();
+			$("#Modal").modal("show");
+			$("#modalText").text("Would you approve the 'No." + fid + "' funding?");
+			$("#yes").show();
+			$("#close").text("No");
+			$("#yes").click(function() {
+				//input에 value로 fid를 넣어 form 전송
+				$("[name=fid]").val(fid);
+				$("#frm2").attr("action", "/ffunding/manager/purchaseApproval/insert");
+				$("#frm2").submit();
+			});
+		});
+		
+		$(".delBtn").click(function() {
+			//클릭한 버튼의 행에 있는 fid
+			let fid = $(this).parent().parent().children().eq(0).text();
+			$("#Modal").modal("show");
+			$("#modalText").text("Are you sure you want to delete the 'No." + fid + "' funding?");
+			$("#yes").show();
+			$("#close").text("No");
+			$("#yes").click(function() {
+				//input에 value로 fid를 넣어 form 전송
+				$("[name=fid]").val(fid);
+				$("#frm2").attr("action", "/ffunding/manager/purchaseApproval/delete");
+				$("#frm2").submit();
+			});
+		});
 	});
 </script>

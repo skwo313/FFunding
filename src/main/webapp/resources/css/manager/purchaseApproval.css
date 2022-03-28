@@ -1,0 +1,75 @@
+#pageSize {
+	float: right;
+}
+#sort {
+	width: 100px;
+}
+.row {
+    margin: 0px;
+}
+#frm {
+	display: flex;
+    justify-content: space-between;
+}
+.sortFrm {
+    margin-bottom: 15px;
+}
+.pageFrm {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+    margin-bottom: 15px;
+}
+.pageFrm > span {
+	margin-right: 15px;
+}
+.pageFrm > select {
+	width: 130px;
+}
+#dataTable > thead > tr > th {
+	text-align: center;
+	vertical-align: middle;
+}
+#dataTable > tbody > tr > td {
+	text-align: center;
+	vertical-align: middle;
+}
+.fundingrow:hover {
+	background: #f8f9fc;
+}
+.fname {
+	text-align: left !important;
+}
+.wd1 {
+	padding: 10px 25px !important; 
+	width: 250px;
+}
+.progress {
+	height: 10px;
+}
+.rateFrm {
+	display: flex;
+	margin-top: 2px;
+	font-size: 12px;
+}
+.progress {
+	width: 100%;
+}
+.rate {
+	margin-right: 10px;
+}
+.wd2 {
+	width: 230px;
+}
+.insBtn, .delBtn {
+	font-size: 12px;
+	margin: 0px 5px;
+}
+.paging {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+#exampleModalLongTitle {
+	padding: 10px;
+}

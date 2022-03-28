@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
-import com.ffunding.web.vo.FundingExpVO;
+import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
+import com.ffunding.web.vo.PurchaseVO;
 
 public interface ManagerService {
 	//관리자
@@ -41,7 +42,13 @@ public interface ManagerService {
 	//펀딩신청 삭제
 	public void applyDel(int fid) throws Exception;
 	//펀딩신청 승인
-	public void fundingIns(FundingExpVO funding) throws Exception;
+	public void fundingIns(FundingInsVO funding) throws Exception;
+	//구매신청 리스트
+	public List<PurchaseVO> purchaseList(ApplyPagingVO paging) throws Exception;
+	//구매신청 승인
+	public void purchaseIns(int fid) throws Exception;
+	//구매신청 삭제
+	public void purchaseDel(int fid) throws Exception;
 	//메일전송
 	public String sendMail(MailVO mail) throws Exception;
 }

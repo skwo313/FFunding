@@ -3,6 +3,9 @@ package com.ffunding.web.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
-import com.ffunding.web.vo.FundingExpVO;
+import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
@@ -74,7 +77,7 @@ public class ManagerController {
 	}
 	
 	//회원 상세정보 페이지
-	@RequestMapping("member/detail")
+	@GetMapping("member/detail")
 	public String memberDetail(@RequestParam(required=false, value="msg") String msg, String mid, Model d) throws Exception {
 		d.addAttribute("detail", service.memberDetail(mid));
 		d.addAttribute("active", "member");
@@ -115,12 +118,41 @@ public class ManagerController {
 	
 	//펀딩신청 승인
 	@PostMapping("fundingApproval/detail/insert")
-	public String fundingInsert(FundingExpVO funding, RedirectAttributes redirect) throws Exception {
+	public String fundingInsert(FundingInsVO funding, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+		//현재 세션 가져오기
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		//adming컬럼에 해당 펀딩신청을 승인한 관리자 id 넣기
+		funding.setAdmin(member.getMid());
 		service.fundingIns(funding);
 		redirect.addAttribute("insmsg", "The funding has been approved.");
 		return "redirect:/manager/fundingApproval";
 	}
-		
+	
+	//구매신청 페이지
+	@GetMapping("purchaseApproval")
+	public String purchaseApproval(@RequestParam(required=false, value="delmsg") String delmsg, @RequestParam(required=false, value="insmsg") String insmsg, ApplyPagingVO paging, Model d) throws Exception {
+		d.addAttribute("purchaseList", service.purchaseList(paging));
+		d.addAttribute("active", "purchaseApproval");
+		return "manager/purchaseApproval.m";
+	}
+	
+	//구매신청 승인
+	@PostMapping("purchaseApproval/insert")
+	public String purchaseApprovalIns(int fid, RedirectAttributes redirect) throws Exception {
+		service.purchaseIns(fid);
+		redirect.addAttribute("insmsg", "The funding has been approved.");
+		return "redirect:/manager/purchaseApproval";
+	}
+	
+	//구매신청 삭제
+	@PostMapping("purchaseApproval/delete")
+	public String purchaseApprovalDel(int fid, RedirectAttributes redirect) throws Exception {
+		service.purchaseDel(fid);
+		redirect.addAttribute("delmsg", "This funding has been deleted.");
+		return "redirect:/manager/purchaseApproval";
+	}
+	
 	//메일 페이지
 	@GetMapping("mail")
 	public String mail(@RequestParam(required=false, value="msg") String msg, Model d) {

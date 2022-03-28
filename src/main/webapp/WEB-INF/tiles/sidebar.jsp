@@ -43,8 +43,16 @@
 	    <!-- Nav Item - Utilities Collapse Menu -->
 	    <li class="nav-item ${active eq 'fundingApproval'?'active':''}">
 	        <a class="nav-link" href="/ffunding/manager/fundingApproval">
-	            <i class="bi bi-clipboard2-check-fill"></i>
+	          <i class="bi bi-chat-left-dots-fill"></i>
 	            <span>Funding Approval</span>
+	        </a>
+	    </li>
+	    
+	    <!-- Nav Item - Utilities Collapse Menu -->
+	    <li class="nav-item ${active eq 'purchaseApproval'?'active':''}">
+	        <a class="nav-link" href="/ffunding/manager/purchaseApproval">
+	            <i class="bi bi-clipboard2-check-fill"></i>
+	            <span>Purchase Approval</span>
 	        </a>
 	    </li>
 	    
