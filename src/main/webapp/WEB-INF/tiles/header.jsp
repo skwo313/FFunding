@@ -11,7 +11,7 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="logo">
 			<h1 class="text-light">
-				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
+				<a href="/ffunding"><img src="${pageContext.request.contextPath}/img/logo.png" alt="" class="img-fluid"></a>
 			</h1>
 		</div>
 
@@ -36,17 +36,17 @@
 					<c:choose>
 						<c:when test="${member.adminck eq '1'.charAt(0)}">
 							<li>${member.mid}님</li>
-							<li><a href="#" onclick="location.href='/ffunding/manager/dashboard'">관리자페이지</a></li>
-							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
+							<li><a href="/ffunding/manager/dashboard" onclick="location.href">관리자페이지</a></li>
+							<li><a href="/ffunding/member/logout" onclick="location.href">로그아웃</a></li>
 						</c:when>
 						<c:when test="${not empty member.mid}">
 							<li>${member.mname}님</li>
 							<li><a href="#">마이페이지</a></li>
-							<li><a href="#" onclick="location.href='/ffunding/member/logout'">로그아웃</a></li>
+							<li><a href="/ffunding/member/logout" onclick="location.href">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="#" onclick="location.href='/ffunding/member/login'">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
+							<li><a href="/ffunding/member/login" onclick="location.href">로그인</a></li>
+							<li><a href="/ffunding/member/registerView" onclick="location.href">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
 						<li><a class="getstarted" href="#" onclick="location.href='/ffunding/email/email'">프로젝트 시작하기</a></li>
