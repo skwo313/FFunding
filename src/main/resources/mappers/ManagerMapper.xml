@@ -53,15 +53,15 @@
 	<![CDATA[
 		SELECT count(*)
 		FROM FUNDING_PRODUCT
-		WHERE to_char(fstartdate, 'yymmdd')<to_char(sysdate, 'yymmdd') AND to_char(sysdate, 'yymmdd')<to_char(fenddate, 'yymmdd')
+		WHERE to_char(fstartdate, 'yymmdd')<=to_char(sysdate, 'yymmdd') AND to_char(sysdate, 'yymmdd')<=to_char(fenddate, 'yymmdd')
 	]]>
 	</select>
 	
-	<!-- 펀딩신청 월별 건수 -->
-	<select id="applyMonthCnt" parameterType="int" resultType="int">
+	<!-- 펀딩 카테고리별 개수 -->
+	<select id="categoryCnt" parameterType="String" resultType="int">
 		SELECT count(*)
 		FROM FUNDING_PRODUCT
-		WHERE to_char(sysdate, 'yy')=to_char(FSTARTDATE, 'yy') AND to_char(FSTARTDATE, 'mm')=#{month}
+		WHERE REPLACE(fcate, ' ', '') = #{cate}
 	</select>
 	
 	<!-- 회원 리스트 및 페이징 처리 sql 공통부분 -->
@@ -85,11 +85,15 @@
 		SELECT *
 		FROM (
 			SELECT rownum cnt, m.*
-			FROM MEMBER m
-			WHERE adminck=0
-			<include refid="search"></include>
-			ORDER BY mid)
-		WHERE cnt between #{start} and #{end}
+			FROM (
+				SELECT *
+				FROM MEMBER
+				WHERE adminck=0
+				<include refid="search"></include>
+				ORDER BY mid
+			) m
+		)
+		WHERE cnt BETWEEN #{start} and #{end}
 	</select>
 	
 	<!-- 회원 검색 결과 총 회원수 -->
@@ -133,10 +137,10 @@
 					ORDER BY fid desc
 				</if>
 				<if test='sort=="old"'>
-					ORDER BY fdate asc
+					ORDER BY fid asc
 				</if>
 				<if test='sort=="close"'>
-					ORDER BY fstartdate asc
+					ORDER BY fstartdate asc, fid asc
 				</if>
 			) f
 		)
@@ -171,7 +175,7 @@
 	</delete>
 	
 	<!-- 펀딩신청 승인 -->
-	<insert id="fundingIns" parameterType="com.ffunding.web.vo.FundingExpVO">
+	<insert id="fundingIns" parameterType="com.ffunding.web.vo.FundingInsVO">
 		INSERT INTO FUNDING_PRODUCT 
 		VALUES (
 			#{fid}, 
@@ -192,6 +196,102 @@
 			#{fmid}
 		)
 	</insert>
+	
+	<!-- 펀딩신청 승인시 order데이터 삽입 -->
+	<insert id="orderIns" parameterType="hashmap">
+		INSERT INTO FUNDING_ORDER 
+		VALUES(funding_order_seq.nextval, #{admin}, #{fid}, 0, 0, 0, sysdate)
+	</insert>
+	
+	<!-- 판매자로 권한변경 -->
+	<update id="sellerUpt" parameterType="String">
+		UPDATE MEMBER
+		SET SELLERCK=1
+		WHERE mid=#{mid}
+	</update>
+	
+	<!-- 구매신청 총 게시물수 -->
+	<select id="purchaseCnt" resultType="int">
+	<![CDATA[
+		SELECT count(*)
+		FROM FUNDING_PRODUCT
+		WHERE to_char(fenddate, 'yymmdd')<to_char(sysdate, 'yymmdd')
+	]]>
+	</select>	
+	
+	<!-- 구매신청 리스트 -->
+	<select id="purchaseList" parameterType="com.ffunding.web.vo.ApplyPagingVO" resultType="com.ffunding.web.vo.PurchaseVO">
+		SELECT *
+		FROM (
+			SELECT ROWNUM cnt, f.*
+			FROM (
+				SELECT fp.fid, fname, to_char(fp.FENDDATE, 'yyyy-mm-dd') fenddate, sum(fo_price) price, sum(fo_donation) donation, fp.fgoal
+				FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp
+				WHERE fo.fid=fp.fid
+	<![CDATA[
+				AND to_char(fp.FENDDATE, 'yymmdd')<to_char(sysdate, 'yymmdd')
+	]]>
+				GROUP BY fp.fid, fp.fname, fp.fenddate, fp.fgoal
+				<if test='sort=="new"'>
+					ORDER BY fp.FENDDATE desc
+				</if>
+				<if test='sort=="old"'>
+					ORDER BY fp.FENDDATE asc
+				</if>
+			) f
+		)
+		WHERE cnt BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 구매신청 상세정보 -->
+	<select id="purchaseDetail" parameterType="int" resultType="com.ffunding.web.vo.FundingExpVO">
+		SELECT * 
+		FROM FUNDING_PRODUCT 
+		WHERE fid=#{fid}
+	</select>
+	
+	<!-- 구매신청 삭제 -->
+	<delete id="purchaseDel" parameterType="int">
+		DELETE FROM FUNDING_PRODUCT 
+		WHERE fid=#{fid}
+	</delete>
+	
+	<!-- 펀딩구매 회원 삭제 -->
+	<delete id="orderDel" parameterType="int">
+		DELETE FROM FUNDING_ORDER 
+		WHERE fid=#{fid}
+	</delete>
+	
+	<!-- 펀딩한 회원리스트 -->
+	<select id="orderList" parameterType="int" resultType="com.ffunding.web.vo.OrderVO">
+		SELECT *
+		FROM FUNDING_ORDER
+		WHERE fid=#{fid}
+	</select>
+	
+	<!-- 회원 포인트 환불 -->
+	<update id="pointUpt" parameterType="com.ffunding.web.vo.OrderVO">
+		UPDATE MEMBER
+		SET point=point+${fo_price}+${fo_donation}
+		WHERE mid=#{mid}
+	</update>
+	
+	<!-- 펀딩한 회원 이메일 -->
+	<select id="orderEmail" parameterType="int" resultType="String">
+		SELECT memail
+		FROM MEMBER m, FUNDING_ORDER fo
+		WHERE m.mid=fo.mid
+		AND fid=#{fid}
+		AND memail IS NOT NULL
+		AND adminck=0
+	</select>
+	
+	<!-- 펀딩 이름 -->
+	<select id="fundingName" parameterType="int" resultType="String">
+		SELECT fname 
+		FROM FUNDING_PRODUCT 
+		WHERE fid=#{fid}
+	</select>
 	
 	<!-- 모든 회원의 이메일 -->
 	<select id="memberEmail" resultType="String">

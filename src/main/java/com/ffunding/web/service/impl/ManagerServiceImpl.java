@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -24,9 +25,12 @@ import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
 import com.ffunding.web.vo.FundingExpVO;
+import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
+import com.ffunding.web.vo.OrderVO;
+import com.ffunding.web.vo.PurchaseVO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -88,10 +92,10 @@ public class ManagerServiceImpl implements ManagerService {
 		return dao.progressCnt();
 	}
 	
-	//펀딩신청 월별 건수
+	//펀딩 카테고리별 개수
 	@Override
-	public int applyMonthCnt(int month) throws Exception {
-		return dao.applyMonthCnt(month);
+	public int categoryCnt(String cate) throws Exception {
+		return dao.categoryCnt(cate);
 	}
 	
 	//회원 리스트
@@ -172,7 +176,6 @@ public class ManagerServiceImpl implements ManagerService {
 		//블럭 그룹의 마지막 페이지 번호
 		//총 페이지수보다 클 경우, 총 페이지수를 마지막 번호로 지정
 		paging.setEndBlock(curBlockGrpNo*paging.getBlockSize()>paging.getPageCount()?paging.getPageCount():curBlockGrpNo*paging.getBlockSize());
-			
 		//정렬 초기값 설정
 		if(paging.getSort()==null || paging.getSort()=="") {
 			paging.setSort("new");
@@ -215,7 +218,7 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	//펀딩신청 승인
 	@Override
-	public void fundingIns(FundingExpVO funding) throws Exception {
+	public void fundingIns(FundingInsVO funding) throws Exception {
 		//해당 펀딩의 이미지파일 이름 가져오기
 		String[] fnames = dao.applyImage(funding.getFid()).toArray(new String[dao.applyImage(funding.getFid()).size()]);
 		//만약 이미지파일이 존재하면
@@ -250,8 +253,178 @@ public class ManagerServiceImpl implements ManagerService {
 		dao.fundingIns(funding);
 		//펀딩신청테이블에서 해당 펀딩 삭제
 		dao.applyDel(funding.getFid());
+		//판매자로 권한변경
+		dao.sellerUpt(funding.getFmid());
+		//order테이블에 초기 데이터 삽입
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fid", funding.getFid());
+		map.put("admin", funding.getAdmin());
+		dao.orderIns(map);
 	}
 	
+	//구매승인 리스트
+	@Override
+	public List<PurchaseVO> purchaseList(ApplyPagingVO paging) throws Exception {
+		//총 게시물 수
+		paging.setCount(dao.purchaseCnt());
+		//페이지당 게시물 수 초기값 설정
+		if(paging.getPageSize()==0) {
+			paging.setPageSize(20);
+		}
+		//총 페이지 수
+		paging.setPageCount((int)Math.ceil(paging.getCount()/(double)paging.getPageSize()));
+		//클릭한 현재 페이지 호출(초기값은 1)
+		if(paging.getCurPage()==0) {
+			paging.setCurPage(1);
+		}
+		//DB에 넣을 rownum 시작번호
+		paging.setStart((paging.getCurPage()-1)*paging.getPageSize()+1);
+		//DB에 넣을 rownum 마지막번호
+		//총 게시물수보다 클 경우, 총 게시물수를 마지막번호로 지정
+		paging.setEnd(paging.getCurPage()*paging.getPageSize()>paging.getCount()?paging.getCount():paging.getCurPage()*paging.getPageSize());
+		//페이지 블럭 수
+		paging.setBlockSize(5);
+		//현재 블럭 그룹 번호
+		int curBlockGrpNo = (int)Math.ceil(paging.getCurPage()/(double)paging.getBlockSize());
+		//블럭 그룹의 시작 페이지 번호
+		paging.setStartBlock((curBlockGrpNo-1)*paging.getBlockSize()+1);
+		//블럭 그룹의 마지막 페이지 번호
+		//총 페이지수보다 클 경우, 총 페이지수를 마지막 번호로 지정
+		paging.setEndBlock(curBlockGrpNo*paging.getBlockSize()>paging.getPageCount()?paging.getPageCount():curBlockGrpNo*paging.getBlockSize());
+		//정렬 초기값 설정
+		if(paging.getSort()==null || paging.getSort()=="") {
+			paging.setSort("new");
+		}
+		return dao.purchaseList(paging);
+	}
+	
+	//구매신청 승인
+	@Override
+	public void purchaseIns(int fid) throws Exception {
+		//해당 펀딩을 주문한 회원들의 이메일
+		String[] email = dao.orderEmail(fid).toArray(new String[dao.orderEmail(fid).size()]);
+		if(email.length>0) {
+			//이메일을 전송하기 위해 MimeMessage 선언
+			MimeMessage mmsg = sender.createMimeMessage();
+			//메일 전송을 돕는 MimeMessageHelper 선언
+			MimeMessageHelper message = new MimeMessageHelper(mmsg, "UTF-8");
+			//이메일 주소를 나타날 때 사용하는 InternetAddress 선언하여 수신인 작성
+			InternetAddress[] toArr = new InternetAddress[email.length];
+			for(int i=0; i<email.length; i++) {
+				System.out.println("email = " + email[i]);
+				toArr[i] = new InternetAddress(email[i]);
+			}
+			//이메일 제목
+			message.setSubject("[FFunding] 서포터님이 후원하신 " + dao.fundingName(fid) + " 펀딩 결과입니다.");
+			//수신인
+			message.setTo(toArr);
+			//이메일 내용
+			message.setText("서포터님이 후원하신 " + dao.fundingName(fid) + " 펀딩이 100%를 달성하였습니다."
+					+ "<br>홈페이지에 접속하셔서 자세한 내용을 확인해주세요. "
+					+ "<br><br>FFunding 사이트를 이용해주셔서 감사합니다.", true);
+			//이메일 전송
+			sender.send(mmsg);
+		}
+		//원래는 구매테이블에 insert도 구현해야하지만, 구매페이지를 구현하지 않기로 해서 delete만 구현
+		//해당 펀딩의 상세정보 가져오기
+		FundingExpVO funding = dao.purchaseDetail(fid);
+		//이미지가 존재하면 삭제
+		if(funding.getFimg()!=null) {
+			File delFile = new File(insPath + funding.getFimg());
+			delFile.delete();
+			if(funding.getFimg1()!=null) {
+				delFile = new File(insPath + funding.getFimg1());
+				delFile.delete();
+				if(funding.getFimg2()!=null) {
+					delFile = new File(insPath + funding.getFimg2());
+					delFile.delete();
+					if(funding.getFimg3()!=null) {
+						delFile = new File(insPath + funding.getFimg3());
+						delFile.delete();
+						if(funding.getFimg4()!=null) {
+							delFile = new File(insPath + funding.getFimg4());
+							delFile.delete();
+							if(funding.getFimg5()!=null) {
+								delFile = new File(insPath + funding.getFimg5());
+								delFile.delete();
+							}
+						}
+					}
+				}
+			}
+		}
+		//펀딩 주문리스트에서 해당 펀딩을 주문한 회원 삭제
+		dao.orderDel(fid);
+		//구매신청 리스트에서 해당 펀딩 삭제
+		dao.purchaseDel(fid);
+	}
+	
+	//구매신청 삭제
+	@Override
+	public void purchaseDel(int fid) throws Exception {
+		//해당 펀딩을 주문한 회원들의 이메일
+		String[] email = dao.orderEmail(fid).toArray(new String[dao.orderEmail(fid).size()]);
+		if(email.length>0) {
+			//이메일을 전송하기 위해 MimeMessage 선언
+			MimeMessage mmsg = sender.createMimeMessage();
+			//메일 전송을 돕는 MimeMessageHelper 선언
+			MimeMessageHelper message = new MimeMessageHelper(mmsg, "UTF-8");
+			//이메일 주소를 나타날 때 사용하는 InternetAddress 선언하여 수신인 작성
+			InternetAddress[] toArr = new InternetAddress[email.length];
+			for(int i=0; i<email.length; i++) {
+				System.out.println("email = " + email[i]);
+				toArr[i] = new InternetAddress(email[i]);
+			}
+			//이메일 제목
+			message.setSubject("[FFunding] 서포터님이 후원하신 " + dao.fundingName(fid) + " 펀딩 결과입니다.");
+			//수신인
+			message.setTo(toArr);
+			//이메일 내용
+			message.setText("서포터님이 후원하신 " + dao.fundingName(fid) + " 펀딩이 100%를 달성하지 못하여 서포터님이 후원하신 포인트는 환불처리해드렸습니다."
+					+ "<br>마이페이지에서 환불된 포인트를 확인해주세요. "
+					+ "<br><br>FFunding 사이트를 이용해주셔서 감사합니다.", true);
+			//이메일 전송
+			sender.send(mmsg);
+		}
+		//펀딩 주문리스트에서 해당 펀딩을 주문한 회원 리스트
+		List<OrderVO> orderList = dao.orderList(fid);
+		for(OrderVO order:orderList) {
+			//포인트 환불
+			dao.pointUpt(order);
+		}
+		//해당 펀딩의 상세정보 가져오기
+		FundingExpVO funding = dao.purchaseDetail(fid);
+		//이미지가 존재하면 삭제
+		if(funding.getFimg()!=null) {
+			File delFile = new File(insPath + funding.getFimg());
+			delFile.delete();
+			if(funding.getFimg1()!=null) {
+				delFile = new File(insPath + funding.getFimg1());
+				delFile.delete();
+				if(funding.getFimg2()!=null) {
+					delFile = new File(insPath + funding.getFimg2());
+					delFile.delete();
+					if(funding.getFimg3()!=null) {
+						delFile = new File(insPath + funding.getFimg3());
+						delFile.delete();
+						if(funding.getFimg4()!=null) {
+							delFile = new File(insPath + funding.getFimg4());
+							delFile.delete();
+							if(funding.getFimg5()!=null) {
+								delFile = new File(insPath + funding.getFimg5());
+								delFile.delete();
+							}
+						}
+					}
+				}
+			}
+		}
+		//펀딩 주문리스트에서 해당 펀딩을 주문한 회원 삭제
+		dao.orderDel(fid);
+		//구매신청 리스트에서 해당 펀딩 삭제
+		dao.purchaseDel(fid);
+	}
+		
 	//메일전송
 	@Override
 	public String sendMail(MailVO mail) throws Exception {
@@ -260,7 +433,6 @@ public class ManagerServiceImpl implements ManagerService {
 		MimeMessage mmsg = sender.createMimeMessage();
 		//파일을 첨부하여 전송할 수 있도록 MimeMessageHelper 선언
 		MimeMessageHelper message = new MimeMessageHelper(mmsg, true, "UTF-8");
-		
 		//getRecipientck 값에 따라 직접 입력한 이메일, 모든회원, 판매자만으로 수신인 설정
 		List<String> recipientList = new ArrayList<String>();
 		if(mail.getRecipientck()==0) {
@@ -272,13 +444,11 @@ public class ManagerServiceImpl implements ManagerService {
 			recipientList = dao.sellerEmail();
 			mail.setRecipients(recipientList.toArray(new String[recipientList.size()]));
 		}
-		
+		//이메일 주소를 나타날 때 사용하는 InternetAddress 선언하여 수신인 작성
 		InternetAddress[] toArr = new InternetAddress[mail.getRecipients().length];
-		
 		for(int i=0; i<mail.getRecipients().length; i++) {
 			toArr[i] = new InternetAddress(mail.getRecipients()[i]);
 		}
-		
 		try {
 			//이메일 제목
 			message.setSubject(mail.getTitle());

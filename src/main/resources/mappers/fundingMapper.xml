@@ -29,7 +29,7 @@
 		A.MID
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
 		WHERE A.FID = B.FID
-		<if test="category!=null">
+		<if test="category!=null and !category.equals('')">
     	AND A.FCATE = #{category}
     	</if>
 		GROUP BY A.FID,

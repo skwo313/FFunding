@@ -1,5 +1,7 @@
 package com.ffunding.web.aop;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.annotation.Aspect;
@@ -32,14 +34,24 @@ public class AdminCheck {
 	 	 //Controller 외에서 세션을 받아오기 위한 방법
 		 HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
 		 MemberVO member = (MemberVO)session.getAttribute("member");
-		 //관리자 아이디 리스트를 받아와서 배열로 변환
-		 String[] admin = service.managerList().toArray(new String[service.managerList().size()]);
-		 for(String a:admin) {
-			 //로그인이 되어있지 않거나 로그인한 아이디가 관리자 아이디가 아닐경우
-			 if(member==null || !(member.getMid().equals(a))) {
-				 //HttpClientErrorException 에러 발생
-				 throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+		 //관리자 아이디 리스트
+		 List<String> admin = service.managerList();
+		 int cnt = 0;
+		 if(member!=null) {
+			 for(String a:admin) {
+				 //로그인한 아이디와 관리자 아이디가 일치할 경우
+				 if(member.getMid().equals(a)) {
+					 cnt++;
+				 }
 			 }
+		 } else {
+			//HttpClientErrorException 에러 발생
+			throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
+		 }
+		 //로그인한 아이디와 관리자 아이디가 일치하지 않을경우
+		 if(cnt!=1) {
+			//HttpClientErrorException 에러 발생
+			throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
 		 }
 	}
 	

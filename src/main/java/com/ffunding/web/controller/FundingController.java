@@ -36,7 +36,7 @@ public class FundingController {
 		hashMap.put("category", category);
 		hashMap.put("sort", sort);
 		model.addAttribute("list", service.list(hashMap));
-		
+		model.addAttribute("category", category);
 		return "funding/fundingList.page";
 	}
 

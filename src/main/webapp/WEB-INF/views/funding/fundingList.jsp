@@ -140,25 +140,26 @@ function onClose(e) {
 </div>
 <nav class="categorybox">
 	<ul class="category">
-		<li><a href="#"><i class="bi bi-display"></i>테크 · 가전</a></li>
-		<li><a href="#"><i class="bi bi-bucket"></i>패션 · 잡화</a></li>
-		<li><a href="#"><i class="bi bi-droplet"></i>뷰티</a></li>
-		<li><a href="#"><i class="bi bi-egg"></i>푸드</a></li>
-		<li><a href="#"><i class="bi bi-house"></i>홈 · 리빙</a></li>
-		<li><a href="#"><i class="bi bi-tsunami"></i>여행 · 레저</a></li>
-		<li><a href="#"><i class="bi bi-bicycle"></i>스포츠 · 모빌리티</a></li>
-		<li><a href="#"><i class="bi bi-snapchat"></i>캐릭터 · 굿즈</a></li>
-		<li><a href="#"> <i class="bi bi-controller"></i> 게임 · 취미
+		<li><a href="/ffunding/funding?category=테크 · 가전"><i class="bi bi-display"></i>테크 · 가전</a></li>
+		<li><a href="/ffunding/funding?category=패션 · 잡화"><i class="bi bi-bucket"></i>패션 · 잡화</a></li>
+		<li><a href="/ffunding/funding?category=뷰티"><i class="bi bi-droplet"></i>뷰티</a></li>
+		<li><a href="/ffunding/funding?category=푸드"><i class="bi bi-egg"></i>푸드</a></li>
+		<li><a href="/ffunding/funding?category=홈 · 리빙"><i class="bi bi-house"></i>홈 · 리빙</a></li>
+		<li><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-tsunami"></i>여행 · 레저</a></li>
+		<li><a href="/ffunding/funding?category=스포츠 · 모빌리티"><i class="bi bi-bicycle"></i>스포츠 · 모빌리티</a></li>
+		<li><a href="/ffunding/funding?category=캐릭터 · 굿즈"><i class="bi bi-snapchat"></i>캐릭터 · 굿즈</a></li>
+		<li><a href="/ffunding/funding?category=게임 · 취미"><i class="bi bi-controller"></i> 게임 · 취미
 		</a></li>
 	</ul>
 </nav>
 <section>
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px; display: flex; justify-content: end;">
 		<form>
-			<select class="form-select" aria-label="Default select example" style="width: 115px;">
-				<option value="1">최신순</option>
-				<option value="2">펀딩액순</option>
-				<option value="3">인기순</option>
+			<select class="form-select" aria-label="Default select example" style="width: 115px;" onchange="if(this.value) location.href=(this.value);">
+				<option value="none">정렬</option>
+				<option value="/ffunding/funding?category=${category}&sort=fstartdate">최신순</option>
+				<option value="/ffunding/funding?category=${category}&sort=price">펀딩액순</option>
+				<option value="/ffunding/funding?category=${category}&sort=sell">인기순</option>
 			</select>
 		</form>
 	</div>
@@ -196,7 +197,6 @@ function onClose(e) {
 						</div>
 					</div>
 				</div>
-
 			</c:forEach>
 		</div>
 	</div>

@@ -37,13 +37,13 @@ $.ajax({
 			new Chart(document.getElementById("myBarChart"), {
 			  type: 'bar',
 			  data: {
-			    labels: ["Total", "General", "Seller"],
+			    labels: ["테크 · 가전", "패션 · 잡화", "뷰티", "푸드", "홈 · 리빙", "여행 · 레저", "스포츠 · 모빌리티", "캐릭터 · 굿즈", "게임 · 취미"],
 			    datasets: [{
-			      label: "명",
+			      label: "",
 			      backgroundColor: "#4e73df",
 			      hoverBackgroundColor: "#2e59d9",
 			      borderColor: "#4e73df",
-			      data: [data.userTot, data.generalCnt, data.sellerCnt],
+			      data: [data.tech, data.fashion, data.beauty, data.food, data.home, data.travel, data.sport, data.character, data.game],
 			    }],
 			  },
 			  options: {
@@ -63,18 +63,18 @@ $.ajax({
 			        },
 			        gridLines: {
 			          display: false,
-			          drawBorder: false
+			          drawBorder: true
 			        },
 			        ticks: {
-			          maxTicksLimit: 6
+			          maxTicksLimit: 9
 			        },
-			        maxBarThickness: 25,
+			        maxBarThickness: 30,
 			      }],
 			      yAxes: [{
 			        ticks: {
 			          min: 0,
-			          max: 50,
-			          maxTicksLimit: 6,
+			          max: 10,
+			          maxTicksLimit: 3,
 			          padding: 10,
 			          // Include a dollar sign in the ticks
 			          callback: function(value, index, values) {
