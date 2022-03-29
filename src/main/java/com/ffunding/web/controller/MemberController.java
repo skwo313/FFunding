@@ -97,7 +97,11 @@ public class MemberController {
 		
 		try {
 			MemberVO member = service.loginCheck(loginMap);
-			boolean checkPw = BCrypt.checkpw(loginMap.get("mpw"), member.getMpw());
+			/* 로그인 실패시 복호화 전 null값 처리 */
+			boolean checkPw = false;
+			if(member != null) {
+				checkPw = BCrypt.checkpw(loginMap.get("mpw"), member.getMpw());
+			}
 			
 			if (member != null && checkPw) {
 				model.addAttribute("member", member);

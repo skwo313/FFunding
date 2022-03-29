@@ -84,7 +84,7 @@
 		};
 		$.ajax({
 			type : "POST",
-			url : "${path}/member/loginCk",
+			url : "loginCk",
 			dataType : "json",
 			contentType : "application/json",
 			data : JSON.stringify(loginData),
