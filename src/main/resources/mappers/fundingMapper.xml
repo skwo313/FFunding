@@ -28,7 +28,8 @@
 		A.FDES ,
 		A.MID
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
-		WHERE A.FID = B.FID
+		WHERE A.FID = B.FID 
+		<!-- AND SYSDATE BETWEEN FSTARTDATE AND FENDDATE -->
 		<if test="category!=null and !category.equals('')">
     	AND A.FCATE = #{category}
     	</if>
