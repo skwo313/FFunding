@@ -1,7 +1,14 @@
 package com.ffunding.web.controller;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,12 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ffunding.web.dao.VisitDAO;
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
 import com.ffunding.web.vo.MemberVO;
+import com.ffunding.web.vo.VisitDateVO;
 
 
 @RequestMapping("manager")
@@ -29,7 +38,8 @@ public class ManagerController {
 	
 	@Autowired
 	private ManagerService service;
-	
+	@Autowired
+	private VisitDAO dao;
 	//http://localhost:8000/ffunding/manager/dashboard
 	//관리자 대시보드(메인페이지)
 	@GetMapping("dashboard")
@@ -166,4 +176,51 @@ public class ManagerController {
 		redirect.addAttribute("msg", service.sendMail(mail));
 		return "redirect:/manager/mail";
 	}
+	//관리자 대시보드 x축,y축 데이터
+			@PostMapping("dashboard/chartx")
+			public String dashboardChartx(Model d) throws Exception {
+				String c_date=service.chartXList();
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = df.parse(c_date);
+				Calendar cal = Calendar.getInstance();
+				String chtime;
+				List<String> list = new ArrayList<>();
+				for(int i=6;i>=0;i--) {
+					cal.setTime(date);
+					cal.add(Calendar.DATE, -i);
+					chtime=df.format(cal.getTime());
+					list.add(chtime);
+				}
+				Collections.sort(list);
+				 
+				VisitDateVO vo = new VisitDateVO();
+				String d1 = list.get(0);
+				String d2 = list.get(1);
+				String d3 = list.get(2);
+				String d4 = list.get(3);
+				String d5 = list.get(4);
+				String d6 = list.get(5);
+				String d7 = list.get(6);
+				vo.setDate1(d1);
+				vo.setDate2(d2);
+				vo.setDate3(d3);
+				vo.setDate4(d4);
+				vo.setDate5(d5);
+				vo.setDate6(d6);
+				vo.setDate7(d7);
+				dao.updateDate(vo);
+				List<Integer> ylist = new ArrayList<>();
+				ylist.add(service.date1Cnt());
+				ylist.add(service.date2Cnt());
+				ylist.add(service.date3Cnt());
+				ylist.add(service.date4Cnt());
+				ylist.add(service.date5Cnt());
+				ylist.add(service.date6Cnt());
+				ylist.add(service.date7Cnt());
+				System.out.println("test: "+list);
+				System.out.println("test2: "+ylist);
+				d.addAttribute("xdata", list);
+				d.addAttribute("ydata", ylist);
+				return "jsonView";
+			}
 }

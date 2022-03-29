@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.ffunding.web.dao.FundingDAO;
 import com.ffunding.web.service.FundingService;
 import com.ffunding.web.vo.FundingVO;
+import com.ffunding.web.vo.MemberVO;
+import com.ffunding.web.vo.OrderVO;
 
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -26,4 +28,12 @@ public class FundingServiceImpl implements FundingService {
 	public FundingVO viewDetail(int fid) throws Exception{
 		return dao.viewDetail(fid);
 	}
+	// 주문 완료
+	public void orderProduct(OrderVO vo) throws Exception{
+		dao.orderProduct(vo);
+	}
+	// 주문 완료시 포인트 차감
+		public void pointDown(MemberVO membervo) throws Exception{
+			dao.pointDown(membervo);
+		}
 }

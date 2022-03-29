@@ -494,4 +494,30 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		return msg;
 	}
+	//차트 그래프 x축 y축 날짜데이터
+	public String chartXList() throws Exception{
+		return dao.chartXList();
+	}
+	@Override
+	public int date1Cnt() throws Exception {
+		return dao.date1Cnt();
+	}
+	public int date2Cnt() throws Exception {
+		return dao.date2Cnt();
+	}
+	public int date3Cnt() throws Exception {
+		return dao.date3Cnt();
+	}
+	public int date4Cnt() throws Exception {
+		return dao.date4Cnt();
+	}
+	public int date5Cnt() throws Exception {
+		return dao.date5Cnt();
+	}
+	public int date6Cnt() throws Exception {
+		return dao.date6Cnt();
+	}
+	public int date7Cnt() throws Exception {
+		return dao.date7Cnt();
+	}
 }

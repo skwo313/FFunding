@@ -33,8 +33,11 @@ $(document).ready(function() {
 		if (e.keyCode == 13) {sendMessage();}
 		
 	});
+	
 });
-
+function order_send() {
+	location.href = "/ffunding/funding/detail/order?fid=${detail.fid}";
+}
 function onOpen(e) {
 	sock.send("${member.mid}님 입장하셨습니다");
 }
@@ -154,9 +157,11 @@ function onClose(e) {
 							</div>
 						</div>
 					</div>
+					<c:if test="${not empty member.mid}">
 					<div class="info-text">
-						<input type="button" class="form-control butn" value="펀딩하기" />
+						<input type="button" class="form-control butn"  onclick="order_send();" value="주문하기"/>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

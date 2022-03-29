@@ -259,7 +259,7 @@ function onClose(e) {
     <script src="${path}/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="${path}/js/demo/chart-area-demo.js"></script>
+
     <script src="${path}/js/demo/chart-area-demo2.js"></script>
     <script src="${path}/js/demo/chart-pie-demo.js"></script>
     <script src="${path}/js/demo/chart-bar-demo.js"></script>

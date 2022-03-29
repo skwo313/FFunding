@@ -207,4 +207,37 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public List<String> sellerEmail() throws Exception {
 		return session.selectList("managerMapper.sellerEmail");
 	}
+	//차트 그래프 x축 y축 날짜데이터
+	@Override
+	public String chartXList() throws Exception {
+		return session.selectOne("managerMapper.chartXList");
+	}
+	@Override
+	public int date1Cnt() throws Exception {
+		return session.selectOne("managerMapper.date1");
+	}
+	@Override
+	public int date2Cnt() throws Exception {
+		return session.selectOne("managerMapper.date2");
+	}
+	@Override
+	public int date3Cnt() throws Exception {
+		return session.selectOne("managerMapper.date3");
+	}
+	@Override
+	public int date4Cnt() throws Exception {
+		return session.selectOne("managerMapper.date4");
+	}
+	@Override
+	public int date5Cnt() throws Exception {
+		return session.selectOne("managerMapper.date5");
+	}
+	@Override
+	public int date6Cnt() throws Exception {
+		return session.selectOne("managerMapper.date6");
+	}
+	@Override
+	public int date7Cnt() throws Exception {
+		return session.selectOne("managerMapper.date7");
+	}
 }

@@ -51,4 +51,13 @@ public interface ManagerService {
 	public void purchaseDel(int fid) throws Exception;
 	//메일전송
 	public String sendMail(MailVO mail) throws Exception;
+	//차트 그래프 x축 y축 날짜데이터
+	public String chartXList() throws Exception;
+	public int date1Cnt() throws Exception;
+	public int date2Cnt() throws Exception;
+	public int date3Cnt() throws Exception;
+	public int date4Cnt() throws Exception;
+	public int date5Cnt() throws Exception;
+	public int date6Cnt() throws Exception;
+	public int date7Cnt() throws Exception;
 }

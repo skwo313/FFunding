@@ -307,4 +307,75 @@
 		WHERE sellerck=1
 		AND memail IS NOT NULL
 	</select>
+	<!-- 차트 그래프 x축 y축 날짜데이터 -->
+	<select id="chartXList" resultType="String">
+		 <![CDATA[
+	SELECT VISIT_TIME 
+    FROM (SELECT * FROM visit ORDER BY visit_time desc) 
+	WHERE rownum<=1
+		]]>
+	</select>
+	<update id="visitdateupdate"
+		parameterType="com.ffunding.web.vo.VisitDateVO">
+		UPDATE visitdate
+		SET
+		date1=#{date1},
+		date2=#{date2},
+		date3=#{date3},
+		date4=#{date4},
+		date5=#{date5},
+		date6=#{date6},
+		date7=#{date7}
+		WHERE 1=1
+	</update>
+	<select id="date1" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date1 AND d.date2
+		]]>
+	</select>
+	<select id="date2" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date2 AND d.date3
+		]]>
+	</select>
+	<select id="date3" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date3 AND d.date4
+		]]>
+	</select>
+	<select id="date4" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date4 AND d.date5
+		]]>
+	</select>
+	<select id="date5" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date5 AND d.date6
+		]]>
+	</select>
+	<select id="date6" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN d.date6 AND d.date7
+		]]>
+	</select>
+	<select id="date7" resultType="int">
+		 <![CDATA[
+	SELECT count(*)
+	FROM VISIT v, visitdate d
+	WHERE v.VISIT_TIME BETWEEN (SELECT RPAD(d.date7, 13, ' 00')AS date7 FROM visitdate d) 
+	AND (SELECT RPAD(d.DATE7, 13, ' 24')AS date8 FROM visitdate d)
+		]]>
+	</select>
 </mapper>

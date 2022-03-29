@@ -97,4 +97,21 @@
 		A.MID
 		ORDER BY sell DESC
 	</select>
+	<insert id="orderProduct">
+		INSERT INTO funding_order 
+		VALUES( 
+		funding_order_seq.nextval
+		, #{mid}
+		, #{fid}
+		, #{fo_cnt}
+		, #{fo_price}
+		, #{fo_donation}
+		,sysdate)
+	</insert>
+	<update id="pointDown">
+		UPDATE member 
+		SET 
+		point= #{point}
+		WHERE mid = #{mid}
+	</update>
 </mapper>
