@@ -2,6 +2,7 @@ package com.ffunding.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -189,12 +190,14 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	/* 회원가입 뷰 */
 	@RequestMapping(value = "registerView", method = RequestMethod.GET)
 	public String registerView() throws Exception {
 		logger.info("RegisterView");
 		return "member/regform.page";
 	}
 	
+	/* 회원 등록 */
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(MemberVO reg, RedirectAttributes rttr) throws Exception  {
 		logger.info("Regist");
@@ -208,6 +211,7 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	/* 아이디 중복 확인 */
 	@RequestMapping(value = "idChk", method = RequestMethod.POST)
 	@ResponseBody
 	public int idChk(@RequestBody Map<String,String> idMap) throws Exception {
@@ -216,6 +220,45 @@ public class MemberController {
 		logger.info("idChk >>"+result);
 		return result;
 	}
+	
+	/* 아이디 찾기 뷰 */
+	@RequestMapping(value = "find", method = RequestMethod.GET)
+	public String findId() throws Exception {
+		logger.info("FindView");
+		return "member/find.page";
+	}
+	
+	/* 아이디 찾기 */
+    @RequestMapping(value="findCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public Object findCheckGET(String email, String isFindId,
+    							Model model) throws Exception{
+	    /* 뷰(View)로부터 넘어온 데이터 확인 */
+	    logger.info("이메일 데이터 전송 확인");
+	    logger.info("인증번호 : " + email);
+	    logger.info("아이디찾기 유무 : " + isFindId);
+        
+	    Map<String, String> find = new HashMap<String, String>();
+	    find.put("num", service.mailSend(email));
+	    if( StringUtils.equals("1", isFindId) ) {
+	    	find.put("findId", service.getID(email));
+	    }
+        
+        return find;
+    }
+    
+    /* 비밀번호 찾기(변경) */
+    @RequestMapping(value = "findPw", method = RequestMethod.POST)
+    @ResponseBody
+    public String findpw(@RequestBody Map<String, String> update) throws Exception {
+    	logger.info("FindPW>>"+update.values());
+    	
+    	String hashedPw = BCrypt.hashpw(update.get("mpw"), BCrypt.gensalt());
+    	update.put("mpw", hashedPw);
+		service.updatePW(update);
+    	
+		return "login";
+    }
 	
 	@GetMapping("choiceLan")
 	public String setLogin(

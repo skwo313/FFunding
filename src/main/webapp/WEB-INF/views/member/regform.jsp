@@ -23,8 +23,7 @@
 <link id="pagestyle"
 	href="${path}/css/member/material-dashboard.css?v=3.0.1"
 	rel="stylesheet" />
-<link rel="stylesheet" href="${path}/css/common.css">
-
+<title>회원가입</title>
 <script type="text/javascript">
 	$(document).ready(function(){
 		

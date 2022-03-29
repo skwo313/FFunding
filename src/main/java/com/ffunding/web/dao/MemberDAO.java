@@ -15,4 +15,8 @@ public interface MemberDAO {
 	public int idChk(Map<String, String> idMap) throws Exception;
 
 	public void register(MemberVO reg) throws Exception;
+
+	public String getID(String email) throws Exception;
+
+	public void updatePW(Map<String, String> update) throws Exception;
 }

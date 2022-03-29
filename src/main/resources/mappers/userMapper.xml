@@ -99,4 +99,14 @@
 		#{googleid, jdbcType=VARCHAR},
 		#{kakaoid, jdbcType=VARCHAR} )
    </insert>
+   
+   <select id="findID" resultType="String">
+   	select mid from member where memail = #{email}
+   </select>
+   
+   <update id="updatePW">
+   	update member set
+		mpw = #{mpw}
+	WHERE memail = #{memail}
+   </update>
 </mapper>

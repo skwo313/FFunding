@@ -24,8 +24,8 @@
 <link id="pagestyle"
 	href="${path}/css/member/material-dashboard.css?v=3.0.1"
 	rel="stylesheet" />
-<link rel="stylesheet" href="${path}/css/common.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>로그인</title>
 <style>
 #selectLan{
 	width: 180px;
@@ -84,7 +84,7 @@
 		};
 		$.ajax({
 			type : "POST",
-			url : "${path}/member/loginCk",
+			url : "loginCk",
 			dataType : "json",
 			contentType : "application/json",
 			data : JSON.stringify(loginData),

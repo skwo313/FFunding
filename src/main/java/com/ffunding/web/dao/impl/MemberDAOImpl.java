@@ -27,6 +27,8 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String JOIN_BY_SNS_KAKAO = NS + ".joinBySnsKakao";
 	private static final String ID_CHECK = NS + ".idChk";
 	private static final String REGIST = NS + ".register";
+	private static final String FINDID = NS + ".findID";
+	private static final String UPDATEPW = NS + ".updatePW";
 	
 	
 	@Override
@@ -70,5 +72,17 @@ public class MemberDAOImpl implements MemberDAO {
 	public void register(MemberVO reg) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(REGIST, reg);
+	}
+
+	@Override
+	public String getID(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(FINDID, email);
+	}
+
+	@Override
+	public void updatePW(Map<String, String> update) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(UPDATEPW, update);
 	}
 }
