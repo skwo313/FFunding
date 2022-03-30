@@ -4,6 +4,11 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${path}/css/bxslider.css">
 <link rel="stylesheet" href="${path}/css/fundingList.css">
+<style>
+.bold {
+	font-weight: bold;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
@@ -155,15 +160,78 @@
 </div>
 <nav class="categorybox">
 	<ul class="category">
-		<li><a href="/ffunding/funding?category=테크 · 가전"><i class="bi bi-display"></i>테크 · 가전</a></li>
-		<li><a href="/ffunding/funding?category=패션 · 잡화"><i class="bi bi-bucket"></i>패션 · 잡화</a></li>
-		<li><a href="/ffunding/funding?category=뷰티"><i class="bi bi-droplet"></i>뷰티</a></li>
-		<li><a href="/ffunding/funding?category=푸드"><i class="bi bi-egg"></i>푸드</a></li>
-		<li><a href="/ffunding/funding?category=홈 · 리빙"><i class="bi bi-house"></i>홈 · 리빙</a></li>
-		<li><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-tsunami"></i>여행 · 레저</a></li>
-		<li><a href="/ffunding/funding?category=스포츠 · 모빌리티"><i class="bi bi-bicycle"></i>스포츠 · 모빌리티</a></li>
-		<li><a href="/ffunding/funding?category=캐릭터 · 굿즈"><i class="bi bi-snapchat"></i>캐릭터 · 굿즈</a></li>
-		<li><a href="/ffunding/funding?category=게임 · 취미"><i class="bi bi-controller"></i> 게임 · 취미 </a></li>
+		<c:choose>
+			<c:when test="${category eq '테크 · 가전'}">
+				<li class="bold"><a href="/ffunding/funding?category=테크 · 가전"><i class="bi bi-display"></i>테크 · 가전</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=테크 · 가전"><i class="bi bi-display"></i>테크 · 가전</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '패션 · 잡화'}">
+				<li class="bold"><a href="/ffunding/funding?category=패션 · 잡화"><i class="bi bi-bucket"></i>패션 · 잡화</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=패션 · 잡화"><i class="bi bi-bucket"></i>패션 · 잡화</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '뷰티'}">
+				<li class="bold"><a href="/ffunding/funding?category=뷰티"><i class="bi bi-droplet"></i>뷰티</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=뷰티"><i class="bi bi-droplet"></i>뷰티</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '푸드'}">
+				<li class="bold"><a href="/ffunding/funding?category=푸드"><i class="bi bi-egg"></i>푸드</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=푸드"><i class="bi bi-egg"></i>푸드</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '홈 · 리빙'}">
+				<li class="bold"><a href="/ffunding/funding?category=홈 · 리빙"><i class="bi bi-house"></i>홈 · 리빙</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=홈 · 리빙"><i class="bi bi-house"></i>홈 · 리빙</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '여행 · 레저'}">
+				<li class="bold"><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-tsunami"></i>여행 · 레저</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-tsunami"></i>여행 · 레저</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '스포츠 · 모빌리티'}">
+				<li class="bold"><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-bicycle"></i>스포츠 · 모빌리티</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=스포츠 · 모빌리티"><i class="bi bi-bicycle"></i>스포츠 · 모빌리티</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '캐릭터 · 굿즈'}">
+				<li class="bold"><a href="/ffunding/funding?category=여행 · 레저"><i class="bi bi-snapchat"></i>캐릭터 · 굿즈</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=캐릭터 · 굿즈"><i class="bi bi-snapchat"></i>캐릭터 · 굿즈</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${category eq '게임 · 취미'}">
+				<li class="bold"><a href="/ffunding/funding?category=게임 · 취미"><i class="bi bi-controller"></i>게임 · 취미</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="/ffunding/funding?category=게임 · 취미"><i class="bi bi-controller"></i>게임 · 취미</a></li>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 </nav>
 <section>
@@ -171,9 +239,9 @@
 		<form>
 			<select class="form-select" id="sort" aria-label="Default select example" style="width: 115px;" onchange="if(this.value) location.href=(this.value);">
 				<option value="" selected disabled hidden>정렬</option>
-				<option value="/ffunding/funding?category=${category}&sort=fstartdate" value2="fstartdate">최신순</option>
-				<option value="/ffunding/funding?category=${category}&sort=price" value2="price">펀딩액순</option>
-				<option value="/ffunding/funding?category=${category}&sort=sell" value2="sell">인기순</option>
+				<option value="/ffunding/funding?category=${category}&sort=fstartdate">최신순</option>
+				<option value="/ffunding/funding?category=${category}&sort=price">펀딩액순</option>
+				<option value="/ffunding/funding?category=${category}&sort=sell">인기순</option>
 			</select>
 		</form>
 	</div>
