@@ -166,7 +166,7 @@ function onClose(e) {
 			</div>
 		</div>
 	</div>
-	<div class="row justify-content-md-center" style="margin-bottom: 40px;">
+	<div class="row justify-content-md-center" style="margin: 40px 0px;">
 		<div class="col-8">
 			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg1}"></c:out>">
 		</div>
