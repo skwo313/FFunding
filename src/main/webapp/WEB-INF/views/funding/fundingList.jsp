@@ -248,16 +248,16 @@
 	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div class="row row-cols-3">
 			<c:forEach items="${list}" var="list" varStatus="vs">
-
 				<div class="col" style="margin: 8px 0px;">
-					<div class="col" style="margin-bottom: 10px">
+					<div class="col" style="margin-bottom: 10px; height: 60%;">
 						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
 						</a>
 					</div>
-
 					<div class="col">
 						<h5 class="title" style="margin-bottom: 2px; min-height: 48px;">
-							<c:out value="${list.fname}"></c:out>
+							<a href="/ffunding/funding/detail?fid=${list.fid}">
+								<c:out value="${list.fname}"></c:out> 
+							</a>
 						</h5>
 					</div>
 					<div class="col" style="margin-bottom: 5px;">

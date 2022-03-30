@@ -95,3 +95,7 @@ img {
 .category li>a:hover {
 	font-weight: bold;
 }
+
+h5 > a{
+	color: black;
+}
