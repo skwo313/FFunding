@@ -1,9 +1,11 @@
 package com.ffunding.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,8 +61,9 @@ public class FundingController {
 
 	// 주문 페이지
 		@GetMapping("/detail/order")
-		public String fundingorder(FundingVO fundingVO, Model model) throws Exception {
-			model.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
+		public String fundingorder(FundingVO fundingVO, Model d,HttpSession session) throws Exception {
+			d.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
+			d.addAttribute("mid",session.getAttribute("member"));
 			return "funding/fundingOrder.page";
 		}
 

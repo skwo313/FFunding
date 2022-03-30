@@ -9,6 +9,7 @@
 <script>
 	$(document).ready(
 			function() {
+				console.log(${mid.point});
 				$("#mid").hide();
 				$('#fo_cnt').on(
 						'change',
@@ -29,9 +30,21 @@
 				$("#btnOrder").click(function() {
 					var tot = $('#fo_price').val();
 					var cnt = $('#fo_cnt').val();
+					var m_point = "$(mid.point)";
+					
+					if (cnt =="0"){
+						alert("주문내용을 선택해주세요");
+						$('#fo_cnt').focus();
+						return false;
+					}
 					if (tot =="0"){
-						alert("수량을 선택해주세요");
+						alert("주문내용을 선택해주세요");
 						$('#fo_price').focus();
+						return false;
+					}
+					if(${mid.point}< tot){
+						alert("포인트가 부족합니다");
+						$('#fo_donation').focus();
 						return false;
 					}
 					$(".form1")("action", "/ffunding/funding/detail/order");
@@ -63,7 +76,9 @@
 		</div>
 		<div class="order_text">
 			<h1 class="order_text2">
-				<span>O</span><span>R</span><span>D</span><span>E</span><span>R</span>
+				<p align="center">ORDER</p>
+				<p style="font-size:15px">▶제품명 : ${detail.fname}</p>
+				<p style="font-size:15px">▶${detail.remain}일후 자동 배송처리됩니다</p>
 			</h1>
 		</div>
 		<form class="order_form" name="form1" method="post">
