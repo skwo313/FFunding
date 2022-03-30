@@ -176,6 +176,15 @@ public class ManagerController {
 		redirect.addAttribute("msg", service.sendMail(mail));
 		return "redirect:/manager/mail";
 	}
+	
+	//일정관리 페이지
+	@GetMapping("calendar")
+	public String calendar(Model d) throws Exception {
+		d.addAttribute("active", "calendar");
+		return "manager/calendar.m";
+	}
+	
+	
 	//관리자 대시보드 x축,y축 데이터
 			@PostMapping("dashboard/chartx")
 			public String dashboardChartx(Model d) throws Exception {

@@ -75,6 +75,8 @@ public interface ManagerDAO {
 	public List<String> memberEmail() throws Exception;
 	//판매자 이메일
 	public List<String> sellerEmail() throws Exception;
+	
+	
 	//차트 그래프 x축 y축 날짜데이터
 	public String chartXList() throws Exception;
 	public int date1Cnt() throws Exception; 

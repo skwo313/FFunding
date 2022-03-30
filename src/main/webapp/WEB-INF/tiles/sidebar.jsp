@@ -64,6 +64,14 @@
 	        </a>
 	    </li>
 	
+		<!-- Nav Item - Utilities Collapse Menu -->
+	    <li class="nav-item ${active eq 'calendar'?'active':''}">
+	        <a class="nav-link" href="/ffunding/manager/calendar">
+	            <i class="bi bi-calendar2-week-fill"></i>
+	            <span>Calendar</span>
+	        </a>
+	    </li>
+	
 	    <!-- Divider -->
 	    <hr class="sidebar-divider d-none d-md-block">
 	

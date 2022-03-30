@@ -494,6 +494,8 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		return msg;
 	}
+	
+	
 	//차트 그래프 x축 y축 날짜데이터
 	public String chartXList() throws Exception{
 		return dao.chartXList();

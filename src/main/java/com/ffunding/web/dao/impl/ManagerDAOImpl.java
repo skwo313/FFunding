@@ -207,6 +207,8 @@ public class ManagerDAOImpl implements ManagerDAO {
 	public List<String> sellerEmail() throws Exception {
 		return session.selectList("managerMapper.sellerEmail");
 	}
+	
+	
 	//차트 그래프 x축 y축 날짜데이터
 	@Override
 	public String chartXList() throws Exception {
