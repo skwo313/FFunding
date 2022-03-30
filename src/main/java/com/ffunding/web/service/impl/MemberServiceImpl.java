@@ -61,6 +61,12 @@ public class MemberServiceImpl implements MemberService {
         Random random = new Random();
         int checkNum = random.nextInt(888888) + 111111;
         
+        /* 계정 유무 */
+        String check = dao.getID(email);
+        if (check == null) {
+        	return "0";
+        }
+        
         /* 이메일 보내기 */
         String setFrom = "aptl1471@naver.com";
         String toMail = email;

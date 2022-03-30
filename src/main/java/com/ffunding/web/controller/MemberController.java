@@ -155,6 +155,7 @@ public class MemberController {
 		if (memberVO == null) {
 			
 			service.joinBySns(snsUser);
+			memberVO = service.getBySns(snsUser);
 			model.addAttribute("member", memberVO);
 		} else {
 			model.addAttribute("member", memberVO);
@@ -244,10 +245,10 @@ public class MemberController {
         
 	    Map<String, String> find = new HashMap<String, String>();
 	    find.put("num", service.mailSend(email));
-	    if( StringUtils.equals("1", isFindId) ) {
+	    if ( StringUtils.equals("1", isFindId) ) {
 	    	find.put("findId", service.getID(email));
 	    }
-        
+	    
         return find;
     }
     

@@ -91,19 +91,26 @@ table {
 			var email = $(".form-control").val(); // 입력한 이메일
 			var checkBox = $(".mail_check_input"); // 인증번호 입력란
 			var boxWrap = $(".mail_check_input_box"); // 인증번호 입력란 박스
-
+			var findSection = $(".section_find"); // 결과 박스
+			
 			$.ajax({
 
 				type : "GET",
 				url : "findCheck?email=" + email + "&isFindId=1",
 				dataType : "json",
 				success : function(data) {
-
+					console.log(data.num +",,,,," +data.findId);
 					//console.log("data : " + data);
 					checkBox.attr("disabled", false);
 					boxWrap.attr("id", "mail_check_input_box_true");
 					code = data.num;
 					id = data.findId;
+					
+					if (code == "0"){
+						findSection.html("해당 이메일과 일치하는 계정이 없습니다");
+						findSection.show();
+						checkBox.attr("disabled", true);
+					}
 				}
 
 			});
@@ -121,6 +128,7 @@ table {
 				checkResult.attr("class", "correct");
 				
 				document.getElementById("applywritebutton").disabled = false;
+				
 				$(".findId").text(id);
 				
 			} else { // 일치하지 않을 경우
@@ -160,7 +168,7 @@ table {
 						<input id="new_pw" class="form-control" type="password" name="pw" disabled="disabled">
 						
 						<div>비밀번호 확인</div>	
-						<input id="new_pw" class="form-control" type="password" name="pwCk" disabled="disabled"/>
+						<input id="new_pw_check" class="form-control" type="password" name="pwCk" disabled="disabled"/>
 							
 							<div class="clearfix"></div>
 							<span id="mail_check_input_box_pw_warn"></span>
@@ -191,7 +199,8 @@ table {
 			var email = $("#mail").val(); // 입력한 이메일
 			var checkBox = $(".mail_check_input_pw"); // 인증번호 입력란
 			var boxWrap = $(".mail_check_input_box_pw"); // 인증번호 입력란 박스
-
+			var checkResult = $("#mail_check_input_box_pw_warn");
+			
 			$.ajax({
 
 				type : "GET",
@@ -203,6 +212,12 @@ table {
 					checkBox.attr("disabled", false);
 					boxWrap.attr("id", "mail_check_input_box_true");
 					code = data.num;
+					
+					if (code == "0"){
+						checkResult.html("해당 이메일과 일치하는 계정이 없습니다");
+						checkResult.attr("class", "incorrect");
+						checkBox.attr("disabled", true);
+					}
 				}
 
 			});
@@ -221,7 +236,7 @@ table {
 				
 				document.getElementById("applychangepw").disabled = false;
 				
-				$("#new_pw, #pw_check").attr("disabled", false);
+				$("#new_pw, #new_pw_check").attr("disabled", false);
 				
 			} else { // 일치하지 않을 경우
 				checkResult.html("인증번호를 다시 확인해주세요.");
@@ -229,7 +244,7 @@ table {
 				
 				document.getElementById("applychangepw").disabled = true;
 				
-				$("#new_pw, #pw_check").attr("disabled", true);
+				$("#new_pw, #new_pw_check").attr("disabled", true);
 			}
 
 		 });
@@ -237,6 +252,29 @@ table {
 			var pw = {
 				"mpw" : $("#new_pw").val(),
 				"memail" : $("#mail").val()
+			}
+			var new_pw = $("#new_pw").val();
+			var new_pw_check = $("#new_pw_check").val();
+			var checkResult = $("#mail_check_input_box_pw_warn");
+			var getPW = RegExp(/^[a-zA-Z0-9]{8,16}$/);
+			
+			if (new_pw == "" || new_pw_check =="") {
+				checkResult.html("빈칸 모두 입력해주세요");
+				checkResult.attr("class", "incorrect");
+				$("#new_pw").focus();
+				return false;
+			}
+			if (!getPW.test(new_pw)) {
+				checkResult.html("영어+숫자로 아이디 8~16자를 입력해주세요");
+				checkResult.attr("class", "incorrect");
+				$("#new_pw").focus();
+				return false;
+			}
+			if (new_pw != new_pw_check) {
+				checkResult.html("비밀번호가 일치하지 않습니다");
+				checkResult.attr("class", "incorrect");
+				$("#new_pw_check").focus();
+				return false;
 			}
 			
 			$.ajax({

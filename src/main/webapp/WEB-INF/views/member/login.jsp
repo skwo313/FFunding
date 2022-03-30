@@ -162,18 +162,6 @@
 										</a>
 									</div>
 								</div>
-								<div class="row mt-3">
-									<div class="col-2 text-center ms-auto" style="width: 120px">
-										<a class="text-white" href=#> <spring:message
-												code="findid" />
-										</a>
-									</div>
-									<div class="col-2 text-center px-1" style="width: 220px">
-										<a class="text-white" href=#> <spring:message
-												code="findpass" />
-										</a>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="card-body">
@@ -188,13 +176,20 @@
 								</div>
 
 								<div id="loginFail" style="color: red; font-size: 15px;"></div>
-
-								<div
-									class="form-check form-switch d-flex align-items-center mb-3">
-									<input class="form-check-input" type="checkbox" id="rememberMe">
-									<label class="form-check-label mb-0 ms-2" for="rememberMe"><spring:message
-											code="saveid" /></label>
+				
+								<div class="row mt-3 justify-content-between">
+									<div
+										class="form-check form-switch d-flex align-items-center mb-3 ms-auto col-5">
+										<input class="form-check-input" type="checkbox" id="rememberMe">
+										<label class="form-check-label mb-0 ms-2" for="rememberMe"><spring:message
+												code="saveid" /></label>
+									</div>
+									<div class="col-6 text-center ms-auto" >
+										<a class="form-check-label" href="find" onclick="location.href">
+											<spring:message code="findidpass" /></a>
+									</div>
 								</div>
+								
 								<div class="text-center">
 									<button type="button" onclick="loginBtn()"
 										class="btn bg-gradient-primary w-100 my-4 mb-2">
@@ -210,7 +205,7 @@
 							</form>
 							<div>
 								<!-- 언어 선택 -->
-								<select class="form-control" id="selectLan">
+								<select class="form-select form-select-sm mx-auto mt-5" id="selectLan">
 									<option value=""><spring:message code="chlange" /></option>
 									<option value="ko"><spring:message code="ko" /></option>
 									<option value="en"><spring:message code="en" /></option>
