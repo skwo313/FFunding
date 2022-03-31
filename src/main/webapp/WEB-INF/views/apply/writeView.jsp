@@ -21,82 +21,66 @@
 <title>펀딩 신청</title>
 </head>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						var formObj = $("form[name='writeForm']");
-						$("#write_btn").click(function() {
-							var fname = $("#fname").val();
-							var fprice = $("#fprice").val();
-							var fgoal = $("#fgoal").val();
-							var fdate = $("#fdate").val();
-							var fstartdate = $("#fstartdate").val();
-							var fenddate = $("#fenddate").val();
+	$(document).ready(function() {
+		var formObj = $("form[name='writeForm']");
+		$(".write_btn").on("click", function() {
+			var fname = $("#fname").val();
+			var fprice = $("#fprice").val();
+			var fgoal = $("#fgoal").val();
+			var fdate = $("#fdate").val();
+			var fstartdate = $("#fstartdate").val();
+			var fenddate = $("#fenddate").val();
 
-							if (fname == "") {
-								alert("펀딩 제품 이름을 입력하세요");
-								$("#fname").focus();
+			if (fname == "") {
+				alert("펀딩 제품 이름을 입력하세요");
+				$("#fname").focus();
 
-								return false;
-							}
-							if (fprice == "") {
-								alert("펀딩 가격을 입력하세요");
-								$("#fprice").focus();
+				return false;
+			}
+			if (fprice == "") {
+				alert("펀딩 가격을 입력하세요");
+				$("#fprice").focus();
 
-								return false;
-							}
-							if (fgoal == "") {
-								alert("펀딩 목표 가격을 입력하세요");
-								$("#fgoal").focus();
+				return false;
+			}
+			if (fgoal == "") {
+				alert("펀딩 목표 가격을 입력하세요");
+				$("#fgoal").focus();
 
-								return false;
-							}
-							if (fdate == "") {
-								alert("펀딩 등록 날짜를 입력하세요");
-								$("#fdate").focus();
+				return false;
+			}
+			if (fdate == "") {
+				alert("펀딩 등록 날짜를 입력하세요");
+				$("#fdate").focus();
 
-								return false;
-							}
-							if (fstartdate == "") {
-								alert("펀딩 시작 날짜를 입력하세요");
-								$("#fstartdate").focus();
+				return false;
+			}
+			if (fstartdate == "") {
+				alert("펀딩 시작 날짜를 입력하세요");
+				$("#fstartdate").focus();
 
-								return false;
-							}
-							if (fenddate == "") {
-								alert("펀딩 종료 날짜를 입력하세요");
-								$("#fenddate").focus();
+				return false;
+			}
+			if (fenddate == "") {
+				alert("펀딩 종료 날짜를 입력하세요");
+				$("#fenddate").focus();
 
-								return false;
-							}
-
-							if (fn_valiChk()) {
-								return false;
-							}
-							formObj.attr("action", "write");
-							formObj.attr("method", "post");
-							formObj.submit();
-
-							fn_addFile();
-
-						});
-
-						$(".list_btn")
-								.on(
-										"click",
-										function() {
-
-											location.href = "list?page=${scri.page}"
-													+ "&perPageNum=${scri.perPageNum}"
-													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
-										})
-
-					})
+				return false;
+			}
+			if (fn_valiChk()) {
+				return false;
+			}
+			formObj.attr("action", "write");
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
+		fn_addFile();
+	})
 	function fn_valiChk() {
 		var regForm = $("form[name='writeForm'] .chk").length;
 		for (var i = 0; i < regForm; i++) {
 			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
-				alert($(".chk").eq(i).attr("title"));
+				alert($(".chk").eq(i).attr("fcate"));
 				return true;
 			}
 		}
@@ -114,8 +98,9 @@
 													+ (fileIndex++)
 													+ "'>"
 													+ "</button>"
-													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
-													+ "삭제" + "</button></div>");
+													+ "<button type='button' class='delete_btn btn btn-danger' style='float:right;' id='fileDelBtn'>"
+													+ "삭제"
+													+ "</button><br><br></div>");
 						});
 		$(document).on("click", "#fileDelBtn", function() {
 			$(this).parent().remove();
@@ -315,28 +300,25 @@ div.des {
 							</div>
 						</td>
 					</tr>
-
-
 					<tr>
-						<td><input type="file" name="file">
-							<div class="des">첨부할 사진을 1개만 올려주세요.(*PNG 권장)</div></td>
+						<td id="fileIndex"></td>
 					</tr>
-
-
 					<tr>
 						<td>
 							<div class="c">
-								<br>
-								<input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
-									개인 정보 수집 동의 </label><br>
-								<br>
+								<br> <input type="checkbox" name="agreement" value="1"><label>&nbsp;(선택)
+									개인 정보 수집 동의 </label><br> <br>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
+							<button class="fileAdd_btn btn btn-secondary" type="button">파일추가</button>
+							<br>
+						<br>
 							<button class="write_btn" type="submit" id="write_btn"
 								style="background-color: #58FAF4; color: white; border: 0; width: 250px; height: 35px; font-size: 40;">작성</button>
+
 						</td>
 					</tr>
 				</tbody>

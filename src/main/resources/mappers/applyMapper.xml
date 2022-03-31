@@ -131,7 +131,8 @@
 	<select id="selectFileList" parameterType="int" resultType="hashMap">
 	SELECT FILE_NO,
 		   ORG_FILE_NAME,
-		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE,
+		   DEL_GB
 	  FROM FUNDING_APPLY_FILE
 	 WHERE FID = #{FID}
 	   AND DEL_GB = 'N'

@@ -78,8 +78,9 @@
 													+ (fileIndex++)
 													+ "'>"
 													+ "</button>"
-													+ "<button type='button' style='float:right;' id='fileDelBtn'>"
-													+ "삭제" + "</button><br><br></div>");
+													+ "<button type='button' class='delete_btn btn btn-danger' style='float:right;' id='fileDelBtn'>"
+													+ "삭제"
+													+ "</button><br><br></div>");
 						});
 		$(document).on("click", "#fileDelBtn", function() {
 			$(this).parent().remove();
