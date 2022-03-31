@@ -41,6 +41,9 @@
 .fname {
 	text-align: left !important;
 }
+.price {
+	text-align: right !important;
+}
 .paging {
 	display: flex;
 	justify-content: center;
@@ -48,4 +51,7 @@
 }
 #exampleModalLongTitle {
 	padding: 10px;
+}
+.fontsz {
+	font-size: 14px;
 }

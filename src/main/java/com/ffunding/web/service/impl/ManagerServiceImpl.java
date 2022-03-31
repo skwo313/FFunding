@@ -24,6 +24,7 @@ import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.CalendarVO;
 import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
@@ -493,6 +494,30 @@ public class ManagerServiceImpl implements ManagerService {
 			}
 		}
 		return msg;
+	}
+	
+	//일정 리스트
+	@Override
+	public List<CalendarVO> calendarList() throws Exception {
+		return dao.calendarList();
+	}
+	
+	//일정 생성
+	@Override
+	public void calendarIns(CalendarVO calendar) throws Exception {
+		dao.calendarIns(calendar);
+	}
+	
+	//일정 수정
+	@Override
+	public void calendarUpt(CalendarVO calendar) throws Exception {
+		dao.calendarUpt(calendar);
+	}
+	
+	//일정 삭제
+	@Override
+	public void calendarDel(int id) throws Exception {
+		dao.calendarDel(id);
 	}
 	
 	

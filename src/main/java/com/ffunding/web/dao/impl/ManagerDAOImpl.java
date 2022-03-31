@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ffunding.web.dao.ManagerDAO;
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.CalendarVO;
 import com.ffunding.web.vo.FundingExpVO;
 import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MemberPagingVO;
@@ -206,6 +207,30 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public List<String> sellerEmail() throws Exception {
 		return session.selectList("managerMapper.sellerEmail");
+	}
+	
+	//일정 리스트
+	@Override
+	public List<CalendarVO> calendarList() throws Exception {
+		return session.selectList("managerMapper.calendarList");
+	}
+	
+	//일정 생성
+	@Override
+	public void calendarIns(CalendarVO calendar) throws Exception {
+		session.insert("managerMapper.calendarIns", calendar);
+	}
+	
+	//일정 수정
+	@Override
+	public void calendarUpt(CalendarVO calendar) throws Exception {
+		session.update("managerMapper.calendarUpt", calendar);
+	}
+	
+	//일정 삭제
+	@Override
+	public void calendarDel(int id) throws Exception {
+		session.update("managerMapper.calendarDel", id);
 	}
 	
 	
