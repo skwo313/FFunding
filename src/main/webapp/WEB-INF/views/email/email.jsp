@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	if(${member.mid==null}){
 		console.log('로그인 후 이용하시기 바랍니다.');
-		location.href="../member/registerView";
+		location.href="../member/login";
 	}
 </script>
 <style>
