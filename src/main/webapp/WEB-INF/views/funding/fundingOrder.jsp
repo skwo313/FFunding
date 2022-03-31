@@ -9,7 +9,6 @@
 <script>
 	$(document).ready(
 			function() {
-				console.log(${mid.point});
 				$("#mid").hide();
 				$('#fo_cnt').on(
 						'change',
@@ -30,7 +29,7 @@
 				$("#btnOrder").click(function() {
 					var tot = $('#fo_price').val();
 					var cnt = $('#fo_cnt').val();
-					var m_point = "$(mid.point)";
+					
 					
 					if (cnt =="0"){
 						alert("주문내용을 선택해주세요");
@@ -42,6 +41,9 @@
 						$('#fo_price').focus();
 						return false;
 					}
+					console.log("point"+${mid.point});
+					console.log("tot"+tot);
+					
 					if(${mid.point}< tot){
 						alert("포인트가 부족합니다");
 						$('#fo_donation').focus();
@@ -72,7 +74,6 @@
 		<div class="col imgbox">
 			<img alt="" src="${pageContext.request.contextPath}/img/orderimg.png"
 				class="img-fluid order">
-
 		</div>
 		<div class="order_text">
 			<h1 class="order_text2">
