@@ -307,6 +307,54 @@
 		WHERE sellerck=1
 		AND memail IS NOT NULL
 	</select>
+	
+	<resultMap type="com.ffunding.web.vo.CalendarVO" id="calendar">
+		<result column="startdate" property="start"/>
+		<result column="enddate" property="end"/>
+		<result column="backgroundcolor" property="backgroundColor"/>
+		<result column="textcolor" property="textColor"/>
+	</resultMap>
+	
+	<!-- 일정 리스트 -->
+	<select id="calendarList" resultMap="calendar">
+		SELECT *
+		FROM calendar
+	</select>
+	
+	<!-- 일정 생성 -->
+	<insert id="calendarIns" parameterType="com.ffunding.web.vo.CalendarVO">
+		INSERT INTO CALENDAR 
+		VALUES (
+			calendar_seq.nextval, 
+			#{title}, 
+			#{start}, 
+			#{end}, 
+			#{backgroundColor}, 
+			#{textColor},
+			#{borderColor}
+		)
+	</insert>
+	
+	<!-- 일정 수정 -->
+	<update id="calendarUpt" parameterType="com.ffunding.web.vo.CalendarVO">
+		UPDATE CALENDAR 
+		SET 
+			title=#{title}, 
+			startdate=#{start}, 
+			enddate=#{end}, 
+			backgroundcolor=#{backgroundColor}, 
+			textcolor=#{textColor},
+			bordercolor=#{borderColor}
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 일정 삭제 -->
+	<delete id="calendarDel" parameterType="int">
+		DELETE FROM CALENDAR 
+		WHERE id=#{id}
+	</delete>
+	
+	
 	<!-- 차트 그래프 x축 y축 날짜데이터 -->
 	<select id="chartXList" resultType="String">
 		 <![CDATA[

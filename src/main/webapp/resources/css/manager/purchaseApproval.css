@@ -58,6 +58,9 @@
 .rate {
 	margin-right: 10px;
 }
+.price {
+	text-align: right !important;
+}
 .wd2 {
 	width: 230px;
 }
@@ -72,4 +75,7 @@
 }
 #exampleModalLongTitle {
 	padding: 10px;
+}
+.fontsz {
+	font-size: 14px;
 }

@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ffunding.web.dao.VisitDAO;
 import com.ffunding.web.service.ManagerService;
 import com.ffunding.web.vo.ApplyPagingVO;
+import com.ffunding.web.vo.CalendarVO;
 import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
@@ -38,8 +39,10 @@ public class ManagerController {
 	
 	@Autowired
 	private ManagerService service;
+	
 	@Autowired
 	private VisitDAO dao;
+	
 	//http://localhost:8000/ffunding/manager/dashboard
 	//관리자 대시보드(메인페이지)
 	@GetMapping("dashboard")
@@ -182,6 +185,34 @@ public class ManagerController {
 	public String calendar(Model d) throws Exception {
 		d.addAttribute("active", "calendar");
 		return "manager/calendar.m";
+	}
+	
+	//일정 리스트
+	@PostMapping("calendar/list")
+	public String calendarList(Model d) throws Exception {
+		d.addAttribute("calendarList", service.calendarList());
+		return "jsonView";
+	}
+	
+	//일정 생성
+	@PostMapping("calendar/insert")
+	public String calendarIns(CalendarVO calendar) throws Exception {
+		service.calendarIns(calendar);
+		return "redirect:/manager/calendar";
+	}
+	
+	//일정 수정
+	@PostMapping("calendar/update")
+	public String calendarUpt(CalendarVO calendar) throws Exception {
+		service.calendarUpt(calendar);
+		return "redirect:/manager/calendar";
+	}
+	
+	//일정 삭제
+	@PostMapping("calendar/delete")
+	public String calendarDel(int id) throws Exception {
+		service.calendarDel(id);
+		return "redirect:/manager/calendar";
 	}
 	
 	

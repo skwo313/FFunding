@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ffunding.web.vo.ApplyPagingVO;
 import com.ffunding.web.vo.ApplyViewVO;
+import com.ffunding.web.vo.CalendarVO;
 import com.ffunding.web.vo.FundingInsVO;
 import com.ffunding.web.vo.MailVO;
 import com.ffunding.web.vo.MemberPagingVO;
@@ -51,6 +52,14 @@ public interface ManagerService {
 	public void purchaseDel(int fid) throws Exception;
 	//메일전송
 	public String sendMail(MailVO mail) throws Exception;
+	//일정 리스트
+	public List<CalendarVO> calendarList() throws Exception;
+	//일정 생성
+	public void calendarIns(CalendarVO calendar) throws Exception;
+	//일정 수정
+	public void calendarUpt(CalendarVO calendar) throws Exception;
+	//일정 삭제
+	public void calendarDel(int id) throws Exception;
 	
 	
 	//차트 그래프 x축 y축 날짜데이터

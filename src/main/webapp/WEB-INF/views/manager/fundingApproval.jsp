@@ -13,7 +13,7 @@
 	     <!-- DataTales Example -->
 	     <div class="card shadow mb-4">
 	         <div class="card-header py-3">
-	             <h6 class="m-0 font-weight-bold text-primary">Funding Approval DataTables</h6>
+	             <h6 class="m-0 font-weight-bold text-primary">Funding Approval List</h6>
 	         </div>
 	         <div class="card-body">
 	             <div class="table-responsive">
@@ -59,8 +59,8 @@
 		                             <td>${apply.fid}</td>
 		                             <td>${apply.fcate}</td>
 		                             <td class="fname">${apply.fname}</td>
-		                             <td>&#8361;<fmt:formatNumber value="${apply.fprice}" pattern="#,###"/></td>
-		                             <td>&#8361;<fmt:formatNumber value="${apply.fgoal}" pattern="#,###"/></td>
+		                             <td class="price">&#8361;<fmt:formatNumber value="${apply.fprice}" pattern="#,###"/></td>
+		                             <td class="price">&#8361;<fmt:formatNumber value="${apply.fgoal}" pattern="#,###"/></td>
 		                             <td>${apply.fdate}</td>
 		                             <td>${apply.fstartdate}</td>
 		                         </tr>
@@ -93,10 +93,10 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 		    	<div class="modal-body">
-		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText" class="fontsz"></span></div>
 				</div>
 				<div class="modal-footer" id="modal-footer">
-		    		<button type="button" class="btn btn-primary btn-sm" id="close" data-dismiss="modal">OK</button>
+		    		<button type="button" class="fontsz btn btn-primary btn-sm" id="close" data-dismiss="modal">OK</button>
 		    	</div>
 			</div>
 		</div>

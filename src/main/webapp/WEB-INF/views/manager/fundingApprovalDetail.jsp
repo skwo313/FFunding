@@ -95,11 +95,11 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 		    	<div class="modal-body">
-		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText" class="fontsz"></span></div>
 				</div>
 				<div class="modal-footer" id="modal-footer">
-		   	    	<button type="button" class="btn btn-primary btn-sm" id="yes">Yes</button>
-		    		<button type="button" class="btn btn-secondary btn-sm" id="close" data-dismiss="modal">No</button>
+		   	    	<button type="button" class="fontsz btn btn-primary btn-sm" id="yes">Yes</button>
+		    		<button type="button" class="fontsz btn btn-secondary btn-sm" id="close" data-dismiss="modal">No</button>
 		    	</div>
 			</div>
 		</div>

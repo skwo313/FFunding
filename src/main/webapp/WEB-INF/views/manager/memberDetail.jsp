@@ -113,11 +113,11 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 		    	<div class="modal-body">
-		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText"></span></div>
+		 			<div class="modal-title" id="exampleModalLongTitle"><span id="modalText" class="fontsz"></span></div>
 				</div>
 				<div class="modal-footer" id="modal-footer">
-		   	    	<button type="button" class="btn btn-primary btn-sm" id="move">Go ListPage</button>
-		    		<button type="button" class="btn btn-secondary btn-sm" id="close" data-dismiss="modal">Go CurrentPage</button>
+		   	    	<button type="button" class="fontsz btn btn-primary btn-sm" id="move">Go ListPage</button>
+		    		<button type="button" class="fontsz btn btn-secondary btn-sm" id="close" data-dismiss="modal">Go CurrentPage</button>
 		    	</div>
 			</div>
 		</div>
@@ -246,21 +246,20 @@
 				//새비밀번호확인란에도 입력값이 있어야 한다.
 				} else if($("[name=newpwck]").val()==null || !($("[name=newpwck]").val())) {
 					open();
-					$("#pctext").text("Please enter the New Password Verification.");
-					$("#pctext").show();
+					$("#pctext").text("Please enter the New Password Verification.").show();
 					$("[name=newpwck]").focus();
 					return false;
 				//새비밀번호와 새비밀번호확인란의 입력값은 동일해야한다.
 				} else if($("[name=newpw]").val()!=$("[name=newpwck]").val()) {
 					open();
-					$("#pctext").text("New Password and New Password verification do not match.");
-					$("#pctext").show();
+					$("#pctext").text("New Password and New Password verification do not match.").show();
 					$("[name=newpwck]").focus();
 					return false;
 				}
 				//위 과정을 모두 거치고 유효성체크에 이상이 없으면 현재비밀번호에 새비밀번호 값 넣기
 				$("[name=mpw]").val($("[name=newpw]").val());
 			}
+			open();
 			return true;
 		}
 			
