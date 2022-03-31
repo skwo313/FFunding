@@ -42,6 +42,7 @@
 		ORDER BY BNO DESC
 	</select>
 	
+	<!-- 게시물 총 갯수 -->
 	<select id="listCount" parameterType="com.ffunding.web.vo.SearchCriteria" resultType="int">
 		SELECT COUNT(BNO)
 		   FROM FUNDING_BOARD_LIST
