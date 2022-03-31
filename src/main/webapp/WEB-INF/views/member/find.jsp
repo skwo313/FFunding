@@ -72,7 +72,7 @@ table {
 			</tr>
 			<tr>
 				<td>
-					<div class="section_find">
+					<div class="section_find mt-3">
 						고객님의 정보와 일치하는 아이디는 <strong class="findId" style="color:red;"></strong> 입니다.
 					</div>
 				</td>
