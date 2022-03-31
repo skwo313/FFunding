@@ -1,5 +1,6 @@
 package com.ffunding.web.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ffunding.web.vo.MemberVO;
@@ -18,7 +19,7 @@ public interface MemberService {
 
 	public String mailSend(String email) throws Exception;
 
-	public String getID(String email) throws Exception;
+	public List<String> getID(String email) throws Exception;
 
 	public void updatePW(Map<String, String> update) throws Exception;
 	

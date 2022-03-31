@@ -1,5 +1,6 @@
 package com.ffunding.web.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ffunding.web.vo.MemberVO;
@@ -16,7 +17,7 @@ public interface MemberDAO {
 
 	public void register(MemberVO reg) throws Exception;
 
-	public String getID(String email) throws Exception;
+	public List<String> getID(String email) throws Exception;
 
 	public void updatePW(Map<String, String> update) throws Exception;
 }

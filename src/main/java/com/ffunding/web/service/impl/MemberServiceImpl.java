@@ -1,5 +1,6 @@
 package com.ffunding.web.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
         int checkNum = random.nextInt(888888) + 111111;
         
         /* 계정 유무 */
-        String check = dao.getID(email);
+        List<String> check = dao.getID(email);
         if (check == null) {
         	return "0";
         }
@@ -99,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	/* 아이디 찾기 */
 	@Override
-	public String getID(String email) throws Exception {
+	public List<String> getID(String email) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.getID(email);
 	}

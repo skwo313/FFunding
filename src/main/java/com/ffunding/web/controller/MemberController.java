@@ -3,6 +3,7 @@ package com.ffunding.web.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -243,10 +244,12 @@ public class MemberController {
 	    logger.info("인증번호 : " + email);
 	    logger.info("아이디찾기 유무 : " + isFindId);
         
-	    Map<String, String> find = new HashMap<String, String>();
+	    Map<String, Object> find = new HashMap<String, Object>();
 	    find.put("num", service.mailSend(email));
 	    if ( StringUtils.equals("1", isFindId) ) {
-	    	find.put("findId", service.getID(email));
+	    	List<String> ids = service.getID(email);
+	    	
+	    	find.put("findId", ids);
 	    }
 	    
         return find;
@@ -260,8 +263,14 @@ public class MemberController {
     	
     	String hashedPw = BCrypt.hashpw(update.get("mpw"), BCrypt.gensalt());
     	update.put("mpw", hashedPw);
-		service.updatePW(update);
+    	/* 아이디 유무 */
+    	int result = service.idChk(update);
+    	if(result == 0) {
+			return "0";
+		}
     	
+		service.updatePW(update);
+		
 		return "login";
     }
 	

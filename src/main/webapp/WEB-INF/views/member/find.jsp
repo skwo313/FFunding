@@ -99,7 +99,7 @@ table {
 				url : "findCheck?email=" + email + "&isFindId=1",
 				dataType : "json",
 				success : function(data) {
-					console.log(data.num +",,,,," +data.findId);
+					console.log(data.num +",,,,," + data.findId);
 					//console.log("data : " + data);
 					checkBox.attr("disabled", false);
 					boxWrap.attr("id", "mail_check_input_box_true");
@@ -155,6 +155,9 @@ table {
 				<td>
 					<div class="mail_wrap">
 						<br>
+						<div>아이디</div>
+						<input id="mid" class="form-control" type="text" name="mid">
+						
 						<div class="mail_name">이메일 (가입할 때 입력한 이메일을 입력해주세요)</div>
 						<input id="mail" class="form-control" name="memberMail">
 
@@ -251,14 +254,16 @@ table {
 		$("#applychangepw").click(function() {
 			var pw = {
 				"mpw" : $("#new_pw").val(),
-				"memail" : $("#mail").val()
+				"memail" : $("#mail").val(),
+				"mid" : $("#mid").val()
 			}
 			var new_pw = $("#new_pw").val();
 			var new_pw_check = $("#new_pw_check").val();
+			var id = $("#mid").val();
 			var checkResult = $("#mail_check_input_box_pw_warn");
 			var getPW = RegExp(/^[a-zA-Z0-9]{8,16}$/);
 			
-			if (new_pw == "" || new_pw_check =="") {
+			if (new_pw == "" || new_pw_check =="" || id == "") {
 				checkResult.html("빈칸 모두 입력해주세요");
 				checkResult.attr("class", "incorrect");
 				$("#new_pw").focus();
@@ -284,12 +289,18 @@ table {
 				data : JSON.stringify(pw),
 				dataType : "text",
 				success : function(data) {
-					if(confirm("비밀번호 변경이 완료되었습니다.\n" +
-							"새로운 비밀번호로 바로 로그인 하시겠습니까?")) {
-						location.href = data;
+					if(data == 0) {
+						checkResult.html("해당 이메일과 일치하는 아이디가 없습니다.");
+						checkResult.attr("class", "incorrect");
 					} else {
-						location.href = "../";
+						if(confirm("비밀번호 변경이 완료되었습니다.\n" +
+							"새로운 비밀번호로 바로 로그인 하시겠습니까?")) {
+							location.href = data;
+						} else {
+							location.href = "../";
+						}
 					}
+					
 				},
 				error : function(request, error) {
 					alert("code:" + request.status + "\n" + "message:"
