@@ -178,7 +178,7 @@
 	<insert id="fundingIns" parameterType="com.ffunding.web.vo.FundingInsVO">
 		INSERT INTO FUNDING_PRODUCT 
 		VALUES (
-			funding_product_seq.nextval
+			funding_product_seq.nextval,
 			#{fcate}, 
 			#{fname}, 
 			#{fprice}, 
