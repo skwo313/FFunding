@@ -120,6 +120,7 @@
 			mphone=#{mphone},
 			memail=#{memail},
 			maddress=#{maddress},
+			maddress_detail=#{maddress_detail},
 			point=#{point},
 			sellerck=#{sellerck}
 		WHERE mid=#{mid}
@@ -127,7 +128,7 @@
 	
 	<!-- 펀딩신청 리스트 -->
 	<select id="applyList" parameterType="com.ffunding.web.vo.ApplyPagingVO" resultType="com.ffunding.web.vo.ApplyViewVO">
-		SELECT *
+		SELECT fid, fcate, fname, fprice, fgoal, to_char(fdate, 'yyyy-mm-dd') fdate, fstartdate, fenddate, fdes, writer
 		FROM (
 			SELECT ROWNUM cnt, f.*
 			FROM (
@@ -149,7 +150,7 @@
 	
 	<!-- 펀딩신청 상세정보 -->
 	<select id="applyDetail" parameterType="int" resultType="com.ffunding.web.vo.ApplyViewVO">
-		SELECT *
+		SELECT fid, fcate, fname, fprice, fgoal, to_char(fdate, 'yyyy-mm-dd') fdate, fstartdate, fenddate, fdes, writer
 		FROM FUNDING_APPLY
 		WHERE fid=#{fid}
 	</select>
