@@ -4,13 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fundingMapper">
 
-	<select id="getlist" parameterType="hashmap" resultType="com.ffunding.web.vo.FundingVO">
-		SELECT A.FID,
+	<select id="getlist"
+		parameterType="com.ffunding.web.vo.FundingCriteria"
+		resultType="com.ffunding.web.vo.FundingVO">
+		select *
+		from(
+		SELECT
+		ROW_NUMBER() OVER(ORDER BY
+		<choose>
+			<when test="sort.equals('sell')">
+				COUNT(*)
+			</when>
+			<when test="sort.equals('price')">
+				SUM(B.FO_PRICE)+
+				SUM(B.FO_DONATION)
+			</when>
+			<when test="sort.equals('fstartdate')">
+				fstartdate
+			</when>
+			<otherwise>
+				A.fid
+			</otherwise>
+		</choose>
+		DESC) rnum,
+		A.FID,
 		COUNT(*) AS sell ,
 		SUM(B.FO_PRICE)+
-		SUM(B.FO_DONATION) AS price,
+		SUM(B.FO_DONATION)
+		AS price,
 		ROUND( ((SUM(B.FO_PRICE)+
-		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
+		SUM(B.FO_DONATION)) / A.FGOAL) *
+		100) AS goal,
 		ROUND(A.FENDDATE - SYSDATE) AS remain ,
 		A.FCATE ,
 		A.FNAME ,
@@ -20,19 +44,21 @@
 		A.FSTARTDATE ,
 		A.FENDDATE ,
 		A.FIMG ,
-		A.FIMG1 ,
+		A.FIMG1
+		,
 		A.FIMG2 ,
 		A.FIMG3 ,
 		A.FIMG4 ,
 		A.FIMG5 ,
 		A.FDES ,
 		A.MID
-		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
-		WHERE A.FID = B.FID 
-		<!-- AND SYSDATE BETWEEN FSTARTDATE AND FENDDATE -->
+		FROM FUNDING_PRODUCT
+		A, FUNDING_ORDER B
+		WHERE A.FID = B.FID AND SYSDATE BETWEEN FSTARTDATE
+		AND FENDDATE
 		<if test="category!=null and !category.equals('')">
-    	AND A.FCATE = #{category}
-    	</if>
+			AND A.FCATE = #{category}
+		</if>
 		GROUP BY A.FID,
 		A.FNAME ,
 		A.FPRICE ,
@@ -49,19 +75,31 @@
 		A.FIMG5 ,
 		A.FDES ,
 		A.MID
-		<if test="sort != null">
-    	ORDER BY ${sort} DESC
-    	</if>
-		
+		<if test="sort != null and !sort.equals('')">
+			ORDER BY ${sort} DESC
+		</if>
+		) e
+		where e.rnum between #{rowStart} and #{rowEnd}
 	</select>
-	<select id="detailview" parameterType="int" resultType="com.ffunding.web.vo.FundingVO">
+	<select id="listCount" resultType="int" parameterType="hashMap">
+		SELECT COUNT(fid)
+		FROM FUNDING_PRODUCT
+		WHERE fid > 0
+		<if test="category!=null and !category.equals('')">
+			AND FCATE = #{category}
+		</if>
+		AND SYSDATE BETWEEN FSTARTDATE AND FENDDATE
+	</select>
+	<select id="detailview" parameterType="int"
+		resultType="com.ffunding.web.vo.FundingVO">
 		SELECT A.FID,
 		COUNT(*) AS sell ,
 		SUM(B.FO_PRICE)+
 		SUM(B.FO_DONATION) AS price,
 		ROUND( ((SUM(B.FO_PRICE)+
 		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
-		ROUND(A.FENDDATE - SYSDATE) AS remain ,
+		ROUND(A.FENDDATE -
+		SYSDATE) AS remain ,
 		A.FCATE ,
 		A.FNAME ,
 		A.FPRICE ,
@@ -78,7 +116,8 @@
 		A.FDES ,
 		A.MID
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
-		WHERE A.FID = B.FID AND A.FID = #{fid}
+		WHERE
+		A.FID = B.FID AND A.FID = #{fid}
 		GROUP BY A.FID,
 		A.FNAME ,
 		A.FPRICE ,
@@ -98,8 +137,8 @@
 		ORDER BY sell DESC
 	</select>
 	<insert id="orderProduct">
-		INSERT INTO funding_order 
-		VALUES( 
+		INSERT INTO funding_order
+		VALUES(
 		funding_order_seq.nextval
 		, #{mid}
 		, #{fid}
@@ -109,8 +148,8 @@
 		,sysdate)
 	</insert>
 	<update id="pointDown">
-		UPDATE member 
-		SET 
+		UPDATE member
+		SET
 		point= #{point}
 		WHERE mid = #{mid}
 	</update>

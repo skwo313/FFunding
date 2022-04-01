@@ -37,7 +37,7 @@ public class AdminCheck {
 		 //관리자 아이디 리스트
 		 List<String> admin = service.managerList();
 		 int cnt = 0;
-		 if(member!=null) {
+		 if(member!=null && member.getMid()!=null) {
 			 for(String a:admin) {
 				 //로그인한 아이디와 관리자 아이디가 일치할 경우
 				 if(member.getMid().equals(a)) {

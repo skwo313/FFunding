@@ -178,7 +178,7 @@
 	<insert id="fundingIns" parameterType="com.ffunding.web.vo.FundingInsVO">
 		INSERT INTO FUNDING_PRODUCT 
 		VALUES (
-			#{fid}, 
+			funding_product_seq.nextval,
 			#{fcate}, 
 			#{fname}, 
 			#{fprice}, 
@@ -196,6 +196,18 @@
 			#{fmid}
 		)
 	</insert>
+	
+	<!-- 펀딩 테이블 fid -->
+	<select id="fundingFid" resultType="int">
+		SELECT fid
+		FROM
+		(
+			SELECT *
+			FROM FUNDING_PRODUCT
+			ORDER BY fid DESC
+		)
+		WHERE rownum = 1
+	</select>
 	
 	<!-- 펀딩신청 승인시 order데이터 삽입 -->
 	<insert id="orderIns" parameterType="hashmap">

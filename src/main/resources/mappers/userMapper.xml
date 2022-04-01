@@ -107,6 +107,6 @@
    <update id="updatePW">
    	update member set
 		mpw = #{mpw}
-	WHERE memail = #{memail}
+	WHERE memail = #{memail} AND mid = #{mid}
    </update>
 </mapper>

@@ -8,6 +8,12 @@
 .bold {
 	font-weight: bold;
 }
+
+li {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -33,16 +39,13 @@
 		$(".chatbox-open").click(function() {
 			$(".chat-box").show();
 			$(".chatbox-open").hide();
-			sock = new SockJS("http://localhost:7080/ffunding/echo/");
-			sock.onopen = onOpen;
-			sock.onmessage = onMessage;
-			sock.onclose = onClose;
+			conn();
 		});
 		$(".chatbox-close").click(function() {
 			$(".chat-box").hide();
 			$(".chatbox-open").show();
-			sock.send("${member.mid}님 연결끊김");
-			sock.close();
+			wsocket.send("${member.mid}님 연결끊김");
+			wsocket.close();
 
 		});
 		$("#chat-submit").click(function() {
@@ -55,12 +58,8 @@
 			}
 
 		});
-
 	});
 
-	function onOpen(e) {
-		sock.send("${member.mid}님 입장하셨습니다");
-	}
 	function sendMessage() {
 		var mid = "${member.mid}";
 		var msg = $('#chat-input').val();
@@ -71,43 +70,51 @@
 		str += msg;
 		str += "</span>";
 		str += "</div>";
-		sock.send(str);
+		wsocket.send(str);
 		$('#chat-input').val("");
 		$('#chat-input').focus();
 	}
-	// 서버로부터 메시지를 받았을 때
-	function onMessage(e) {
-		var data = e.data;
-		var returnId = null; //데이터를 보낸 사람
-		var arr = data.split("<");
-		for (var i = 0; i < arr.length; i++) {
-			console.log('arr[' + i + ']: ' + arr[i]);
+
+	function conn() {
+		wsocket = new WebSocket("ws:/localhost:7080/ffunding/echo");
+		wsocket.onopen = function(e) {
+			console.log(e);
+			wsocket.send("${member.mid}님 입장하셨습니다");
 		}
-		var returnId = arr[0];
+		wsocket.onmessage = function(e) {
+			var data = e.data;
+			var returnId = null; //데이터를 보낸 사람
+			var arr = data.split("<");
+			for (var i = 0; i < arr.length; i++) {
+				console.log('arr[' + i + ']: ' + arr[i]);
+			}
+			var returnId = arr[0];
 
-		var sessionId = '${member.mid}'; //현재 세션에 로그인 한 사람
-		console.log("sessionId : " + sessionId);
-		console.log("returnId : " + returnId);
-		if (sessionId == returnId) {
-			var str = "<" + arr[1] + " " + sessionId + "</div>"
-			str += "<" + arr[1] + "<" + arr[2] + "<" + arr[3];
-			str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
-			$(".chat-logs").append(str);
+			var sessionId = '${member.mid}'; //현재 세션에 로그인 한 사람
+			console.log("sessionId : " + sessionId);
+			console.log("returnId : " + returnId);
+			if (sessionId == returnId) {
+				var str = "<" + arr[1] + " " + sessionId + "</div>"
+				str += "<" + arr[1] + "<" + arr[2] + "<" + arr[3];
+				str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
+				$(".chat-logs").append(str);
 
-		} else {
-			var str = "<div>" + arr[0] + "</div>";
-			str += "<div>"
-			str += "<" + arr[2] + "<" + arr[3];
-			str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
-			$(".chat-logs").append(str);
+			} else {
+				var str = "<div>" + arr[0] + "</div>";
+				str += "<div>"
+				str += "<" + arr[2] + "<" + arr[3];
+				str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
+				$(".chat-logs").append(str);
+			}
+			var mx = parseInt($(".chat-logs").height())
+
+			$(".chat-logs").scrollTop(mx);
 		}
-		var mx = parseInt($(".chat-logs").height())
+		// handler의 afterConnectionClose와 연동
+		wsocket.onclose = function() {
+			wsocket.send("${member.mid}님 연결끊김");
+		}
 
-		$(".chat-logs").scrollTop(mx);
-	}
-	// 서버와 연결을 끊었을 때
-	function onClose(e) {
-		sock.send("${member.mid}님 연결끊김");
 	}
 </script>
 <style>
@@ -245,26 +252,25 @@
 			</select>
 		</form>
 	</div>
-	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
-		<div class="row row-cols-3">
+	<div class="container funding-list">
+		<div class="row row-cols-3" id="list">
 			<c:forEach items="${list}" var="list" varStatus="vs">
-				<div class="col" style="margin: 8px 0px;">
-					<div class="col" style="margin-bottom: 10px; height: 60%;">
-						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
+				<div class="col a1">
+					<div class="col a2">
+						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="${path}/fundingimage/${list.fimg}">
 						</a>
 					</div>
 					<div class="col">
-						<h5 class="title" style="margin-bottom: 2px; min-height: 48px;">
-							<a href="/ffunding/funding/detail?fid=${list.fid}">
-								<c:out value="${list.fname}"></c:out> 
+						<h5 class="title a3">
+							<a href="/ffunding/funding/detail?fid=${list.fid}"> <c:out value="${list.fname}"></c:out>
 							</a>
 						</h5>
 					</div>
-					<div class="col" style="margin-bottom: 5px;">
+					<div class="col a4">
 						<span class="cate"><c:out value="${list.fcate}"></c:out></span>
 					</div>
 					<div class="col">
-						<div class="progress" style="height: 5px;">
+						<div class="progress a5">
 							<div class="progress-bar" style="width: <c:out value="${list.goal}"></c:out>%" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
@@ -273,7 +279,7 @@
 							<div class="col">
 								<span class="percent"><c:out value="${list.goal}"></c:out>%</span> <span class="cate"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.price}" />원</span>
 							</div>
-							<div class="col" style="text-align: right;">
+							<div class="col a6">
 								<span class="cate"><c:out value="${list.remain}"></c:out>일 남음</span>
 							</div>
 						</div>
@@ -281,5 +287,20 @@
 				</div>
 			</c:forEach>
 		</div>
+	</div>
+	<div style="display: flex; justify-content: center;">
+		<ul>
+			<c:if test="${pageMaker.prev}">
+				<li><a href="funding${pageMaker.makeQuery(pageMaker.startPage - 1)}&category=${category}&sort=${sort}">이전</a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<li><a href="funding${pageMaker.makeQuery(idx)}&category=${category}&sort=${sort}">${idx}</a></li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li><a href="funding${pageMaker.makeQuery(pageMaker.endPage + 1)}&category=${category}&sort=${sort}">다음</a></li>
+			</c:if>
+		</ul>
 	</div>
 </section>

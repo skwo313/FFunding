@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .bx-wrapper {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -96,6 +97,37 @@ img {
 	font-weight: bold;
 }
 
-h5 > a{
+h5>a {
 	color: black;
+}
+
+.funding-list {
+	border-bottom: 1px solid #f0f2f5;
+	padding: 15px 0px;
+}
+
+.a1 {
+	margin: 8px 0px;
+}
+
+.a2 {
+	margin-bottom: 10px;
+	height: 60%;
+}
+
+.a3 {
+	margin-bottom: 2px;
+	min-height: 48px;
+}
+
+.a4 {
+	margin-bottom: 5px;
+}
+
+.a5 {
+	height: 5px;
+}
+
+.a6 {
+	text-align: right;
 }

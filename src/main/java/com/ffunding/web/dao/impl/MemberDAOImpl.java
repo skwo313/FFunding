@@ -1,5 +1,6 @@
 package com.ffunding.web.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -75,9 +76,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public String getID(String email) throws Exception {
+	public List<String> getID(String email) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(FINDID, email);
+		return sqlSession.selectList(FINDID, email);
 	}
 
 	@Override
