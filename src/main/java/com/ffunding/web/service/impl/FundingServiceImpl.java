@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ffunding.web.dao.FundingDAO;
 import com.ffunding.web.service.FundingService;
+import com.ffunding.web.vo.FundingCriteria;
 import com.ffunding.web.vo.FundingVO;
 import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.OrderVO;
@@ -20,20 +21,28 @@ public class FundingServiceImpl implements FundingService {
 
 	// 펀딩 목록 조회
 	@Override
-	public List<FundingVO> list(HashMap<String, Object> hashMap) throws Exception {
-		System.out.println(hashMap);
-		return dao.list(hashMap);
+	public List<FundingVO> list(FundingCriteria cri) throws Exception {
+		return dao.list(cri);
 	}
+
+	// 상품 총 갯수
+	@Override
+	public int listCount(HashMap<String, Object> hashMap) throws Exception {
+		return dao.listCount(hashMap);
+	}
+
 	// 제품 상세 페이지
-	public FundingVO viewDetail(int fid) throws Exception{
+	public FundingVO viewDetail(int fid) throws Exception {
 		return dao.viewDetail(fid);
 	}
+
 	// 주문 완료
-	public void orderProduct(OrderVO vo) throws Exception{
+	public void orderProduct(OrderVO vo) throws Exception {
 		dao.orderProduct(vo);
 	}
+
 	// 주문 완료시 포인트 차감
-		public void pointDown(MemberVO membervo) throws Exception{
-			dao.pointDown(membervo);
-		}
+	public void pointDown(MemberVO membervo) throws Exception {
+		dao.pointDown(membervo);
+	}
 }

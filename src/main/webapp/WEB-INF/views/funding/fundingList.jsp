@@ -244,26 +244,25 @@ function conn(){
 			</select>
 		</form>
 	</div>
-	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
-		<div class="row row-cols-3">
+	<div class="container funding-list">
+		<div class="row row-cols-3" id="list">
 			<c:forEach items="${list}" var="list" varStatus="vs">
-				<div class="col" style="margin: 8px 0px;">
-					<div class="col" style="margin-bottom: 10px; height: 60%;">
+				<div class="col a1">
+					<div class="col a2">
 						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
 						</a>
 					</div>
 					<div class="col">
-						<h5 class="title" style="margin-bottom: 2px; min-height: 48px;">
-							<a href="/ffunding/funding/detail?fid=${list.fid}">
-								<c:out value="${list.fname}"></c:out> 
+						<h5 class="title a3">
+							<a href="/ffunding/funding/detail?fid=${list.fid}"> <c:out value="${list.fname}"></c:out>
 							</a>
 						</h5>
 					</div>
-					<div class="col" style="margin-bottom: 5px;">
+					<div class="col a4">
 						<span class="cate"><c:out value="${list.fcate}"></c:out></span>
 					</div>
 					<div class="col">
-						<div class="progress" style="height: 5px;">
+						<div class="progress a5">
 							<div class="progress-bar" style="width: <c:out value="${list.goal}"></c:out>%" role="progressbar" aria-valuenow="<c:out value="${list.goal}"></c:out>" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
@@ -272,7 +271,7 @@ function conn(){
 							<div class="col">
 								<span class="percent"><c:out value="${list.goal}"></c:out>%</span> <span class="cate"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.price}" />원</span>
 							</div>
-							<div class="col" style="text-align: right;">
+							<div class="col a6">
 								<span class="cate"><c:out value="${list.remain}"></c:out>일 남음</span>
 							</div>
 						</div>
@@ -280,5 +279,20 @@ function conn(){
 				</div>
 			</c:forEach>
 		</div>
+	</div>
+	<div style="display: flex; justify-content: center;">
+		<ul>
+			<c:if test="${pageMaker.prev}">
+				<li><a href="funding${pageMaker.makeQuery(pageMaker.startPage - 1)}&category=${category}&sort=${sort}">이전</a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<li><a href="funding${pageMaker.makeQuery(idx)}&category=${category}&sort=${sort}">${idx}</a></li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li><a href="funding${pageMaker.makeQuery(pageMaker.endPage + 1)}&category=${category}&sort=${sort}">다음</a></li>
+			</c:if>
+		</ul>
 	</div>
 </section>

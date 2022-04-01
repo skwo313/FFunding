@@ -1,6 +1,5 @@
 package com.ffunding.web.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ffunding.web.service.FundingService;
 import com.ffunding.web.service.ManagerService;
+import com.ffunding.web.vo.FundingCriteria;
+import com.ffunding.web.vo.FundingPageMaker;
 import com.ffunding.web.vo.FundingVO;
 import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.OrderVO;
@@ -30,21 +31,25 @@ public class FundingController {
 	FundingService service;
 	@Autowired
 	private ManagerService service2;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	// 펀딩하기 목록 조회
 	@GetMapping
 	public String funding(HttpServletRequest request,
 			@RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "sort", required = false) String sort, Model model) throws Exception {
+			@RequestParam(value = "sort", required = false) String sort, FundingCriteria cri, Model model)
+			throws Exception {
 		logger.info("list");
 		request.setCharacterEncoding("UTF-8");
 
 		HashMap<String, Object> hashMap = new HashMap<>();
 		hashMap.put("category", category);
-		hashMap.put("sort", sort);
-		model.addAttribute("list", service.list(hashMap));
+		model.addAttribute("list", service.list(cri));
+		FundingPageMaker pageMaker = new FundingPageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCount(hashMap));
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("category", category);
 		model.addAttribute("sort", sort);
 		return "funding/fundingList.page";
@@ -54,29 +59,29 @@ public class FundingController {
 	@GetMapping("/detail")
 	public String detailview(FundingVO fundingVO, Model model) throws Exception {
 		logger.info("detailview");
-		
+
 		model.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
 
 		return "funding/fundingDetail.page";
 	}
 
 	// 주문 페이지
-		@GetMapping("/detail/order")
-		public String fundingorder(FundingVO fundingVO, Model d,HttpSession session) throws Exception {
-			d.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
-			d.addAttribute("mid",session.getAttribute("member"));
-			return "funding/fundingOrder.page";
-		}
+	@GetMapping("/detail/order")
+	public String fundingorder(FundingVO fundingVO, Model d, HttpSession session) throws Exception {
+		d.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
+		d.addAttribute("mid", session.getAttribute("member"));
+		return "funding/fundingOrder.page";
+	}
 
-		// 주문 완료
-		@RequestMapping(value = "detail/order", method = RequestMethod.POST)
-		public String orderProduct(@RequestParam int fo_price,@RequestParam String mid,OrderVO vo) throws Exception {
-			MemberVO membervo = service2.memberDetail(mid);
-			int point = membervo.getPoint()-fo_price;
-			membervo.setPoint(point);
-			service.orderProduct(vo);
-			service.pointDown(membervo);
-		
-			return "redirect:/";
-		}
+	// 주문 완료
+	@RequestMapping(value = "detail/order", method = RequestMethod.POST)
+	public String orderProduct(@RequestParam int fo_price, @RequestParam String mid, OrderVO vo) throws Exception {
+		MemberVO membervo = service2.memberDetail(mid);
+		int point = membervo.getPoint() - fo_price;
+		membervo.setPoint(point);
+		service.orderProduct(vo);
+		service.pointDown(membervo);
+
+		return "redirect:/";
+	}
 }
