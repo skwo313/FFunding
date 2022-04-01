@@ -69,6 +69,13 @@ p {
 	display: flex;
     justify-content: center;
 }
+.imgR {
+	width: 600px;
+	height: 400px;
+}
+.imgD {
+	width: 800px;
+}
 .consent {
 	padding: 10px;
 }
