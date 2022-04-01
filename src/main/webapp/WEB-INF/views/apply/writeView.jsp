@@ -261,15 +261,6 @@ div.des {
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<div class="c">
-								<label for="fdate">펀딩 등록 날짜*</label><br> <input type="text"
-									id="fdate" name="fdate" class="form-control" /><br>
-							</div>
-						</td>
-					</tr>
-
-					<tr>
 						<td><label for="fstartdate">펀딩 시작 날짜*</label><br> <input
 							type="text" id="fstartdate" name="fstartdate"
 							class="form-control" /><br></td>

@@ -121,16 +121,6 @@ div.des {
 					<tr>
 						<td>
 							<div class="form-gorup">
-								<label for="fdate">펀딩 등록 날짜</label><br>
-								<textarea id="fdate" name="fdate" class="form-control"
-									readonly="readonly"><c:out value="${read.fdate}" /></textarea>
-								<br>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="form-gorup">
 								<label for="fstartdate">펀딩 시작 날짜</label><br>
 								<textarea id="fstartdate" name="fstartdate" class="form-control"
 									readonly="readonly"><c:out

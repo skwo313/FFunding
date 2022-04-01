@@ -13,7 +13,6 @@
 	   					      , FNAME
 	   					      , FPRICE
 	   					      , FGOAL
-	   					      , FDATE
 	   					      , FSTARTDATE 
 	   					      , FENDDATE
 	   					      , FDES
@@ -24,7 +23,6 @@
 	                 		  , #{fname, jdbcType=VARCHAR}
 	                 		  , #{fprice, jdbcType=VARCHAR}
 	                 		  , #{fgoal, jdbcType=VARCHAR} 
-	                 		  , #{fdate, jdbcType=VARCHAR}
 	                 		  , #{fstartdate, jdbcType=VARCHAR}
 	                 		  , #{fenddate, jdbcType=VARCHAR}
 	                 		  , #{fdes, jdbcType=VARCHAR}
@@ -94,7 +92,6 @@
 		   	   FNAME = #{fname},
 		   	   FPRICE = #{fprice},
 		   	   FGOAL = #{fgoal},
-		   	   FDATE = #{fdate},
 		   	   FSTARTDATE = #{fstartdate},
 		   	   FENDDATE = #{fenddate},
 		   	   FDES = #{fdes},
