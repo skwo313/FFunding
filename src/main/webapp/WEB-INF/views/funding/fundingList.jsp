@@ -257,7 +257,7 @@ li {
 			<c:forEach items="${list}" var="list" varStatus="vs">
 				<div class="col a1">
 					<div class="col a2">
-						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="<c:out value="${list.fimg}"></c:out>">
+						<a href="/ffunding/funding/detail?fid=${list.fid}"> <img alt="" class="divImg" src="${path}/fundingimage/${list.fimg}">
 						</a>
 					</div>
 					<div class="col">

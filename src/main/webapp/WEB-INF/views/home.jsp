@@ -166,7 +166,7 @@
 							</div>
 						</div>
 						<div class="col-3">
-							<img alt="" class="divImg" src="<c:out value="${goalRank.fimg}"></c:out>">
+							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${goalRank.fimg}"></c:out>">
 						</div>
 					</div>
 				</c:forEach>
@@ -192,11 +192,11 @@
 								</h4>
 							</div>
 							<div class="col">
-								<span class="percent"><c:out value="${sellRank.sell}"></c:out>건</span> <span class="cate"><c:out value="${sellRank.fcate}"></c:out></span>
+								<span class="percent"><c:out value="${sellRank.sell-1}"></c:out>건</span> <span class="cate"><c:out value="${sellRank.fcate}"></c:out></span>
 							</div>
 						</div>
 						<div class="col-3">
-							<img alt="" class="divImg" src="<c:out value="${sellRank.fimg}"></c:out>">
+							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${sellRank.fimg}"></c:out>">
 						</div>
 					</div>
 				</c:forEach>
@@ -214,7 +214,7 @@
 				<div class="col">
 					<div class="thumbnail" style="height: 100%;">
 						<div class="col" style="margin-bottom: 10px; height:70%;" >
-							<img alt="" class="divImg" src="<c:out value="${expected.fimg}"></c:out>">
+							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${expected.fimg}"></c:out>">
 						</div>
 
 						<div class="col">

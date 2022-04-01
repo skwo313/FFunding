@@ -29,6 +29,7 @@
 	<resources mapping="/applyimage/**" location="/resources/applyimage/" />
 	<resources mapping="/vendor/**" location="/resources/vendor/" />
 	<resources mapping="/scss/**" location="/resources/scss/" />
+	<resources mapping="/fundingimage/**" location="/resources/fundingimage/" />
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 

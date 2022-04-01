@@ -102,7 +102,7 @@ function conn(){
 		<div class="col-sm-8">
 			<div class="row">
 				<div class="col" style="text-align: center;">
-					<img class="divImg" alt="" src="<c:out value="${detail.fimg}"></c:out>">
+					<img class="divImg" alt="" src="${path}/fundingimage/<c:out value="${detail.fimg}"></c:out>">
 				</div>
 			</div>
 			<div class="row fundimg-des">
@@ -127,7 +127,7 @@ function conn(){
 						</span>
 					</div>
 					<div class="info-text">
-						<span class="info-des">참여자</span> <span> <strong><c:out value="${detail.sell}"></c:out></strong>명의 서포터
+						<span class="info-des">참여자</span> <span> <strong><c:out value="${detail.sell-1}"></c:out></strong>명의 서포터
 						</span>
 					</div>
 					<div class="row justify-content-md-center" style="margin-bottom: 20px;">
@@ -170,19 +170,19 @@ function conn(){
 	</div>
 	<div class="row justify-content-md-center" style="margin: 40px 0px;">
 		<div class="col-8">
-			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg1}"></c:out>">
+			<img alt="" class="img-fluid" src="${path}/fundingimage/<c:out value="${detail.fimg1}"></c:out>">
 		</div>
 		<div class="col-8">
-			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg2}"></c:out>">
+			<img alt="" class="img-fluid" src="${path}/fundingimage/<c:out value="${detail.fimg2}"></c:out>">
 		</div>
 		<div class="col-8">
-			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg3}"></c:out>">
+			<img alt="" class="img-fluid" src="${path}/fundingimage/<c:out value="${detail.fimg3}"></c:out>">
 		</div>
 		<div class="col-8">
-			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg4}"></c:out>">
+			<img alt="" class="img-fluid" src="${path}/fundingimage/<c:out value="${detail.fimg4}"></c:out>">
 		</div>
 		<div class="col-8">
-			<img alt="" class="img-fluid" src="<c:out value="${detail.fimg5}"></c:out>">
+			<img alt="" class="img-fluid" src="${path}/fundingimage/<c:out value="${detail.fimg5}"></c:out>">
 		</div>
 	</div>
 </div>
