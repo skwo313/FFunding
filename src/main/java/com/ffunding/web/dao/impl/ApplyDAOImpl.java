@@ -87,6 +87,6 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public void updateFile(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		
-		sqlSession.update("boardMapper.updateFile", map);
+		sqlSession.update("applyMapper.updateFile", map);
 	}
 }

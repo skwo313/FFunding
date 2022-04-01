@@ -291,7 +291,7 @@ div.des {
 							<div class="c">
 								<label for="fdate">펀딩 등록 날짜*</label><br> <input type="text"
 									id="fdate" name="fdate" class="form-control"
-									value="${update.fdate}" /><br>
+									value="${update.fdate}" readonly="readonly" /><br>
 							</div>
 						</td>
 					</tr>
