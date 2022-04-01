@@ -132,6 +132,11 @@ public class ManagerDAOImpl implements ManagerDAO {
 		session.insert("managerMapper.fundingIns", funding);
 	}
 	
+	//펀딩 테이블 fid
+	public int fundingFid() throws Exception {
+		return session.selectOne("managerMapper.fundingFid");
+	}
+	
 	//펀딩신청 승인시 order데이터 삽입
 	@Override
 	public void orderIns(HashMap<String, Object> map) throws Exception {

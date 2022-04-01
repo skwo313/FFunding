@@ -258,7 +258,7 @@ public class ManagerServiceImpl implements ManagerService {
 		dao.sellerUpt(funding.getFmid());
 		//order테이블에 초기 데이터 삽입
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("fid", funding.getFid());
+		map.put("fid", dao.fundingFid());
 		map.put("admin", funding.getAdmin());
 		dao.orderIns(map);
 	}

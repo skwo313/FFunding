@@ -50,6 +50,8 @@ public interface ManagerDAO {
 	public void applyImageDel(int fid) throws Exception;
 	//펀딩신청 승인
 	public void fundingIns(FundingInsVO funding) throws Exception;
+	//펀딩 테이블 fid
+	public int fundingFid() throws Exception;
 	//펀딩신청 승인시 order데이터 삽입
 	public void orderIns(HashMap<String, Object> map) throws Exception;
 	//판매자로 권한변경
