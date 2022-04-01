@@ -130,6 +130,10 @@ function conn(){
 						<span class="info-des">참여자</span> <span> <strong><c:out value="${detail.sell-1}"></c:out></strong>명의 서포터
 						</span>
 					</div>
+					<div class="info-text">
+						<span class="info-des">가격</span> <span> <strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${detail.fprice}" /></strong>원
+						</span>
+					</div>
 					<div class="row justify-content-md-center" style="margin-bottom: 20px;">
 						<div class="col-4 cale">
 							<div>
