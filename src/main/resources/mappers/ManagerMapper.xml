@@ -120,6 +120,7 @@
 			mphone=#{mphone},
 			memail=#{memail},
 			maddress=#{maddress},
+			maddress_detail=#{maddress_detail},
 			point=#{point},
 			sellerck=#{sellerck}
 		WHERE mid=#{mid}
