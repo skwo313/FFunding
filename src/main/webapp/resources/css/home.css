@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .bx-wrapper {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -70,4 +71,8 @@ img {
 .cate {
 	color: #90949c;
 	font-weight: 400;
+}
+
+.col-3 {
+	height: 100%;
 }
