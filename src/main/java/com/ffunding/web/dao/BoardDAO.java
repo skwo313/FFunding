@@ -8,6 +8,8 @@ import com.ffunding.web.vo.Criteria;
 import com.ffunding.web.vo.SearchCriteria;
 
 public interface BoardDAO {
+	
+	// 공지사항 DAO
 
 	// 게시글 작성
 	public void write(BoardVO boardVO) throws Exception;
