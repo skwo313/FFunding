@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/email/*")
 public class EmailController {
+	
+	// Email Controller
 
 	private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
 	
