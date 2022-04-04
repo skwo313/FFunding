@@ -15,6 +15,8 @@ import com.ffunding.web.vo.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
+	
+	// 공지사항 DAOImpl
 
 	@Inject
 	private SqlSession sqlSession;
