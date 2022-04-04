@@ -31,7 +31,7 @@ import com.ffunding.web.vo.SearchCriteria;
 @RequestMapping("/board/*")
 public class BoardController {
 
-	// Board Controller (게시판)
+	// Board Controller (공지사항)
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
