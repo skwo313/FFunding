@@ -15,6 +15,8 @@ import com.ffunding.web.vo.ApplyVO;
 @Component("ApplyFileUtils")
 public class ApplyFileUtils {
 
+	// 펀딩 신청 파일첨부
+	
 	private static final String filePath = "C:\\a01_javaexp\\workspace\\ffunding\\src\\main\\webapp\\resources\\applyimage\\"; // 파일이
 																																// 저장될
 																																// 위치
