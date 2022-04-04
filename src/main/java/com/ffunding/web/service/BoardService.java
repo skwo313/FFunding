@@ -11,6 +11,8 @@ import com.ffunding.web.vo.SearchCriteria;
 
 public interface BoardService {
 
+	// 공지사항 Service
+	
 	// 게시글 작성
 	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception;
 	
