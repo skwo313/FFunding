@@ -20,6 +20,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <title>펀딩 신청 목록 수정</title>
+<!-- 펀딩 updateView.jsp -->
 </head>
 <script type="text/javascript">
 	$(document)
