@@ -91,6 +91,4 @@ public class ApplyServiceImpl implements ApplyService {
 		return dao.selectFileInfo(map);
 	}
 	
-	
-
 }
