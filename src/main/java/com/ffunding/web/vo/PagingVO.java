@@ -1,6 +1,9 @@
 package com.ffunding.web.vo;
 
 public class PagingVO {
+	
+	// 공지사항 페이징 처리
+	
 	private int nowPage, startPage, endPage, total, lastPage, start, end;
 	private int cntPage = 5;
 	private int cntPerPage = 12;
