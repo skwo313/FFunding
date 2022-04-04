@@ -17,6 +17,8 @@ import com.ffunding.web.vo.SearchCriteria;
 @Repository
 public class ApplyDAOImpl implements ApplyDAO {
 
+	// 펀딩 신청 DAOImpl
+	
 	@Inject
 	private SqlSession sqlSession;
 
