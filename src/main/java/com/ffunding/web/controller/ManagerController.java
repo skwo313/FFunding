@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,6 +101,8 @@ public class ManagerController {
 	//회원 정보수정
 	@PostMapping("member/detail/update")
 	public String memberDetailUpdate(MemberVO upt, RedirectAttributes redirect) throws Exception {
+		//패스워드 암호화
+		upt.setMpw(BCrypt.hashpw(upt.getMpw(), BCrypt.gensalt()));
 		service.memberDetailUpdate(upt);
 		redirect.addAttribute("msg", "Membership information has been modified.");
 		return "redirect:/manager/member/detail?mid="+upt.getMid();

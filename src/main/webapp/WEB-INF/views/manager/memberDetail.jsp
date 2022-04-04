@@ -32,7 +32,7 @@
 									<td>
 										<input type="hidden" name="mpw" value="${detail.mpw}"/>
 										<input type="password" name="newpw" value="" autoComplete="off"/>
-										<span class="warning" id="pwtext">No spaces allowed.</span>
+										<span class="warning" id="pwtext"></span>
 									</td>	 
 								</tr>                           	
 								<tr>
@@ -190,6 +190,7 @@
 		let memberCk = function() {
 			const mailck = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 			const spaceck = /\s/;
+			const pwck = /^[a-zA-Z0-9]{8,16}$/;
 			
 			if($("[name=mname]").val()==null || !($("[name=mname]").val()) || spaceck.exec($("[name=mname]").val())) {
 				open();
@@ -240,7 +241,13 @@
 				//비밀번호에 공백은 사용 불가능하다.
 				if(spaceck.exec($("[name=newpw]").val())) {
 					open();
-					$("#pwtext").show();
+					$("#pwtext").text("No spaces allowed.").show();
+					$("[name=newpw]").focus();
+					return false;
+				//비밀번호는 8-16자이어야한다.
+				} else if(!(pwck.test($("[name=newpw]").val()))) {
+					open();
+					$("#pwtext").text("Please enter 8-16 characters.").show();
 					$("[name=newpw]").focus();
 					return false;
 				//새비밀번호확인란에도 입력값이 있어야 한다.
