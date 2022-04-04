@@ -1,6 +1,9 @@
 package com.ffunding.web.vo;
 
 public class ApplyVO {
+	
+	// 펀딩신청 VO
+	
 	private int fid;
 	private String fcate;
 	private String fname;
