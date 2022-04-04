@@ -9,6 +9,8 @@ import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.SearchCriteria;
 
 public interface ApplyDAO {
+	
+	// 펀딩 신청
 
 	// 게시글 작성
 	public void write(ApplyVO applyVO) throws Exception;
