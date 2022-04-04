@@ -7,6 +7,7 @@
 <br>
 <br>
 <title>관리자 게시판 목록</title>
+<!-- 공지사항 list.jsp -->
 <style type="text/css">
 li {
 	list-style: none;
