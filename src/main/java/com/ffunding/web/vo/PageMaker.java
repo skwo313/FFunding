@@ -7,6 +7,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
+	
+	// 공지사항 페이징 처리
 
 	private int totalCount;
 	private int startPage;
