@@ -21,6 +21,8 @@ import com.ffunding.web.vo.SearchCriteria;
 @Service
 public class BoardServiceImpl implements BoardService {
 
+	// 공지사항 ServiceImpl
+	
 	@Resource(name="fileUtils")
 	private FileUtils fileUtils;
 	
