@@ -2,6 +2,8 @@ package com.ffunding.web.vo;
 
 public class Criteria {
 
+	// 공지사항 페이징 처리
+	
 	private int page;
 	private int perPageNum;
 	private int rowStart;
