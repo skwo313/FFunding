@@ -60,7 +60,7 @@
 								<th><p>Representative</p><p>Image</p></th>
 								<td colspan="7">
 									<c:if test="${detail.fimg[0] != null}">
-										<p class="img"><img src="${path}/applyimage/${detail.fimg[0]}" onerror="javascript:this.src='${path}/img/error.png'"/></p>
+										<p class="img"><img src="${path}/applyimage/${detail.fimg[0]}" onerror="javascript:this.src='${path}/img/error.png'" class="imgR"></p>
 										<input type="hidden" name="fimg" value="${detail.fimg[0]}"/>
 									</c:if>
 								</td>
@@ -71,7 +71,7 @@
 									<c:if test="${detail.fimg != null}">
 										<c:forEach var="i" begin="1" end="${fn:length(detail.fimg)}">
 											<c:if test="${detail.fimg[i] != null}">
-												<p class="img"><img src="${path}/applyimage/${detail.fimg[i]}" onerror="javascript:this.src='${path}/img/error.png'"/></p>
+												<p class="img"><img src="${path}/applyimage/${detail.fimg[i]}" onerror="javascript:this.src='${path}/img/error.png'" class="imgD"/></p>
 												<input type="hidden" name="fimg${i}" value="${detail.fimg[i]}"/>
 											</c:if>
 										</c:forEach>

@@ -90,7 +90,7 @@
 				FROM MEMBER
 				WHERE adminck=0
 				<include refid="search"></include>
-				ORDER BY mid
+				ORDER BY mname
 			) m
 		)
 		WHERE cnt BETWEEN #{start} and #{end}
@@ -198,20 +198,18 @@
 		)
 	</insert>
 	
-	<!-- 펀딩 테이블 fid -->
-	<select id="fundingFid" resultType="int">
-		SELECT fid
-		FROM
-		(
-			SELECT *
-			FROM FUNDING_PRODUCT
-			ORDER BY fid DESC
-		)
-		WHERE rownum = 1
-	</select>
-	
 	<!-- 펀딩신청 승인시 order데이터 삽입 -->
-	<insert id="orderIns" parameterType="hashmap">
+	<insert id="orderIns" parameterType="hashmap" useGeneratedKeys="true" keyProperty="fid">
+		<selectKey keyProperty="fid" resultType="int" order="BEFORE">
+	    	SELECT fid
+			FROM
+			(
+				SELECT *
+				FROM FUNDING_PRODUCT
+				ORDER BY fid DESC
+			)
+			WHERE rownum = 1
+		</selectKey>
 		INSERT INTO FUNDING_ORDER 
 		VALUES(funding_order_seq.nextval, #{admin}, #{fid}, 0, 0, 0, sysdate)
 	</insert>
