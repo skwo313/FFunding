@@ -34,6 +34,8 @@ import com.ffunding.web.vo.SearchCriteria;
 @RequestMapping("/apply/*")
 public class ApplyController {
 	
+	// 펀딩 신청
+	
 	private static final Logger logger = LoggerFactory.getLogger(ApplyController.class);
 	
 	@Inject
