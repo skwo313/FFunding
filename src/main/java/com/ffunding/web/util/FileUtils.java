@@ -15,6 +15,9 @@ import com.ffunding.web.vo.BoardVO;
 
 @Component("fileUtils")
 public class FileUtils {
+	
+	// 공지사항 파일 첨부
+	
 	private static final String filePath = "C:\\funding\\file\\"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BoardVO boardVO, 
