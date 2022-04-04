@@ -21,6 +21,8 @@ import com.ffunding.web.vo.SearchCriteria;
 @Service
 public class ApplyServiceImpl implements ApplyService {
 
+	// 펀딩 신청 ServiceImpl
+	
 	@Resource(name = "ApplyFileUtils")
 	private ApplyFileUtils applyFileUtils;
 
