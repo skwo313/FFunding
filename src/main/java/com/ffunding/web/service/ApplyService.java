@@ -11,6 +11,8 @@ import com.ffunding.web.vo.MemberVO;
 import com.ffunding.web.vo.SearchCriteria;
 
 public interface ApplyService {
+	
+	// 펀딩 신청 Service
 
 	// 게시글 작성
 	public void write(ApplyVO applyVO, MultipartHttpServletRequest mpRequest) throws Exception;
