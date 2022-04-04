@@ -2,6 +2,8 @@ package com.ffunding.web.vo;
 
 public class SearchCriteria extends Criteria {
 
+	// 공지사항 검색처리
+	
 	private String searchType = "";
 	private String keyword = "";
 	private String mid = "";
