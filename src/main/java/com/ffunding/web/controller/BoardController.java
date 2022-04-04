@@ -31,6 +31,8 @@ import com.ffunding.web.vo.SearchCriteria;
 @RequestMapping("/board/*")
 public class BoardController {
 
+	// Controller
+	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject
