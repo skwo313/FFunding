@@ -15,6 +15,7 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <title>관리자 게시판 수정</title>
+<!-- 공지사항 updateView.jsp -->
 </head>
 <script type="text/javascript">
 	$(document).ready(
