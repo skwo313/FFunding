@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class BoardVO {
 
+	// 공지사항 VO
+	
 	private int bno;
 	private String title;
 	private String content;
