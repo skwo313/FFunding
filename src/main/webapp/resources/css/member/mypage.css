@@ -1,0 +1,77 @@
+/* 주문목록 */
+.orderContainer {
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+	width: 870px;
+	margin-top: 30px;
+}
+
+.imgs {
+	border: none;
+	width: 183px;
+    height: 170px;
+}
+
+.card>.row>.col-md-9 {
+	border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.orderdate {
+	font-weight: 500;
+	font-size: large;
+	padding-top: 9px;
+	padding-left: 40px;
+}
+
+.deliveryStat {
+	font-weight: 500;
+	font-size: large;
+	padding: 10px 0 5px 10px;
+}
+
+.orderContainer>.card {
+	max-width: 900px;
+	margin: 10px 30px 20px 30px;
+	padding-left: 10px;
+}
+
+.col-md-9>.row {
+	margin-bottom: 30px;
+}
+
+.orderName {
+	padding-top: 3px;
+	font-size: 17px;
+}
+
+.orderInfo {
+	padding-top: 10px;
+	font-size: 16px;
+}
+
+#addCart {
+	position: relative;
+	right: 20px;
+	top: 40px;
+}
+
+.buttons {
+	display: flex;
+	flex-flow: column wrap;
+	height: 100%;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	padding: 120px 20px 0 0;
+}
+
+.bsize {
+	width: 170px;
+	height: 100%;
+}
+
+main {
+	margin-bottom: 30px;
+}
+

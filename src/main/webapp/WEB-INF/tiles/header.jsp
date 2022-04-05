@@ -41,7 +41,7 @@
 						</c:when>
 						<c:when test="${not empty member.mid}">
 							<li>${member.mname}님</li>
-							<li><a href="#">마이페이지</a></li>
+							<li><a href="/ffunding/mypage/main" onclick="location.href">마이페이지</a></li>
 							<li><a href="/ffunding/member/logout" onclick="location.href">로그아웃</a></li>
 						</c:when>
 						<c:otherwise>

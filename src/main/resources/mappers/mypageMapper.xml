@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypageMapper">
+	<select id="getInfo" resultType="HashMap">
+		<![CDATA[
+		SELECT count(*) AS funding_cnt, 
+				count(CASE WHEN fo.FO_DONATION > 0 THEN 1 end) AS donation_cnt,
+				m.POINT AS point
+		FROM funding_order fo, MEMBER m 
+		WHERE m.mid = fo.mid
+		GROUP BY fo.mid, point
+		HAVING fo.mid = #{mid}
+		
+		UNION ALL
+
+		SELECT 0 AS funding_cnt, 0 AS donation_cnt, m.POINT AS point
+		FROM MEMBER m 
+		WHERE NOT EXISTS (
+						SELECT mid
+						FROM funding_order
+						WHERE mid = #{mid} )
+		AND mid = #{mid}
+		]]>
+	</select>	
+	
+	<select id="fundingList" resultType="HashMap">
+		<![CDATA[
+		SELECT *
+		FROM (
+			SELECT  fname, fdes, fcate, fp.fimg, fp.fid
+			FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
+			WHERE fo.fid = fp.fid 
+			AND sysdate < fp.FENDDATE 
+			AND fo.mid = #{mid}
+			ORDER BY FO_ID desc
+		)
+		WHERE rownum <= 4
+		]]>
+	</select>
+	
+	<update id="updatePW">
+		update member set
+			mpw = #{mpw}
+		WHERE mid = #{mid}
+	</update>
+	
+	<update id="updateAddr">
+		update member set
+			maddress = #{maddress},
+			maddress_detail = #{maddress_detail}
+		WHERE mid = #{mid}
+	</update>
+	
+	<select id="getFunding" resultType="HashMap">
+		<![CDATA[
+		SELECT fp.FNAME, fp.fimg, fp.FID, fo.FO_PRICE, fo.FO_CNT, fo.FO_DATE
+		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
+		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE 
+		AND fo.mid = #{mid}
+		ORDER BY FO_ID DESC
+		]]>
+	</select>
+	
+	<select id="getDonation" resultType="HashMap">
+		<![CDATA[
+		SELECT fp.FNAME, fp.FIMG, fp.FID, fp.FCATE, fo.FO_DONATION, fo.FO_DATE 
+		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
+		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE
+		AND fo.mid = #{mid} AND FO_DONATION > 0
+		ORDER BY FO_ID DESC
+		]]>
+	</select>
+	
+	<update id="pointCharge">
+		UPDATE MEMBER SET 
+			point = TO_NUMBER(point) + TO_NUMBER(#{point}) 
+		WHERE mid = #{mid}
+	</update>
+	
+</mapper>
