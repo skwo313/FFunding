@@ -9,48 +9,7 @@
 <script>
 	$(document).ready(
 			function() {
-				$('#fo_cnt').on(
-						'change',
-						function() {
-							var cal = (Number($('#fprice').val()) * Number($(
-									'#fo_cnt').val()))
-									+ Number($('#fo_donation').val());
-							$('#fo_price').val(cal);
-						});
-				$('#fo_donation').on(
-						'change',
-						function() {
-							var cal = (Number($('#fprice').val()) * Number($(
-									'#fo_cnt').val()))
-									+ Number($('#fo_donation').val());
-							$('#fo_price').val(cal);
-						});
-				$("#btnOrder").click(function() {
-					var tot = $('#fo_price').val();
-					var cnt = $('#fo_cnt').val();
-					
-					
-					if (cnt =="0"){
-						alert("주문내용을 선택해주세요");
-						$('#fo_cnt').focus();
-						return false;
-					}
-					if (tot =="0"){
-						alert("주문내용을 선택해주세요");
-						$('#fo_price').focus();
-						return false;
-					}
-					console.log("point"+${mid.point});
-					console.log("tot"+tot);
-					
-					if(${mid.point}< tot){
-						alert("포인트가 부족합니다");
-						$('#fo_donation').focus();
-						return false;
-					}
-					$(".form1")("action", "/ffunding/funding/detail/order");
-					$(".form1").submit();
-				});
+	
 				$(".chat-box").hide();
 				$(".chatbox-open").click(function() {
 					$(".chat-box").show();
@@ -142,56 +101,73 @@
 	margin-bottom: 40px;
 }
 
+
 </style>
 <title>FFunding - 주문</title>
 
 <div class="container-sm" style="max-width: 643px;">
 	<div class="row row-cols-1">
-		<div class="col imgbox">
-			<img alt="" src="${pageContext.request.contextPath}/img/orderimg.png"
-				class="img-fluid order">
-		</div>
-		<div class="order_text">
+		<div class="order_text" style="margin-top: 30px;">
 			<h1 class="order_text2">
-				<p align="center">ORDER</p>
-				<p style="font-size:15px">▶제품명 : ${detail.fname}</p>
-				<p style="font-size:15px">▶${detail.remain}일후 자동 배송처리됩니다</p>
+				<p align="center">PDF 다운로드</p>
 			</h1>
 		</div>
-		<form class="order_form" name="form1" method="post">
+		<form class="pdf_form" name="form1" action="/ffunding/funding/pdf/down">
 			<div class="col">
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control" id="fprice"
+					<input type="text" class="form-control" 
+						value="${detail.remain}일" readonly> <label
+						for="floatingInputValue">남은기간</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" 
+						value="${detail.goal}" readonly> <label
+						for="floatingInputValue">달성률</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" 
+						value="${detail.price}" readonly> <label
+						for="floatingInputValue">펀딩금액</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" 
+						value="${detail.sell-1}명" readonly> <label
+						for="floatingInputValue">참여자</label>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" 
 						value="${detail.fprice}" readonly> <label
-						for="floatingInputValue">제품 가격</label>
+						for="floatingInputValue">가격</label>
 				</div>
 			</div>
 			<div class="col">
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control" name="fo_cnt" id="fo_cnt"
-						value="0" min="0" max="5"> <label for="floatingInputValue">수량
-						입력</label>
+					<input type="text" class="form-control" 
+						value="<fmt:formatDate value='${detail.fstartdate}' pattern='yyyy-MM-dd' />" readonly> <label
+						for="floatingInputValue">펀딩 시작일</label>
 				</div>
 			</div>
 			<div class="col">
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control" name="fo_donation"
-						id="fo_donation" value="0" min="0"> <label
-						for="floatingInputValue">추가 후원금액 입력</label>
+					<input type="text" class="form-control" 
+						value="<fmt:formatDate value='${detail.fenddate}' pattern='yyyy-MM-dd' />" readonly> <label
+						for="floatingInputValue">펀딩 종료일</label>
 				</div>
 			</div>
+			<input type="hidden" class="form-control" name="fid"
+						value="${detail.fid}" readonly> <label
+						for="floatingInputValue"></label>
 			<div class="col">
-				<div class="form-floating mb-3">
-					<input type="number" class="form-control" name="fo_price"
-						id="fo_price" value="0" readonly> <label
-						for="floatingInputValue">총 결제 금액</label>
-				</div>
-			</div>
-			<input type="hidden" class="form-control" name="mid" id="mid"
-				value="${member.mid}">
-			<div class="col">
-				<button type="submit" id="btnOrder"
-					class="w-100 btn btn-lg btn-primary" style="width: 100%;">결제</button>
+				<button type="submit" id="btnPdf"
+					class="w-100 btn btn-lg btn-primary" style="width: 100%;">출력하기</button>
 			</div>
 		</form>
 	</div>

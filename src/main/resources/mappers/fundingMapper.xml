@@ -90,6 +90,7 @@
 		</if>
 		AND SYSDATE BETWEEN FSTARTDATE AND FENDDATE
 	</select>
+	
 	<select id="detailview" parameterType="int"
 		resultType="com.ffunding.web.vo.FundingVO">
 		SELECT A.FID,
@@ -98,6 +99,7 @@
 		SUM(B.FO_DONATION) AS price,
 		ROUND( ((SUM(B.FO_PRICE)+
 		SUM(B.FO_DONATION)) / A.FGOAL) * 100) AS goal,
+		A.MID AS fmid,
 		ROUND(A.FENDDATE -
 		SYSDATE) AS remain ,
 		A.FCATE ,
@@ -113,8 +115,7 @@
 		A.FIMG3 ,
 		A.FIMG4 ,
 		A.FIMG5 ,
-		A.FDES ,
-		A.MID
+		A.FDES 
 		FROM FUNDING_PRODUCT A, FUNDING_ORDER B
 		WHERE
 		A.FID = B.FID AND A.FID = #{fid}

@@ -7,7 +7,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-
+	console.log("세션아이디: "+${member.mid});
+	console.log("제품아이디: "+${detail.fmid});
 	$(".chat-box").hide();
 	$(".chatbox-open").click(function() {
 		$(".chat-box").show();
@@ -20,7 +21,6 @@ $(document).ready(function() {
 		wsocket.send("${member.mid}님 연결끊김");
 		wsocket.close();
 		
-
 	});
 	$("#chat-submit").click(function() {
 		sendMessage();
@@ -34,6 +34,9 @@ $(document).ready(function() {
 });
 function order_send() {
 	location.href = "/ffunding/funding/detail/order?fid=${detail.fid}";
+}
+function pdf_send() {
+	location.href = "/ffunding/funding/detail/pdf?fid=${detail.fid}";
 }
 function sendMessage() {
 	var mid = "${member.mid}";
@@ -166,6 +169,13 @@ function conn(){
 					<c:if test="${not empty member.mid}">
 					<div class="info-text">
 						<input type="button" class="form-control butn"  onclick="order_send();" value="주문하기"/>
+					</div>
+					</c:if>
+					<c:set var = "sid" value = "${member.mid}" />
+					<c:set var = "id" value = "${detail.fmid}" />
+					<c:if test="${sid eq id}">
+					<div class="info-text">
+						<input type="button" class="form-control butn"  onclick="pdf_send();" value="출력하기"/>
 					</div>
 					</c:if>
 				</div>

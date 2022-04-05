@@ -1,6 +1,11 @@
 package com.ffunding.web.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ffunding.web.service.FundingService;
 import com.ffunding.web.service.ManagerService;
@@ -63,6 +69,58 @@ public class FundingController {
 		model.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
 
 		return "funding/fundingDetail.page";
+	}
+
+	// 제품 판매 정보 pdf
+	@RequestMapping(value = "/detail/pdf", method = RequestMethod.GET)
+	public String pdfview(FundingVO fundingVO, Model d) throws Exception {
+		d.addAttribute("detail", service.viewDetail(fundingVO.getFid()));
+
+		return "funding/fundingPdf.page";
+	}
+
+	@RequestMapping("/pdf/down")
+	public ModelAndView pdf(HttpServletRequest request) throws Exception {
+		String fids = request.getParameter("fid");
+		System.out.println(fids);
+		int fid = Integer.parseInt(fids);
+		DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+		ModelAndView mav = new ModelAndView();
+		Map<String, String> map = new HashMap<String, String>();
+		FundingVO vo = service.viewDetail(fid);
+		String startDate = sdFormat.format(vo.getFstartdate());
+		String endDate = sdFormat.format(vo.getFenddate());
+		map.put("remaining period", vo.getRemain() + "일");
+		map.put("achievement rate", Integer.toString(vo.getGoal()));
+		map.put("Funding amount", Integer.toString(vo.getPrice()));
+		map.put("Participants", (vo.getSell()-1) + "명");
+		map.put("price", Integer.toString(vo.getFprice()));
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		mav.addObject("map", map);
+		mav.setViewName("pdfDownView");
+		return mav;
+	}
+
+
+	@RequestMapping(value = "/pdf", method = RequestMethod.GET)
+	public ModelAndView pdf(FundingVO fundingVO, HttpServletRequest request) throws Exception {
+		String fids = request.getParameter("fid");
+		int fid = Integer.parseInt(fids);
+		ModelAndView mav = new ModelAndView();
+		List<String> list = new ArrayList<String>();
+		FundingVO vo = service.viewDetail(fid);
+		list.add("남은기간:" + vo.getRemain() + "일");
+		list.add("달성률:" + vo.getGoal());
+		list.add("펀딩금액:" + vo.getPrice());
+		list.add("참여자:" + (vo.getSell() - 1) + "명");
+		list.add("가격:" + vo.getFprice());
+		list.add("펀딩 시작일:" + vo.getFstartdate());
+		list.add("펀딩 종료일:" + vo.getFenddate());
+		mav.addObject("list", list);
+		mav.setViewName("pdf");
+		return mav;
+
 	}
 
 	// 주문 페이지
