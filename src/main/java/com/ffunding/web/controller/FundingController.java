@@ -2,9 +2,7 @@ package com.ffunding.web.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.FundingService;
 import com.ffunding.web.service.ManagerService;
@@ -113,13 +112,13 @@ public class FundingController {
 
 	// 주문 완료
 	@RequestMapping(value = "detail/order", method = RequestMethod.POST)
-	public String orderProduct(@RequestParam int fo_price, @RequestParam String mid, OrderVO vo) throws Exception {
+	public String orderProduct(@RequestParam int fo_price, @RequestParam String mid, OrderVO vo, RedirectAttributes ra) throws Exception {
 		MemberVO membervo = service2.memberDetail(mid);
 		int point = membervo.getPoint() - fo_price;
 		membervo.setPoint(point);
 		service.orderProduct(vo);
 		service.pointDown(membervo);
-
+		ra.addFlashAttribute("result", "Y");
 		return "redirect:/";
 	}
 }

@@ -35,7 +35,10 @@
 			
 		});
 	});
-	
+	var result = '${result}';
+	if (result == 'Y') {
+		alert("주문이 완료되었습니다");
+	}
 	function sendMessage() {
 		var mid = "${member.mid}";
 		var msg = $('#chat-input').val();

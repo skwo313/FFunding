@@ -2,10 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+	$(document).ready(function() {
+		var hasSession = "${member.mid}";
+		if (hasSession == "") {
+			alert("로그인이 필요합니다.");
+			location.href = "${path}/member/login";
+		}
+		;
+	})
+</script>
 <script>
 	$(document).ready(
 			function() {
