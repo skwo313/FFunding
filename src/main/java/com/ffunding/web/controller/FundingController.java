@@ -103,26 +103,6 @@ public class FundingController {
 	}
 
 
-	@RequestMapping(value = "/pdf", method = RequestMethod.GET)
-	public ModelAndView pdf(FundingVO fundingVO, HttpServletRequest request) throws Exception {
-		String fids = request.getParameter("fid");
-		int fid = Integer.parseInt(fids);
-		ModelAndView mav = new ModelAndView();
-		List<String> list = new ArrayList<String>();
-		FundingVO vo = service.viewDetail(fid);
-		list.add("남은기간:" + vo.getRemain() + "일");
-		list.add("달성률:" + vo.getGoal());
-		list.add("펀딩금액:" + vo.getPrice());
-		list.add("참여자:" + (vo.getSell() - 1) + "명");
-		list.add("가격:" + vo.getFprice());
-		list.add("펀딩 시작일:" + vo.getFstartdate());
-		list.add("펀딩 종료일:" + vo.getFenddate());
-		mav.addObject("list", list);
-		mav.setViewName("pdf");
-		return mav;
-
-	}
-
 	// 주문 페이지
 	@GetMapping("/detail/order")
 	public String fundingorder(FundingVO fundingVO, Model d, HttpSession session) throws Exception {
