@@ -62,6 +62,9 @@
 		SELECT count(*)
 		FROM FUNDING_PRODUCT
 		WHERE REPLACE(fcate, ' ', '') = #{cate}
+	<![CDATA[
+		AND to_char(sysdate, 'yymmdd')<=to_char(fenddate, 'yymmdd')
+	]]>
 	</select>
 	
 	<!-- 회원 리스트 및 페이징 처리 sql 공통부분 -->
