@@ -137,6 +137,10 @@
 		      	$("#delBtn").hide();
 		      	//상세데이터 확인 후, 다시 등록할 때 초기화
 		      	$("#frm")[0].reset();
+		    	//이전에 표시됐던 경고메시지 숨기기
+				$("#titleT").hide();
+				$("#startT").hide();
+				$("#endT").hide();
 		      	$("#Modal").modal("show");
 		      	//클릭시, 가져온 속성값 로딩
 		      	$("[name=start]").val(arg.start.getFullYear()+"-"+((arg.start.getMonth()+1)<10?"0"+(arg.start.getMonth()+1):(arg.start.getMonth()+1))+"-"+(arg.start.getDate()<10?"0"+arg.start.getDate():arg.start.getDate()));
@@ -212,6 +216,10 @@
     	$("[name=endView]").val(date.getFullYear()+"-"+((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?"0"+date.getDate():date.getDate()));
     	$("[name=backgroundColor]").val(event.backgroundColor);
     	$("[name=textColor]").val(event.textColor);
+    	//이전에 표시됐던 경고메시지 숨기기
+		$("#titleT").hide();
+		$("#startT").hide();
+		$("#endT").hide();
 	}
 	
 	$(document).ready(function() {
