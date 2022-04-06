@@ -273,7 +273,7 @@ div.des {
 							<div class="c">
 								<label for="fprice">펀딩 가격*</label><br>
 								<div class="des">원하시는 펀딩 가격을 입력해주세요</div>
-								<input type="text" id="fprice" name="fprice"
+								<input type="number" id="fprice" name="fprice"
 									class="form-control" value="${update.fprice}" /><br>
 							</div>
 						</td>
@@ -281,7 +281,7 @@ div.des {
 					<tr>
 						<td>
 							<div class="c">
-								<label for="fgoal">펀딩 목표 가격*</label><br> <input type="text"
+								<label for="fgoal">펀딩 목표 가격*</label><br> <input type="number"
 									id="fgoal" name="fgoal" class="form-control"
 									value="${update.fgoal}" /><br>
 							</div>
