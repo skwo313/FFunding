@@ -243,7 +243,7 @@
 				FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp
 				WHERE fo.fid=fp.fid
 	<![CDATA[
-				AND to_char(fp.FENDDATE, 'yymmdd')<to_char(sysdate, 'yymmdd')
+				AND to_char(fp.FENDDATE, 'yymmdd')<=to_char(sysdate, 'yymmdd')
 	]]>
 				GROUP BY fp.fid, fp.fname, fp.fenddate, fp.fgoal
 				<if test='sort=="new"'>
