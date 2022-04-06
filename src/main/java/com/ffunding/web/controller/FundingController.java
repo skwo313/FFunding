@@ -90,10 +90,10 @@ public class FundingController {
 		FundingVO vo = service.viewDetail(fid);
 		String startDate = sdFormat.format(vo.getFstartdate());
 		String endDate = sdFormat.format(vo.getFenddate());
-		map.put("remaining period", vo.getRemain() + "일");
+		map.put("remaining period", Integer.toString(vo.getRemain()));
 		map.put("achievement rate", Integer.toString(vo.getGoal()));
 		map.put("Funding amount", Integer.toString(vo.getPrice()));
-		map.put("Participants", (vo.getSell()-1) + "명");
+		map.put("Participants", Integer.toString((vo.getSell()-1)));
 		map.put("price", Integer.toString(vo.getFprice()));
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);
