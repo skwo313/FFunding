@@ -229,7 +229,7 @@
 	<![CDATA[
 		SELECT count(*)
 		FROM FUNDING_PRODUCT
-		WHERE to_char(fenddate, 'yymmdd')<to_char(sysdate, 'yymmdd')
+		WHERE to_char(fenddate, 'yymmdd')<=to_char(sysdate, 'yymmdd')
 	]]>
 	</select>	
 	
