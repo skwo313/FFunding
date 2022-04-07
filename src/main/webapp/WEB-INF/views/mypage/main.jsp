@@ -68,7 +68,7 @@
 								<button class="btn btn-outline-primary btn-sm rounded-3" 
 									 onclick="location.href='../apply/list'">
 									<i class="material-icons text-lg position-relative">shop</i> 
-									<span class="ms-1">메이커</span>
+									<span class="ms-1">등록 펀딩 리스트</span>
 								</button>
 							</c:if>
 						</div>
@@ -85,7 +85,7 @@
 										<a href="fundingList">${info.FUNDING_CNT}</a>
 									</p>
 								</div>
-								<div class="card-body p-3 fs-5 fw-bold">펀딩</div>
+								<div class="card-body p-3 fs-5 fw-bold">구매한 펀딩</div>
 							</div>
 						</div>
 						<div class="col-12 col-xl-3 text-center border border-2 ">
@@ -95,7 +95,7 @@
 										<a href="donation">${info.DONATION_CNT}</a>
 									</p>
 								</div>
-								<div class="card-body p-3 fs-5 fw-bold">후원</div>
+								<div class="card-body p-3 fs-5 fw-bold">구매한 후원</div>
 							</div>
 						</div>
 						<div
@@ -139,7 +139,7 @@
 						<div class="col-12 mt-4">
 							<div class="mb-5 ps-3">
 								<h6 class="mb-1">나의 펀딩</h6>
-								<p class="text-sm">최근 펀딩 프로젝트</p>
+								<p class="text-sm">최근 내가 구매한 펀딩 프로젝트</p>
 							</div>
 							<div class="row">
 								<c:forEach var="list" items="${fundingList}">
