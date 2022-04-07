@@ -23,7 +23,6 @@
 			$(".chatbox-open").show();
 			wsocket.send("${member.mid}님 연결끊김");
 			wsocket.close();
-			
 
 		});
 		$("#chat-submit").click(function() {
@@ -31,8 +30,10 @@
 			$('#chat-input').val('');
 		});
 		$("#chat-input").keyup(function(e) {
-			if (e.keyCode == 13) {sendMessage();}
-			
+			if (e.keyCode == 13) {
+				sendMessage();
+			}
+
 		});
 	});
 	var result = '${result}';
@@ -50,16 +51,17 @@
 		str += "</span>";
 		str += "</div>";
 		wsocket.send(str);
-		$('#chat-input').val(""); $('#chat-input').focus();
+		$('#chat-input').val("");
+		$('#chat-input').focus();
 	}
 
-	function conn(){
+	function conn() {
 		wsocket = new WebSocket("ws:/106.10.71.20:7080/ffunding/echo");
-		wsocket.onopen=function(e){ 
+		wsocket.onopen = function(e) {
 			console.log(e);
 			wsocket.send("${member.mid}님 입장하셨습니다");
 		}
-		wsocket.onmessage=function(e){
+		wsocket.onmessage = function(e) {
 			var data = e.data;
 			var returnId = null; //데이터를 보낸 사람
 			var arr = data.split("<");
@@ -87,10 +89,10 @@
 			$(".chat-logs").scrollTop($(".chat-logs")[0].scrollHeight);
 		}
 		// handler의 afterConnectionClose와 연동
-		wsocket.onclose=function(){
+		wsocket.onclose = function() {
 			wsocket.send("${member.mid}님 연결끊김");
 		}
-		
+
 	}
 </script>
 <title>FFunding</title>
@@ -159,7 +161,7 @@
 						<div class="col-8">
 							<div class="col">
 								<h4 class="title">
-									<c:out value="${goalRank.fname}"></c:out>
+									<a href="/ffunding/funding/detail?fid=${goalRank.fid}"><c:out value="${goalRank.fname}"></c:out> </a>
 								</h4>
 							</div>
 							<div class="col">
@@ -189,7 +191,7 @@
 						<div class="col-8">
 							<div class="col">
 								<h4 class="title">
-									<c:out value="${sellRank.fname}"></c:out>
+									<a href="/ffunding/funding/detail?fid=${sellRank.fid}"><c:out value="${sellRank.fname}"></c:out> </a>
 								</h4>
 							</div>
 							<div class="col">
@@ -214,16 +216,17 @@
 			<c:forEach items="${expected}" var="expected" varStatus="vs" end="5">
 				<div class="col">
 					<div class="thumbnail" style="height: 100%;">
-						<div class="col" style="margin-bottom: 10px; height:70%;" >
+						<div class="col" style="margin-bottom: 10px; height: 70%;">
 							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${expected.fimg}"></c:out>">
 						</div>
 
 						<div class="col">
-							<h5 class="title"><c:out value="${expected.fname}"></c:out></h5>
+							<h5 class="title">
+								<c:out value="${expected.fname}"></c:out>
+							</h5>
 						</div>
 						<div class="col">
-							<span class="percent"><fmt:formatDate value="${expected.fstartdate}" pattern="yyyy-MM-dd"/></span>
-							<span class="cate"><c:out value="${expected.fcate}"></c:out></span>
+							<span class="percent"><fmt:formatDate value="${expected.fstartdate}" pattern="yyyy-MM-dd" /></span> <span class="cate"><c:out value="${expected.fcate}"></c:out></span>
 						</div>
 					</div>
 				</div>
