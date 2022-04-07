@@ -7,7 +7,7 @@
 <br>
 <br>
 <title>펀딩 목록</title>
-<!-- 펀딩 list.jsp -->
+<!-- 펀딩 list.jsp 목록 -->
 <style type="text/css">
 li {
 	list-style: none;
