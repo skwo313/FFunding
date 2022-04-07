@@ -114,11 +114,8 @@
 		
 		//start데이터 변경시 end데이터 선택 범위 변경
 		$("#start").change(function() {
-			console.log($("[name=start]").val())
 			$("#end").datepicker("option", "minDate", $("[name=start]").val());
 		});
-		//datepicker 초기값 설정
-	    //$('#datepicker').datepicker('setDate', 'today');
 	});
 	
 	document.addEventListener('DOMContentLoaded', function() {
@@ -152,18 +149,15 @@
 		      	$("[name=endView]").val(arg.end.getFullYear()+"-"+((arg.end.getMonth()+1)<10?"0"+(arg.end.getMonth()+1):(arg.end.getMonth()+1))+"-"+(arg.end.getDate()<10?"0"+arg.end.getDate():arg.end.getDate()));
 		        
 		      	$("#end").change(function() {
-		      		let date = arg.end;
-		      		//datepicker에서 년, 월, 일 추출
-		      		let year = $("[name=endView]").val().substr(0,4);
-		      		let month = $("[name=endView]").val().substr(5,2);
-		      		let day = $("[name=endView]").val().substr(8,2);
-		      		//date에 선택한 년, 월, 일 삽입
-		      		date.setFullYear(year);
-		      		date.setMonth(month-1);
-		      		//'일'은 선택한 날짜보다 +1일이어야 캘린더에 선택한 날짜만큼 표시해줄수 있으므로, +1일을 더해줌
-		      		date.setDate(Number(day)+1);
-		      		$("[name=end]").val(date.getFullYear()+"-"+((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?"0"+date.getDate():date.getDate()));
+		      			endDate(arg.end);
 		      	});
+		      	
+		      	$("[name=start]").change(function() {
+		      		if($("[name=start]").val()>=$("[name=end]").val()) {
+		      			endDate(arg.end);
+		      		}
+		      	});
+		      	
 		      	calendar.unselect()
 			},
 			//이벤트 클릭시 설정한 이벤트 보기
@@ -211,6 +205,7 @@
     	$("[name=start]").val(event.start.getFullYear()+"-"+((event.start.getMonth()+1)<10?"0"+(event.start.getMonth()+1):(event.start.getMonth()+1))+"-"+(event.start.getDate()<10?"0"+event.start.getDate():event.start.getDate()));
     	$("[name=end]").val(event.end.getFullYear()+"-"+((event.end.getMonth()+1)<10?"0"+(event.end.getMonth()+1):(event.end.getMonth()+1))+"-"+(event.end.getDate()<10?"0"+event.end.getDate():event.end.getDate()));
     	//'일'은 -1분 처리하여 선택했던 날짜를 표시
+    	console.log(event.end)
     	let date = event.end;
     	date.setMinutes(date.getMinutes()-1);
     	$("[name=endView]").val(date.getFullYear()+"-"+((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?"0"+date.getDate():date.getDate()));
@@ -220,6 +215,21 @@
 		$("#titleT").hide();
 		$("#startT").hide();
 		$("#endT").hide();
+	}
+	
+	//datepicker 날짜 변경시 공통부분
+	function endDate(event) {
+		let date = event;
+  		//datepicker에서 년, 월, 일 추출
+  		let year = $("[name=endView]").val().substr(0,4);
+  		let month = $("[name=endView]").val().substr(5,2);
+  		let day = $("[name=endView]").val().substr(8,2);
+  		//date에 선택한 년, 월, 일 삽입
+  		date.setFullYear(year);
+  		date.setMonth(month-1);
+  		//'일'은 선택한 날짜보다 +1일이어야 캘린더에 선택한 날짜만큼 표시해줄수 있으므로, +1일을 더해줌
+  		date.setDate(Number(day)+1);
+  		$("[name=end]").val(date.getFullYear()+"-"+((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?"0"+date.getDate():date.getDate()));
 	}
 	
 	$(document).ready(function() {
