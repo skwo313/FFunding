@@ -36,7 +36,7 @@ li {
 							<th>등록날짜</th>
 						</tr>
 					</thead>
-	
+
 					<c:forEach items="${list}" var="list">
 						<tr>
 							<td><c:out value="${list.fcate}" /></td>
@@ -68,34 +68,46 @@ li {
 						</div>
 					</div>
 
+					<div class="mb-3" style="margin: 0 auto; width: 30%;">
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li
+									<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+									<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+							</c:if>
+						</ul>
+					</div>
 
 					<script>
-				      $(function(){
-				        $('#searchBtn').click(function() {
-				          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-				        });
-				      });   
-				    </script>
-				</div>
-
-
-				<div class="mb-3" style="margin: 0 auto; width: 30%;">
-					<ul>
-						<c:if test="${pageMaker.prev}">
-							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-						</c:if>
-
-						<c:forEach begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}" var="idx">
-							<li><a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-						</c:if>
-					</ul>
+						$(function() {
+							$('#searchBtn')
+									.click(
+											function() {
+												self.location = "list"
+														+ '${pageMaker.makeQuery(1)}'
+														+ "&searchType="
+														+ $(
+																"select option:selected")
+																.val()
+														+ "&keyword="
+														+ encodeURIComponent($(
+																'#keywordInput')
+																.val());
+											});
+						});
+					</script>
 				</div>
 			</form>
 		</section>
