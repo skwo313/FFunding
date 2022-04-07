@@ -177,7 +177,7 @@
 				<p style="font-size:15px">▶${detail.remain}일후 자동 배송처리됩니다</p>
 			</h1>
 		</div>
-		<form class="order_form" name="form1" method="post">
+		<form class="order_form" name="form1" method="post" onsubmit="return false">
 			<div class="col">
 				<div class="form-floating mb-3">
 					<input type="number" class="form-control" id="fprice"
