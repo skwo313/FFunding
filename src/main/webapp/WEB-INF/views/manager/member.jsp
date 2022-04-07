@@ -59,7 +59,7 @@
             <td class="addr">{{member.maddress}} {{member.maddress_detail}}</td>
             <td>{{member.point | filter}}</td>
             <td v-if="member.sellerck=='1'">판매자</td>
-            <td v-else>일반회원</td>
+            <td v-else>서포터</td>
         </tr>
     </tbody>
 </table>
