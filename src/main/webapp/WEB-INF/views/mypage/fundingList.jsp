@@ -29,25 +29,12 @@
 	$(document).ready(function() {
 		var hasSession = "${member.mid}";
 		if (hasSession == "") {
-			//$('.alert').show();
 			alert('로그인이 필요합니다');
 			location.href = "${path}/member/login";
-		}
-		;
+		};
 
 	});
 </script>
-<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
-    <span class="alert-icon align-middle">
-      <span class="material-icons text-md">
-      thumb_up_off_alt
-      </span>
-    </span>
-    <span class="alert-text"><strong>경고!</strong> 로그인이 필요합니다</span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div> -->
 <body class="g-sidenav-show bg-gray-200">
 	<div class="main-content position-relative max-height-vh-100 h-100">
 

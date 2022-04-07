@@ -64,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
         
         /* 계정 유무 */
         List<String> check = dao.getID(email);
-        if (check == null) {
+        if (check.isEmpty()) {
         	return "0";
         }
         

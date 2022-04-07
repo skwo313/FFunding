@@ -124,6 +124,11 @@
 		})
 	}
 	
+	var hasSession = "${member.mid}";
+	if (hasSession != "") {
+		location.href = "../";
+	};
+	
 </script>
 
 <main class="main-content  mt-0">

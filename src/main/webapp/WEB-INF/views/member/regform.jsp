@@ -20,13 +20,33 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		let isCheck = true;
+		$('#checkAgr').on("click", function(){
+			isCheck = $('#checkAgr').is(':checked');
+			console.log(isCheck);
+			
+			let validCount = $(".is-valid").length;
+			if (validCount == 6 && isCheck) {
+				$("#regBtn").prop("disabled", false);
+				
+				$("#regForm").keypress(function(e) {
+					if (e.keyCode == 13) {
+						submitForm();
+						return false;
+					}
+				});
+				
+			} else {
+				$("#regBtn").prop("disabled", true);
+			}
+		})
 		
 		$("#regForm").on("keyup", function(){
 			let target = $(event.target).attr('id');
 			regCheck(target);
 			
 			let validCount = $(".is-valid").length;
-			if (validCount == 6) {
+			if (validCount == 6 && isCheck) {
 				$("#regBtn").prop("disabled", false);
 				
 				$("#regForm").keypress(function(e) {
@@ -264,7 +284,7 @@
                   <span id="phoneMsg" class="msg"></span>
                   
                   <div class="form-check form-check-info text-start ps-0">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                    <input class="form-check-input" type="checkbox" value="" id="checkAgr" checked>
                     <label class="form-check-label" for="flexCheckDefault">
                       I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
                     </label>

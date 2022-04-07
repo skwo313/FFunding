@@ -106,7 +106,7 @@ table {
 					code = data.num;
 					id = data.findId;
 					
-					if (code == "0"){
+					if (code == 0){
 						findSection.html("해당 이메일과 일치하는 계정이 없습니다");
 						findSection.show();
 						checkBox.attr("disabled", true);
@@ -118,7 +118,7 @@ table {
 		});
 
 		/* 인증번호 비교 */
-		$(".mail_check_input").blur(function() {
+		$(".mail_check_input").on("keyup",function() {
 
 			var inputCode = $(".mail_check_input").val(); // 입력코드    
 			var checkResult = $("#mail_check_input_box_warn"); // 비교 결과     
@@ -210,7 +210,6 @@ table {
 				url : "findCheck?email=" + email +"&isFindId=0",
 				dataType : "json",
 				success : function(data) {
-
 					//console.log("data : " + data);
 					checkBox.attr("disabled", false);
 					boxWrap.attr("id", "mail_check_input_box_true");
@@ -228,7 +227,7 @@ table {
 		});
 
 		/* 인증번호 비교 */
-		$(".mail_check_input_pw").blur(function() {
+		$(".mail_check_input_pw").on("keyup",function() {
 
 			var inputCode = $(".mail_check_input_pw").val(); // 입력코드    
 			var checkResult = $("#mail_check_input_box_pw_warn"); // 비교 결과     
