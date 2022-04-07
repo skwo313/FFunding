@@ -59,7 +59,56 @@
 								<thead>
 									<tr>
 										<th
-											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">프로젝트</th>
+											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">펀딩 진행중인 프로젝트</th>
+										<th
+											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">카테고리</th>
+										<th
+											class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">후원금액</th>
+										<th
+											class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">날짜</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="dlist" items="${donaList}">
+										<tr>
+											<td>
+												<div class="d-flex px-2 py-1">
+													<div>
+														<a href="${path}/funding/detail?fid=${dlist.FID}"> <img
+															src="${path}/fundingimage/${dlist.FIMG}"
+															class="avatar avatar-sm me-3 border-radius-lg"
+															alt="user1">
+														</a>
+													</div>
+													<div class="d-flex flex-column justify-content-center">
+														<h6 class="mb-0 text-sm">
+															<a href="${path}/funding/detail?fid=${dlist.FID}">${dlist.FNAME}</a>
+														</h6>
+													</div>
+												</div>
+											</td>
+											<td>
+												<p class="text-xs font-weight-bold mb-0">${dlist.FCATE}</p>
+											</td>
+											<td class="align-middle text-center text-sm"><span
+												class="badge badge-sm bg-gradient-success"> <fmt:formatNumber
+														value="${dlist.FO_DONATION}" />원
+											</span></td>
+											<td class="align-middle text-center"><span
+												class="text-secondary text-xs font-weight-bold"> <fmt:formatDate
+														value="${dlist.FO_DATE}" pattern="yy/MM/dd" />
+											</span></td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+							</table>
+							
+							<table class="table align-items-center mb-0">
+								<thead>
+									<tr>
+										<th
+											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">펀딩 진행중인 프로젝트</th>
 										<th
 											class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">카테고리</th>
 										<th

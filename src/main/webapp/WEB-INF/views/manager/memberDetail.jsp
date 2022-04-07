@@ -86,9 +86,9 @@
 								<tr>
 									<th>Division</th>
 									<td class="division">
-										<label for="general">일반회원</label>
+										<label for="general">서포터</label>
 										<input type="radio" name="sellerck" id="general" value="0" ${detail.sellerck eq '0'.charAt(0)?'checked':''}/>
-										<label for="seller">판매자</label>
+										<label for="seller">메이커</label>
 										<input type="radio" name="sellerck" id="seller" value="1" ${detail.sellerck eq '1'.charAt(0)?'checked':''}/>
 										<c:if test="${detail.naverid!='' || detail.googleid!='' || detail.kakaoid!=''}">
 											<input type="hidden" name="sellerck" value="${detail.sellerck}"/>

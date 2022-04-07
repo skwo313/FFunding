@@ -48,7 +48,14 @@
 					<div class="col-auto my-auto mx-3">
 						<div class="h-100">
 							<h5 class="mb-1">${member.mid}님</h5>
-							<p class="mb-0 font-weight-normal text-sm">서포터</p>
+							<c:choose>
+								<c:when test="${member.sellerck eq '1'.charAt(0)}">
+									<p class="mb-0 font-weight-normal text-sm">메이커</p>
+								</c:when>
+								<c:otherwise>
+									<p class="mb-0 font-weight-normal text-sm">서포터</p>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="col-lg-2">
@@ -57,11 +64,13 @@
 					<div
 						class="col-lg-2 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
 						<div class="nav-wrapper position-relative end-0">
-							<button class="btn btn-outline-primary btn-sm rounded-3" 
-								 onclick="location.href='../apply/list'">
-								<i class="material-icons text-lg position-relative">shop</i> 
-								<span class="ms-1">메이커</span>
-							</button>
+							<c:if test="${member.sellerck eq '1'.charAt(0)}">
+								<button class="btn btn-outline-primary btn-sm rounded-3" 
+									 onclick="location.href='../apply/list'">
+									<i class="material-icons text-lg position-relative">shop</i> 
+									<span class="ms-1">등록 펀딩 리스트</span>
+								</button>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -76,7 +85,7 @@
 										<a href="fundingList">${info.FUNDING_CNT}</a>
 									</p>
 								</div>
-								<div class="card-body p-3 fs-5 fw-bold">펀딩</div>
+								<div class="card-body p-3 fs-5 fw-bold">구매한 펀딩</div>
 							</div>
 						</div>
 						<div class="col-12 col-xl-3 text-center border border-2 ">
@@ -86,7 +95,7 @@
 										<a href="donation">${info.DONATION_CNT}</a>
 									</p>
 								</div>
-								<div class="card-body p-3 fs-5 fw-bold">후원</div>
+								<div class="card-body p-3 fs-5 fw-bold">구매한 후원</div>
 							</div>
 						</div>
 						<div
@@ -130,7 +139,7 @@
 						<div class="col-12 mt-4">
 							<div class="mb-5 ps-3">
 								<h6 class="mb-1">나의 펀딩</h6>
-								<p class="text-sm">최근 펀딩 프로젝트</p>
+								<p class="text-sm">최근 내가 구매한 펀딩 프로젝트</p>
 							</div>
 							<div class="row">
 								<c:forEach var="list" items="${fundingList}">
