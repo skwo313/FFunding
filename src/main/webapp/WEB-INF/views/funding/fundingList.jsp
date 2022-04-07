@@ -33,7 +33,8 @@ li {
 	$(document).ready(function() {
 		$('.slider').bxSlider({
 			auto : true,
-			pager : false
+			pager : false,
+			pause: 4000
 		});
 		$(".chat-box").hide();
 		$(".chatbox-open").click(function() {
