@@ -48,7 +48,14 @@
 					<div class="col-auto my-auto mx-3">
 						<div class="h-100">
 							<h5 class="mb-1">${member.mid}님</h5>
-							<p class="mb-0 font-weight-normal text-sm">서포터</p>
+							<c:choose>
+								<c:when test="${member.sellerck eq '1'.charAt(0)}">
+									<p class="mb-0 font-weight-normal text-sm">메이커</p>
+								</c:when>
+								<c:otherwise>
+									<p class="mb-0 font-weight-normal text-sm">서포터</p>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="col-lg-2">
@@ -57,11 +64,13 @@
 					<div
 						class="col-lg-2 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
 						<div class="nav-wrapper position-relative end-0">
-							<button class="btn btn-outline-primary btn-sm rounded-3" 
-								 onclick="location.href='../apply/list'">
-								<i class="material-icons text-lg position-relative">shop</i> 
-								<span class="ms-1">메이커</span>
-							</button>
+							<c:if test="${member.sellerck eq '1'.charAt(0)}">
+								<button class="btn btn-outline-primary btn-sm rounded-3" 
+									 onclick="location.href='../apply/list'">
+									<i class="material-icons text-lg position-relative">shop</i> 
+									<span class="ms-1">메이커</span>
+								</button>
+							</c:if>
 						</div>
 					</div>
 				</div>
