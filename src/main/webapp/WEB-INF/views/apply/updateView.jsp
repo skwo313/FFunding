@@ -342,8 +342,8 @@ div.des {
 						<td>
 							<button class="update_btn btn btn-success" type="submit"
 								id="update_btn">작성</button>
-							<button type="button" class="btn btn-primary cancel_btn"
-								style="float: right;">취소</button>
+							<!--<button type="button" class="btn btn-primary cancel_btn"
+								style="float: right;">취소</button> -->
 						</td>
 					</tr>
 				</tbody>
