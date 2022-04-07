@@ -32,7 +32,8 @@
 			//$('.alert').show();
 			alert('로그인이 필요합니다');
 			location.href = "${path}/member/login";
-		};
+		}
+		;
 
 	});
 </script>
@@ -58,12 +59,66 @@
 
 			<div class="card card-body mx-3 mx-md-10 mt-n9">
 				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-	              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-	                <h6 class="text-white text-capitalize ps-3">펀딩 내역</h6>
-	              </div>
-	            </div>
-
+					<div
+						class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+						<h6 class="text-white text-capitalize ps-3">펀딩 내역</h6>
+					</div>
+				</div>
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+					<h1 class="fs-5 px-7 mb-0">펀딩 진행중인 프로젝트</h1>
+				</div>
+				<jsp:useBean id="now" class="java.util.Date" />
 				<c:forEach var="flist" items="${fundingList}">
+					<fmt:formatDate value="${flist.FENDDATE}" pattern="yyyyMMddHHmm"
+						var="endDate" />
+					<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />
+					<c:if test="${nowDate < endDate}">
+						<div class="orderContainer mx-auto rounded-3">
+							<div class="orderdate text-success">
+								<fmt:formatDate value="${flist.FO_DATE}" pattern="yyyy-MM-dd" />
+								펀딩
+							</div>
+
+							<div class="card mb-4">
+								<div class="row g-0">
+									<div class="col-sm-9">
+										<div class="row">
+											<a href="/ffunding/funding/detail?fid=${flist.FID}"
+												class="col-md-4"> <img
+												src="${path}/fundingimage/${flist.FIMG}"
+												class="img-thumbnail rounded-start imgs" alt="...">
+											</a>
+											<div class="col-md-8">
+												<div class="orderName">
+													<a href="/ffunding/funding/detail?fid=${flist.FID}">${flist.FNAME}</a>
+												</div>
+												<div class="orderInfo">
+													<span><fmt:formatNumber value="${flist.FO_PRICE}" />
+														원</span><span> • ${flist.FO_CNT}개</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3 buttons">
+										<button type="button"
+											onclick="location.href='/ffunding/funding/detail?fid=${flist.FID}'"
+											class="btn btn-outline-primary bsize">펀딩 프로젝트 가기</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+					<h1 class="fs-5 px-7 mb-0">펀딩이 끝난 프로젝트</h1>
+				</div>
+				<c:forEach var="flist" items="${fundingList}">
+					<fmt:formatDate value="${flist.FENDDATE}" pattern="yyyyMMddHHmm" var="endDate" />
+					<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />
+					<c:if test="${nowDate > endDate}">
 					<div class="orderContainer mx-auto rounded-3">
 						<div class="orderdate text-success">
 							<fmt:formatDate value="${flist.FO_DATE}" pattern="yyyy-MM-dd" />
@@ -74,14 +129,14 @@
 							<div class="row g-0">
 								<div class="col-sm-9">
 									<div class="row">
-										<a href="/ffunding/funding/detail?fid=${flist.FID}"
+										<%-- <a href="/ffunding/funding/detail?fid=${flist.FID}"
 											class="col-md-4"> <img
 											src="${path}/fundingimage/${flist.FIMG}"
 											class="img-thumbnail rounded-start imgs" alt="...">
-										</a>
-										<div class="col-md-8">
+										</a> --%>
+										<div class="col-md-10">
 											<div class="orderName">
-												<a href="/ffunding/funding/detail?fid=${flist.FID}">${flist.FNAME}</a>
+												${flist.FNAME}
 											</div>
 											<div class="orderInfo">
 												<span><fmt:formatNumber value="${flist.FO_PRICE}" />
@@ -90,14 +145,15 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-3 buttons">
+								<%-- <div class="col-sm-3 buttons">
 									<button type="button"
 										onclick="location.href='/ffunding/funding/detail?fid=${flist.FID}'"
 										class="btn btn-outline-primary bsize">펀딩 프로젝트 가기</button>
-								</div>
+								</div> --%>
 							</div>
 						</div>
 					</div>
+					</c:if>
 				</c:forEach>
 
 				<div class="mb-5"></div>
