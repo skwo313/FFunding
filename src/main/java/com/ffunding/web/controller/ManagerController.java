@@ -100,9 +100,12 @@ public class ManagerController {
 	
 	//회원 정보수정
 	@PostMapping("member/detail/update")
-	public String memberDetailUpdate(MemberVO upt, RedirectAttributes redirect) throws Exception {
-		//패스워드 암호화
-		upt.setMpw(BCrypt.hashpw(upt.getMpw(), BCrypt.gensalt()));
+	public String memberDetailUpdate(MemberVO upt, @RequestParam(required=false, value="newpw") String newpw, RedirectAttributes redirect) throws Exception {
+		//새비밀번호에 입력값이 있으면
+		if(newpw!=null && newpw!="") {
+			//새비밀번호를 암호화하여 데이터 테이블에 삽입
+			upt.setMpw(BCrypt.hashpw(newpw, BCrypt.gensalt()));
+		}
 		service.memberDetailUpdate(upt);
 		redirect.addAttribute("msg", "Membership information has been modified.");
 		return "redirect:/manager/member/detail?mid="+upt.getMid();

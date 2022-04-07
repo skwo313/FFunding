@@ -39,7 +39,7 @@
 		WHERE rownum <= 4
 		]]>
 	</select>
-	
+
 	<update id="updatePW">
 		update member set
 			mpw = #{mpw}
