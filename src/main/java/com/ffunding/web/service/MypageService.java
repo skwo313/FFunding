@@ -9,8 +9,6 @@ public interface MypageService {
 
 	public Map<String, String> getInfo(MemberVO session) throws Exception;
 	
-	public List<Map<String, String>> getMyInfo(MemberVO session) throws Exception;
-
 	public List<Map<String, String>> fundingList(MemberVO session) throws Exception;
 
 	public void updatePW(Map<String, String> update) throws Exception;
@@ -22,5 +20,7 @@ public interface MypageService {
 	public List<String> getDonation(MemberVO dl) throws Exception;
 
 	public void pointCharge(Map<String, String> payInfo) throws Exception;
+
+	public String getPoint(MemberVO id) throws Exception;
 
 }

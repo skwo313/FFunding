@@ -39,12 +39,7 @@
 		WHERE rownum <= 4
 		]]>
 	</select>
-	<select id="MyList" resultType="HashMap">
-		<![CDATA[
-		SELECT * FROM FUNDING_PRODUCT fp 
-		WHERE mid = #{mid}
-		]]>
-	</select>
+
 	<update id="updatePW">
 		update member set
 			mpw = #{mpw}
@@ -60,9 +55,9 @@
 	
 	<select id="getFunding" resultType="HashMap">
 		<![CDATA[
-		SELECT fp.FNAME, fp.fimg, fp.FID, fo.FO_PRICE, fo.FO_CNT, fo.FO_DATE
+		SELECT fp.FNAME, fp.fimg, fp.FID, fo.FO_PRICE, fo.FO_CNT, fo.FO_DATE, fp.FENDDATE
 		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
-		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE 
+		WHERE fo.FID = fp.FID
 		AND fo.mid = #{mid}
 		ORDER BY FO_ID DESC
 		]]>
@@ -70,9 +65,9 @@
 	
 	<select id="getDonation" resultType="HashMap">
 		<![CDATA[
-		SELECT fp.FNAME, fp.FIMG, fp.FID, fp.FCATE, fo.FO_DONATION, fo.FO_DATE 
+		SELECT fp.FNAME, fp.FIMG, fp.FID, fp.FCATE, fo.FO_DONATION, fo.FO_DATE, fp.FENDDATE
 		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
-		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE
+		WHERE fo.FID = fp.FID
 		AND fo.mid = #{mid} AND FO_DONATION > 0
 		ORDER BY FO_ID DESC
 		]]>
@@ -84,4 +79,7 @@
 		WHERE mid = #{mid}
 	</update>
 	
+	<select id="getPoint" resultType="String">
+		select point from member where mid = #{mid}	
+	</select>
 </mapper>

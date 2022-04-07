@@ -23,19 +23,15 @@ public class MypageDaoImpl implements MypageDao {
 	private static final String UPDATEADDR = NS + ".updateAddr";
 	private static final String GETFUNDING = NS + ".getFunding";
 	private static final String GETDONATION = NS + ".getDonation";
+	private static final String POINT = NS + ".getPoint";
 	private static final String CHARGE = NS + ".pointCharge";
-	private static final String MYLIST = NS + ".MyList";
+	
 	@Override
 	public Map<String, String> getInfo(MemberVO session) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(GETINFO, session.getMid());
 	}
-	@Override
-	public List<Map<String, String>> getMyInfo(MemberVO session) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(MYLIST, session.getMid());
-	}
-
+	
 	@Override
 	public List<Map<String, String>> fundingList(MemberVO session) throws Exception {
 		// TODO Auto-generated method stub
@@ -73,6 +69,13 @@ public class MypageDaoImpl implements MypageDao {
 		// TODO Auto-generated method stub
 		
 		sqlSession.update(CHARGE, payInfo);
+	}
+
+	@Override
+	public String getPoint(MemberVO id) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne(POINT, id.getMid());
 	}
 	
 }

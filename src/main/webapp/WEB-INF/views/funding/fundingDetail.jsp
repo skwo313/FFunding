@@ -132,6 +132,10 @@ function conn(){
 						</span>
 					</div>
 					<div class="info-text">
+						<span class="info-des">판매자</span> <span> <strong><c:out value="${detail.fmid}"></c:out></strong>
+						</span>
+					</div>
+					<div class="info-text">
 						<span class="info-des">가격</span> <span> <strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${detail.fprice}" /></strong>원
 						</span>
 					</div>
@@ -167,6 +171,11 @@ function conn(){
 					<c:if test="${not empty member.mid}">
 					<div class="info-text">
 						<input type="button" class="form-control butn"  onclick="order_send();" value="주문하기"/>
+					</div>
+					</c:if>
+					<c:if test="${empty member.mid}">
+					<div class="info-text">
+						<span class="info-des">로그인 후 결제할 수 있습니다.</span>
 					</div>
 					</c:if>
 					<c:set var = "sid" value = "${member.mid}" />

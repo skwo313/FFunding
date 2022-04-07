@@ -46,10 +46,6 @@ public class MypageController {
 		System.out.println(info);
 		model.addAttribute("info", info);
 		
-		List<Map<String, String>> MyfundingInfo = service.getMyInfo(session);
-		System.out.println(MyfundingInfo);
-		model.addAttribute("MyfundingInfo", MyfundingInfo);
-		
 		List<Map<String, String>> fundingList = service.fundingList(session);
 		System.out.println(fundingList);
 		model.addAttribute("fundingList", fundingList);
@@ -156,11 +152,12 @@ public class MypageController {
 		return "mypage/donation.page";
 	}
 	
-	/* 포인트 */
+	/* 포인트 뷰*/
 	@RequestMapping(value = "point", method = RequestMethod.GET)
-	public String pointView() {
+	public String pointView(@ModelAttribute("member") MemberVO id, Model model) throws Exception {
 		logger.info("PointView");
 		
+		model.addAttribute("point", service.getPoint(id));
 		return "mypage/pay.page";
 	}
 	

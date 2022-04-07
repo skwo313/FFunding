@@ -246,6 +246,7 @@ public class MemberController {
         
 	    Map<String, Object> find = new HashMap<String, Object>();
 	    find.put("num", service.mailSend(email));
+	    System.out.println(find);
 	    if ( StringUtils.equals("1", isFindId) ) {
 	    	List<String> ids = service.getID(email);
 	    	
