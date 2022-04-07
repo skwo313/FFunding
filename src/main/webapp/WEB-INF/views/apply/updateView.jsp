@@ -20,7 +20,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <title>펀딩 신청 목록 수정</title>
-<!-- 펀딩 updateView.jsp -->
+<!-- 펀딩 updateView.jsp 수정-->
 </head>
 <script type="text/javascript">
 	$(document)
@@ -94,6 +94,17 @@
 										})
 
 					})
+					
+					$(".cancel_btn").on(
+						"click",
+						function() {
+							event.preventDefault();
+							location.href = "readView?fid=${update.fid}"
+									+ "&page=${scri.page}"
+									+ "&perPageNum=${scri.perPageNum}"
+									+ "&searchType=${scri.searchType}"
+									+ "&keyword=${scri.keyword}";
+						})
 	function fn_valiChk() {
 		var regForm = $("form[name='updateForm'] .chk").length;
 		for (var i = 0; i < regForm; i++) {
