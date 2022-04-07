@@ -8,8 +8,6 @@ import com.ffunding.web.vo.MemberVO;
 public interface MypageDao {
 
 	public Map<String, String> getInfo(MemberVO session) throws Exception;
-	
-	public List<Map<String, String>> getMyInfo(MemberVO session) throws Exception;
 
 	public List<Map<String, String>> fundingList(MemberVO session) throws Exception;
 

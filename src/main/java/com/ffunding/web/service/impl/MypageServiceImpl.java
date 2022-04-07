@@ -25,13 +25,6 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public List<Map<String, String>> getMyInfo(MemberVO session) throws Exception {
-		// TODO Auto-generated method stub
-		
-		return dao.getMyInfo(session);
-	}
-
-	@Override
 	public List<Map<String, String>> fundingList(MemberVO session) throws Exception {
 		// TODO Auto-generated method stub
 		

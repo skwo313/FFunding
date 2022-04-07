@@ -39,12 +39,7 @@
 		WHERE rownum <= 4
 		]]>
 	</select>
-	<select id="MyList" resultType="HashMap">
-		<![CDATA[
-		SELECT * FROM FUNDING_PRODUCT fp 
-		WHERE mid = #{mid}
-		]]>
-	</select>
+
 	<update id="updatePW">
 		update member set
 			mpw = #{mpw}

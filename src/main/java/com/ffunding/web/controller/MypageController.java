@@ -46,10 +46,6 @@ public class MypageController {
 		System.out.println(info);
 		model.addAttribute("info", info);
 		
-		List<Map<String, String>> MyfundingInfo = service.getMyInfo(session);
-		System.out.println(MyfundingInfo);
-		model.addAttribute("MyfundingInfo", MyfundingInfo);
-		
 		List<Map<String, String>> fundingList = service.fundingList(session);
 		System.out.println(fundingList);
 		model.addAttribute("fundingList", fundingList);
