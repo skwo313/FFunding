@@ -286,7 +286,7 @@
 	<!-- 회원 포인트 환불 -->
 	<update id="pointUpt" parameterType="com.ffunding.web.vo.OrderVO">
 		UPDATE MEMBER
-		SET point=point+${fo_price}+${fo_donation}
+		SET point=point+#{fo_price}+#{fo_donation}
 		WHERE mid=#{mid}
 	</update>
 	
