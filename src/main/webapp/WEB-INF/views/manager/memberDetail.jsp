@@ -263,8 +263,6 @@
 					$("[name=newpwck]").focus();
 					return false;
 				}
-				//위 과정을 모두 거치고 유효성체크에 이상이 없으면 현재비밀번호에 새비밀번호 값 넣기
-				$("[name=mpw]").val($("[name=newpw]").val());
 			}
 			open();
 			return true;
