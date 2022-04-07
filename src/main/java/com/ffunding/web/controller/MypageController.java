@@ -152,11 +152,12 @@ public class MypageController {
 		return "mypage/donation.page";
 	}
 	
-	/* 포인트 */
+	/* 포인트 뷰*/
 	@RequestMapping(value = "point", method = RequestMethod.GET)
-	public String pointView() {
+	public String pointView(@ModelAttribute("member") MemberVO id, Model model) throws Exception {
 		logger.info("PointView");
 		
+		model.addAttribute("point", service.getPoint(id));
 		return "mypage/pay.page";
 	}
 	

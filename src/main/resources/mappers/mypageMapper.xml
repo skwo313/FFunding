@@ -79,4 +79,7 @@
 		WHERE mid = #{mid}
 	</update>
 	
+	<select id="getPoint" resultType="String">
+		select point from member where mid = #{mid}	
+	</select>
 </mapper>

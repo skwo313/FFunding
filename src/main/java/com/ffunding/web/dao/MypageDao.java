@@ -21,4 +21,6 @@ public interface MypageDao {
 
 	public void pointCharge(Map<String, String> payInfo) throws Exception;
 
+	public String getPoint(MemberVO id) throws Exception;
+
 }

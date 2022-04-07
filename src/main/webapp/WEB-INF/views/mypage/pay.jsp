@@ -65,19 +65,19 @@
 			console.log(rsp);
 			if (rsp.success) {
 				let payInfo = {
-						"mid" : "${member.mid}",
+						"mid" : rsp.buyer_email,
 		                "point" : amount
 				};
 				$.ajax({
 		            url: "endPoint",
-		            method: "POST",
+		            type: "POST",
 		            contentType : "application/json",
 		            data : JSON.stringify(payInfo),
-		            success : function(data) {
-		            	alert('결제가 완료되었습니다.');
-		            	location.href = "main";
-		            }
+		           
 		        });
+				
+            	alert('결제가 완료되었습니다.');
+            	location.href = "main";
 			} else {
 				alert('결제에 실패하였습니다.');
 			}
@@ -113,7 +113,7 @@
 												<p class="row text-center mb-0">
 													<strong class="fs-5 fw-bold col-5">현재 사용가능 포인트</strong> <strong
 														class="fs-5 fw-bold col-3" style="color: #7185f2"><fmt:formatNumber
-															value="${member.point}" /> P</strong>
+															value="${point}" /> P</strong>
 												</p>
 											</div>
 											<div class="card-body mx-1 my-2">

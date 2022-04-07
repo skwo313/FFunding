@@ -65,4 +65,11 @@ public class MypageServiceImpl implements MypageService{
 		dao.pointCharge(payInfo);
 	}
 
+	@Override
+	public String getPoint(MemberVO id) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return dao.getPoint(id);
+	}
+
 }

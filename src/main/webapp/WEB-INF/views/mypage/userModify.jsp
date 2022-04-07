@@ -136,7 +136,7 @@
 
 function goPopup(){
 	// 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-    var pop = window.open("/ffunding/mypage/popup","pop","width=600,height=420, scrollbars=yes, resizable=yes"); 
+    var pop = window.open("/ffunding/mypage/popup","pop","width=700,height=420, scrollbars=yes, resizable=yes"); 
     
 }
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
