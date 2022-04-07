@@ -47,7 +47,7 @@
 				<div class="row gx-4 mb-2">
 					<div class="col-auto my-auto mx-3">
 						<div class="h-100">
-							<h5 class="mb-1">광우님</h5>
+							<h5 class="mb-1">${member.mid}님</h5>
 							<p class="mb-0 font-weight-normal text-sm">서포터</p>
 						</div>
 					</div>
@@ -62,21 +62,6 @@
 								<i class="material-icons text-lg position-relative">shop</i> 
 								<span class="ms-1">메이커</span>
 							</button>
-							<!-- <ul class="nav nav-pills nav-fill p-1" role="tablist">
-								<li class="nav-item"><a
-									class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab"
-									href="javascript:;" role="tab" aria-selected="true"> <i
-										class="material-icons text-lg position-relative">face</i> <span
-										class="ms-1">서포터</span>
-								</a></li>
-
-								<li class="nav-item border rounded-3"><a class="nav-link mb-0 px-0 py-1 "
-									data-bs-toggle="tab" href="../apply/list" role="tab"
-									aria-selected="true"> <i
-										class="material-icons text-lg position-relative">shop</i> <span
-										class="ms-1">메이커</span>
-								</a></li>
-							</ul> -->
 						</div>
 					</div>
 				</div>
@@ -156,7 +141,7 @@
 													href="/ffunding/funding/detail?fid=${list.FID}"> <img
 													src="${path}/fundingimage/${list.FIMG}"
 													alt="img-blur-shadow"
-													class="img-fluid shadow border-radius-xl">
+													class="img-fluid shadow border-radius-xl" style="height:150px;">
 												</a>
 											</div>
 											<div class="card-body p-3">
