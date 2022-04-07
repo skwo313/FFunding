@@ -16,6 +16,9 @@
 		}
 		;
 	})
+	$(document).keypress(function(e) { 
+     	if (e.keyCode == 13) e.preventDefault(); 
+     });
 </script>
 <script>
 	$(document).ready(
@@ -150,17 +153,18 @@
 		}
 </script>
 <style>
-.imgbox{
+.imgbox {
 	text-align: center;
 	margin-top: 40px;
 }
-.order{
+
+.order {
 	max-width: 17%;
 }
-.btn{
+
+.btn {
 	margin-bottom: 40px;
 }
-
 </style>
 <title>FFunding - 주문</title>
 
@@ -173,11 +177,11 @@
 		<div class="order_text">
 			<h1 class="order_text2">
 				<p align="center">ORDER</p>
-				<p style="font-size:15px">▶제품명 : ${detail.fname}</p>
-				<p style="font-size:15px">▶${detail.remain}일후 자동 배송처리됩니다</p>
+				<p style="font-size: 15px">▶제품명 : ${detail.fname}</p>
+				<p style="font-size: 15px">▶${detail.remain}일후 자동 배송처리됩니다</p>
 			</h1>
 		</div>
-		<form class="order_form" name="form1" method="post" onsubmit="return false">
+		<form class="order_form" name="form1" method="post">
 			<div class="col">
 				<div class="form-floating mb-3">
 					<input type="number" class="form-control" id="fprice"
@@ -188,8 +192,8 @@
 			<div class="col">
 				<div class="form-floating mb-3">
 					<input type="number" class="form-control" name="fo_cnt" id="fo_cnt"
-						value="0" min="0" max="5" oninput='handleOnInput(this,1)'> <label for="floatingInputValue">수량
-						입력</label>
+						value="0" min="0" max="5" oninput='handleOnInput(this,1)'>
+					<label for="floatingInputValue">수량 입력</label>
 				</div>
 			</div>
 			<div class="col">
