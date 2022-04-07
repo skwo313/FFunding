@@ -63,7 +63,6 @@
 						$('#fo_donation').focus();
 						return false;
 					}
-					alert("포인트 결제 완료되었습니다.");
 					$(".form1")("action", "/ffunding/funding/detail/order");
 					$(".form1").submit();
 				});
