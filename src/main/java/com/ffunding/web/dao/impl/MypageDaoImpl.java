@@ -24,11 +24,16 @@ public class MypageDaoImpl implements MypageDao {
 	private static final String GETFUNDING = NS + ".getFunding";
 	private static final String GETDONATION = NS + ".getDonation";
 	private static final String CHARGE = NS + ".pointCharge";
-
+	private static final String MYLIST = NS + ".MyList";
 	@Override
 	public Map<String, String> getInfo(MemberVO session) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(GETINFO, session.getMid());
+	}
+	@Override
+	public List<Map<String, String>> getMyInfo(MemberVO session) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(MYLIST, session.getMid());
 	}
 
 	@Override

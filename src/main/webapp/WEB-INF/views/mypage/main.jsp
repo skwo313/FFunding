@@ -135,6 +135,7 @@
 						</div>
 					</div>
 					<!-- 최근 펀딩 정보 -->
+					
 					<div class="row">
 						<div class="col-12 mt-4">
 							<div class="mb-5 ps-3">
@@ -143,6 +144,44 @@
 							</div>
 							<div class="row">
 								<c:forEach var="list" items="${fundingList}">
+									<div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+										<div class="card card-blog card-plain">
+											<div class="card-header p-0 mt-n4 mx-3">
+												<a class="d-block shadow-xl border-radius-xl"
+													href="/ffunding/funding/detail?fid=${list.FID}"> <img
+													src="${path}/fundingimage/${list.FIMG}"
+													alt="img-blur-shadow"
+													class="img-fluid shadow border-radius-xl" style="height:150px;">
+												</a>
+											</div>
+											<div class="card-body p-3">
+												<p class="mb-0 text-sm">${list.FCATE}</p>
+												<a href="/ffunding/funding/detail?fid=${list.FID}">
+													<h5>${list.FNAME}</h5>
+												</a>
+												<p class="mb-4 text-sm">${list.FDES}</p>
+												<div
+													class="d-flex align-items-center justify-content-between">
+													<button type="button"
+														onclick="location.href='/ffunding/funding/detail?fid=${list.FID}'"
+														class="btn btn-outline-primary btn-sm mb-0">프로젝트
+														가기</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 mt-4">
+							<div class="mb-5 ps-3">
+								<h6 class="mb-1">나의 판매중인 펀딩</h6>
+								<p class="text-sm">최근 내가 판매중인 펀딩 프로젝트</p>
+							</div>
+							<div class="row">
+								<c:forEach var="list" items="${MyfundingInfo}">
 									<div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
 										<div class="card card-blog card-plain">
 											<div class="card-header p-0 mt-n4 mx-3">
