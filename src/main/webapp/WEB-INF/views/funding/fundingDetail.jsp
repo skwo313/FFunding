@@ -169,6 +169,11 @@ function conn(){
 						<input type="button" class="form-control butn"  onclick="order_send();" value="주문하기"/>
 					</div>
 					</c:if>
+					<c:if test="${empty member.mid}">
+					<div class="info-text">
+						<span class="info-des">로그인 후 결제할 수 있습니다.</span>
+					</div>
+					</c:if>
 					<c:set var = "sid" value = "${member.mid}" />
 					<c:set var = "id" value = "${detail.fmid}" />
 					<c:if test="${sid eq id}">
