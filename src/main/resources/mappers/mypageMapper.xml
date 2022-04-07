@@ -55,9 +55,9 @@
 	
 	<select id="getFunding" resultType="HashMap">
 		<![CDATA[
-		SELECT fp.FNAME, fp.fimg, fp.FID, fo.FO_PRICE, fo.FO_CNT, fo.FO_DATE
+		SELECT fp.FNAME, fp.fimg, fp.FID, fo.FO_PRICE, fo.FO_CNT, fo.FO_DATE, fp.FENDDATE
 		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
-		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE 
+		WHERE fo.FID = fp.FID
 		AND fo.mid = #{mid}
 		ORDER BY FO_ID DESC
 		]]>
@@ -65,9 +65,9 @@
 	
 	<select id="getDonation" resultType="HashMap">
 		<![CDATA[
-		SELECT fp.FNAME, fp.FIMG, fp.FID, fp.FCATE, fo.FO_DONATION, fo.FO_DATE 
+		SELECT fp.FNAME, fp.FIMG, fp.FID, fp.FCATE, fo.FO_DONATION, fo.FO_DATE, fp.FENDDATE
 		FROM FUNDING_ORDER fo, FUNDING_PRODUCT fp 
-		WHERE fo.FID = fp.FID AND sysdate < fp.FENDDATE
+		WHERE fo.FID = fp.FID
 		AND fo.mid = #{mid} AND FO_DONATION > 0
 		ORDER BY FO_ID DESC
 		]]>
