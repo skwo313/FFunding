@@ -58,7 +58,7 @@
             <td>{{member.memail}}</td>
             <td class="addr">{{member.maddress}} {{member.maddress_detail}}</td>
             <td>{{member.point | filter}}</td>
-            <td v-if="member.sellerck=='1'">판매자</td>
+            <td v-if="member.sellerck=='1'">메이커</td>
             <td v-else>서포터</td>
         </tr>
     </tbody>
