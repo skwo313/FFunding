@@ -2,9 +2,7 @@ package com.ffunding.web.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ffunding.web.service.FundingService;
 import com.ffunding.web.service.ManagerService;
@@ -90,13 +89,13 @@ public class FundingController {
 		FundingVO vo = service.viewDetail(fid);
 		String startDate = sdFormat.format(vo.getFstartdate());
 		String endDate = sdFormat.format(vo.getFenddate());
-		map.put("remaining period", vo.getRemain() + "일");
-		map.put("achievement rate", Integer.toString(vo.getGoal()));
-		map.put("Funding amount", Integer.toString(vo.getPrice()));
-		map.put("Participants", (vo.getSell()-1) + "명");
-		map.put("price", Integer.toString(vo.getFprice()));
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
+		map.put("남은기간", vo.getRemain()+"일");
+		map.put("달성률", vo.getGoal()+"%");
+		map.put("펀딩금액", "총 "+vo.getPrice()+"원");
+		map.put("참여자", (vo.getSell()-1)+"명");
+		map.put("가격", vo.getFprice()+"원");
+		map.put("시작일자", startDate);
+		map.put("종료일자", endDate);
 		mav.addObject("map", map);
 		mav.setViewName("pdfDownView");
 		return mav;
@@ -113,13 +112,13 @@ public class FundingController {
 
 	// 주문 완료
 	@RequestMapping(value = "detail/order", method = RequestMethod.POST)
-	public String orderProduct(@RequestParam int fo_price, @RequestParam String mid, OrderVO vo) throws Exception {
+	public String orderProduct(@RequestParam int fo_price, @RequestParam String mid, OrderVO vo, RedirectAttributes ra) throws Exception {
 		MemberVO membervo = service2.memberDetail(mid);
 		int point = membervo.getPoint() - fo_price;
 		membervo.setPoint(point);
 		service.orderProduct(vo);
 		service.pointDown(membervo);
-
+		ra.addFlashAttribute("result", "Y");
 		return "redirect:/";
 	}
 }

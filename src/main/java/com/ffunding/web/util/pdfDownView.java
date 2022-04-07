@@ -23,12 +23,13 @@ import com.lowagie.text.pdf.PdfWriter;
  
 @Component("pdfDownView")
 public class pdfDownView extends AbstractPdfView{
- 
+	private String fontPath = "c:\\windows\\Fonts\\malgun.ttf";
     @Override
     protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer, 
             HttpServletRequest req,
             HttpServletResponse res) throws Exception {
           // TODO Auto-generated method stub
+    	
           System.out.println("---- PdfDownloadView.buildPdfDocument() ----");
           
           String userAgent = req.getHeader("User-Agent");
@@ -48,8 +49,8 @@ public class pdfDownView extends AbstractPdfView{
           Table table = new Table(2, map.size()+1);
           table.setPadding(5);
           
-          BaseFont bfKorea = BaseFont.createFont("c:\\windows\\fonts\\batang.ttc,0",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
-  		Font font = new Font(bfKorea);
+          BaseFont bfKorean = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+          Font font = new Font(bfKorean);
           Cell cell = new Cell(new Paragraph("product", font));
           cell.setHeader(true);
           table.addCell(cell);
@@ -64,12 +65,16 @@ public class pdfDownView extends AbstractPdfView{
           
           while(it.hasNext()){
            String key = it.next();
-           table.addCell(key);
-           table.addCell(map.get(key));
+           Cell cell1 = new Cell(new Paragraph(key, font));
+           table.addCell(cell1);
+           Cell cell2 = new Cell(new Paragraph(map.get(key), font));
+           table.addCell(cell2);
           }
 
           doc.add(table);    
     }
- 
+    public void setFontPath(String fontPath) {
+		this.fontPath = fontPath;
+	}
 }
 

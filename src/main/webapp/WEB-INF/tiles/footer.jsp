@@ -13,9 +13,9 @@
 			</button>
 		</div>
 
-		<div class="chat-box-body" style="overflow:auto;">
+		<div class="chat-box-body">
 			<div class="chat-box-overlay"></div>
-			<div class="chat-logs"></div>
+			<div class="chat-logs"  style="overflow:auto;"></div>
 		</div>
 		<div class="chat-input">
 			<input type="text" id="chat-input" placeholder="Send a message..." />

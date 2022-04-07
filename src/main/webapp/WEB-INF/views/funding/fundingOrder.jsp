@@ -2,16 +2,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+	$(document).ready(function() {
+		var hasSession = "${member.mid}";
+		if (hasSession == "") {
+			alert("로그인이 필요합니다.");
+			location.href = "${path}/member/login";
+		}
+		;
+	})
+</script>
 <script>
 	$(document).ready(
 			function() {
 				$('#fo_cnt').on(
 						'change',
 						function() {
+							if($("#fo_cnt").val()>5){
+								alert("5개 초과 하실수 없습니다");
+								$("#fo_cnt").val(5);
+							}
 							var cal = (Number($('#fprice').val()) * Number($(
 									'#fo_cnt').val()))
 									+ Number($('#fo_donation').val());
@@ -119,9 +134,7 @@
 				str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 				$(".chat-logs").append(str);
 			}
-			var mx = parseInt($(".chat-logs").height())
-			
-			$(".chat-logs").scrollTop(mx);
+			$(".chat-logs").scrollTop($(".chat-logs")[0].scrollHeight);
 		}
 		// handler의 afterConnectionClose와 연동
 		wsocket.onclose=function(){
@@ -129,6 +142,12 @@
 		}
 		
 	}
+	function handleOnInput(el, maxlength) {
+		  if(el.value.length > maxlength)  {
+		    el.value 
+		      = el.value.substr(0, maxlength);
+		  }
+		}
 </script>
 <style>
 .imgbox{
@@ -169,7 +188,7 @@
 			<div class="col">
 				<div class="form-floating mb-3">
 					<input type="number" class="form-control" name="fo_cnt" id="fo_cnt"
-						value="0" min="0" max="5"> <label for="floatingInputValue">수량
+						value="0" min="0" max="5" oninput='handleOnInput(this,1)'> <label for="floatingInputValue">수량
 						입력</label>
 				</div>
 			</div>

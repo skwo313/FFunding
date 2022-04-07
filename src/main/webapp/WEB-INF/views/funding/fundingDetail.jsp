@@ -83,9 +83,7 @@ function conn(){
 			str += "<" + arr[4] + "<" + arr[5] + "<" + arr[6];
 			$(".chat-logs").append(str);
 		}
-		var mx = parseInt($(".chat-logs").height())
-		
-		$(".chat-logs").scrollTop(mx);
+		$(".chat-logs").scrollTop($(".chat-logs")[0].scrollHeight);
 	}
 	// handler의 afterConnectionClose와 연동
 	wsocket.onclose=function(){
