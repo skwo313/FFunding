@@ -164,6 +164,7 @@
 				$("[name=fid]").val(fid);
 				$("#frm2").attr("action", "/ffunding/manager/purchaseApproval/insert");
 				$("#frm2").submit();
+				$("#Modal").modal("hide");
 			});
 		});
 		
@@ -179,6 +180,7 @@
 				$("[name=fid]").val(fid);
 				$("#frm2").attr("action", "/ffunding/manager/purchaseApproval/delete");
 				$("#frm2").submit();
+				$("#Modal").modal("hide");
 			});
 		});
 	});
