@@ -84,8 +84,9 @@
 
 				});
 				$("#chat-submit").click(function() {
-					if($("#chat-input").val()==""){
-						$("#chat-input").val()=="";
+					var str =$.trim($("#chat-input").val());
+					if(str==""){
+						$("#chat-input").val('');
 					}else{
 						sendMessage();
 						$('#chat-input').val('');
@@ -94,8 +95,9 @@
 				});
 				$("#chat-input").keyup(function(e) {
 					if (e.keyCode == 13) {
-						if($("#chat-input").val()==""){
-							$("#chat-input").val()=="";
+						var str =$.trim($("#chat-input").val());
+						if(str==""){
+							$("#chat-input").val('');
 						}else{
 							sendMessage();
 						}

@@ -1,11 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${path}/css/bxslider.css">
 <link rel="stylesheet" href="${path}/css/home.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.slider').bxSlider({
@@ -27,8 +30,9 @@
 
 		});
 		$("#chat-submit").click(function() {
-			if($("#chat-input").val()==""){
-				$("#chat-input").val()=="";
+			var str =$.trim($("#chat-input").val());
+			if(str==""){
+				$("#chat-input").val('');
 			}else{
 				sendMessage();
 				$('#chat-input').val('');
@@ -37,8 +41,9 @@
 		});
 		$("#chat-input").keyup(function(e) {
 			if (e.keyCode == 13) {
-				if($("#chat-input").val()==""){
-					$("#chat-input").val()=="";
+				var str =$.trim($("#chat-input").val());
+				if(str==""){
+					$("#chat-input").val('');
 				}else{
 					sendMessage();
 				}
@@ -66,7 +71,7 @@
 	}
 
 	function conn() {
-		wsocket = new WebSocket("ws:/106.10.71.20:7080/ffunding/echo");
+		wsocket = new WebSocket("ws:/localhost:7080/ffunding/echo");
 		wsocket.onopen = function(e) {
 			console.log(e);
 			wsocket.send("${member.mid}님 입장하셨습니다");
@@ -152,7 +157,8 @@
 	</div>
 </div>
 <section>
-	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
+	<div class="container"
+		style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div class="row">
 			<div class="col" style="border-right: 1px solid #f0f2f5;">
 				<div style="padding-bottom: 15px;">
@@ -171,15 +177,18 @@
 						<div class="col-8">
 							<div class="col">
 								<h4 class="title">
-									<a href="/ffunding/funding/detail?fid=${goalRank.fid}"><c:out value="${goalRank.fname}"></c:out> </a>
+									<a href="/ffunding/funding/detail?fid=${goalRank.fid}"><c:out
+											value="${goalRank.fname}"></c:out> </a>
 								</h4>
 							</div>
 							<div class="col">
-								<span class="percent"><c:out value="${goalRank.goal}"></c:out>%</span> <span class="cate"><c:out value="${goalRank.fcate}"></c:out></span>
+								<span class="percent"><c:out value="${goalRank.goal}"></c:out>%</span>
+								<span class="cate"><c:out value="${goalRank.fcate}"></c:out></span>
 							</div>
 						</div>
 						<div class="col-3">
-							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${goalRank.fimg}"></c:out>">
+							<img alt="" class="divImg"
+								src="${path}/fundingimage/<c:out value="${goalRank.fimg}"></c:out>">
 						</div>
 					</div>
 				</c:forEach>
@@ -201,22 +210,26 @@
 						<div class="col-8">
 							<div class="col">
 								<h4 class="title">
-									<a href="/ffunding/funding/detail?fid=${sellRank.fid}"><c:out value="${sellRank.fname}"></c:out> </a>
+									<a href="/ffunding/funding/detail?fid=${sellRank.fid}"><c:out
+											value="${sellRank.fname}"></c:out> </a>
 								</h4>
 							</div>
 							<div class="col">
-								<span class="percent"><c:out value="${sellRank.sell-1}"></c:out>건</span> <span class="cate"><c:out value="${sellRank.fcate}"></c:out></span>
+								<span class="percent"><c:out value="${sellRank.sell-1}"></c:out>건</span>
+								<span class="cate"><c:out value="${sellRank.fcate}"></c:out></span>
 							</div>
 						</div>
 						<div class="col-3">
-							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${sellRank.fimg}"></c:out>">
+							<img alt="" class="divImg"
+								src="${path}/fundingimage/<c:out value="${sellRank.fimg}"></c:out>">
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-	<div class="container" style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
+	<div class="container"
+		style="border-bottom: 1px solid #f0f2f5; padding: 15px 0px;">
 		<div>
 			<h3>
 				<strong>펀딩 예정</strong>
@@ -227,7 +240,8 @@
 				<div class="col">
 					<div class="thumbnail" style="height: 100%;">
 						<div class="col" style="margin-bottom: 10px; height: 70%;">
-							<img alt="" class="divImg" src="${path}/fundingimage/<c:out value="${expected.fimg}"></c:out>">
+							<img alt="" class="divImg"
+								src="${path}/fundingimage/<c:out value="${expected.fimg}"></c:out>">
 						</div>
 
 						<div class="col">
@@ -236,7 +250,9 @@
 							</h5>
 						</div>
 						<div class="col">
-							<span class="percent"><fmt:formatDate value="${expected.fstartdate}" pattern="yyyy-MM-dd" /></span> <span class="cate"><c:out value="${expected.fcate}"></c:out></span>
+							<span class="percent"><fmt:formatDate
+									value="${expected.fstartdate}" pattern="yyyy-MM-dd" /></span> <span
+								class="cate"><c:out value="${expected.fcate}"></c:out></span>
 						</div>
 					</div>
 				</div>
