@@ -168,6 +168,16 @@
 		      	$("#uptBtn").show();
 		      	$("#delBtn").show();
 		      	$("#Modal").modal("show");
+		      	//end데이터 변경시
+		      	$("#end").change(function() {
+	      			endDate(arg.event.end);
+		      	});
+		      	//start데이터 변경시
+		      	$("[name=start]").change(function() {
+		      		if($("[name=start]").val()>=$("[name=end]").val()) {
+		      			endDate(arg.event.end);
+		      		}
+		      	});
 			},
 			//이벤트 옮길시 날짜 변경
 		    eventDrop:function(info){
@@ -200,21 +210,20 @@
 	});
 	//이벤트 상세정보 및 변경시 공통부분
 	function formData(event) {
+    	//이전에 표시됐던 경고메시지 숨기기
+		$("#titleT").hide();
+		$("#startT").hide();
+		$("#endT").hide();
     	$("[name=id]").val(event.id)
     	$("[name=title]").val(event.title)
     	$("[name=start]").val(event.start.getFullYear()+"-"+((event.start.getMonth()+1)<10?"0"+(event.start.getMonth()+1):(event.start.getMonth()+1))+"-"+(event.start.getDate()<10?"0"+event.start.getDate():event.start.getDate()));
     	$("[name=end]").val(event.end.getFullYear()+"-"+((event.end.getMonth()+1)<10?"0"+(event.end.getMonth()+1):(event.end.getMonth()+1))+"-"+(event.end.getDate()<10?"0"+event.end.getDate():event.end.getDate()));
     	//'일'은 -1분 처리하여 선택했던 날짜를 표시
-    	console.log(event.end)
     	let date = event.end;
     	date.setMinutes(date.getMinutes()-1);
     	$("[name=endView]").val(date.getFullYear()+"-"+((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?"0"+date.getDate():date.getDate()));
     	$("[name=backgroundColor]").val(event.backgroundColor);
     	$("[name=textColor]").val(event.textColor);
-    	//이전에 표시됐던 경고메시지 숨기기
-		$("#titleT").hide();
-		$("#startT").hide();
-		$("#endT").hide();
 	}
 	
 	//datepicker 날짜 변경시 공통부분
