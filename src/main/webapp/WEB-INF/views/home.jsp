@@ -71,7 +71,7 @@
 	}
 
 	function conn() {
-		wsocket = new WebSocket("ws:/localhost:7080/ffunding/echo");
+		wsocket = new WebSocket("ws:/106.10.71.20:7080/ffunding/echo");
 		wsocket.onopen = function(e) {
 			console.log(e);
 			wsocket.send("${member.mid}님 입장하셨습니다");
