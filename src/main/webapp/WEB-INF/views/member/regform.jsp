@@ -79,6 +79,8 @@
 		let phone = $("#phone").val();
 		
 		let getID = RegExp(/^[a-zA-Z0-9]{4,12}$/);
+		let check_num = id.search(/[0-9]/g);
+		let check_eng = id.search(/[a-z]/ig);
 		let getPW = RegExp(/^[a-zA-Z0-9]{8,16}$/);
 		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		let getName = RegExp(/^[가-힣]{2,}$/);
@@ -94,6 +96,10 @@
 				} else if (!getID.test(id)) {
 					$("#validID").removeClass("is-valid");
 					$("#idMsg").text("영어+숫자로 아이디 4~12자를 입력해주세요");
+					$("#idMsg").show();
+				} else if (check_num < 0 || check_eng < 0) {
+					$("#validID").removeClass("is-valid");
+					$("#idMsg").text("ID는 숫자와 영문자를 혼용하여야 합니다");
 					$("#idMsg").show();
 				} else if (duplicate()) {
 					$("#validID").removeClass("is-valid");
