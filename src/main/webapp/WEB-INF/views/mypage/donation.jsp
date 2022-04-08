@@ -74,8 +74,10 @@
 									<jsp:useBean id="now" class="java.util.Date" />
 
 									<c:forEach var="dlist" items="${donaList}">
-										<fmt:formatDate value="${dlist.FENDDATE}" pattern="yyyyMMddHHmm" var="endDate" />
-										<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />
+										<fmt:formatDate value="${dlist.FENDDATE}"
+											pattern="yyyyMMddHHmm" var="endDate" />
+										<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm"
+											var="nowDate" />
 										<c:if test="${nowDate < endDate}">
 											<tr>
 												<td>
@@ -108,6 +110,16 @@
 											</tr>
 										</c:if>
 									</c:forEach>
+									<c:if test="${empty donaList}">
+										<tr>
+											<td>
+												<div class="orderContainer mx-auto rounded-3 ">
+													<p class="text-center mt-3 pt-4 pb-4 fs-4 ">주문하신 내역이
+														없습니다!</p>
+												</div>
+											</td>
+										</tr>
+									</c:if>
 
 								</tbody>
 							</table>
@@ -128,34 +140,43 @@
 								</thead>
 								<tbody>
 									<c:forEach var="dlist" items="${donaList}">
-										<fmt:formatDate value="${dlist.FENDDATE}" pattern="yyyyMMddHHmm" var="endDate" />
-										<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />
+										<fmt:formatDate value="${dlist.FENDDATE}"
+											pattern="yyyyMMddHHmm" var="endDate" />
+										<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm"
+											var="nowDate" />
 										<c:if test="${nowDate > endDate}">
-										<tr>
-											<td>
-												<div class="d-flex px-2 py-1">
-													<div class="d-flex flex-column justify-content-center">
-														<h6 class="mb-0 text-sm">
-															${dlist.FNAME}
-														</h6>
+											<tr>
+												<td>
+													<div class="d-flex px-2 py-1">
+														<div class="d-flex flex-column justify-content-center">
+															<h6 class="mb-0 text-sm">${dlist.FNAME}</h6>
+														</div>
 													</div>
-												</div>
-											</td>
-											<td>
-												<p class="text-xs font-weight-bold mb-0">${dlist.FCATE}</p>
-											</td>
-											<td class="align-middle text-center text-sm"><span
-												class="badge badge-sm bg-gradient-success"> <fmt:formatNumber
-														value="${dlist.FO_DONATION}" />원
-											</span></td>
-											<td class="align-middle text-center"><span
-												class="text-secondary text-xs font-weight-bold"> <fmt:formatDate
-														value="${dlist.FO_DATE}" pattern="yy/MM/dd" />
-											</span></td>
-										</tr>
+												</td>
+												<td>
+													<p class="text-xs font-weight-bold mb-0">${dlist.FCATE}</p>
+												</td>
+												<td class="align-middle text-center text-sm"><span
+													class="badge badge-sm bg-gradient-success"> <fmt:formatNumber
+															value="${dlist.FO_DONATION}" />원
+												</span></td>
+												<td class="align-middle text-center"><span
+													class="text-secondary text-xs font-weight-bold"> <fmt:formatDate
+															value="${dlist.FO_DATE}" pattern="yy/MM/dd" />
+												</span></td>
+											</tr>
 										</c:if>
 									</c:forEach>
-
+									<c:if test="${empty donaList}">
+										<tr>
+											<td>
+												<div class="orderContainer mx-auto rounded-3 ">
+													<p class="text-center mt-3 pt-4 pb-4 fs-4 ">주문하신 내역이
+														없습니다!</p>
+												</div>
+											</td>
+										</tr>
+									</c:if>
 								</tbody>
 							</table>
 						</div>

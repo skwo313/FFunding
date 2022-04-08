@@ -97,6 +97,11 @@
 						</div>
 					</c:if>
 				</c:forEach>
+				<c:if test="${empty fundingList}">
+					<div class="orderContainer mx-auto rounded-3 ">
+						<p class="text-center mt-3 pt-4 pb-4 fs-4 ">주문하신 내역이 없습니다!</p>
+					</div>
+				</c:if>
 
 				<div
 					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
@@ -105,7 +110,7 @@
 				<c:forEach var="flist" items="${fundingList}">
 					<fmt:formatDate value="${flist.FENDDATE}" pattern="yyyyMMddHHmm" var="endDate" />
 					<fmt:formatDate value="${now}" pattern="yyyyMMddHHmm" var="nowDate" />
-					<c:if test="${nowDate > endDate}">
+					<c:if test="${nowDate > endDate }">
 					<div class="orderContainer mx-auto rounded-3">
 						<div class="orderdate text-success">
 							<fmt:formatDate value="${flist.FO_DATE}" pattern="yyyy-MM-dd" />
@@ -116,11 +121,7 @@
 							<div class="row g-0">
 								<div class="col-sm-9">
 									<div class="row">
-										<%-- <a href="/ffunding/funding/detail?fid=${flist.FID}"
-											class="col-md-4"> <img
-											src="${path}/fundingimage/${flist.FIMG}"
-											class="img-thumbnail rounded-start imgs" alt="...">
-										</a> --%>
+										
 										<div class="col-md-10">
 											<div class="orderName">
 												${flist.FNAME}
@@ -132,17 +133,18 @@
 										</div>
 									</div>
 								</div>
-								<%-- <div class="col-sm-3 buttons">
-									<button type="button"
-										onclick="location.href='/ffunding/funding/detail?fid=${flist.FID}'"
-										class="btn btn-outline-primary bsize">펀딩 프로젝트 가기</button>
-								</div> --%>
 							</div>
 						</div>
 					</div>
 					</c:if>
 				</c:forEach>
-
+				
+				<c:if test="${empty fundingList}">
+					<div class="orderContainer mx-auto rounded-3 ">
+						<p class="text-center mt-3 pt-4 pb-4 fs-4 ">주문하신 내역이 없습니다!</p>
+					</div>
+				</c:if>
+				
 				<div class="mb-5"></div>
 			</div>
 		</div>
