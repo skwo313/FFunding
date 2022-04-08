@@ -23,14 +23,24 @@ $(document).ready(function() {
 		
 	});
 	$("#chat-submit").click(function() {
-		sendMessage();
-		$('#chat-input').val('');
-	});
-	$("#chat-input").keyup(function(e) {
-		if (e.keyCode == 13) {sendMessage();}
+		if($("#chat-input").val()==""){
+			$("#chat-input").val()=="";
+		}else{
+			sendMessage();
+			$('#chat-input').val('');
+		}
 		
 	});
-	
+	$("#chat-input").keyup(function(e) {
+		if (e.keyCode == 13) {
+			if($("#chat-input").val()==""){
+				$("#chat-input").val()=="";
+			}else{
+				sendMessage();
+			}
+		}
+
+	});
 });
 function order_send() {
 	location.href = "/ffunding/funding/detail/order?fid=${detail.fid}";
