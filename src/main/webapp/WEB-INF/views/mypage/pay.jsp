@@ -56,7 +56,7 @@
 			merchant_uid : rand,
 			name : "[FFunding] 포인트 충전",
 			amount : amount,
-			buyer_email : "${member.mid}",
+			buyer_email : "${member.memail}",
 			buyer_name : "${member.mname}",
 			buyer_tel : "${member.mphone}",
 			buyer_addr : "${member.maddress}",
@@ -65,7 +65,7 @@
 			console.log(rsp);
 			if (rsp.success) {
 				let payInfo = {
-						"mid" : rsp.buyer_email,
+						"mid" : "${member.mid}",
 		                "point" : amount
 				};
 				$.ajax({
