@@ -24,7 +24,7 @@
 	href="${path}/css/member/material-dashboard.css?v=3.0.1"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css"
+	href="${path}/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" />
 <!-- iamport.payment.js -->
 <script type="text/javascript"
