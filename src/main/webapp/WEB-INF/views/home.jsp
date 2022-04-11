@@ -236,7 +236,7 @@
 			</h3>
 		</div>
 		<div class="row">
-			<c:forEach items="${expected}" var="expected" varStatus="vs" end="5">
+			<c:forEach items="${expected}" var="expected" varStatus="vs" end="4">
 				<div class="col">
 					<div class="thumbnail" style="height: 100%;">
 						<div class="col" style="margin-bottom: 10px; height: 70%;">
