@@ -177,6 +177,10 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+	$(document).keypress(function(e) { 
+     	if (e.keyCode == 13) e.preventDefault(); 
+     });
+	
 	$(".chat-box").hide();
 	$(".chatbox-open").click(function() {
 		$(".chat-box").show();
@@ -192,12 +196,25 @@ $(document).ready(function() {
 
 	});
 	$("#chat-submit").click(function() {
-		sendMessage();
-		$('#chat-input').val('');
+		var str =$.trim($("#chat-input").val());
+		if(str==""){
+			$("#chat-input").val('');
+		}else{
+			sendMessage();
+			$('#chat-input').val('');
+		}
+		
 	});
 	$("#chat-input").keyup(function(e) {
-		if (e.keyCode == 13) {sendMessage();}
-		
+		if (e.keyCode == 13) {
+			var str =$.trim($("#chat-input").val());
+			if(str==""){
+				$("#chat-input").val('');
+			}else{
+				sendMessage();
+			}
+		}
+
 	});
 });
 
