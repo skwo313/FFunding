@@ -23,6 +23,7 @@
   - Javascript
   - jQuery
   - Ajax
+  - Bootstrap
 
 </br>
 
