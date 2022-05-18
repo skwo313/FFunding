@@ -72,7 +72,7 @@ public class SNSLogin {
 		return oauthService.getAccessToken(params);
 	}
 
-	/* body로 받은 사용자 profile을 MemberVO 객체로 파싱 */
+	/* body로 받은 사용자 profile을 json 형식에서 MemberVO 객체로 파싱 */
 	private MemberVO parseJson(String body) throws Exception {
 		System.out.println("========================\n"+ body + "\n=======================");
 		MemberVO memberVO = new MemberVO();
