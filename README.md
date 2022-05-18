@@ -129,7 +129,7 @@ public MemberVO getUserProfile(String code) throws Exception {
 
 - 이 때, **기존 코드**에서 처럼 scribeJava가 정보를 담아 요청하였지만,  
 - 아래 **개선된 코드**와 같이 직접 요청을 생성하여 프로필 정보를 받아 올 수 있었습니다.  
-- 직접 요청하는 메서드를 구현 중 오류: parameter에 정보를 담는 AccessTokenRequestParams class가 제가 사용중인 API 버전에서 찾지 못했습니다.
+- 직접 요청하는 메서드를 구현 중 오류: parameter에 정보를 담는 AccessTokenRequestParams class가 제가 사용중인 API 버전에서 찾지 못했습니다.  
 최신 버전인 8.3.1 버전으로 업그레이드하여 해결했고, 언어 및 API 버전에 따른 차이에 대한 공부의 중요성을 다시금 깨달았습니다.
 <details>
 <summary><b>개선된 코드</b></summary>
