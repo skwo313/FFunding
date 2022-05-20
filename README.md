@@ -71,8 +71,8 @@
 
 ### 4.5. 마이페이지
 
-<img src="https://user-images.githubusercontent.com/84454039/168978653-f49575f3-ea8b-4c2a-922b-e1a72816b072.png" width="800" height="500">
-
+<img src="https://user-images.githubusercontent.com/84454039/169483599-0f098a18-7a31-4cf4-b73d-21214bd0e859.png" width="800" height="500">
+![마이페이지2](https://user-images.githubusercontent.com/84454039/169483599-0f098a18-7a31-4cf4-b73d-21214bd0e859.png)
 - **회원정보수정** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/java/com/ffunding/web/controller/MypageController.java#:~:text=public%20String%20userModify)
   - 현재 비밀번호와 입력된 비밀번호를 복호화 및 암호화를 진행하여 서로 일치하는지 확인합니다.
   - 이 때, 페이지 전환없이 확인하기 위해 ajax 방식을 사용했습니다.  
