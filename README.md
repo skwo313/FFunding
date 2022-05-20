@@ -7,7 +7,7 @@
 
 ## 1. 제작 기간 & 참여 인원
 - 2022년 3월 7일 ~ 4월 8일
-- 팀 프로젝트
+- 팀 프로젝트 (5인)
 
 </br>
 
@@ -15,7 +15,7 @@
 #### `Back-end`
   - Java 15
   - Spring Framework 5.0.8 RELLEASE
-  - Maven
+  - Maven 3.8.4
   - Oracle 11g
   - Mybatis 3.4.6
   - OAuth 2.0 API
