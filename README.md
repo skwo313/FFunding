@@ -56,15 +56,15 @@
 
 ![로그인](https://user-images.githubusercontent.com/84454039/168988149-a3bf98e5-cb19-417d-a0f7-1b775637f386.png)
 
-- **페이지 요청** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/java/com/ffunding/web/controller/MemberController.java#:~:text=public%20String%20login(Model%20model%2C%20HttpServletRequest%20request)%20throws%20Exception%20%7B)
+- **페이지 요청** :pushpin: [코드 확인](https://bit.ly/3Pwqasa)
   - 사용자의 요청으로 로그인 페이지 렌더링 합니다. 이떄 OAuth API를 통해 각각의 소셜 로그인 링크를 받아옵니다.
 
-- **로그인 결과 응답** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/java/com/ffunding/web/controller/MemberController.java#:~:text=%40RequestMapping(value%20%3D%20%22loginCk%22%2C%20method%20%3D%20RequestMethod.POST))
+- **로그인 결과 응답** :pushpin: [코드 확인](https://bit.ly/3MNPA2w)
   - Service 계층에서 넘어온 로직 처리 결과(메세지)를 화면단에 응답해줍니다.
   - DB에 저장된 비밀번호를 복호화하여 사용자가 입력한 비밀번호와 일치했을 시에 로그인이 완료됩니다.
-  - 소셜 로그인 흐름: 사용자의 요청 > 해당 서비스에서 authorization code 발급 > access token 발급 > 받은 token과 함께 받아 올 프로필 정보 요청 > 첫 로그인 시 DB에 저장 후 로그인, 기존에 아이디가 있을 시 바로 로그인. [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/java/com/ffunding/web/auth/SNSLogin.java#:~:text=public%20MemberVO%20getUserProfile(String%20code)%20throws%20Exception%20%7B)
+  - 소셜 로그인 흐름: 사용자의 요청 > 해당 서비스에서 authorization code 발급 > access token 발급 > 받은 token과 함께 받아 올 프로필 정보 요청 > 첫 로그인 시 DB에 저장 후 로그인, 기존에 아이디가 있을 시 바로 로그인. [코드 확인](https://bit.ly/3Nu4bAo)
   
-- **front단** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/webapp/WEB-INF/views/member/login.jsp#:~:text=%7D%3B-,%24.ajax(%7B,-type%20%3A%20%22))
+- **front단** :pushpin: [코드 확인](https://bit.ly/3MDQ2QX)
   - Ajax 통신으로 controller와 통신합니다.
   - 웹에 정보를 저장하는 localStorage를 이용하여 아이디 저장 기능을 지원합니다
   - 아이디/비밀번호 찾기는 6자리의 랜덤 난수를 SMTP 라이브러리를 이용하여 이메일로 전송하여 본인인증하는 방식으로 지원합니다.
@@ -73,12 +73,12 @@
 
 <img src="https://user-images.githubusercontent.com/84454039/169483599-0f098a18-7a31-4cf4-b73d-21214bd0e859.png" width="800" height="500">
 
-- **회원정보수정** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/java/com/ffunding/web/controller/MypageController.java#:~:text=public%20String%20userModify)
+- **회원정보수정** :pushpin: [코드 확인](https://bit.ly/3G9fpaN)
   - 현재 비밀번호와 입력된 비밀번호를 복호화 및 암호화를 진행하여 서로 일치하는지 확인합니다.
   - 이 때, 페이지 전환없이 확인하기 위해 ajax 방식을 사용했습니다.  
   - 정부 도로명주소 검색 API를 이용하여 간편한 주소 검색 및 수정 기능을 지원합니다.
 
-- **주문내역** :pushpin: [코드 확인](https://github.com/skwo313/FFunding/blob/master/src/main/resources/mappers/mypageMapper.xml#:~:text=%3Cselect%20id%3D%22getInfo%22%20resultType%3D%22HashMap%22%3E)
+- **주문내역** :pushpin: [코드 확인](https://bit.ly/3G9fqLT)
   - 구매한 펀딩, 후원 횟수를 보여주고 클릭 시, 상세내용 확인이 가능합니다.
   - 펀딩 내역을 최신순으로 나열하고 클릭 시 해당 프로젝트 페이지에서 확인이 가능하지만 펀딩이 끝난 프로젝트는 클릭이 안 되게 하였습니다.
 
