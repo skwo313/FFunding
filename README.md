@@ -1,7 +1,8 @@
 # :pushpin: FFunding
 >사용자가 관심이 있는 펀딩 상품에 자금을 지원 가능하며,  
 >누구든지 자신의 아이디어를 펀딩 상품으로 실현 가능한 사이트  
->http://ffunding.xyz/ffunding
+>- [프로젝트 Demo 링크](https://bit.ly/3wIOmAp)
+>- [ppt 포트폴리오](https://docs.google.com/presentation/d/1FXMe7KqAtcSigQceI-gJQxoXkFi9fSh_/edit?usp=sharing&ouid=117164930328240871021&rtpof=true&sd=true)
 
 </br>
 
@@ -32,11 +33,14 @@
 <img src="https://user-images.githubusercontent.com/84454039/168826339-a9eca3b7-142c-4612-aba0-41e4e28f4004.png" width="900" height="500"><br>
 #### `물리 테이블`
 <img src="https://user-images.githubusercontent.com/84454039/168826411-558d7edb-50dc-4597-9200-f012134ab193.png" width="900" height="500">
-
+  
+</br>
+  
 ## 4. 핵심 기능
 이 서비스에서 제가 맡아서 구현한 기능은 로그인, 회원가입, 마이페이지입니다.  
 사이트에 비밀번호를 제공하지 않고 로그인 하고싶은 사용자를 위해 SNS회원 로그인 기능을 지원했고,  
 보안을 위해 비밀번호를 암호화하여 외부해킹 및 내부에 의한 데이터 유출을 방지했습니다.  
+마이페이지에서는 iamport 결제 API를 연동하여 사이트 내에서 사용할 수 있는 포인트 충전 기능을 구현했습니다.  
 아래의 설명을 보면, 서비스가 어떻게 동작하는지 알 수 있습니다.  
 
 <details>
