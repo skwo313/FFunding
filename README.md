@@ -20,10 +20,13 @@
   - Oracle 11g
   - Mybatis 3.4.6
   - OAuth 2.0 API
+  - Axios
+  - WebSoket(실시간 채팅)
 #### `Front-end`
   - Javascript
   - jQuery
   - Ajax
+  - Vue.js
   - Bootstrap
 
 </br>
