@@ -1,7 +1,6 @@
 # :pushpin: FFunding
 >사용자가 관심이 있는 펀딩 상품에 자금을 지원 가능하며,  
 >누구든지 자신의 아이디어를 펀딩 상품으로 실현 가능한 사이트  
->- [프로젝트 Demo 링크]()
 >- [ppt 포트폴리오](https://docs.google.com/presentation/d/1FXMe7KqAtcSigQceI-gJQxoXkFi9fSh_/edit?usp=sharing&ouid=117164930328240871021&rtpof=true&sd=true)
 
 </br>
